@@ -1,0 +1,19 @@
+{
+  "name": "ttip-grupo5-frontend",
+  "version": "1.0.0",
+  "description": "TTIP-Grupo5-FrontEnd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alonsoem/TTIP-Grupo5-FrontEnd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alonsoem/TTIP-Grupo5-FrontEnd/issues"
+  },
+  "homepage": "https://github.com/alonsoem/TTIP-Grupo5-FrontEnd#readme"
+}

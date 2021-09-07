@@ -1,0 +1,18 @@
+{
+  "name": "Nombre ",
+  "email": "Correo electronico",
+  "password": "Contraseña",
+  "send": "Enviar",
+  "register": "Registrese",
+  "tokenbutton": "Ver token",
+  "emailDisclaimer": "* Nunca compartiremos su dirección de email.",
+  "lang": "Idioma",
+  "loginTitle": "Ingreso Reseñas BO",
+  "registerTitle": "Registrar nuevo usuario",
+  "priceLegend" : "Aproveche esta oferta y obtenga acceso por el solo costo de ",
+  "navLogin": "Ingreso",
+  "navTaxes": "Impuestos",
+  "nameInvalidFeedback": "Debe indicar un nombre",
+  "emailInvalidFeedback": "La direccion de email debe ser valida",
+  "passwordInvalidFeedback": "La contraseña debe superar los 4 caracteres"
+}
