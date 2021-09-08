@@ -49,7 +49,7 @@ render() {
 
       <div>
   <Navbar  collapseOnSelect expand="md" bg="light" variant="light" className="navbar-light heavy-rain-gradient darken-3 mb-4">
-      <Navbar.Brand href="/"><img src={process.env.PUBLIC_URL + '/logo.png'} id="logo" /></Navbar.Brand>
+      <Navbar.Brand href="/"><img src={process.env.PUBLIC_URL + '/logo.png'} alt="Logo" id="logo" /></Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav " />
 
       <Navbar.Collapse id="responsive-navbar-nav ">

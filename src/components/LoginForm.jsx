@@ -22,7 +22,7 @@ class LoginForm extends Component {
         errorVisible:false,
   };
 
-    const md5 = require('md5');
+
 
 
   this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -55,7 +55,7 @@ class LoginForm extends Component {
         postLogin({"username": this.state.email, "password": this.state.password })
             .then((response) => {
                 localStorage.setItem('token',response.jwt)
-                this.props.history.push('/reviews')
+                this.props.history.push('/taxes')
             })
             .catch((responseError) =>{
                 this.setState({error: responseError.response.data.message})
