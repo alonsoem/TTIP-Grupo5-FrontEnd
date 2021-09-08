@@ -1,19 +1,59 @@
 {
-  "name": "ttip-grupo5-frontend",
-  "version": "1.0.0",
-  "description": "TTIP-Grupo5-FrontEnd",
-  "main": "index.js",
+  "name": "TTIP-grupo5-FrontEnd",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "aws-sdk": "^2.922.0",
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.0.1",
+    "chokidar": "^3.5.2",
+    "i18next": "^20.2.2",
+    "i18next-browser-languagedetector": "^6.1.1",
+    "i18next-http-backend": "^1.2.2",
+    "md5": "^2.3.0",
+    "mdbreact": "^5.0.2",
+    "mui-datatables": "^3.7.7",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.5.2",
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.8.15",
+    "react-intl": "^5.20.1",
+    "react-notifications": "^1.7.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "react-toast-notifications": "^2.4.4",
+    "react-toastify": "^5.5.0",
+    "web-vitals": "^1.0.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alonsoem/TTIP-Grupo5-FrontEnd.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alonsoem/TTIP-Grupo5-FrontEnd/issues"
-  },
-  "homepage": "https://github.com/alonsoem/TTIP-Grupo5-FrontEnd#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
