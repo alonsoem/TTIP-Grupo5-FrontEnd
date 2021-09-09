@@ -8,4 +8,7 @@ import App from './App.jsx';
 import './i18n.js';
 
 
-ReactDOM.render(<App/>,document.getElementById('root'));
+ReactDOM.render(
+    <App/>,
+    document.getElementById('root')
+);

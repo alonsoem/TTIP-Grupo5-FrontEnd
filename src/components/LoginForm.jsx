@@ -91,7 +91,7 @@ class LoginForm extends Component {
                                     <Row className="justify-content-center justify-content-sm-center justify-content-lg-center justify-content-md-center justify-content-xl-center vertical">
 
                                         <Col className="col-6 ">
-                                            <Image src={process.env.PUBLIC_URL + '/logo.png'} width="100%" height="100%"  />
+                                            <Image src={process.env.PUBLIC_URL + '/alec-icon.png'} width="100%" height="100%"  />
                                         </Col>
 
                                     </Row>
