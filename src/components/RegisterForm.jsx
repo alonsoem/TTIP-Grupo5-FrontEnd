@@ -1,19 +1,15 @@
-import React, { Component } from 'react';
-import {Form, Button, FormGroup, Col, Row, Image, Alert} from "react-bootstrap";
-import i18n from '../i18n.js';
-import { withTranslation } from 'react-i18next';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from 'mdbreact';
-import {FormattedNumber,FormattedDate} from 'react-intl';
-import {IntlProvider} from 'react-intl';
-import {postRegister} from "../api/api";
 import * as md5 from "md5";
-import "./test.css";
+import { MDBCard, MDBCardBody, MDBCol, MDBContainer, MDBRow } from 'mdbreact';
+import React, { Component } from 'react';
+import { Alert, Button, Col, Form, FormGroup, Image, Row } from "react-bootstrap";
+import { withTranslation } from 'react-i18next';
+import { IntlProvider } from 'react-intl';
+import { postRegister } from "../api/api";
 import App18 from "../App18";
-
-
+import i18n from '../i18n.js';
+import "./test.css";
 
 class RegisterForm extends Component {
-
 
     constructor(props){
         super(props);
@@ -33,37 +29,31 @@ class RegisterForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
-
     showAlert() {
-
         this.setState({errorVisible:true});
-        setTimeout(
-            () => this.setState({errorVisible:false})
-                , 3000);
-
+        setTimeout(() => this.setState({errorVisible:false}), 3000);
     }
 
 
-        handleInputChange =event=> {
-            const key = event.target.name;
-            const value = event.target.value;
-            const obj = {};
-            obj[key] = value;
-            this.setState(obj);
-        }
+    handleInputChange = event => {
+        const key = event.target.name;
+        const value = event.target.value;
+        const obj = {};
+        obj[key] = value;
+        this.setState(obj);
+    }
 
     handleSubmit = event => {
         event.preventDefault();
 
         var errors = [];
 
-        //Check name of user
+        // Check name of user
         if (this.state.name=== "") {
             errors.push("name");
         }
 
-        //Check email address
+        // Check email address
         const expression = /\S+@\S+/;
         var validEmail = expression.test(String(this.state.email).toLowerCase());
 
@@ -71,11 +61,10 @@ class RegisterForm extends Component {
             errors.push("email");
         }
 
-        //Check password length
+        // Check password length
         if (this.state.password.length<4) {
             errors.push("password");
         }
-
 
         this.setState({
             errors: errors
@@ -87,16 +76,13 @@ class RegisterForm extends Component {
             postRegister({"name": this.state.name, "email": this.state.email,
                 "password": md5(this.state.password)})
                 .then(response =>  this.props.history.push('/login'))
-                .catch((responseError) =>{
-                    this.setState({error: responseError.response.data.message})
-                    this.showAlert()
+                .catch((responseError) => {
+                        this.setState({error: responseError.response.data.message})
+                        this.showAlert()
                     }
                 );
         }
-
-
     }
-
 
     hasError(key) {
         return this.state.errors.indexOf(key) !== -1;
@@ -120,50 +106,35 @@ class RegisterForm extends Component {
                 }
             }
         };
-        return(
 
+        return(
             <div className="container-fluid bg">
                 <br/>
                 <br/>
                 <MDBContainer>
                     <Row class="row">
                         <Col className="col-12 col-sm-4 col-lg-6 col-xl-6 pb-4">
-
-
                                 <MDBCard>
                                     <Image className="card-img-top" src={process.env.PUBLIC_URL + '/signup.jpg'} alt="Sign Up image" />
                                     <MDBCardBody>
                                         <IntlProvider locale={i18n.language} formats={formats}
                                                       defaultFormats={formats}>
-                                            <p> Aproveche el descuento de junio y obtenga (solo disponible hasta <FormattedDate value={this.state.fecha} />)
-                                                acceso completo a la funcionalidad premium por el minimo costo de &nbsp;
-                                                <FormattedNumber value={this.state.number} format='USD'/><br/>
-                                            </p>
+                                            <p><b>{t("priceLegend")}</b></p>
                                         </IntlProvider>
-
                                     </MDBCardBody>
                                 </MDBCard>
-
                         </Col>
                         <Col className="col-12 col-sm-8 col-lg-6 col-xl-6">
                             <MDBRow class="row-sm d-flex justify-content-center">
-
                                 <MDBCol class="col-sm-4">
-
                                     <MDBCard>
                                         <MDBCardBody>
                                             <Form onSubmit={this.handleSubmit} >
-                                                
                                                 <p className="h5 text-center mb-4">{t("registerTitle")}</p>
-
                                                 <br/>
-
-
                                                 <Alert  className="alert alert-dismissible" variant='primary' onClose={this.clearShowError} show={this.state.errorVisible}>
                                                     {this.state.error}
                                                 </Alert>
-
-
 
                                                 <FormGroup controlId="formUser " >
                                                     <label htmlFor="name" className="form-label">{t('name')}</label>
@@ -212,22 +183,13 @@ class RegisterForm extends Component {
                                         </MDBCardBody>
                                     </MDBCard>
                                 </MDBCol>
-
                             </MDBRow>
                         </Col>
                     </Row>
                 </MDBContainer>
-
-
-
-
-
-
             </div>
         );
     }
-
 }
+
 export default withTranslation() (RegisterForm);
-
-

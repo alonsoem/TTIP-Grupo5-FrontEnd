@@ -1,18 +1,18 @@
 {
-  "name": "Nombre ",
-  "email": "Correo electronico",
+  "name": "Nombre",
+  "email": "Correo electrónico",
   "password": "Contraseña",
   "send": "Enviar",
-  "register": "Registrese",
+  "register": "Regístrese",
   "tokenbutton": "Ver token",
   "emailDisclaimer": "* Nunca compartiremos su dirección de email.",
   "lang": "Idioma",
-  "loginTitle": "Accede a ALEC!",
+  "loginTitle": "Acceda a ALEC!",
   "registerTitle": "Registrar nuevo usuario",
-  "priceLegend" : "Aproveche esta oferta y obtenga acceso por el solo costo de ",
+  "priceLegend" : "Bienvenido a ALEC, por favor regístrese para utilizar nuestros servicios.",
   "navLogin": "Ingreso",
   "navTaxes": "Impuestos",
-  "nameInvalidFeedback": "Debe indicar un nombre",
-  "emailInvalidFeedback": "La direccion de email debe ser valida",
-  "passwordInvalidFeedback": "La contraseña debe superar los 4 caracteres"
+  "userInvalidFeedback": "Debe indicar un nombre",
+  "emailInvalidFeedback": "La direccion de email debe ser válida",
+  "passwordInvalidFeedback": "La contraseña debe tener al menos 4 caracteres"
 }

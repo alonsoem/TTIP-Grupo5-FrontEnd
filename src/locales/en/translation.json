@@ -9,10 +9,10 @@
   "lang": "Language",
   "loginTitle": "ALEC Login",
   "registerTitle": "Register New Account",
-  "priceLegend" : "This is your oportunity to suscribe for a minimum cost of ",
+  "priceLegend" : "Welcome to ALEC, please sign up to use our services.",
   "navLogin": "Login",
   "navTaxes": "Taxes",
-    "userInvalidFeedback": "User name can not be null!",
-  "emailInvalidFeedback": "Email is invalid or missing!",
-  "passwordInvalidFeedback": "Password must be provided!"
+  "userInvalidFeedback": "Enter a name",
+  "emailInvalidFeedback": "Email is invalid or missing",
+  "passwordInvalidFeedback": "Password must be at least 4 characters"
 }
