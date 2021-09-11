@@ -1,6 +1,6 @@
 
 .bg {
-    background-image: url("./../wallpaper.jpeg");
+    background-image: url("/wallpaper.jpg");
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
