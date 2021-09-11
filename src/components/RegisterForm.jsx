@@ -119,7 +119,9 @@ class RegisterForm extends Component {
                                     <MDBCardBody>
                                         <IntlProvider locale={i18n.language} formats={formats}
                                                       defaultFormats={formats}>
-                                            <p><b>{t("priceLegend")}</b></p>
+                                            <p class="list-group-item list-group-item-action list-group-item-primary text-dark">
+                                                <b>{t("priceLegend")}</b>
+                                            </p>
                                         </IntlProvider>
                                     </MDBCardBody>
                                 </MDBCard>
@@ -130,7 +132,7 @@ class RegisterForm extends Component {
                                     <MDBCard>
                                         <MDBCardBody>
                                             <Form onSubmit={this.handleSubmit} >
-                                                <p className="h5 text-center mb-4">{t("registerTitle")}</p>
+                                                <p className="h5 text-center mb-4 card-header">{t("registerTitle")}</p>
                                                 <br/>
                                                 <Alert  className="alert alert-dismissible" variant='primary' onClose={this.clearShowError} show={this.state.errorVisible}>
                                                     {this.state.error}
