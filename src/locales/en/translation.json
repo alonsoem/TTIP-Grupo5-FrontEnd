@@ -14,5 +14,11 @@
   "navTaxes": "Taxes",
   "userInvalidFeedback": "Enter a name",
   "emailInvalidFeedback": "Email is invalid or missing",
-  "passwordInvalidFeedback": "Password must be at least 4 characters"
+  "passwordInvalidFeedback": "Password must be at least 4 characters",
+  "province": "Province",
+  "taxpayerType": "Registered Responsible",
+  "yes": "Yes",
+  "duplicateUser": "User already exists",
+  "genericError": "We are sorry, an error occurred",
+  "userCreationOk": "User created successfully"
 }

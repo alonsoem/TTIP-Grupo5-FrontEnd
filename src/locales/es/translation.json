@@ -14,5 +14,11 @@
   "navTaxes": "Impuestos",
   "userInvalidFeedback": "Debe indicar un nombre",
   "emailInvalidFeedback": "La direccion de email debe ser válida",
-  "passwordInvalidFeedback": "La contraseña debe tener al menos 4 caracteres"
+  "passwordInvalidFeedback": "La contraseña debe tener al menos 4 caracteres",
+  "province": "Provincia",
+  "taxpayerType": "Responsable Inscripto",
+  "yes": "Sí",
+  "duplicateUser": "El usuario ya existe",
+  "genericError": "Lo sentimos, se produjo un error",
+  "userCreationOk": "Usuario creado exitosamente"
 }
