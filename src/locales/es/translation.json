@@ -20,5 +20,6 @@
   "yes": "Sí",
   "duplicateUser": "El usuario ya existe",
   "genericError": "Lo sentimos, se produjo un error",
-  "userCreationOk": "Usuario creado exitosamente"
+  "userCreationOk": "Usuario creado exitosamente",
+  "invalidCredentials": "Usuario o contraseña no válidos"
 }

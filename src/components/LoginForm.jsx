@@ -51,11 +51,18 @@ class LoginForm extends Component {
         localStorage.setItem("token", response.jwt);
         this.props.history.push("/taxes");
       })
-      .catch((responseError) => {
-        this.setState({ error: responseError.response.data.message });
-        this.showAlert();
-      });
+      .catch((responseError) => this.handleAPIError(responseError));
   };
+
+  handleAPIError(responseError) {
+    console.log(responseError.response.status);
+    let errorToDisplay = this.props.t("genericError");
+    if (responseError.response.status === 401) {
+      errorToDisplay = this.props.t("invalidCredentials");
+    }
+    this.setState({ error: errorToDisplay });
+    this.showAlert();
+  }
 
   componentDidMount() {
     console.log("AMBIENTE: " + process.env.NODE_ENV);
@@ -66,11 +73,10 @@ class LoginForm extends Component {
     const { t } = this.props;
 
     return (
-      <div className="container-fluid bg ">
+      <div className="container-fluid bg">
         <div className="container">
-          <Row className="justify-content-center padding-5">
-            <Col className="col-1 col-sm-2 col-md-3 col-lg-3 col-xl-4"></Col>
-            <Col className="col-10 col-sm-8 col-md-6 col-lg-6 col-xl-4">
+          <Row className="padding-5 justify-content-center">
+            <Col className="col-8">
               <MDBCard>
                 <MDBCardBody>
                   <Form onSubmit={this.handleSubmit}>
@@ -92,7 +98,7 @@ class LoginForm extends Component {
                     <br />
                     <Alert
                       className="alert alert-dismissible"
-                      variant="primary"
+                      variant="danger"
                       show={this.state.errorVisible}
                     >
                       {this.state.error}
@@ -146,7 +152,6 @@ class LoginForm extends Component {
                 </MDBCardBody>
               </MDBCard>
             </Col>
-            <Col className="col-1 col-sm-2 col-md-3 col-lg-3 col-xl-4"></Col>
           </Row>
         </div>
       </div>

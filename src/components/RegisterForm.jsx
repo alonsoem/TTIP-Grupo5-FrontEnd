@@ -144,7 +144,7 @@ class RegisterForm extends Component {
                         <br />
                         <Alert
                           className="alert alert-dismissible"
-                          variant="primary"
+                          variant="danger"
                           show={this.state.errorVisible}
                         >
                           {this.state.error}

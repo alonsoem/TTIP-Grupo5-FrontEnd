@@ -20,5 +20,6 @@
   "yes": "Yes",
   "duplicateUser": "User already exists",
   "genericError": "We are sorry, an error occurred",
-  "userCreationOk": "User created successfully"
+  "userCreationOk": "User created successfully",
+  "invalidCredentials": "Invalid username or password"
 }
