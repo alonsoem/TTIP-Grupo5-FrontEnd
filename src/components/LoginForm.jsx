@@ -76,7 +76,7 @@ class LoginForm extends Component {
       <div className="container-fluid bg">
         <div className="container">
           <Row className="padding-5 justify-content-center">
-            <Col className="col-8">
+            <Col className="col-7">
               <MDBCard>
                 <MDBCardBody>
                   <Form onSubmit={this.handleSubmit}>
