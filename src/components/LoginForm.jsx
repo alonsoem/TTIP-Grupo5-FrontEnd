@@ -55,18 +55,12 @@ class LoginForm extends Component {
   };
 
   handleAPIError(responseError) {
-    console.log(responseError.response.status);
     let errorToDisplay = this.props.t("genericError");
     if (responseError.response.status === 401) {
       errorToDisplay = this.props.t("invalidCredentials");
     }
     this.setState({ error: errorToDisplay });
     this.showAlert();
-  }
-
-  componentDidMount() {
-    console.log("AMBIENTE: " + process.env.NODE_ENV);
-    console.log("REACT ENDPOINT:" + process.env.REACT_APP_API_ENDPOINT);
   }
 
   render() {
