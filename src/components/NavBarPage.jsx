@@ -17,7 +17,7 @@ class NavBarPage extends Component {
           expand="md"
           className="navbar-light heavy-rain-gradient darken-3 mb-4"
         >
-          <Navbar.Brand>
+          <Navbar.Brand href="/taxes">
             <img
               className="img-thumbnail"
               src={process.env.PUBLIC_URL + "/alec-logo.png"}
@@ -30,13 +30,13 @@ class NavBarPage extends Component {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto justify-content-center ">
               <NavItem>
-                <NavLink className="btn btn-primary" to="/login">
-                  {t("navLogin")}
+                <NavLink className="btn btn-primary" to="/taxes">
+                  <b>{t("preferences")}</b>
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="btn btn-primary" to="/taxes">
-                  {t("navTaxes")}
+                <NavLink className="btn btn-danger" to="/login">
+                  <b>{t("logout")}</b>
                 </NavLink>
               </NavItem>
               <NavItem>
