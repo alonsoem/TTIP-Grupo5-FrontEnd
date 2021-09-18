@@ -27,7 +27,7 @@ class NavBarPage extends Component {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-          <Navbar.Collapse id="responsive-navbar-nav ">
+          <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto justify-content-center ">
               <NavItem>
                 <NavLink className="btn btn-primary" to="/login">
