@@ -115,7 +115,7 @@ class RegisterForm extends Component {
         <br />
         <br />
         <MDBContainer>
-          <Row class="row">
+          <Row className="row">
             <Col className="col-12 col-sm-4 col-lg-6 col-xl-6 pb-4">
               <MDBCard>
                 <Image
@@ -125,7 +125,7 @@ class RegisterForm extends Component {
                 />
                 <MDBCardBody>
                   <IntlProvider locale={i18n.language}>
-                    <p class="list-group-item list-group-item-action list-group-item-primary text-dark">
+                    <p className="list-group-item list-group-item-action list-group-item-primary text-dark">
                       <b>{t("priceLegend")}</b>
                     </p>
                   </IntlProvider>
@@ -133,8 +133,8 @@ class RegisterForm extends Component {
               </MDBCard>
             </Col>
             <Col className="col-12 col-sm-8 col-lg-6 col-xl-6">
-              <MDBRow class="row-sm d-flex justify-content-center">
-                <MDBCol class="col-sm-4">
+              <MDBRow className="row-sm d-flex justify-content-center">
+                <MDBCol>
                   <MDBCard>
                     <MDBCardBody>
                       <Form onSubmit={this.handleSubmit}>
@@ -184,7 +184,7 @@ class RegisterForm extends Component {
                           </div>
                         </FormGroup>
 
-                        <FormGroup controlId="formBasicEmail" class="form">
+                        <FormGroup controlId="formBasicEmail" className="form">
                           <label htmlFor="email" className="form-label">
                             {t("email")}
                           </label>
