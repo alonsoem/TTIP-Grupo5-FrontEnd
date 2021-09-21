@@ -66,6 +66,27 @@ class Taxes extends React.Component {
             </div>
           </div>
           <h2 className="card-header">{t("news")}</h2>
+          <br />
+          <iframe
+            className="mr-3"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/y2ODLQj3D4Q"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <iframe
+            className="mr-3"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/rRccV7J3cTI"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
     );
