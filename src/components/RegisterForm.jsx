@@ -26,6 +26,7 @@ class RegisterForm extends Component {
       password: "",
       province: "0",
       taxpayerType: "false",
+      otherTaxes: "false",
       error: "",
       fecha: new Date(),
       number: 106.34,
@@ -85,6 +86,7 @@ class RegisterForm extends Component {
         password: md5(this.state.password),
         province: this.state.province,
         respInscripto: this.state.taxpayerType,
+        gananciasYBienesP: this.state.otherTaxes
       })
         .then(() => {
           this.setState({ okMsgVisible: true });
@@ -284,6 +286,21 @@ class RegisterForm extends Component {
                             name="taxpayerType"
                             className="form-control"
                             id="taxpayerType"
+                            onChange={this.handleInputChange}
+                          >
+                            <option value="false">No</option>
+                            <option value="true">{t("yes")}</option>
+                          </select>
+                        </FormGroup>
+
+                        <FormGroup controlId="formOtherTaxes">
+                          <label htmlFor="otherTaxes" className="form-label">
+                            {t("otherTaxes")}
+                          </label>
+                          <select
+                            name="otherTaxes"
+                            className="form-control"
+                            id="otherTaxes"
                             onChange={this.handleInputChange}
                           >
                             <option value="false">No</option>

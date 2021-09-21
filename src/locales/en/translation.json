@@ -29,5 +29,6 @@
   "news": "News",
   "logout": "Log out",
   "preferences": "Settings",
-  "mainCalc": "Taxes on purchases abroad"
+  "mainCalc": "Taxes on purchases abroad",
+  "otherTaxes": "Registered in the income or personal property tax"
 }
