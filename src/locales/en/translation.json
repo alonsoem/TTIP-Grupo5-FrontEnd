@@ -31,5 +31,12 @@
   "preferences": "Settings",
   "mainCalc": "Taxes on purchases abroad",
   "otherTaxes": "Registered in the income or personal property tax",
-  "comError": "Communication error"
+  "comError": "Communication error",
+  "maincalcTitle": "Tax calculator for purchases abroad",
+  "amount": "Amount",
+  "purchaseType": "Purchase type. ",
+  "result": "Result",
+  "appliedTaxes": "Applied taxes",
+  "none": "None",
+  "typeReference": "AFIP's type reference"
 }

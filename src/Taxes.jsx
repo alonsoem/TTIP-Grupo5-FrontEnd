@@ -2,6 +2,7 @@ import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import React from "react";
 import { Image } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 import { getTaxes } from "./api/api";
 import NavBarPage from "./components/NavBarPage";
 
@@ -50,10 +51,12 @@ class Taxes extends React.Component {
         <div className="container-fluid">
           <h1 className="card-header">{t("calcs")}</h1>
           <br />
-          <Image
-            title={t("mainCalc")}
-            src={process.env.PUBLIC_URL + "/maincalc-icon.png"}
-          />
+          <NavLink to="/maincalc">
+            <Image
+              title={t("mainCalc")}
+              src={process.env.PUBLIC_URL + "/maincalc-icon.png"}
+            />
+          </NavLink>
           <br />
           <br />
           <h2 className="card-header">{t("quickRef")}</h2>
