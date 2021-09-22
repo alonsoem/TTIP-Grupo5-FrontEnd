@@ -35,8 +35,8 @@ class LoginForm extends Component {
   };
 
   handleChangePassword = (event) => {
-      let encryptedPwd = md5(event.target.value)
-    this.setState({ password: encryptedPwd });
+    let encPwd = md5(event.target.value)
+    this.setState({ password: encPwd });
   };
 
   showAlert() {
