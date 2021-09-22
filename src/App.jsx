@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Loginform from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-import Taxes from "./Taxes";
+import Taxes from "./components/Taxes";
 import MainCalc from "./components/MainCalc";
 
 export default class App extends React.Component {
