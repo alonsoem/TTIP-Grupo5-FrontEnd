@@ -14,6 +14,9 @@ class Taxes extends React.Component {
   }
 
   componentDidMount() {
+    if (!localStorage.getItem('token')) {
+      this.props.history.push('/login');
+    }
     getTaxes()
       .then((taxes) => {
         this.setState({ rows: taxes });

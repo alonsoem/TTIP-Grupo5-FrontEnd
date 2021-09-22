@@ -98,7 +98,12 @@ class RegisterForm extends Component {
 
   handleAPIError(responseError) {
     let errorToDisplay = this.props.t("genericError");
-    if (responseError.response.data.message.startsWith("User already exists")) {
+
+    if (responseError.request && responseError.request.status===0){
+      errorToDisplay = this.props.t("comError");
+    }
+
+    if (responseError.response && responseError.response.data.message.startsWith("User already exists")) {
       errorToDisplay = this.props.t("duplicateUser");
     }
     this.setState({ error: errorToDisplay });

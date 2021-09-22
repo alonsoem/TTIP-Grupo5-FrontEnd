@@ -30,5 +30,6 @@
   "logout": "Log out",
   "preferences": "Settings",
   "mainCalc": "Taxes on purchases abroad",
-  "otherTaxes": "Registered in the income or personal property tax"
+  "otherTaxes": "Registered in the income or personal property tax",
+  "comError": "Communication error"
 }

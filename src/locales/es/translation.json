@@ -30,5 +30,6 @@
   "logout": "Salir",
   "preferences": "Opciones",
   "mainCalc": "Impuestos a las compras en el exterior",
-  "otherTaxes": "Registrado en impuesto a las ganancias o bienes personales"
+  "otherTaxes": "Registrado en impuesto a las ganancias o bienes personales",
+  "comError": "Error de comunicación"
 }

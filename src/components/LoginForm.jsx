@@ -35,13 +35,16 @@ class LoginForm extends Component {
   };
 
   handleChangePassword = (event) => {
-    const encPwd = md5(event.target.value);
-    this.setState({ password: encPwd });
+      let encryptedPwd = md5(event.target.value)
+    this.setState({ password: encryptedPwd });
   };
 
   showAlert() {
     this.setState({ errorVisible: true });
     setTimeout(() => this.setState({ errorVisible: false }), 3000);
+  }
+  componentDidMount() {
+    localStorage.removeItem("token");
   }
 
   handleSubmit = (event) => {
@@ -49,15 +52,19 @@ class LoginForm extends Component {
     postLogin({ username: this.state.email, password: this.state.password })
       .then((response) => {
         localStorage.setItem("token", response.jwt);
-        this.props.history.push("/taxes");
+        this.props.history.push("/");
       })
       .catch((responseError) => this.handleAPIError(responseError));
   };
 
   handleAPIError(responseError) {
     let errorToDisplay = this.props.t("genericError");
-    if (responseError.response.status === 401) {
-      errorToDisplay = this.props.t("invalidCredentials");
+
+    if (responseError.request && responseError.request.status===0){
+        errorToDisplay = this.props.t("comError");
+    }
+    if (responseError.response && responseError.response.status === 401) {
+        errorToDisplay = this.props.t("invalidCredentials");
     }
     this.setState({ error: errorToDisplay });
     this.showAlert();
