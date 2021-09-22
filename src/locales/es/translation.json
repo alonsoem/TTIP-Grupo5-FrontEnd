@@ -30,5 +30,12 @@
   "logout": "Salir",
   "preferences": "Opciones",
   "mainCalc": "Impuestos a las compras en el exterior",
-  "otherTaxes": "Registrado en impuesto a las ganancias o bienes personales"
+  "otherTaxes": "Registrado en impuesto a las ganancias o bienes personales",
+  "maincalcTitle": "Calculadora de impuestos a las compras en el exterior",
+  "amount": "Importe",
+  "purchaseType": "Tipo de compra. ",
+  "result": "Resultado",
+  "appliedTaxes": "Impuestos aplicados",
+  "none": "Ninguno",
+  "typeReference": "Referencia de tipos de AFIP"
 }

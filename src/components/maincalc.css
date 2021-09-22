@@ -1,0 +1,11 @@
+#maincalcdiv {
+  background-image: url("/maincalc-wallpaper.png");
+  background-position: center;
+  background-size: cover;
+}
+
+@media (max-width: 992px) {
+    #appliedTaxesDiv {
+        margin-top: 20px;
+    }
+}
