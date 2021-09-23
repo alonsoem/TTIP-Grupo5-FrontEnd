@@ -6,7 +6,7 @@ let server = "";
 if (environment === "development") {
   server = "http://localhost:8080";
 } else {
-  server = "http://grupoj-2021-backend.herokuapp.com";
+  server = "http://TTIP-Grupo5-FrontEnd.herokuapp.com";
 }
 
 const config = { Authorization: "Bearer " + localStorage.getItem("token") };

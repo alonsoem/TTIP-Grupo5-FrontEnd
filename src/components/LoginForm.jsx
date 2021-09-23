@@ -35,7 +35,7 @@ class LoginForm extends Component {
   };
 
   handleChangePassword = (event) => {
-    let encPwd = md5(event.target.value)
+    let encPwd = md5(event.target.value);
     this.setState({ password: encPwd });
   };
 
@@ -53,6 +53,7 @@ class LoginForm extends Component {
       .then((response) => {
         localStorage.setItem("token", response.jwt);
         this.props.history.push("/");
+
       })
       .catch((responseError) => this.handleAPIError(responseError));
   };

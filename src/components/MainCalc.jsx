@@ -5,6 +5,7 @@ import { withTranslation } from "react-i18next";
 import { postCalc } from "../api/api";
 import App18 from "../App18";
 import "./maincalc.css";
+import NavBarPage from "./NavBarPage";
 
 class MainCalc extends Component {
   constructor(props) {
@@ -30,6 +31,12 @@ class MainCalc extends Component {
     this.setState({ purchaseType: event.target.value });
   };
 
+  componentDidMount() {
+    if (!localStorage.getItem('token')) {
+      this.props.history.push('/login');
+    }
+  }
+
   showAlert() {
     this.setState({ errorVisible: true });
     setTimeout(() => this.setState({ errorVisible: false }), 3000);
@@ -50,19 +57,25 @@ class MainCalc extends Component {
 
   handleAPIError(responseError) {
     let errorToDisplay = this.props.t("genericError");
-    //if (responseError.response.status === 401) {
-    //errorToDisplay = this.props.t("invalidCredentials");
-    //}
+
+    if (responseError.request && responseError.request.status===0){
+      errorToDisplay = this.props.t("comError");
+    }
     this.setState({ error: errorToDisplay });
     this.showAlert();
+
   }
 
   render() {
     const { t } = this.props;
 
     return (
-      <div id="maincalcdiv" className="container-fluid bg">
+        <div>
+          <NavBarPage />
+          <div className="container-fluid">
+
         <div className="container">
+
           <Row className="padding-5 justify-content-center">
             <Col className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
               <MDBCard>
@@ -135,11 +148,7 @@ class MainCalc extends Component {
                       </Col>
                     </Row>
                     <br />
-                    <Row className="justify-content-center">
-                      <Col className="justify-content-middle text-center">
-                        <App18 />
-                      </Col>
-                    </Row>
+
                   </Form>
                 </MDBCardBody>
               </MDBCard>
@@ -163,6 +172,8 @@ class MainCalc extends Component {
           </Row>
         </div>
       </div>
+        </div>
+
     );
   }
 }
