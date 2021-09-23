@@ -25,9 +25,7 @@ const request = (type, path, body, config) =>
 
 export const getTaxes = (body) => request("get", "/tax", body, authConfig());
 export const postCalc = (body) =>
-  request("post", "/tax/calculate", body, {
-    Authorization: "Bearer " + localStorage.getItem("token"),
-  });
+  request("post", "/tax/calculate", body, authConfig());
 export const postRegister = (body) => request("post", "/register", body, {});
 export const postLogin = (body) =>
   request("post", "/authenticate", body, {
