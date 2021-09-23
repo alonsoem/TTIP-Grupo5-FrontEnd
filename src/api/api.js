@@ -9,7 +9,9 @@ if (environment === "development") {
   server = "http://TTIP-Grupo5-FrontEnd.herokuapp.com";
 }
 
-const config = { Authorization: "Bearer " + localStorage.getItem("token") };
+const authConfig = () => {
+  return { Authorization: "Bearer " + localStorage.getItem("token") };
+};
 
 const request = (type, path, body, config) =>
   axios
@@ -21,9 +23,11 @@ const request = (type, path, body, config) =>
     })
     .then((req) => req.data);
 
-export const getTaxes = (body) => request("get", "/tax", body, config);
+export const getTaxes = (body) => request("get", "/tax", body, authConfig());
 export const postCalc = (body) =>
-  request("post", "/tax/calculate", body, config);
+  request("post", "/tax/calculate", body, {
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  });
 export const postRegister = (body) => request("post", "/register", body, {});
 export const postLogin = (body) =>
   request("post", "/authenticate", body, {
