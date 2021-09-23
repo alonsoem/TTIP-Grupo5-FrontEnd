@@ -3,8 +3,8 @@ import React from "react";
 import { Image } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { getTaxes } from "./api/api";
-import NavBarPage from "./components/NavBarPage";
+import { getTaxes } from "../api/api";
+import NavBarPage from "./NavBarPage";
 
 class Taxes extends React.Component {
   constructor(props) {
@@ -15,8 +15,8 @@ class Taxes extends React.Component {
   }
 
   componentDidMount() {
-    if (!localStorage.getItem('token')) {
-      this.props.history.push('/login');
+    if (!localStorage.getItem("token")) {
+      this.props.history.push("/login");
     }
     getTaxes()
       .then((taxes) => {

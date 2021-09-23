@@ -163,9 +163,7 @@ class MainCalc extends Component {
                 </div>
                 <div className="card-body">
                   <h5 className="card-title">Impuesto 1</h5>
-                  <p className="card-text text-white">
-                    Resumen
-                  </p>
+                  <p className="card-text text-white">Resumen</p>
                 </div>
               </div>
             </Col>
