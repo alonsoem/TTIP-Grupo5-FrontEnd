@@ -37,6 +37,6 @@
   "purchaseType": "Purchase type. ",
   "result": "Result",
   "appliedTaxes": "Applied taxes",
-  "none": "None",
+  "none": "Other",
   "typeReference": "AFIP's type reference"
 }

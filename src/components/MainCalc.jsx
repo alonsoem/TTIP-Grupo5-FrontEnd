@@ -1,4 +1,11 @@
-import { MDBCard, MDBCardBody, MDBInput } from "mdbreact";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardHeader,
+  MDBInput,
+  MDBListGroup,
+  MDBListGroupItem,
+} from "mdbreact";
 import React, { Component } from "react";
 import { Alert, Button, Col, Form, FormGroup, Row } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
@@ -16,6 +23,7 @@ class MainCalc extends Component {
       error: "",
       errorVisible: false,
       result: undefined,
+      taxlist: [],
     };
 
     this.handleChangeAmount = this.handleChangeAmount.bind(this);
@@ -50,7 +58,8 @@ class MainCalc extends Component {
       taxId: 4,
     })
       .then((response) => {
-        this.setState({ result: response.totalAmount });
+        const taxNames = response.detail.map((detail) => detail.taxDescription);
+        this.setState({ result: response.totalAmount, taxlist: taxNames });
       })
       .catch((responseError) => this.handleAPIError(responseError));
   };
@@ -153,15 +162,20 @@ class MainCalc extends Component {
                 id="appliedTaxesDiv"
                 className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4"
               >
-                <div className="card text-white bg-info">
-                  <div className="card-header">
+                <MDBCard className="card text-white bg-info">
+                  <MDBCardHeader className="card-header">
                     <h4>{t("appliedTaxes")}</h4>
-                  </div>
-                  <div className="card-body">
-                    <h5 className="card-title">Impuesto 1</h5>
-                    <p className="card-text text-white">Resumen</p>
-                  </div>
-                </div>
+                  </MDBCardHeader>
+                  <MDBCardBody className="card-body">
+                    <MDBListGroup>
+                      {this.state.taxlist.map((listitem) => (
+                        <MDBListGroupItem className="card-text" key={listitem}>
+                          <b>{listitem}</b>
+                        </MDBListGroupItem>
+                      ))}
+                    </MDBListGroup>
+                  </MDBCardBody>
+                </MDBCard>
               </Col>
             </Row>
           </div>

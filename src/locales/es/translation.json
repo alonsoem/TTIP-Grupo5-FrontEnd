@@ -37,6 +37,6 @@
   "purchaseType": "Tipo de compra. ",
   "result": "Resultado",
   "appliedTaxes": "Impuestos aplicados",
-  "none": "Ninguno",
+  "none": "Otro",
   "typeReference": "Referencia de tipos de AFIP"
 }
