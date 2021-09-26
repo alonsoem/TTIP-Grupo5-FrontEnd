@@ -10,7 +10,6 @@ import React, { Component } from "react";
 import { Alert, Button, Col, Form, FormGroup, Row } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { postCalc } from "../api/api";
-import App18 from "../App18";
 import "./maincalc.css";
 import NavBarPage from "./NavBarPage";
 
