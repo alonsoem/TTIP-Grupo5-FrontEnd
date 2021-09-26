@@ -3,10 +3,10 @@ import axios from "axios";
 const environment = process.env.NODE_ENV;
 let server = "";
 
-if (environment === "development") {
-  server = "http://localhost:8080";
-} else {
+if (environment === "production") {
   server = "http://TTIP-Grupo5-FrontEnd.herokuapp.com";
+} else {
+  server = "http://localhost:8080";
 }
 
 const authConfig = () => {
