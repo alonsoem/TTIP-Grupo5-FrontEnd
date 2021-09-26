@@ -1,14 +1,14 @@
 /**
  * @jest-environment jsdom
  */
-import { render, fireEvent, screen, waitFor } from "@testing-library/react";
-import React from "react";
-import MainCalc from "../components/MainCalc";
+import "@testing-library/jest-dom/extend-expect";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { createMemoryHistory } from "history";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import React from "react";
 import { MemoryRouter } from "react-router-dom";
-import "@testing-library/jest-dom/extend-expect";
-import { createMemoryHistory } from "history";
+import MainCalc from "../components/MainCalc";
 
 global.localStorage = {
   getItem: () => undefined,

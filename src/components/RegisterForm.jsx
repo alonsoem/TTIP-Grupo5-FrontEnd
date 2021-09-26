@@ -15,7 +15,8 @@ import { IntlProvider } from "react-intl";
 import { postRegister } from "../api/api";
 import App18 from "../App18";
 import i18n from "../i18n.js";
-import "./test.css";
+import signup from "../static/signup.jpg";
+import "./registerform.css";
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -86,7 +87,7 @@ class RegisterForm extends Component {
         password: md5(this.state.password),
         province: this.state.province,
         respInscripto: this.state.taxpayerType,
-        gananciasYBienesP: this.state.otherTaxes
+        gananciasYBienesP: this.state.otherTaxes,
       })
         .then(() => {
           this.setState({ okMsgVisible: true });
@@ -99,11 +100,14 @@ class RegisterForm extends Component {
   handleAPIError(responseError) {
     let errorToDisplay = this.props.t("genericError");
 
-    if (responseError.request && responseError.request.status===0){
+    if (responseError.request && responseError.request.status === 0) {
       errorToDisplay = this.props.t("comError");
     }
 
-    if (responseError.response && responseError.response.data.message.startsWith("User already exists")) {
+    if (
+      responseError.response &&
+      responseError.response.data.message.startsWith("User already exists")
+    ) {
       errorToDisplay = this.props.t("duplicateUser");
     }
     this.setState({ error: errorToDisplay });
@@ -127,7 +131,7 @@ class RegisterForm extends Component {
               <MDBCard>
                 <Image
                   className="card-img-top"
-                  src={process.env.PUBLIC_URL + "/signup.jpg"}
+                  src={signup}
                   alt="Sign Up image"
                 />
                 <MDBCardBody>

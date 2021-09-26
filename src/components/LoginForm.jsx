@@ -13,7 +13,8 @@ import {
 import { withTranslation } from "react-i18next";
 import { postLogin } from "../api/api";
 import App18 from "../App18";
-import "./otros.css";
+import alecicon from "../static/alecicon.png";
+import "./loginform.css";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -53,7 +54,6 @@ class LoginForm extends Component {
       .then((response) => {
         localStorage.setItem("token", response.jwt);
         this.props.history.push("/");
-
       })
       .catch((responseError) => this.handleAPIError(responseError));
   };
@@ -61,11 +61,11 @@ class LoginForm extends Component {
   handleAPIError(responseError) {
     let errorToDisplay = this.props.t("genericError");
 
-    if (responseError.request && responseError.request.status===0){
-        errorToDisplay = this.props.t("comError");
+    if (responseError.request && responseError.request.status === 0) {
+      errorToDisplay = this.props.t("comError");
     }
     if (responseError.response && responseError.response.status === 401) {
-        errorToDisplay = this.props.t("invalidCredentials");
+      errorToDisplay = this.props.t("invalidCredentials");
     }
     this.setState({ error: errorToDisplay });
     this.showAlert();
@@ -92,7 +92,7 @@ class LoginForm extends Component {
                       <Col className="col-6 ">
                         <Image
                           title="Accounting Light Extensible Calculator"
-                          src={process.env.PUBLIC_URL + "/alec-icon.png"}
+                          src={alecicon}
                           width="100%"
                           height="100%"
                         />

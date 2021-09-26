@@ -4,6 +4,7 @@ import { Image } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { getTaxes } from "../api/api";
+import maincalcicon from "../static/maincalcicon.png";
 import NavBarPage from "./NavBarPage";
 
 class Taxes extends React.Component {
@@ -52,10 +53,7 @@ class Taxes extends React.Component {
           <h1 className="card-header">{t("calcs")}</h1>
           <br />
           <NavLink to="/maincalc">
-            <Image
-              title={t("mainCalc")}
-              src={process.env.PUBLIC_URL + "/maincalc-icon.png"}
-            />
+            <Image title={t("mainCalc")} src={maincalcicon} />
           </NavLink>
           <br />
           <br />
