@@ -11,10 +11,8 @@ import {
   Row,
 } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
-import { IntlProvider } from "react-intl";
 import { postRegister } from "../api/api";
 import App18 from "../App18";
-import i18n from "../i18n.js";
 import signup from "../static/signup.jpg";
 import "./registerform.css";
 
@@ -135,11 +133,9 @@ class RegisterForm extends Component {
                   alt="Sign Up image"
                 />
                 <MDBCardBody>
-                  <IntlProvider locale={i18n.language}>
-                    <p className="list-group-item list-group-item-action list-group-item-primary text-dark">
-                      <b>{t("priceLegend")}</b>
-                    </p>
-                  </IntlProvider>
+                  <p className="list-group-item list-group-item-action list-group-item-primary text-dark">
+                    <b>{t("priceLegend")}</b>
+                  </p>
                 </MDBCardBody>
               </MDBCard>
             </Col>

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
 import App18 from "../App18.jsx";
 import aleclogo from "../static/aleclogo.png";
 import "./NavBar.css";
