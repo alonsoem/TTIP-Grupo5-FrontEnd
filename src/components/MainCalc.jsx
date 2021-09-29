@@ -17,7 +17,7 @@ class MainCalc extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amount: undefined,
+      amount: "$",
       purchaseType: "NOAPARTADO",
       error: "",
       errorVisible: false,
@@ -31,7 +31,13 @@ class MainCalc extends Component {
   }
 
   handleChangeAmount = (event) => {
-    this.setState({ amount: event.target.value });
+    event.preventDefault();
+    let newAmount = "";
+    const newChars = event.target.value.replaceAll("$", "");
+    if (!isNaN(newChars)) {
+      newAmount = newChars;
+    }
+    this.setState({ amount: "$" + newAmount });
   };
 
   handleChangePurchaseType = (event) => {
@@ -52,13 +58,16 @@ class MainCalc extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     postCalc({
-      amount: this.state.amount,
+      amount: this.state.amount.substring(1),
       apartado: this.state.purchaseType,
       taxId: 4,
     })
       .then((response) => {
         const taxNames = response.detail.map((detail) => detail.taxDescription);
-        this.setState({ result: response.totalAmount, taxlist: taxNames });
+        this.setState({
+          result: "$" + response.totalAmount,
+          taxlist: taxNames,
+        });
       })
       .catch((responseError) => this.handleAPIError(responseError));
   };
@@ -104,6 +113,7 @@ class MainCalc extends Component {
                           type="text"
                           label={t("amount")}
                           onChange={this.handleChangeAmount}
+                          value={this.state.amount}
                         />
                       </FormGroup>
 

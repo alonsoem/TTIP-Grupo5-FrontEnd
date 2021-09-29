@@ -18,16 +18,21 @@ const history = createMemoryHistory();
 history.push("/");
 
 const server = setupServer();
+
+const setup = () => {
+  return render(
+    <MemoryRouter>
+      <MainCalc history={history} />
+    </MemoryRouter>
+  );
+};
+
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("Layout works", () => {
-  const { container } = render(
-    <MemoryRouter>
-      <MainCalc history={history} />
-    </MemoryRouter>
-  );
+  const { container } = setup();
 
   expect(container.querySelector('[type="submit"]')).toHaveTextContent(
     "Enviar"
@@ -41,15 +46,19 @@ test("No input throws error", async () => {
     })
   );
 
-  const { container } = render(
-    <MemoryRouter>
-      <MainCalc history={history} />
-    </MemoryRouter>
-  );
+  const { container } = setup();
 
   fireEvent.click(container.querySelector('[type="submit"]'));
 
   await waitFor(() => screen.getByRole("alert"));
 
   expect(screen.getByRole("alert")).toHaveTextContent("error");
+});
+
+test("Amount input should have a $ in front of the input", () => {
+  const { container } = setup();
+
+  const input = container.querySelector('[value="$"]');
+
+  expect(input.value).toBe("$");
 });
