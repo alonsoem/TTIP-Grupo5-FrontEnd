@@ -45,11 +45,9 @@ test("No input throws error", async () => {
       return res(ctx.status(500));
     })
   );
-
   const { container } = setup();
 
   fireEvent.click(container.querySelector('[type="submit"]'));
-
   await waitFor(() => screen.getByRole("alert"));
 
   expect(screen.getByRole("alert")).toHaveTextContent("error");
@@ -59,6 +57,15 @@ test("Amount input should have a $ in front of the input", () => {
   const { container } = setup();
 
   const input = container.querySelector('[value="$"]');
+
+  expect(input.value).toBe("$");
+});
+
+test("Amount input should not allow letters", () => {
+  const { container } = setup();
+  const input = container.querySelector('[value="$"]');
+
+  fireEvent.change(input, { target: { value: "Good Day" } });
 
   expect(input.value).toBe("$");
 });

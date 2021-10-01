@@ -33,7 +33,7 @@ class MainCalc extends Component {
   handleChangeAmount = (event) => {
     event.preventDefault();
     let newAmount = "";
-    const newChars = event.target.value.replaceAll("$", "");
+    const newChars = event.target.value.replace("$", "");
     if (!isNaN(newChars)) {
       newAmount = newChars;
     }
