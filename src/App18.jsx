@@ -8,7 +8,10 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 
 function App18 ({ t }) {
     const changeLanguage = (lng) => {
+        console.log(lng);
         i18n.changeLanguage(lng);
+        localStorage.setItem("language",lng);
+
     }
 
     const handleChange = (event) => {
@@ -20,7 +23,7 @@ function App18 ({ t }) {
             <FormControl >
                 <InputLabel htmlFor="language_selector">{t("lang")}</InputLabel>
                 <NativeSelect
-                    defaultValue={'es'}
+                    defaultValue={localStorage.getItem("language")}
                     inputProps={{
                         name: 'language',
                         id: 'language_selector',

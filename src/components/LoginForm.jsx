@@ -46,6 +46,7 @@ class LoginForm extends Component {
   }
   componentDidMount() {
     localStorage.removeItem("token");
+
   }
 
   handleSubmit = (event) => {
@@ -72,6 +73,7 @@ class LoginForm extends Component {
   }
 
   render() {
+
     const { t } = this.props;
 
     return (

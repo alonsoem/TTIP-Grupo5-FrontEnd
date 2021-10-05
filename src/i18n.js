@@ -17,11 +17,11 @@ const resources = {
 };
 
 i18n
-    .use(detector)
+
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
         resources,
-        lng: "es",
+        lng: localStorage.getItem("language") || navigator.language,
         fallbackLng: "en",
 
         keySeparator: false, // we do not use keys in form messages.welcome
@@ -30,5 +30,6 @@ i18n
             escapeValue: false // react already safes from xss
         }
     });
+
 
 export default i18n;
