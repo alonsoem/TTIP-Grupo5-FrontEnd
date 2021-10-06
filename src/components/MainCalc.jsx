@@ -60,10 +60,12 @@ class MainCalc extends Component {
     postCalc({
       amount: this.state.amount.substring(1),
       apartado: this.state.purchaseType,
-      taxId: 4,
+      taxId: 1,
     })
       .then((response) => {
-        const taxNames = response.detail.map((detail) => detail.taxDescription);
+        const taxNames = response.detail
+          .filter((detail) => detail.amount > 0)
+          .map((detail) => detail.taxDescription);
         this.setState({
           result: "$" + response.totalAmount,
           taxlist: taxNames,
