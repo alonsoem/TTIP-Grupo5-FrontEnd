@@ -31,3 +31,5 @@ export const postLogin = (body) =>
   request("post", "/authenticate", body, {
     headers: { "Content-Type": "application/json" },
   });
+export const postTaxCreate = (body) =>
+    request("post", "/broker/create", body, authConfig());
