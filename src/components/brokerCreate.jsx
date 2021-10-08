@@ -56,7 +56,6 @@ class Taxes extends React.Component {
       <div>
         <NavBarPage />
         <div className="container-fluid">
-          <h1 className="card-header">{t("calcs")}</h1>
 
           <Card>
             <Card.Header as="h5">New Tax Broker</Card.Header>

@@ -6,7 +6,7 @@ import Loginform from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import Taxes from "./components/Taxes";
 import MainCalc from "./components/MainCalc";
-import taxCreate from "./components/taxCreate";
+import taxCreate from "./components/brokerCreate";
 
 export default class App extends React.Component {
   render() {
@@ -14,7 +14,7 @@ export default class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route path="/maincalc" component={MainCalc} />
-          <Route path="/taxes/create" component={taxCreate} />
+          <Route path="/broker/create" component={taxCreate} />
           <Route path="/taxes" component={Taxes} />
 
           <Route path="/register" component={RegisterForm} />
