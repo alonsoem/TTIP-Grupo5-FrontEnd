@@ -25,6 +25,8 @@
   "calcs": "Calculators",
   "lawNum": "Law number",
   "taxName": "Tax name",
+  "brokerName": "Broker Name",
+  "brokerId": "Broker Id",
   "rate": "Rate",
   "news": "News",
   "logout": "Log out",
@@ -38,5 +40,6 @@
   "result": "Result",
   "appliedTaxes": "Applied taxes",
   "none": "Other",
-  "typeReference": "AFIP's type reference"
+  "typeReference": "AFIP's type reference",
+  "brokers": "Brokers"
 }

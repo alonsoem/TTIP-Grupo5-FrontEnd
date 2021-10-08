@@ -25,6 +25,8 @@
   "calcs": "Calculadoras",
   "lawNum": "Número ley",
   "taxName": "Nombre impuesto",
+  "brokerName": "Nombre Broker",
+  "brokerId": "Id Broker",
   "rate": "Tasa",
   "news": "Novedades",
   "logout": "Salir",
@@ -38,5 +40,6 @@
   "result": "Resultado",
   "appliedTaxes": "Impuestos aplicados",
   "none": "Otro",
-  "typeReference": "Referencia de tipos de AFIP"
+  "typeReference": "Referencia de tipos de AFIP",
+  "brokers": "Brokers"
 }

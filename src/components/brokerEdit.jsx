@@ -43,14 +43,14 @@ class Taxes extends React.Component {
       name: this.state.taxName,
     })
         .then((response) => {
-          this.props.history.push("/broker");
+          this.props.history.push("/taxes");
         })
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
   render() {
     const { t } = this.props;
-
+    const { id } = this.props.match.params;
 
     return (
       <div>
@@ -58,13 +58,21 @@ class Taxes extends React.Component {
         <div className="container-fluid">
 
           <Card>
-            <Card.Header as="h5">New Tax Broker</Card.Header>
+            <Card.Header as="h5">Edit your Broker</Card.Header>
             <Card.Body>
               <Form onSubmit={this.handleSubmit}>
+
+                <Row className="mb-3">
+                  <Form.Group className="mb-3" controlId="idValue">
+                    <Form.Label>Broker Id</Form.Label>
+                    <Form.Control value={id}/>
+                  </Form.Group>
+                </Row>
+
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="nameValue">
                     <Form.Label>Broker/Tax Name</Form.Label>
-                    <Form.Control placeholder="Tax Broker Name..." onChange={this.handleChangeName} value={this.state.taxName}/>
+                    <Form.Control onChange={this.handleChangeName} value={this.state.taxName}/>
                   </Form.Group>
                 </Row>
 

@@ -24,6 +24,7 @@ const request = (type, path, body, config) =>
     .then((req) => req.data);
 
 export const getTaxes = (body) => request("get", "/rate", body, authConfig());
+export const getBrokers= (body) => request("get", "/broker", body, authConfig());
 export const postCalc = (body) =>
   request("post", "/broker/calculate", body, authConfig());
 export const postRegister = (body) => request("post", "/register", body, {});
