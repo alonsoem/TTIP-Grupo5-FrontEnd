@@ -64,7 +64,7 @@ class MainCalc extends Component {
     })
       .then((response) => {
         const taxNames = response.detail
-          //.filter((detail) => detail.amount >0)
+          .filter((detail) => detail.amount > 0)
           .map((detail) => detail.taxDescription);
         this.setState({
           result: "$" + response.totalAmount,
