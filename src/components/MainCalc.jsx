@@ -60,7 +60,7 @@ class MainCalc extends Component {
     postCalc({
       amount: this.state.amount.substring(1),
       apartado: this.state.purchaseType,
-      taxId: 1,
+      taxId: this.props.match.params.id,
     })
       .then((response) => {
         const taxNames = response.detail

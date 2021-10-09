@@ -51,5 +51,6 @@
   "taxCreate": "Alta de Tax",
   "url": "Dirección URL",
   "actionCol": "Acción",
-  "edit": "Modificar"
+  "edit": "Modificar",
+  "calculate": "Calcular!"
 }

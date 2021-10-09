@@ -30,7 +30,10 @@ class Brokers extends React.Component {
   render() {
     const { t } = this.props;
     const dataSet = this.state.rows.map((item) => {
-      return { id: item.id, name: item.name, url: <a href={"/broker/edit/"+item.id}>{t("edit")}</a>};
+      return { id: item.id,
+                name: item.name,
+                url: <a href={"/broker/edit/"+item.id}>{t("edit")}</a>,
+                calc: <a href={"/maincalc/"+item.id}>{t("calculate")}</a>};
     });
     const columns = [
       {
@@ -45,6 +48,10 @@ class Brokers extends React.Component {
         label: t("actionCol"),
         field: "url",
       },
+      {
+        label: "",
+        field: "calc",
+      },
 
     ];
 
@@ -55,10 +62,7 @@ class Brokers extends React.Component {
           <h1 className="card-header">{t("brokers")}</h1>
           <br />
           <NavLink to="/broker/edit">
-
-
             <i class="fas fa-plus-square fa-5x" title={t("brokerNew")} ></i>
-
           </NavLink>
           <br />
 

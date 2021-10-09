@@ -51,5 +51,6 @@
   "taxCreate": "New Tax",
   "url": "URL",
   "actionCol": "Action",
-  "edit": "Edit"
+  "edit": "Edit",
+  "calculate": "Calculate!"
 }

@@ -18,7 +18,7 @@ export default class App extends React.Component {
         <Switch>
           <Route exact path='/broker/edit/:id' component={brokerEdit} />
           <Route exact path='/broker/edit/:id/tax' component={taxCreate} />
-          <Route path="/maincalc" component={MainCalc} />
+          <Route path="/maincalc/:id" component={MainCalc} />
           <Route path="/broker/edit" component={brokerCreate} />
           <Route path="/broker" component={Brokers} />
           <Route path="/taxes" component={Taxes} />

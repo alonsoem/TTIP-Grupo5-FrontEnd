@@ -52,7 +52,7 @@ class Taxes extends React.Component {
         <div className="container-fluid">
           <h1 className="card-header">{t("calcs")}</h1>
           <br />
-          <NavLink to="/maincalc">
+          <NavLink to="/maincalc/1">
             <Image title={t("mainCalc")} src={maincalcicon} />
           </NavLink>
           <br />
