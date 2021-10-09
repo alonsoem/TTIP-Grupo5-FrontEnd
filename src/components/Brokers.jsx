@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import {getBrokers} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import maincalcicon from "../static/maincalcicon.png";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class Brokers extends React.Component {
   constructor(props) {
@@ -54,11 +55,13 @@ class Brokers extends React.Component {
           <h1 className="card-header">{t("brokers")}</h1>
           <br />
           <NavLink to="/broker/edit">
-            <Image title={t("mainCalc")} src={maincalcicon} />
+
+
+            <i class="fas fa-plus-square fa-5x" title={t("brokerNew")} ></i>
+
           </NavLink>
           <br />
-          <br />
-          <h2 className="card-header">{t("quickRef")}</h2>
+
           <br />
           <div className="form-content" align="center">
             <div className="row">
