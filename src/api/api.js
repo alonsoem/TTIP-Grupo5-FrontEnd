@@ -14,17 +14,21 @@ const authConfig = () => {
 };
 
 const request = (type, path, body, config) =>
+
   axios
     .request({
       url: `${server}${path}`,
       method: type,
       data: body,
       headers: config,
+
     })
     .then((req) => req.data);
 
+
 export const getTaxes = (body) => request("get", "/rate", body, authConfig());
 export const getBrokers= (body) => request("get", "/broker", body, authConfig());
+export const getBroker= (id) => request("get", "/broker/"+id, {}, authConfig());
 export const postCalc = (body) =>
   request("post", "/broker/calculate", body, authConfig());
 export const postRegister = (body) => request("post", "/register", body, {});
@@ -32,5 +36,7 @@ export const postLogin = (body) =>
   request("post", "/authenticate", body, {
     headers: { "Content-Type": "application/json" },
   });
-export const postTaxCreate = (body) =>
+export const postBrokerCreate = (body) =>
     request("post", "/broker/create", body, authConfig());
+export const postTaxCreate = (brokerId,body) =>
+    request("post", "/broker/"+brokerId+"/tax", body, authConfig());

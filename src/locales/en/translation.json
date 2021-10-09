@@ -1,4 +1,5 @@
 {
+  "id": "Id",
   "name": "Name",
   "email": "Email",
   "password": "Password",
@@ -41,5 +42,14 @@
   "appliedTaxes": "Applied taxes",
   "none": "Other",
   "typeReference": "AFIP's type reference",
-  "brokers": "Brokers"
+  "brokers": "Brokers",
+  "brokerNew": "New Broker",
+  "brokerEdit": "Edit your Broker",
+  "brokerAddTax": "Add New Tax",
+  "save": "Save",
+  "cancel": "Cancel",
+  "taxCreate": "New Tax",
+  "url": "URL",
+  "actionCol": "Action",
+  "edit": "Edit"
 }

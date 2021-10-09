@@ -3,7 +3,7 @@ import React from "react";
 import { Image } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import {getBrokers, getTaxes} from "../api/api";
+import {getBrokers} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import maincalcicon from "../static/maincalcicon.png";
 
@@ -29,7 +29,7 @@ class Brokers extends React.Component {
   render() {
     const { t } = this.props;
     const dataSet = this.state.rows.map((item) => {
-      return { id: item.id, name: item.name};
+      return { id: item.id, name: item.name, url: <a href={"/broker/edit/"+item.id}>{t("edit")}</a>};
     });
     const columns = [
       {
@@ -39,6 +39,10 @@ class Brokers extends React.Component {
       {
         label: t("brokerName"),
         field: "name",
+      },
+      {
+        label: t("actionCol"),
+        field: "url",
       },
 
     ];

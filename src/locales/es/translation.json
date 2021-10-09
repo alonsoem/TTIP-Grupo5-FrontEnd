@@ -1,4 +1,5 @@
 {
+  "id": "Identificador",
   "name": "Nombre",
   "email": "Correo electrónico",
   "password": "Contraseña",
@@ -41,5 +42,14 @@
   "appliedTaxes": "Impuestos aplicados",
   "none": "Otro",
   "typeReference": "Referencia de tipos de AFIP",
-  "brokers": "Brokers"
+  "brokers": "Brokers",
+  "brokerNew": "Alta de Broker",
+  "brokerEdit": "Modificación de Broker",
+  "brokerAddTax": "Agrega una Tax",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "taxCreate": "Alta de Tax",
+  "url": "Dirección URL",
+  "actionCol": "Acción",
+  "edit": "Modificar"
 }
