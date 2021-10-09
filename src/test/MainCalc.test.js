@@ -22,7 +22,7 @@ const server = setupServer();
 const setup = () => {
   return render(
     <MemoryRouter>
-      <MainCalc history={history} />
+      <MainCalc history={history} match={{ params: { id: 1 } }} />/>
     </MemoryRouter>
   );
 };
@@ -41,7 +41,7 @@ test("Layout works", () => {
 
 test("No input throws error", async () => {
   server.use(
-    rest.post("http://localhost:8080/tax/calculate", (req, res, ctx) => {
+    rest.post("http://localhost:8080/broker/calculate", (req, res, ctx) => {
       return res(ctx.status(500));
     })
   );
