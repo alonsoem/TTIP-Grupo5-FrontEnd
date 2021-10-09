@@ -35,7 +35,7 @@ test("Layout works", () => {
   const { container } = setup();
 
   expect(container.querySelector('[type="submit"]')).toHaveTextContent(
-    "Enviar"
+    "Submit"
   );
 });
 
