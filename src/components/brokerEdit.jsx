@@ -7,7 +7,7 @@ import {NavLink} from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
 
 
-class TaxEdit extends React.Component {
+class brokerEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +31,8 @@ class TaxEdit extends React.Component {
     if (!localStorage.getItem("token")) {
       this.props.history.push("/login");
     }
-    this.setState({ id: this.props.match.params.id });
+
+    this.state.id= this.props.match.params.id;
     getBroker(this.state.id)
         .then(aBroker => {
           this.setState({name: aBroker.name,taxes:aBroker.taxes});
@@ -149,4 +150,4 @@ class TaxEdit extends React.Component {
   }
 }
 
-export default withTranslation()(TaxEdit);
+export default withTranslation()(brokerEdit);

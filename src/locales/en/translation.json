@@ -54,5 +54,10 @@
   "edit": "Edit",
   "calculate": "Calculate!",
   "taxEdit": "Edit a Tax",
-  "taxAddRule": "Add a new Rule"
+  "taxAddRule": "Add a new Rule",
+  "ruleCreate": "Add new Rule",
+  "description": "Description",
+  "priority": "Priority",
+  "when": "When",
+  "then": "Then"
 }

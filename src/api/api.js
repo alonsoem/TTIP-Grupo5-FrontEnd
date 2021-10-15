@@ -40,3 +40,5 @@ export const postBrokerCreate = (body) =>
     request("post", "/broker/create", body, authConfig());
 export const postTaxCreate = (brokerId,body) =>
     request("post", "/broker/"+brokerId+"/tax", body, authConfig());
+export const postRuleCreate = (taxId,body) =>
+    request("post", "/tax/"+taxId+"/rule", body, authConfig());

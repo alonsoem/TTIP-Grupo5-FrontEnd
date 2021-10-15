@@ -126,7 +126,7 @@ class Taxes extends React.Component {
 
                 <Col lg="4" xs="4" md="4">
                   <Row>
-                    <NavLink to={"/broker/edit/"+this.state.id+"/tax"}>
+                    <NavLink to={"/tax/edit/"+this.state.id+"/rule"}>
                       {t("taxAddRule")}
                     </NavLink>
                   </Row>

@@ -54,5 +54,10 @@
   "edit": "Modificar",
   "calculate": "Calcular!",
   "taxEdit": "Modificación de Tax",
-  "taxAddRule": "Agrega una nueva Regla"
+  "taxAddRule": "Agrega una nueva Regla",
+  "ruleCreate": "Alta de Regla",
+  "description": "Descripción",
+  "priority": "Prioridad",
+  "when": "Condiciones",
+  "then": "Acciones"
 }
