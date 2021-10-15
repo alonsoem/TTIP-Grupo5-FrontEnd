@@ -83,7 +83,7 @@ class Taxes extends React.Component {
 
   render() {
     const { t } = this.props;
-    const { id } = this.props.match.params;
+    const idTax= this.props.match.params.id;
 
       return (
 
@@ -103,7 +103,7 @@ class Taxes extends React.Component {
                     <Row className="mb-3">
                       <Form.Group className="mb-3" controlId="idValue">
                         <Form.Label>{t("id")}</Form.Label>
-                        <Form.Control value={id}/>
+                        <Form.Control value={idTax}/>
                       </Form.Group>
                     </Row>
 
@@ -126,7 +126,7 @@ class Taxes extends React.Component {
 
                 <Col lg="4" xs="4" md="4">
                   <Row>
-                    <NavLink to={"/tax/edit/"+this.state.id+"/rule"}>
+                    <NavLink to={"/rule/"+this.state.id}>
                       {t("taxAddRule")}
                     </NavLink>
                   </Row>

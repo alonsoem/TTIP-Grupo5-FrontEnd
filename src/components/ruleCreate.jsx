@@ -1,11 +1,12 @@
 import React from "react";
+import {getFacts,postRuleCreate} from "../api/api";
 import { withTranslation } from "react-i18next";
 import NavBarPage from "./NavBarPage";
-import {Card,Row,Form,Button} from "react-bootstrap";
-import {postRuleCreate} from "../api/api";
+import {Card, Row, Form, Button, Col} from "react-bootstrap";
+import ListGroup from "./brokerEdit";
 
 class RuleCreate extends React.Component {
-  constructor(props) {
+    constructor(props) {
     super(props);
     this.state = {
       id:0,
@@ -14,15 +15,16 @@ class RuleCreate extends React.Component {
       name: "",
       description: "",
       priority: 1,
+      factList:[],
     };
 
-
+      this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleChangePriority = this.handleChangePriority.bind(this);
     this.handleChangeWhen = this.handleChangeWhen.bind(this);
     this.handleChangeThen = this.handleChangeThen.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+
 
   }
 
@@ -30,10 +32,17 @@ class RuleCreate extends React.Component {
     if (!localStorage.getItem("token")) {
       this.props.history.push("/login");
     }
+    getFacts()
+        .then((facts) => {
+          this.setState({ factList: facts.map((each)=>each.name)});
+          console.log(this.state.factList);
+        })
+        .catch(() => this.setState({ error: this.props.t("genericError") }));
 
   }
+
   cancelAction=(event)=>{
-    this.props.history.push("/broker");
+//    this.props.history.push("/tax/");
 
   }
 
@@ -52,6 +61,7 @@ class RuleCreate extends React.Component {
   handleChangeThen = (event) => {
     this.setState({ then: event.target.value });
   };
+  
   handleAPIError(responseError) {
     let errorToDisplay = this.props.t("genericError");
 
@@ -78,9 +88,12 @@ class RuleCreate extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
+  reptileListItems() {
+    return this.state.factList.map((reptile) => <li>{reptile}</li>);
+  }
+
   render() {
     const { t } = this.props;
-
 
     return (
       <div>
@@ -91,6 +104,8 @@ class RuleCreate extends React.Component {
             <Card.Header as="h5">{t("ruleCreate")}</Card.Header>
             <Card.Body>
               <Form onSubmit={this.handleSubmit}>
+                <Row>
+                <Col>
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="nameValue">
                     <Form.Label>{t("name")}</Form.Label>
@@ -122,6 +137,20 @@ class RuleCreate extends React.Component {
                   </Form.Group>
                 </Row>
 
+                </Col>
+
+                <Col lg="4" xs="4" md="4">
+                  <Row>
+                    Facts Permitidos:
+                  </Row>
+                  <Row>
+                    <ul>
+                      {this.reptileListItems()}
+                    </ul>
+
+                  </Row>
+                </Col>
+                </Row>
 
                 <Row>
                   <Button variant="primary" type="submit">

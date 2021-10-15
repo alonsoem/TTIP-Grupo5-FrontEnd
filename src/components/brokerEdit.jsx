@@ -2,12 +2,11 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import {getBroker, postTaxCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
-import {Card, Row, Form, Button, Image,Col} from "react-bootstrap";
+import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
 
-
-class brokerEdit extends React.Component {
+class BrokerEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -150,4 +149,4 @@ class brokerEdit extends React.Component {
   }
 }
 
-export default withTranslation()(brokerEdit);
+export default withTranslation()(BrokerEdit);
