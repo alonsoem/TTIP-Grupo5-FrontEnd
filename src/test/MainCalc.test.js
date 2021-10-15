@@ -22,7 +22,7 @@ const server = setupServer();
 const setup = () => {
   return render(
     <MemoryRouter>
-      <MainCalc history={history} match={{ params: { id: 1 } }} />/>
+      <MainCalc history={history} match={{ params: { id: 1 } }} />
     </MemoryRouter>
   );
 };

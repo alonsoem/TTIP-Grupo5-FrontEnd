@@ -1,12 +1,9 @@
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import React from "react";
-import { Image } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import {getBrokers} from "../api/api";
+import { getBrokers } from "../api/api";
 import NavBarPage from "./NavBarPage";
-import maincalcicon from "../static/maincalcicon.png";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class Brokers extends React.Component {
   constructor(props) {
@@ -30,10 +27,12 @@ class Brokers extends React.Component {
   render() {
     const { t } = this.props;
     const dataSet = this.state.rows.map((item) => {
-      return { id: item.id,
-                name: item.name,
-                url: <a href={"/broker/edit/"+item.id}>{t("edit")}</a>,
-                calc: <a href={"/maincalc/"+item.id}>{t("calculate")}</a>};
+      return {
+        id: item.id,
+        name: item.name,
+        url: <a href={"/broker/edit/" + item.id}>{t("edit")}</a>,
+        calc: <a href={"/maincalc/" + item.id}>{t("calculate")}</a>,
+      };
     });
     const columns = [
       {
@@ -52,7 +51,6 @@ class Brokers extends React.Component {
         label: "",
         field: "calc",
       },
-
     ];
 
     return (
@@ -62,7 +60,7 @@ class Brokers extends React.Component {
           <h1 className="card-header">{t("brokers")}</h1>
           <br />
           <NavLink to="/broker/edit">
-            <i class="fas fa-plus-square fa-5x" title={t("brokerNew")} ></i>
+            <i class="fas fa-plus-square fa-5x" title={t("brokerNew")}></i>
           </NavLink>
           <br />
 
@@ -77,7 +75,6 @@ class Brokers extends React.Component {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     );

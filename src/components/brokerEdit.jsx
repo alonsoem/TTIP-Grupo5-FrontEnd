@@ -31,12 +31,10 @@ class TaxEdit extends React.Component {
     if (!localStorage.getItem("token")) {
       this.props.history.push("/login");
     }
-    this.state.id=this.props.match.params.id
+    this.setState({ id: this.props.match.params.id });
     getBroker(this.state.id)
         .then(aBroker => {
           this.setState({name: aBroker.name,taxes:aBroker.taxes});
-
-
         })
         .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
@@ -100,28 +98,31 @@ class TaxEdit extends React.Component {
                       </Form.Group>
                     </Row>
 
-                    <Row className="mb-3">
-                      <Form.Group className="mb-3" controlId="nameValue">
-                        <Form.Label>{t("name")}</Form.Label>
-                        <Form.Control onChange={this.handleChangeName} value={this.state.name}/>
-                      </Form.Group>
+                      <Row className="mb-3">
+                        <Form.Group className="mb-3" controlId="nameValue">
+                          <Form.Label>{t("name")}</Form.Label>
+                          <Form.Control
+                            onChange={this.handleChangeName}
+                            value={this.state.name}
+                          />
+                        </Form.Group>
+                      </Row>
                     </Row>
+                  </Col>
 
-
-                  </Row>
-                </Col>
-
-                <Col lg="4" xs="4" md="4">
-                  <Row>
-                    <NavLink to={"/broker/edit/"+this.state.id+"/tax"}>
-                      {t("brokerAddTax")}
-                    </NavLink>
-                  </Row>
-                  <Row>
-
-                  <ListGroup defaultActiveKey="#link1"> {this.generate()} </ListGroup>
-                  </Row>
-                </Col>
+                  <Col lg="4" xs="4" md="4">
+                    <Row>
+                      <NavLink to={"/broker/edit/" + this.state.id + "/tax"}>
+                        {t("brokerAddTax")}
+                      </NavLink>
+                    </Row>
+                    <Row>
+                      <ListGroup defaultActiveKey="#link1">
+                        {" "}
+                        {this.generate()}{" "}
+                      </ListGroup>
+                    </Row>
+                  </Col>
                 </Row>
 
                 <Row>
@@ -129,7 +130,11 @@ class TaxEdit extends React.Component {
                     {t("save")}
                   </Button>
 
-                  <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
+                  <Button
+                    variant="outline-primary"
+                    type="cancel"
+                    onClick={this.cancelAction}
+                  >
                     {t("cancel")}
                   </Button>
                 </Row>
