@@ -52,5 +52,7 @@
   "url": "URL",
   "actionCol": "Action",
   "edit": "Edit",
-  "calculate": "Calculate!"
+  "calculate": "Calculate!",
+  "taxEdit": "Edit a Tax",
+  "taxAddRule": "Add a new Rule"
 }

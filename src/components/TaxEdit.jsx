@@ -1,19 +1,20 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import {getBroker, postTaxCreate} from "../api/api";
+import {getTax, postTaxCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Image,Col} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
 
 
-class TaxEdit extends React.Component {
+class Taxes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id:0,
       name: "",
-      taxes:[],
+      url:"",
+      rules:[],
       broker:null,
     };
 
@@ -21,6 +22,15 @@ class TaxEdit extends React.Component {
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
+  }
+
+
+  generate() {
+    return this.state.rules.map((each) =>
+        <ListGroup.Item action >
+          <a href={"/rules/edit/"+each.id}>{each.name}</a>
+        </ListGroup.Item>
+    );
   }
   cancelAction=(event)=>{
     this.props.history.push("/broker");
@@ -32,9 +42,9 @@ class TaxEdit extends React.Component {
       this.props.history.push("/login");
     }
     this.state.id=this.props.match.params.id
-    getBroker(this.state.id)
-        .then(aBroker => {
-          this.setState({name: aBroker.name,taxes:aBroker.taxes});
+    getTax(this.state.id)
+        .then(aTax => {
+          this.setState({name: aTax.name,url:aTax.url,rules:aTax.rules,});
 
 
         })
@@ -43,6 +53,9 @@ class TaxEdit extends React.Component {
 
   handleChangeName = (event) => {
     this.setState({ taxName: event.target.value });
+  };
+  handleChangeUrl = (event) => {
+    this.setState({ url: event.target.value });
   };
 
   handleAPIError(responseError) {
@@ -66,13 +79,7 @@ class TaxEdit extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
-  generate() {
-    return this.state.taxes.map((each) =>
-        <ListGroup.Item action >
-          <a href={"/tax/edit/"+each.id}>{each.name}</a>
-        </ListGroup.Item>
-    );
-  }
+
 
   render() {
     const { t } = this.props;
@@ -85,7 +92,7 @@ class TaxEdit extends React.Component {
         <div className="container-fluid">
 
           <Card>
-            <Card.Header as="h5">{t("brokerEdit")}</Card.Header>
+            <Card.Header as="h5">{t("taxEdit")}</Card.Header>
             <Card.Body>
 
 
@@ -106,6 +113,12 @@ class TaxEdit extends React.Component {
                         <Form.Control onChange={this.handleChangeName} value={this.state.name}/>
                       </Form.Group>
                     </Row>
+                    <Row className="mb-3">
+                      <Form.Group className="mb-3" controlId="urlValue">
+                        <Form.Label>{t("url")}</Form.Label>
+                        <Form.Control onChange={this.handleChangeUrl} value={this.state.url}/>
+                      </Form.Group>
+                    </Row>
 
 
                   </Row>
@@ -114,12 +127,12 @@ class TaxEdit extends React.Component {
                 <Col lg="4" xs="4" md="4">
                   <Row>
                     <NavLink to={"/broker/edit/"+this.state.id+"/tax"}>
-                      {t("brokerAddTax")}
+                      {t("taxAddRule")}
                     </NavLink>
                   </Row>
                   <Row>
 
-                  <ListGroup defaultActiveKey="#link1"> {this.generate()} </ListGroup>
+                  <ListGroup defaultActiveKey="#link1"> {this.generate()}</ListGroup>
                   </Row>
                 </Col>
                 </Row>
@@ -144,4 +157,4 @@ class TaxEdit extends React.Component {
   }
 }
 
-export default withTranslation()(TaxEdit);
+export default withTranslation()(Taxes);

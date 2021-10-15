@@ -10,6 +10,7 @@ import brokerCreate from "./components/brokerCreate";
 import brokerEdit from "./components/brokerEdit";
 import Brokers from "./components/Brokers";
 import taxCreate from "./components/taxCreate";
+import TaxEdit from "./components/TaxEdit";
 
 export default class App extends React.Component {
   render() {
@@ -18,6 +19,7 @@ export default class App extends React.Component {
         <Switch>
           <Route exact path='/broker/edit/:id' component={brokerEdit} />
           <Route exact path='/broker/edit/:id/tax' component={taxCreate} />
+          <Route path="/tax/edit/:id" component={TaxEdit} />
           <Route path="/maincalc/:id" component={MainCalc} />
           <Route path="/broker/edit" component={brokerCreate} />
           <Route path="/broker" component={Brokers} />

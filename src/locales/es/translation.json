@@ -52,5 +52,7 @@
   "url": "Dirección URL",
   "actionCol": "Acción",
   "edit": "Modificar",
-  "calculate": "Calcular!"
+  "calculate": "Calcular!",
+  "taxEdit": "Modificación de Tax",
+  "taxAddRule": "Agrega una nueva Regla"
 }
