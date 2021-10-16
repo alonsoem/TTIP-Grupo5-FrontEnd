@@ -30,15 +30,17 @@ class NavBarPage extends Component {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto justify-content-center ">
               <NavItem>
+                <NavLink className="btn btn-primary" to="/taxes">
+                  <b>{t("home")}</b>
+                </NavLink>
+              </NavItem>
+              
+              <NavItem>
                 <NavLink className="btn btn-primary" to="/broker">
                   <b>{t("brokers")}</b>
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink className="btn btn-primary" to="/taxes">
-                  <b>{t("preferences")}</b>
-                </NavLink>
-              </NavItem>
+
               <NavItem>
                 <NavLink className="btn btn-danger" to="/login">
                   <b>{t("logout")}</b>
