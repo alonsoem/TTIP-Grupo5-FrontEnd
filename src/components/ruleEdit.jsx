@@ -114,7 +114,7 @@ class RuleEdit extends React.Component {
         <div className="container-fluid">
 
           <Card>
-            <Card.Header as="h5">{t("taxEdit")}</Card.Header>
+            <Card.Header as="h5">{t("ruleEdit")}</Card.Header>
             <Card.Body>
 
 
@@ -156,7 +156,7 @@ class RuleEdit extends React.Component {
 
                       <Col lg="4" xs="4" md="4">
                           <Row>
-                              Facts Permitidos:
+                              {t("allowedFacts")}
                           </Row>
                           <Row>
                               <ul>

@@ -61,5 +61,7 @@
   "when": "When",
   "then": "Then",
   "back": "Back",
-  "update": "Update"
+  "update": "Update",
+  "allowedFacts": "Facts allowed:",
+  "ruleEdit": "Edit a Rule"
 }

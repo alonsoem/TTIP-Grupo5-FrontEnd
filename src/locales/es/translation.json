@@ -61,5 +61,7 @@
   "when": "Condiciones",
   "then": "Acciones",
   "back": "Volver",
-  "update": "Actualizar"
+  "update": "Actualizar",
+  "allowedFacts": "Facts permitidos:",
+  "ruleEdit": "Modificación de Regla"
 }
