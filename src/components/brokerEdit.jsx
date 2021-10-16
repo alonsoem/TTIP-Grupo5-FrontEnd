@@ -127,7 +127,7 @@ class BrokerEdit extends React.Component {
 
                 <Row>
                   <Button variant="primary" type="submit">
-                    {t("save")}
+                    {t("update")}
                   </Button>
 
                   <Button
@@ -135,7 +135,7 @@ class BrokerEdit extends React.Component {
                     type="cancel"
                     onClick={this.cancelAction}
                   >
-                    {t("cancel")}
+                    {t("back")}
                   </Button>
                 </Row>
 

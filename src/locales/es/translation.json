@@ -59,5 +59,7 @@
   "description": "Descripción",
   "priority": "Prioridad",
   "when": "Condiciones",
-  "then": "Acciones"
+  "then": "Acciones",
+  "back": "Volver",
+  "update": "Actualizar"
 }

@@ -2,8 +2,10 @@ import React from "react";
 import {getFacts,postRuleCreate} from "../api/api";
 import { withTranslation } from "react-i18next";
 import NavBarPage from "./NavBarPage";
-import {Card, Row, Form, Button, Col} from "react-bootstrap";
+import {Card, Row, Form, Button, Col,Badge} from "react-bootstrap";
 import ListGroup from "./brokerEdit";
+
+
 
 class RuleCreate extends React.Component {
     constructor(props) {
@@ -42,7 +44,7 @@ class RuleCreate extends React.Component {
   }
 
   cancelAction=(event)=>{
-//    this.props.history.push("/tax/");
+    this.props.history.push("/tax/edit/"+this.props.match.params.id);
 
   }
 
@@ -88,11 +90,11 @@ class RuleCreate extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
-  reptileListItems() {
-    return this.state.factList.map((reptile) => <li>{reptile}</li>);
+  factListItems() {
+    return this.state.factList.map((fact) =><li><span className={"badge bg-success"}> {fact} </span></li>);
   }
 
-  render() {
+    render() {
     const { t } = this.props;
 
     return (
@@ -145,7 +147,7 @@ class RuleCreate extends React.Component {
                   </Row>
                   <Row>
                     <ul>
-                      {this.reptileListItems()}
+                      {this.factListItems()}
                     </ul>
 
                   </Row>

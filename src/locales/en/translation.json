@@ -59,5 +59,7 @@
   "description": "Description",
   "priority": "Priority",
   "when": "When",
-  "then": "Then"
+  "then": "Then",
+  "back": "Back",
+  "update": "Update"
 }

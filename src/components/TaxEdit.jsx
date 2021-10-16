@@ -25,10 +25,10 @@ class Taxes extends React.Component {
   }
 
 
-  generate() {
+  getAllRules() {
     return this.state.rules.map((each) =>
         <ListGroup.Item action >
-          <a href={"/rules/edit/"+each.id}>{each.name}</a>
+          {each.name}
         </ListGroup.Item>
     );
   }
@@ -132,18 +132,18 @@ class Taxes extends React.Component {
                   </Row>
                   <Row>
 
-                  <ListGroup defaultActiveKey="#link1"> {this.generate()}</ListGroup>
+                  <ListGroup defaultActiveKey="#link1"> {this.getAllRules()}</ListGroup>
                   </Row>
                 </Col>
                 </Row>
 
                 <Row>
                   <Button variant="primary" type="submit">
-                    {t("save")}
+                    {t("update")}
                   </Button>
 
                   <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
-                    {t("cancel")}
+                    {t("back")}
                   </Button>
                 </Row>
 
