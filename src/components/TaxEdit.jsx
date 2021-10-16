@@ -28,7 +28,7 @@ class Taxes extends React.Component {
   getAllRules() {
     return this.state.rules.map((each) =>
         <ListGroup.Item action >
-          {each.name}
+          <a href={"/rule/edit/"+each.id}>{each.name}</a>
         </ListGroup.Item>
     );
   }
@@ -45,8 +45,6 @@ class Taxes extends React.Component {
     getTax(this.state.id)
         .then(aTax => {
           this.setState({name: aTax.name,url:aTax.url,rules:aTax.rules,});
-
-
         })
         .catch(() => this.setState({ error: this.props.t("genericError") }));
   }

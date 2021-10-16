@@ -12,6 +12,7 @@ import Brokers from "./components/Brokers";
 import TaxCreate from "./components/taxCreate";
 import TaxEdit from "./components/TaxEdit";
 import RuleCreate from "./components/ruleCreate";
+import RuleEdit from "./components/ruleEdit";
 
 export default class App extends React.Component {
   render() {
@@ -19,6 +20,7 @@ export default class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path='/rule/:id' component={RuleCreate} />
+          <Route exact path='/rule/edit/:id' component={RuleEdit} />
           <Route exact path="/tax/edit/:id" component={TaxEdit} />
           <Route exact path='/broker/edit/:id/tax' component={TaxCreate} />
           <Route path={"/broker/edit/:id"}  component={BrokerEdit}></Route>

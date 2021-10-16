@@ -25,10 +25,11 @@ const request = (type, path, body, config) =>
     })
     .then((req) => req.data);
 
+export const getRule = (id) => request("get", "/rule/"+id, {}, authConfig());
 export const getTax = (id) => request("get", "/broker/1/tax/"+id, {}, authConfig());
 export const getTaxes = (body) => request("get", "/rate", body, authConfig());
 export const getBrokers= (body) => request("get", "/broker", body, authConfig());
-export const getFacts= () => request("get", "/tax/0/rule/facts", {}, authConfig());
+export const getFacts= () => request("get", "/facts", {}, authConfig());
 export const getBroker= (id) => request("get", "/broker/"+id, {}, authConfig());
 export const postCalc = (body) =>
   request("post", "/broker/calculate", body, authConfig());

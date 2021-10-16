@@ -37,7 +37,6 @@ class RuleCreate extends React.Component {
     getFacts()
         .then((facts) => {
           this.setState({ factList: facts.map((each)=>each.name)});
-          console.log(this.state.factList);
         })
         .catch(() => this.setState({ error: this.props.t("genericError") }));
 

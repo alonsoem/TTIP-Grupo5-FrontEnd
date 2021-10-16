@@ -34,7 +34,7 @@ class NavBarPage extends Component {
                   <b>{t("home")}</b>
                 </NavLink>
               </NavItem>
-              
+
               <NavItem>
                 <NavLink className="btn btn-primary" to="/broker">
                   <b>{t("brokers")}</b>
