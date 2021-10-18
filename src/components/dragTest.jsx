@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
 import {arrayMove ,SortableContainer, SortableElement} from 'react-sortable-hoc';
-
-import ender from 'react-dom';
-
 import {withTranslation} from "react-i18next";
-import {getRule} from "../api/api";
-import {useHistory} from "react-router";
 import ListGroup from "react-bootstrap/ListGroup";
 
 

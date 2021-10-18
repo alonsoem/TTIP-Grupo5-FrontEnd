@@ -2,10 +2,7 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import {getFacts, getRule, postTaxCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
-import {Card, Row, Form, Button, Image,Col} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
-import ListGroup from "react-bootstrap/ListGroup";
-import {useHistory} from "react-router-dom";
+import {Card, Row, Form, Button, Col} from "react-bootstrap";
 
 
 class RuleEdit extends React.Component {
@@ -18,7 +15,7 @@ class RuleEdit extends React.Component {
       when:[],
       then:[],
       priority:0,
-        factList:[],
+      factList:[],
     };
 
 
@@ -32,7 +29,6 @@ class RuleEdit extends React.Component {
   }
 
   cancelAction=()=>{
-    //this.props.history.push("/tax/"+this.props.match.params.id);
       this.props.history.goBack();
   }
 
@@ -107,7 +103,7 @@ class RuleEdit extends React.Component {
 
   render() {
     const { t } = this.props;
-    const idTax= this.props.match.params.id;
+    //const idTax= this.props.match.params.id;
 
       return (
 

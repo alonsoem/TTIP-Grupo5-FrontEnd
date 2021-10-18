@@ -114,7 +114,9 @@ class BrokerEdit extends React.Component {
                   <Col lg="4" xs="4" md="4">
                     <Row>
                       <NavLink to={"/broker/edit/" + this.state.id + "/tax"}>
-                        {t("brokerAddTax")}
+                        <Button variant="primary"  class={"w-100"}>
+                          <i className="fa fa-plus">{t("brokerAddTax")}</i>
+                        </Button>
                       </NavLink>
                     </Row>
                     <Row>

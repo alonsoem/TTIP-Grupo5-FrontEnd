@@ -13,14 +13,12 @@ import TaxCreate from "./components/taxCreate";
 import TaxEdit from "./components/TaxEdit";
 import RuleCreate from "./components/ruleCreate";
 import RuleEdit from "./components/ruleEdit";
-import dragTest from "./components/dragTest.jsx";
 
 export default class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path='/drag' component={dragTest} />
           <Route exact path='/rule/:id' component={RuleCreate} />
           <Route exact path='/rule/edit/:id' component={RuleEdit} />
           <Route exact path="/tax/edit/:id" component={TaxEdit} />

@@ -2,7 +2,7 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import {getTax, postTaxCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
-import {Card, Row, Form, Button, Image,Col} from "react-bootstrap";
+import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
 import DragTest from "./dragTest";
@@ -16,7 +16,6 @@ class Taxes extends React.Component {
       name: "",
       url:"",
       rules:[],
-      broker:null,
     };
 
 
@@ -25,21 +24,12 @@ class Taxes extends React.Component {
 
   }
 
-
-  getAllRulesOld() {
-    /*return this.state.rules.map((each) =>
-        <ListGroup.Item action >
-          <a href={"/rule/edit/"+each.id}>{each.name}</a>
-        </ListGroup.Item>
-    );*/
-  }
   getAllRules() {
     return <DragTest taxRules={this.state.rules.map(e=>({id:e.id,name:e.name}))} context={this}/>;
-
   }
+
   cancelAction=(event)=>{
     this.props.history.push("/broker");
-
   }
 
   componentDidMount() {
@@ -92,6 +82,7 @@ class Taxes extends React.Component {
     const { t } = this.props;
     const idTax= this.props.match.params.id;
 
+
       return (
 
       <div>
@@ -134,12 +125,14 @@ class Taxes extends React.Component {
                 <Col lg="4" xs="4" md="4">
                   <Row>
                     <NavLink to={"/rule/"+this.state.id}>
-                      {t("taxAddRule")}
+                      <Button variant="primary"  class={"w-100"}>
+                        <i className="fa fa-plus">{t("taxAddRule")}</i>
+                      </Button>
                     </NavLink>
                   </Row>
                   <Row>
 
-                  <ListGroup defaultActiveKey="#link1"> {this.getAllRules()}</ListGroup>
+                    <ListGroup defaultActiveKey="#link1"> {this.getAllRules()}</ListGroup>
                   </Row>
                 </Col>
                 </Row>
