@@ -35,6 +35,7 @@ class BrokerEdit extends React.Component {
     getBroker(this.state.id)
         .then(aBroker => {
           this.setState({name: aBroker.name,taxes:aBroker.taxes});
+          console.log(aBroker);
         })
         .catch(() => this.setState({ error: this.props.t("genericError") }));
   }

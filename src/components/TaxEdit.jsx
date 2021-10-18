@@ -5,6 +5,7 @@ import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Image,Col} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
+import DragTest from "./dragTest";
 
 
 class Taxes extends React.Component {
@@ -25,12 +26,16 @@ class Taxes extends React.Component {
   }
 
 
-  getAllRules() {
-    return this.state.rules.map((each) =>
+  getAllRulesOld() {
+    /*return this.state.rules.map((each) =>
         <ListGroup.Item action >
           <a href={"/rule/edit/"+each.id}>{each.name}</a>
         </ListGroup.Item>
-    );
+    );*/
+  }
+  getAllRules() {
+    return <DragTest taxRules={this.state.rules.map(e=>({id:e.id,name:e.name}))} context={this}/>;
+
   }
   cancelAction=(event)=>{
     this.props.history.push("/broker");
@@ -44,8 +49,12 @@ class Taxes extends React.Component {
     this.state.id=this.props.match.params.id
     getTax(this.state.id)
         .then(aTax => {
-          this.setState({name: aTax.name,url:aTax.url,rules:aTax.rules,});
+          this.setState({name: aTax.name,
+                                url: aTax.url,
+                                rules:aTax.rules});
+          console.log(aTax);
         })
+
         .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
 

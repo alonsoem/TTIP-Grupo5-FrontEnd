@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { getTaxes } from "../api/api";
 import maincalcicon from "../static/maincalcicon.png";
 import NavBarPage from "./NavBarPage";
+import DragTest from "./dragTest";
 
 class Taxes extends React.Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class Taxes extends React.Component {
         <div className="container-fluid">
           <h1 className="card-header">{t("calcs")}</h1>
           <br />
+          <DragTest />
           <NavLink to="/maincalc/1">
             <Image title={t("mainCalc")} src={maincalcicon} />
           </NavLink>

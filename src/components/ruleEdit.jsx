@@ -5,6 +5,7 @@ import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Image,Col} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
+import {useHistory} from "react-router-dom";
 
 
 class RuleEdit extends React.Component {
@@ -30,12 +31,13 @@ class RuleEdit extends React.Component {
 
   }
 
-  cancelAction=(event)=>{
-    this.props.history.push("/tax/"+this.props.match.params.id);
-
+  cancelAction=()=>{
+    //this.props.history.push("/tax/"+this.props.match.params.id);
+      this.props.history.goBack();
   }
 
   componentDidMount() {
+      console.log(this.props);
     if (!localStorage.getItem("token")) {
       this.props.history.push("/login");
     }
@@ -173,7 +175,7 @@ class RuleEdit extends React.Component {
                       </Button>
 
                       <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
-                          {t("cancel")}
+                          {t("back")}
                       </Button>
                   </Row>
               </Form>
