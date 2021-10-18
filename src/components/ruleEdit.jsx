@@ -2,7 +2,7 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import {getFacts, getRule, postTaxCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
-import {Card, Row, Form, Button, Col} from "react-bootstrap";
+import {Card, Row, Form, Button, Col, Badge} from "react-bootstrap";
 
 
 class RuleEdit extends React.Component {
@@ -71,8 +71,20 @@ class RuleEdit extends React.Component {
         this.setState({ when: event.target.value });
     };
     handleChangeThen = (event) => {
-        this.setState({ then: event.target.value });
+        this.validateFacts(event.target);
+        this.setState({ then:  event.target.value });
+
     };
+
+    validateFacts(input){
+        const regex = new RegExp('/^[a-zA-Z0-9]*$/;');
+        if (regex.test(input.value)) {
+            console.log("OK");
+        }else{
+            console.log("ERROR");
+
+        }
+    }
 
 
     handleAPIError(responseError) {
@@ -97,13 +109,17 @@ class RuleEdit extends React.Component {
   };
 
     factListItems() {
-        return this.state.factList.map((fact) =><li><span className={"badge bg-success"}> {fact} </span></li>);
+        return this.state.factList.map((fact) =>
+            <li className="breadcrumb-item">
+                <span className={"badge bg-success"}> {fact} </span>
+            </li>
+        );
+
     }
 
 
   render() {
     const { t } = this.props;
-    //const idTax= this.props.match.params.id;
 
       return (
 
@@ -154,13 +170,21 @@ class RuleEdit extends React.Component {
 
                       <Col lg="4" xs="4" md="4">
                           <Row>
-                              {t("allowedFacts")}
-                          </Row>
-                          <Row>
-                              <ul>
-                                  {this.factListItems()}
-                              </ul>
+                              <div>
+                              <Card>
+                                  <Card.Header>
+                                      {t("allowedFacts")}
+                                  </Card.Header>
+                                  <Card.Body>
 
+                                      <ol className="breadcrumb">
+                                          {this.factListItems()}
+                                      </ol>
+
+
+                                  </Card.Body>
+                              </Card>
+                              </div>
                           </Row>
                       </Col>
                   </Row>

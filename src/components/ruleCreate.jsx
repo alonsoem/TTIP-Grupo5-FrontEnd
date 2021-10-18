@@ -2,8 +2,7 @@ import React from "react";
 import {getFacts,postRuleCreate} from "../api/api";
 import { withTranslation } from "react-i18next";
 import NavBarPage from "./NavBarPage";
-import {Card, Row, Form, Button, Col,Badge} from "react-bootstrap";
-
+import {Card, Row, Form, Button, Col} from "react-bootstrap";
 
 
 class RuleCreate extends React.Component {
@@ -89,7 +88,11 @@ class RuleCreate extends React.Component {
   };
 
   factListItems() {
-    return this.state.factList.map((fact) =><li><span className={"badge bg-success"}> {fact} </span></li>);
+    return this.state.factList.map((fact) =>
+        <li className="breadcrumb-item">
+          <span className={"badge bg-success"}> {fact} </span>
+        </li>
+    );
   }
 
     render() {
@@ -141,13 +144,21 @@ class RuleCreate extends React.Component {
 
                 <Col lg="4" xs="4" md="4">
                   <Row>
-                    Facts Permitidos:
-                  </Row>
-                  <Row>
-                    <ul>
-                      {this.factListItems()}
-                    </ul>
+                    <div>
+                      <Card>
+                        <Card.Header>
+                          {t("allowedFacts")}
+                        </Card.Header>
+                        <Card.Body>
 
+                          <ol className="breadcrumb">
+                            {this.factListItems()}
+                          </ol>
+
+
+                        </Card.Body>
+                      </Card>
+                    </div>
                   </Row>
                 </Col>
                 </Row>
