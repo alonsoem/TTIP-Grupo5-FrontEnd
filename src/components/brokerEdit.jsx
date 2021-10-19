@@ -1,6 +1,6 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import {getBroker, postTaxCreate} from "../api/api";
+import {getBroker, postTaxCreate, putBrokerEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
@@ -41,7 +41,7 @@ class BrokerEdit extends React.Component {
   }
 
   handleChangeName = (event) => {
-    this.setState({ taxName: event.target.value });
+    this.setState({ name: event.target.value });
   };
 
   handleAPIError(responseError) {
@@ -56,8 +56,8 @@ class BrokerEdit extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    postTaxCreate({
-      name: this.state.taxName,
+    putBrokerEdit(this.state.id,{
+      name: this.state.name,
     })
         .then((response) => {
           this.props.history.push("/broker");

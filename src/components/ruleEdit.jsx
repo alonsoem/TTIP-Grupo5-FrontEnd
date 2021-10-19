@@ -3,6 +3,7 @@ import { withTranslation } from "react-i18next";
 import {getFacts, getRule, postTaxCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col, Badge} from "react-bootstrap";
+import DinamicInput from "./dinamicInput";
 
 
 class RuleEdit extends React.Component {
@@ -154,16 +155,16 @@ class RuleEdit extends React.Component {
                               </Form.Group>
                           </Row>
                           <Row className="mb-3">
-                              <Form.Group className="mb-3" controlId="whenValue">
-                                  <Form.Label>{t("when")}</Form.Label>
-                                  <Form.Control  onChange={this.handleChangeWhen} value={this.state.when}/>
-                              </Form.Group>
+
+                              <DinamicInput elements={this.state.when}/>
                           </Row>
                           <Row className="mb-3">
                               <Form.Group className="mb-3" controlId="thenValue">
                                   <Form.Label>{t("then")}</Form.Label>
                                   <Form.Control  onChange={this.handleChangeThen} value={this.state.then}/>
                               </Form.Group>
+
+
                           </Row>
 
                       </Col>
