@@ -1,5 +1,5 @@
 # TTIP-Grupo5-FrontEnd
-
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/61da5d6a7bb84914b7ccfc5b66e652ef)](https://www.codacy.com/gh/alonsoem/TTIP-Grupo5-FrontEnd/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alonsoem/TTIP-Grupo5-FrontEnd&amp;utm_campaign=Badge_Grade)
 
 #### Repositorios
  - Docs https://github.com/Asta1986/TTIP-Grupo5-Docs.git
