@@ -1,6 +1,6 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import {getFacts, getRule, postTaxCreate} from "../api/api";
+import {getFacts, getRule, putRuleEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col, Badge} from "react-bootstrap";
 import DinamicInput from "./dinamicInput";
@@ -41,9 +41,8 @@ class RuleEdit extends React.Component {
     this.state.id=this.props.match.params.id
     getRule(this.state.id)
         .then(rule => {
-          this.setState({name: rule.name,description:rule.description,priority:rule.priority,when:rule.when,then:rule.then});
-
-
+            console.log(rule);
+          this.setState({name: rule.name,description:rule.description,priority:rule.priority,when:this.handleLoadArray(rule.when),then:this.handleLoadArray(rule.then)});
         })
         .catch(() => this.setState({ error: this.props.t("genericError") }));
 
@@ -53,6 +52,10 @@ class RuleEdit extends React.Component {
             console.log(this.state.factList);
         })
         .catch(() => this.setState({ error: this.props.t("genericError") }));
+  }
+
+  handleLoadArray(array){
+      return array.join();
   }
 
   handleChangeName = (event) => {
@@ -100,9 +103,14 @@ class RuleEdit extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    postTaxCreate({
-      name: this.state.taxName,
-    })
+    putRuleEdit(this.state.id,
+         {
+                name: this.state.name,
+                description: this.state.description,
+                priority: this.state.priority.valueOf(),
+                when: [this.state.when],
+                then: [this.state.then],
+        })
         .then((response) => {
           this.props.history.push("/broker");
         })
@@ -155,8 +163,10 @@ class RuleEdit extends React.Component {
                               </Form.Group>
                           </Row>
                           <Row className="mb-3">
-
-                              <DinamicInput elements={this.state.when}/>
+                              <Form.Group className="mb-3" controlId="whenValue">
+                                  <Form.Label>{t("when")}</Form.Label>
+                                  <Form.Control  onChange={this.handleChangeWhen} value={this.state.when}/>
+                              </Form.Group>
                           </Row>
                           <Row className="mb-3">
                               <Form.Group className="mb-3" controlId="thenValue">

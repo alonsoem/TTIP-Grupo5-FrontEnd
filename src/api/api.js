@@ -48,3 +48,5 @@ export const putBrokerEdit = (brokerId,body) =>
     request("put", "/broker/"+brokerId, body, authConfig());
 export const putTaxEdit = (taxId,body) =>
     request("put", "/broker/999/tax/"+taxId, body, authConfig());
+export const putRuleEdit = (ruleId,body) =>
+    request("put", "/tax/999/rule/"+ruleId, body, authConfig());
