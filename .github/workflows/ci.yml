@@ -5,6 +5,9 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+    
+env:
+  CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
 jobs:
   build:
@@ -16,7 +19,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - name: Install dependencies, build and run tests
+      - name: Install dependencies and run tests
         run: yarn
-      - run: yarn run build
-      - run: yarn run test
+      - run: yarn test --coverage --watchAll=false
+      - name: Upload coverage report to Codacy  
+        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov.info
