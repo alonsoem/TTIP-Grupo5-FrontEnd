@@ -2,8 +2,8 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import {getFacts, getRule, putRuleEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
-import {Card, Row, Form, Button, Col, Badge} from "react-bootstrap";
-import DinamicInput from "./dinamicInput";
+import {Card, Row, Form, Button, Col} from "react-bootstrap";
+
 
 
 class RuleEdit extends React.Component {
@@ -24,12 +24,12 @@ class RuleEdit extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleChangePriority = this.handleChangePriority.bind(this);
-    this.handleChangeWhen = this.handleChangeWhen.bind(this);
     this.handleChangeThen = this.handleChangeThen.bind(this);
 
   }
 
-  cancelAction=()=>{
+  cancelAction=(event)=>{
+      event.preventDefault();
       this.props.history.goBack();
   }
 
@@ -70,9 +70,6 @@ class RuleEdit extends React.Component {
     };
     handleChangePriority = (event) => {
         this.setState({ priority: event.target.value });
-    };
-    handleChangeWhen = (event) => {
-        this.setState({ when: event.target.value });
     };
     handleChangeThen = (event) => {
         this.validateFacts(event.target);
