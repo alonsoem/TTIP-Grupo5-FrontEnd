@@ -37,6 +37,13 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+
+  "rules": {
+
+    "react/no-direct-mutation-state": "off"
+
+  },
+
     "extends": [
       "react-app",
       "react-app/jest"
