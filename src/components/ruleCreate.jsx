@@ -11,7 +11,7 @@ class RuleCreate extends React.Component {
     super(props);
     this.state = {
       id:0,
-      when: [],
+      when: [""],
       then: [],
       name: "",
       description: "",
@@ -71,8 +71,8 @@ class RuleCreate extends React.Component {
         {
           name: this.state.name,
           description: this.state.description,
-          priority: this.state.priority,
-          when: [this.state.when],
+          priority: this.state.priority.valueOf(),
+          when: this.state.when,
           then: [this.state.then],
     })
         .then((response) => {
@@ -81,7 +81,47 @@ class RuleCreate extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
-    render() {
+  getWhenList() {
+    return this.state.when.map((condition,i) =>
+        <Row>
+          <Col>
+            <Form.Group className="mb-3" controlId={"whenValue"+i}>
+              <Form.Label>When Value #{i}</Form.Label>
+              <Form.Control  value={condition} onChange={e => this.handleInputChange(e, i)}/>
+            </Form.Group>
+          </Col>
+          <Col>
+            <div className={"btn-box"}>
+              {this.state.when.length !== 1 &&
+              <Button variant="secondary" onClick={() => this.handleRemoveClick(i)} type="button">-</Button>}
+              {this.state.when.length - 1 === i &&
+              <Button variant="secondary" onClick={()=>this.handleAddClick()} type="button">+</Button>}
+            </div>
+          </Col>
+        </Row>
+    );
+  }
+
+
+  handleInputChange = (e, index) => {
+
+    const {value } = e.target;
+    const list = [...this.state.when];
+    list[index] = value;
+    this.setState({when:list});
+  };
+
+  handleRemoveClick = index => {
+    const list = [...this.state.when];
+    list.splice(index, 1);
+    this.setState({when:list});
+  };
+
+  handleAddClick = () => {
+    this.setState({when:[...this.state.when,'']});
+  }
+
+  render() {
     const { t } = this.props;
 
     return (
@@ -113,12 +153,13 @@ class RuleCreate extends React.Component {
                     <Form.Control  onChange={this.handleChangePriority} value={this.state.priority}/>
                   </Form.Group>
                 </Row>
-                <Row className="mb-3">
-                  <Form.Group className="mb-3" controlId="whenValue">
-                    <Form.Label>{t("when")}</Form.Label>
-                    <Form.Control  onChange={this.handleChangeWhen} value={this.state.when}/>
-                  </Form.Group>
-                </Row>
+                  <Row className="mb-3">
+                    <div className="form-group">
+                      <label>{t("when")}</label><br/>
+                      {this.getWhenList()}
+                    </div>
+
+                  </Row>
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="thenValue">
                     <Form.Label>{t("then")}</Form.Label>
