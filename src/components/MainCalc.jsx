@@ -9,7 +9,7 @@ import {
 import React, { Component } from "react";
 import { Alert, Button, Col, Form, FormGroup, Row } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
-import { postCalc } from "../api/api";
+import {getBroker, postCalc} from "../api/api";
 import "./maincalc.css";
 import NavBarPage from "./NavBarPage";
 
@@ -22,6 +22,7 @@ class MainCalc extends Component {
       error: "",
       errorVisible: false,
       result: undefined,
+      broker:"",
       taxlist: [],
     };
 
@@ -48,6 +49,14 @@ class MainCalc extends Component {
     if (!localStorage.getItem("token")) {
       this.props.history.push("/login");
     }
+    getBroker(this.props.match.params.id)
+        .then((broker) => {
+          this.setState({broker:broker.map((each) => ({name: each.name}))});
+          console.log(this.state.broker);
+
+        })
+        .catch(() => this.setState({ error: this.props.t("genericError") }));
+
   }
 
   showAlert() {

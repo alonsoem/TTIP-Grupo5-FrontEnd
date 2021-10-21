@@ -1,6 +1,5 @@
 import React from "react";
 import {getFacts} from "../api/api";
-import {withTranslation} from "react-i18next";
 
 class FactList extends React.Component {
     constructor(props) {
@@ -20,7 +19,6 @@ class FactList extends React.Component {
                 {fact.name} </span>
             </li>
         );
-
     }
 
     componentDidMount() {

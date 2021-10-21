@@ -1,5 +1,5 @@
 import React from "react";
-import {getFacts,postRuleCreate} from "../api/api";
+import {postRuleCreate} from "../api/api";
 import { withTranslation } from "react-i18next";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";

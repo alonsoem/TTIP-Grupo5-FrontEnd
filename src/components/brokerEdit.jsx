@@ -1,6 +1,6 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import {getBroker, postTaxCreate, putBrokerEdit} from "../api/api";
+import {getBroker, putBrokerEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
