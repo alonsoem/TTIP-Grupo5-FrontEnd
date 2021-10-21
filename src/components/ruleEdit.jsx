@@ -109,24 +109,30 @@ class RuleEdit extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
-    getWhenList() {
+    getWhenList(t) {
         return this.state.when.map((condition,i) =>
             <Row>
                 <Col>
                     <Form.Group className="mb-3" controlId={"whenValue"+i}>
-                        <Form.Label>When Value #{i}</Form.Label>
+                        <Form.Label>{t("whenCondition")} #{i}</Form.Label>
                         <Form.Control  value={condition} onChange={e => this.handleInputChange(e, i)}/>
                     </Form.Group>
                 </Col>
                 <Col>
                     <div className={"btn-box"}>
                         {this.state.when.length !== 1 &&
-                        <Button variant="secondary" onClick={() => this.handleRemoveClick(i)} type="button">-</Button>}
+                        <button type="button" className="btn btn-secondary btn-sm" onClick={() => this.handleRemoveClick(i)}>
+                            <i className="fas fa-minus fa-2x"></i></button>
+                        }
                         {this.state.when.length - 1 === i &&
-                        <Button variant="secondary" onClick={()=>this.handleAddClick()} type="button">+</Button>}
+                        <button type="button" className="btn btn-secondary btn-sm" onClick={() => this.handleAddClick(i)}>
+                            <i className="fas fa-plus fa-2x"></i></button>
+                        }
                     </div>
                 </Col>
+
             </Row>
+
         );
     }
 
@@ -141,6 +147,9 @@ class RuleEdit extends React.Component {
 
     handleRemoveClick = index => {
         const list = [...this.state.when];
+        console.log(this.state.when);
+        console.log(list);
+        console.log(index);
         list.splice(index, 1);
         this.setState({when:list});
     };
@@ -190,7 +199,7 @@ class RuleEdit extends React.Component {
                           <Row className="mb-3">
                               <div className="form-group">
                                   <label>{t("when")}</label><br/>
-                                  {this.getWhenList()}
+                                  {this.getWhenList(t)}
                               </div>
 
                           </Row>
@@ -234,6 +243,13 @@ class RuleEdit extends React.Component {
                       <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
                           {t("back")}
                       </Button>
+                  </Row>
+                  <Row>
+                      <Col className={"mb-5"}>
+                          <button type="button" className="btn btn-secondary btn-sm" onClick={() => this.handleAddClick()}>
+                              <i className="fas fa-plus fa-2x"></i></button>
+
+                      </Col>
                   </Row>
               </Form>
             </Card.Body>

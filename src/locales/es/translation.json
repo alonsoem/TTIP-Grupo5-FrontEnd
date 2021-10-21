@@ -60,6 +60,7 @@
   "priority": "Prioridad",
   "when": "Condiciones",
   "then": "Acciones",
+  "whenCondition": "Condición",
   "back": "Volver",
   "update": "Actualizar",
   "allowedFacts": "Facts permitidos:",

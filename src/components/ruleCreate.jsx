@@ -81,23 +81,28 @@ class RuleCreate extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
-  getWhenList() {
+  getWhenList(t) {
     return this.state.when.map((condition,i) =>
         <Row>
           <Col>
             <Form.Group className="mb-3" controlId={"whenValue"+i}>
-              <Form.Label>When Value #{i}</Form.Label>
-              <Form.Control  value={condition} onChange={e => this.handleInputChange(e, i)}/>
+              <Form.Label>{t("whenCondition")} #{i}</Form.Label>
+              <Row class={"align-middle"}>
+                <Col>
+                  <Form.Control  value={condition} onChange={e => this.handleInputChange(e, i)}/>
+                </Col>
+                <Col>
+                  <div className={"btn-box"}>
+                    {this.state.when.length !== 1 &&
+                    <Button variant="secondary" onClick={() => this.handleRemoveClick(i)} type="button">-</Button>}
+                    {this.state.when.length - 1 === i &&
+                    <Button variant="secondary" onClick={()=>this.handleAddClick()} type="button">+</Button>}
+                  </div>
+                </Col>
+              </Row>
             </Form.Group>
           </Col>
-          <Col>
-            <div className={"btn-box"}>
-              {this.state.when.length !== 1 &&
-              <Button variant="secondary" onClick={() => this.handleRemoveClick(i)} type="button">-</Button>}
-              {this.state.when.length - 1 === i &&
-              <Button variant="secondary" onClick={()=>this.handleAddClick()} type="button">+</Button>}
-            </div>
-          </Col>
+
         </Row>
     );
   }
@@ -156,7 +161,7 @@ class RuleCreate extends React.Component {
                   <Row className="mb-3">
                     <div className="form-group">
                       <label>{t("when")}</label><br/>
-                      {this.getWhenList()}
+                      {this.getWhenList(t)}
                     </div>
 
                   </Row>
