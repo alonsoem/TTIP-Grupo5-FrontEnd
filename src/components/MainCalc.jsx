@@ -22,7 +22,7 @@ class MainCalc extends Component {
       error: "",
       errorVisible: false,
       result: undefined,
-      broker:"",
+      brokerName:"",
       taxlist: [],
     };
 
@@ -49,11 +49,10 @@ class MainCalc extends Component {
     if (!localStorage.getItem("token")) {
       this.props.history.push("/login");
     }
-    getBroker(this.props.match.params.id)
-        .then((broker) => {
-          this.setState({broker:broker.map((each) => ({name: each.name}))});
-          console.log(this.state.broker);
-
+    this.state.id= this.props.match.params.id;
+    getBroker(this.state.id)
+        .then(aBroker => {
+            this.setState({brokerName: aBroker.name});
         })
         .catch(() => this.setState({ error: this.props.t("genericError") }));
 
@@ -108,7 +107,7 @@ class MainCalc extends Component {
                     <Form onSubmit={this.handleSubmit}>
                       <div className="card-header">
                         <h4 className="text-center text-monospace text-black">
-                          {t("maincalcTitle")}
+                          {this.state.brokerName}
                         </h4>
                       </div>
                       <br />
