@@ -3,6 +3,7 @@ import {getFacts,postRuleCreate} from "../api/api";
 import { withTranslation } from "react-i18next";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
+import FactList from "./factList";
 
 
 class RuleCreate extends React.Component {
@@ -15,7 +16,6 @@ class RuleCreate extends React.Component {
       name: "",
       description: "",
       priority: 1,
-      factList:[],
     };
 
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,12 +32,6 @@ class RuleCreate extends React.Component {
     if (!localStorage.getItem("token")) {
       this.props.history.push("/login");
     }
-    getFacts()
-        .then((facts) => {
-          this.setState({ factList: facts.map((each)=>each.name)});
-        })
-        .catch(() => this.setState({ error: this.props.t("genericError") }));
-
   }
 
   cancelAction=(event)=>{
@@ -86,14 +80,6 @@ class RuleCreate extends React.Component {
         })
         .catch((responseError) => this.handleAPIError(responseError));
   };
-
-  factListItems() {
-    return this.state.factList.map((fact) =>
-        <li className="breadcrumb-item">
-          <span className={"badge bg-success"}> {fact} </span>
-        </li>
-    );
-  }
 
     render() {
     const { t } = this.props;
@@ -152,7 +138,7 @@ class RuleCreate extends React.Component {
                         <Card.Body>
 
                           <ol className="breadcrumb">
-                            {this.factListItems()}
+                              <FactList/>
                           </ol>
 
 

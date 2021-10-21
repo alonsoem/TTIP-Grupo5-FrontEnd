@@ -1,8 +1,9 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
-import {getFacts, getRule, putRuleEdit} from "../api/api";
-import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
+import FactList from "./factList";
+import { withTranslation } from "react-i18next";
+import {getRule, putRuleEdit} from "../api/api";
+import NavBarPage from "./NavBarPage";
 
 
 
@@ -16,7 +17,6 @@ class RuleEdit extends React.Component {
       when:[],
       then:[],
       priority:0,
-      factList:[],
     };
 
 
@@ -47,11 +47,6 @@ class RuleEdit extends React.Component {
         })
         .catch(() => this.setState({ error: this.props.t("genericError") }));
 
-    getFacts()
-        .then((facts) => {
-            this.setState({ factList: facts.map((each)=>each.name)});
-        })
-        .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
 
   handleLoadArray(array){
@@ -114,14 +109,6 @@ class RuleEdit extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
-    factListItems() {
-        return this.state.factList.map((fact) =>
-            <li className="breadcrumb-item">
-                <span className={"badge bg-success"}> {fact} </span>
-            </li>
-        );
-
-    }
     getWhenList() {
         return this.state.when.map((condition,i) =>
             <Row>
@@ -228,7 +215,7 @@ class RuleEdit extends React.Component {
                                   <Card.Body>
 
                                       <ol className="breadcrumb">
-                                          {this.factListItems()}
+                                          <FactList/>
                                       </ol>
 
 
