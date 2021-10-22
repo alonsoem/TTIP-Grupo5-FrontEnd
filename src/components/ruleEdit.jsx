@@ -244,13 +244,6 @@ class RuleEdit extends React.Component {
                           {t("back")}
                       </Button>
                   </Row>
-                  <Row>
-                      <Col className={"mb-5"}>
-                          <button type="button" className="btn btn-secondary btn-sm" onClick={() => this.handleAddClick()}>
-                              <i className="fas fa-plus fa-2x"></i></button>
-
-                      </Col>
-                  </Row>
               </Form>
             </Card.Body>
           </Card>
