@@ -63,9 +63,14 @@ class BrokerEdit extends React.Component {
 
   generate() {
     return this.state.taxes.map((each) =>
-        <ListGroup.Item action >
-          <a href={"/tax/edit/"+each.id}>{each.name}</a><a href={"#"} id={each.id} onClick={this.removeTax}>DEL</a>
-        </ListGroup.Item>
+
+          <li className="list-group-item d-flex justify-content-between align-items-start">
+            <div className="ms-2 me-auto"  id={each.id}>
+              <a href={"/tax/edit/"+each.id}>{each.name}</a>
+            </div>
+            <i className="fas fa-trash-alt " id={each.id} onClick={this.removeTax}></i>
+          </li>
+
     );
   }
 
@@ -133,10 +138,10 @@ class BrokerEdit extends React.Component {
                       </NavLink>
                     </Row>
                     <Row>
-                      <ListGroup defaultActiveKey="#link1">
-                        {" "}
-                        {this.generate()}{" "}
-                      </ListGroup>
+                        <ol className="list-group">
+                          {this.generate()}
+                        </ol>
+
                     </Row>
                   </Col>
                 </Row>

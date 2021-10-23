@@ -38,15 +38,7 @@ class Taxes extends React.Component {
       this.props.history.push("/login");
     }
     this.state.id=this.props.match.params.id
-    getTax(this.state.id)
-        .then(aTax => {
-          this.setState({name: aTax.name,
-                                url: aTax.url,
-                                rules:aTax.rules});
-          console.log(aTax);
-        })
-
-        .catch(() => this.setState({ error: this.props.t("genericError") }));
+    this.update();
   }
 
   handleChangeName = (event) => {
@@ -77,6 +69,17 @@ class Taxes extends React.Component {
         })
         .catch((responseError) => this.handleAPIError(responseError));
   };
+
+  update(){
+    getTax(this.state.id)
+        .then(aTax => {
+          this.setState({name: aTax.name,
+            url: aTax.url,
+            rules:aTax.rules});
+        })
+
+        .catch(() => this.setState({ error: this.props.t("genericError") }));
+  }
 
 
 
@@ -135,6 +138,8 @@ class Taxes extends React.Component {
                   <Row>
 
                     <ListGroup defaultActiveKey="#link1"> {this.getAllRules()}</ListGroup>
+
+
                   </Row>
                 </Col>
                 </Row>

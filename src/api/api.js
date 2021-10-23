@@ -54,4 +54,7 @@ export const deleteBroker= (id) =>
     request("delete", "/broker/"+id, {}, authConfig());
 export const deleteTax= (id) =>
     request("delete", "/broker/1/tax/"+id, {}, authConfig());
+export const deleteRule= (id) =>
+    request("delete", "/tax/1/rule/"+id, {}, authConfig());
+
 
