@@ -19,6 +19,7 @@ class Brokers extends React.Component {
     }
     getBrokers()
       .then((taxes) => {
+        console.log(taxes);
         this.setState({ rows: taxes });
       })
       .catch(() => this.setState({ error: this.props.t("genericError") }));

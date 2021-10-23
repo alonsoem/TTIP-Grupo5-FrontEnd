@@ -26,13 +26,10 @@ class FactList extends React.Component {
         switch (type) {
             case 'CORE':
                 return 'success';
-                break;
             case 'RATE':
                 return 'warning';
-                break;
             case 'ENUM':
                 return 'info';
-                break;
             default:
                 return 'secondary';
         }
