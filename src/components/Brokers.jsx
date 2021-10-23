@@ -2,7 +2,7 @@ import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { getBrokers } from "../api/api";
+import {deleteBroker, getBrokers, postLogin} from "../api/api";
 import NavBarPage from "./NavBarPage";
 
 class Brokers extends React.Component {
@@ -17,13 +17,26 @@ class Brokers extends React.Component {
     if (!localStorage.getItem("token")) {
       this.props.history.push("/login");
     }
-    getBrokers()
-      .then((taxes) => {
-        console.log(taxes);
-        this.setState({ rows: taxes });
-      })
-      .catch(() => this.setState({ error: this.props.t("genericError") }));
+    this.updateBrokers();
   }
+
+  updateBrokers(){
+    getBrokers()
+        .then((taxes) => {
+          console.log(taxes);
+          this.setState({ rows: taxes });
+        })
+        .catch(() => this.setState({ error: this.props.t("genericError") }));
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    deleteBroker(event.target.id)
+        .then((response) => {
+            this.updateBrokers();
+        })
+        .catch((responseError) => this.handleAPIError(responseError));
+  };
 
   render() {
     const { t } = this.props;
@@ -32,6 +45,7 @@ class Brokers extends React.Component {
         id: item.id,
         name: item.name,
         url: <a href={"/broker/edit/" + item.id}>{t("edit")}</a>,
+        del: <a href={"#"} onClick={this.handleSubmit} id={item.id}>{t("remove")}</a>,
         calc: <a href={"/maincalc/" + item.id}>{t("calculate")}</a>,
       };
     });
@@ -47,6 +61,10 @@ class Brokers extends React.Component {
       {
         label: t("actionCol"),
         field: "url",
+      },
+      {
+        label: "",
+        field: "del",
       },
       {
         label: "",

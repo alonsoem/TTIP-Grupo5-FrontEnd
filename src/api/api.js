@@ -50,3 +50,5 @@ export const putTaxEdit = (taxId,body) =>
     request("put", "/broker/999/tax/"+taxId, body, authConfig());
 export const putRuleEdit = (ruleId,body) =>
     request("put", "/tax/999/rule/"+ruleId, body, authConfig());
+export const deleteBroker= (id) =>
+    request("delete", "/broker/"+id, {}, authConfig());

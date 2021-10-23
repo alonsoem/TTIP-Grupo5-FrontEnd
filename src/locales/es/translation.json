@@ -64,5 +64,6 @@
   "back": "Volver",
   "update": "Actualizar",
   "allowedFacts": "Facts permitidos:",
-  "ruleEdit": "Modificación de Regla"
+  "ruleEdit": "Modificación de Regla",
+  "remove": "Borrar"
 }

@@ -64,5 +64,6 @@
   "back": "Back",
   "update": "Update",
   "allowedFacts": "Facts allowed:",
-  "ruleEdit": "Edit a Rule"
+  "ruleEdit": "Edit a Rule",
+  "remove": "Delete"
 }
