@@ -1,6 +1,6 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import {getBroker, putBrokerEdit} from "../api/api";
+import {deleteTax, getBroker, putBrokerEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
@@ -32,12 +32,7 @@ class BrokerEdit extends React.Component {
     }
 
     this.state.id= this.props.match.params.id;
-    getBroker(this.state.id)
-        .then(aBroker => {
-          this.setState({name: aBroker.name,taxes:aBroker.taxes});
-          console.log(aBroker);
-        })
-        .catch(() => this.setState({ error: this.props.t("genericError") }));
+    this.updateBroker();
   }
 
   handleChangeName = (event) => {
@@ -65,12 +60,30 @@ class BrokerEdit extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
+
   generate() {
     return this.state.taxes.map((each) =>
         <ListGroup.Item action >
-          <a href={"/tax/edit/"+each.id}>{each.name}</a>
+          <a href={"/tax/edit/"+each.id}>{each.name}</a><a href={"#"} id={each.id} onClick={this.removeTax}>DEL</a>
         </ListGroup.Item>
     );
+  }
+
+  removeTax=(event) =>{
+    event.preventDefault();
+    deleteTax(event.target.id)
+        .then(() => {
+          this.updateBroker();
+        })
+        .catch((responseError) => this.handleAPIError(responseError));
+  }
+
+  updateBroker = ()=>{
+    getBroker(this.state.id)
+        .then(aBroker => {
+          this.setState({name: aBroker.name,taxes:aBroker.taxes});
+        })
+        .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
 
   render() {
@@ -150,6 +163,8 @@ class BrokerEdit extends React.Component {
       </div>
     );
   }
+
+
 }
 
 export default withTranslation()(BrokerEdit);
