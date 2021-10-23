@@ -1,4 +1,5 @@
 # TTIP-Grupo5-FrontEnd
+[![CI](https://github.com/alonsoem/TTIP-Grupo5-FrontEnd/actions/workflows/ci.yml/badge.svg)](https://github.com/alonsoem/TTIP-Grupo5-FrontEnd/actions/workflows/ci.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/61da5d6a7bb84914b7ccfc5b66e652ef)](https://www.codacy.com/gh/alonsoem/TTIP-Grupo5-FrontEnd/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alonsoem/TTIP-Grupo5-FrontEnd&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/61da5d6a7bb84914b7ccfc5b66e652ef)](https://www.codacy.com/gh/alonsoem/TTIP-Grupo5-FrontEnd/dashboard?utm_source=github.com&utm_medium=referral&utm_content=alonsoem/TTIP-Grupo5-FrontEnd&utm_campaign=Badge_Coverage)
 
