@@ -41,3 +41,19 @@ test("No username or password shows error messages", async () => {
     await screen.findByText("Password must be at least 4 characters")
   ).toBeVisible();
 });
+
+test("Registration message is visible", async () => {
+  setup();
+
+  expect(
+    await screen.findByText(
+      "Welcome to ALEC, please sign up to use our services."
+    )
+  ).toBeVisible();
+});
+
+test("Image is present", async () => {
+  setup();
+
+  expect(screen.getByRole("img")).toBeVisible();
+});
