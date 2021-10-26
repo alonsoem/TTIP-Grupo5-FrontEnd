@@ -1,21 +1,22 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import {postBrokerCreate} from "../api/api";
+import {postBrokerCreate, postRegister} from "../api/api";
 import NavBarPage from "./NavBarPage";
-import {Card,Row,Form,Button} from "react-bootstrap";
+import {Card, Row, Form, Button, Alert} from "react-bootstrap";
+import * as md5 from "md5";
 
 class BrokerCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rows: [],
+      errors: [],
+      errorVisible: false,
       taxName: "",
-    };
 
+    };
 
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   componentDidMount() {
@@ -23,26 +24,12 @@ class BrokerCreate extends React.Component {
       this.props.history.push("/login");
     }
   }
+
   cancelAction=(event)=>{
     this.props.history.push("/broker");
-
   }
 
-  handleChangeName = (event) => {
-    this.setState({ taxName: event.target.value });
-  };
-  handleAPIError(responseError) {
-    let errorToDisplay = this.props.t("genericError");
-
-    if (responseError.request && responseError.request.status === 0) {
-      errorToDisplay = this.props.t("comError");
-    }
-    this.setState({ error: errorToDisplay });
-
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
+  submit = () =>{
     postBrokerCreate({
       name: this.state.taxName,
     })
@@ -50,7 +37,45 @@ class BrokerCreate extends React.Component {
           this.props.history.push("/broker/edit/"+response.id);
         })
         .catch((responseError) => this.handleAPIError(responseError));
+
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    var errors = [];
+
+    // Check name of user
+    if (this.state.taxName === "") {
+      errors.push("name");
+    }
+
+    this.setState({
+      errors: errors,
+    });
+
+    if (errors.length > 0) {
+      return false;
+    } else {
+      this.submit();
+    }
   };
+
+  hasError(key) {
+    return this.state.errors.indexOf(key) !== -1;
+  }
+
+  handleChangeName = (event) => {
+    this.setState({ taxName: event.target.value });
+  };
+
+  handleAPIError(responseError) {
+    let errorToDisplay = this.props.t("genericError");
+
+    if (responseError.request && responseError.request.status === 0) {
+      errorToDisplay = this.props.t("comError");
+    }
+    this.setState({ error: errorToDisplay });
+  }
 
   render() {
     const { t } = this.props;
@@ -68,8 +93,24 @@ class BrokerCreate extends React.Component {
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="nameValue">
                     <Form.Label>{t("name")}</Form.Label>
-                    <Form.Control  onChange={this.handleChangeName} value={this.state.taxName}/>
+                    <Form.Control  onChange={this.handleChangeName} value={this.state.taxName}
+                                   className={
+                                     this.hasError("name")
+                                         ? "form-control is-invalid"
+                                         : "form-control"
+                                   }
+                    />
+                    <div
+                        className={
+                          this.hasError("name")
+                              ? "invalid-feedback"
+                              : "visually-hidden"
+                        }
+                    >
+                      {t("userInvalidFeedback")}
+                    </div>
                   </Form.Group>
+
                 </Row>
 
 
@@ -83,6 +124,7 @@ class BrokerCreate extends React.Component {
                     {t("cancel")}
                   </Button>
                 </Row>
+
               </Form>
             </Card.Body>
           </Card>

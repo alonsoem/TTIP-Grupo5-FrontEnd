@@ -30,7 +30,9 @@ class Taxes extends React.Component {
   }
 
   cancelAction=(event)=>{
-    this.props.history.push("/broker");
+    event.preventDefault();
+    this.props.history.goBack();
+    //this.props.history.push("/broker");
   }
 
   componentDidMount() {

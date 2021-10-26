@@ -147,9 +147,6 @@ class RuleEdit extends React.Component {
 
     handleRemoveClick = index => {
         const list = [...this.state.when];
-        console.log(this.state.when);
-        console.log(list);
-        console.log(index);
         list.splice(index, 1);
         this.setState({when:list});
     };

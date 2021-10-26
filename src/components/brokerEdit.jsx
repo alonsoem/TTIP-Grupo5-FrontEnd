@@ -14,6 +14,7 @@ class BrokerEdit extends React.Component {
       name: "",
       taxes:[],
       broker:null,
+      errors:[],
     };
 
 
@@ -49,8 +50,7 @@ class BrokerEdit extends React.Component {
 
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  submit = () =>{
     putBrokerEdit(this.state.id,{
       name: this.state.name,
     })
@@ -58,7 +58,31 @@ class BrokerEdit extends React.Component {
           this.props.history.push("/broker");
         })
         .catch((responseError) => this.handleAPIError(responseError));
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    var errors = [];
+
+    // Check name of broker
+    if (this.state.name === "") {
+      errors.push("name");
+    }
+
+    this.setState({
+      errors: errors,
+    });
+
+    if (errors.length > 0) {
+      return false;
+    } else {
+      this.submit();
+    }
   };
+
+  hasError(key) {
+    return this.state.errors.indexOf(key) !== -1;
+  }
 
 
   generate() {
@@ -123,7 +147,21 @@ class BrokerEdit extends React.Component {
                           <Form.Control
                             onChange={this.handleChangeName}
                             value={this.state.name}
+                            className={
+                              this.hasError("name")
+                                  ? "form-control is-invalid"
+                                  : "form-control"
+                            }
                           />
+                          <div
+                              className={
+                                this.hasError("name")
+                                    ? "invalid-feedback"
+                                    : "visually-hidden"
+                              }
+                          >
+                            {t("userInvalidFeedback")}
+                          </div>
                         </Form.Group>
                       </Row>
                     </Row>
