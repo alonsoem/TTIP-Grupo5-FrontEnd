@@ -65,5 +65,6 @@
   "update": "Update",
   "allowedFacts": "Facts allowed:",
   "ruleEdit": "Edit a Rule",
-  "remove": "Delete"
+  "remove": "Delete",
+  "invalidUrl": "Url is not valid!"
 }

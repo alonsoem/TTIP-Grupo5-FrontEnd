@@ -65,5 +65,6 @@
   "update": "Actualizar",
   "allowedFacts": "Facts permitidos:",
   "ruleEdit": "Modificación de Regla",
-  "remove": "Borrar"
+  "remove": "Borrar",
+  "invalidUrl": "Ingrese una dirección válida"
 }

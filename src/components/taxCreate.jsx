@@ -3,6 +3,7 @@ import { withTranslation } from "react-i18next";
 import {postTaxCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card,Row,Form,Button} from "react-bootstrap";
+import * as md5 from "md5";
 
 class TaxCreate extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class TaxCreate extends React.Component {
     this.state = {
       url:"",
       name: "",
+      errors:[],
     };
 
 
@@ -45,8 +47,7 @@ class TaxCreate extends React.Component {
 
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  submit = () => {
     postTaxCreate(this.props.match.params.id,
                 {
                       name: this.state.name,
@@ -57,6 +58,38 @@ class TaxCreate extends React.Component {
         })
         .catch((responseError) => this.handleAPIError(responseError));
   };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    var errors = [];
+
+    // Check name of user
+    if (this.state.name === "") {
+      errors.push("name");
+    }
+
+    // Check email address
+    const expression = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
+
+    var validExpression = expression.test(String(this.state.url).toLowerCase());
+    if (!validExpression) {
+      errors.push("url");
+    }
+
+    this.setState({
+      errors: errors,
+    });
+
+    if (errors.length > 0) {
+      return false;
+    } else {
+      this.submit();
+    }
+  };
+
+  hasError(key) {
+    return this.state.errors.indexOf(key) !== -1;
+  }
 
   render() {
     const { t } = this.props;
@@ -74,13 +107,41 @@ class TaxCreate extends React.Component {
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="nameValue">
                     <Form.Label>{t("name")}</Form.Label>
-                    <Form.Control onChange={this.handleChangeName} value={this.state.name}/>
+                    <Form.Control onChange={this.handleChangeName} value={this.state.name}
+                                  className={
+                                    this.hasError("name")
+                                        ? "form-control is-invalid"
+                                        : "form-control"
+                                  }/>
+                    <div
+                        className={
+                          this.hasError("name")
+                              ? "invalid-feedback"
+                              : "visually-hidden"
+                        }
+                    >
+                      {t("userInvalidFeedback")}
+                    </div>
                   </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                  <Form.Group className="mb-3" controlId="nameValue">
+                  <Form.Group className="mb-3" controlId="urlValue">
                     <Form.Label>{t("url")}</Form.Label>
-                    <Form.Control  onChange={this.handleChangeUrl} value={this.state.url}/>
+                    <Form.Control  onChange={this.handleChangeUrl} value={this.state.url}
+                                   className={
+                                     this.hasError("url")
+                                         ? "form-control is-invalid"
+                                         : "form-control"
+                                   }/>
+                    <div
+                        className={
+                          this.hasError("url")
+                              ? "invalid-feedback"
+                              : "visually-hidden"
+                        }
+                    >
+                      {t("invalidUrl")}
+                    </div>
                   </Form.Group>
                 </Row>
 

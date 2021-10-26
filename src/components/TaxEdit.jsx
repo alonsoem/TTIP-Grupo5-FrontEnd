@@ -1,6 +1,6 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import {getTax, putTaxEdit} from "../api/api";
+import {getTax, postTaxCreate, putTaxEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
@@ -16,6 +16,7 @@ class Taxes extends React.Component {
       name: "",
       url:"",
       rules:[],
+        errors:[],
     };
 
 
@@ -60,19 +61,50 @@ class Taxes extends React.Component {
 
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    putTaxEdit(this.state.id,{
-      name: this.state.name,
-      url: this.state.url
-    })
-        .then((response) => {
-          this.props.history.push("/broker");
+    submit = () => {
+        putTaxEdit(this.state.id,{
+            name: this.state.name,
+            url: this.state.url
         })
-        .catch((responseError) => this.handleAPIError(responseError));
-  };
+            .then((response) => {
+                this.props.history.push("/broker");
+            })
+            .catch((responseError) => this.handleAPIError(responseError));
+    };
 
-  update(){
+    handleSubmit = (event) => {
+        event.preventDefault();
+        var errors = [];
+
+        // Check name of user
+        if (this.state.name === "") {
+            errors.push("name");
+        }
+
+        // Check email address
+        const expression = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
+
+        var validExpression = expression.test(String(this.state.url).toLowerCase());
+        if (!validExpression) {
+            errors.push("url");
+        }
+
+        this.setState({
+            errors: errors,
+        });
+
+        if (errors.length > 0) {
+            return false;
+        } else {
+            this.submit();
+        }
+    };
+
+    hasError(key) {
+        return this.state.errors.indexOf(key) !== -1;
+    }
+
+    update(){
     getTax(this.state.id)
         .then(aTax => {
           this.setState({name: aTax.name,
@@ -115,14 +147,46 @@ class Taxes extends React.Component {
                     <Row className="mb-3">
                       <Form.Group className="mb-3" controlId="nameValue">
                         <Form.Label>{t("name")}</Form.Label>
-                        <Form.Control onChange={this.handleChangeName} value={this.state.name}/>
+                        <Form.Control onChange={this.handleChangeName} value={this.state.name}
+                                      className={
+                                          this.hasError("name")
+                                              ? "form-control is-invalid"
+                                              : "form-control"
+                                      }
+                        />
+                          <div
+                              className={
+                                  this.hasError("name")
+                                      ? "invalid-feedback"
+                                      : "visually-hidden"
+                              }
+                          >
+                              {t("userInvalidFeedback")}
+                          </div>
                       </Form.Group>
+
                     </Row>
                     <Row className="mb-3">
                       <Form.Group className="mb-3" controlId="urlValue">
                         <Form.Label>{t("url")}</Form.Label>
-                        <Form.Control onChange={this.handleChangeUrl} value={this.state.url}/>
+                        <Form.Control onChange={this.handleChangeUrl} value={this.state.url}
+                                      className={
+                                          this.hasError("url")
+                                              ? "form-control is-invalid"
+                                              : "form-control"
+                                      }/>
+                          <div
+                              className={
+                                  this.hasError("url")
+                                      ? "invalid-feedback"
+                                      : "visually-hidden"
+                              }
+                          >
+                              {t("invalidUrl")}
+                          </div>
                       </Form.Group>
+
+
                     </Row>
 
 
