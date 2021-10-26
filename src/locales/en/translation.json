@@ -66,5 +66,7 @@
   "allowedFacts": "Facts allowed:",
   "ruleEdit": "Edit a Rule",
   "remove": "Delete",
-  "invalidUrl": "Url is not valid!"
+  "invalidUrl": "Url is not valid!",
+  "descriptionInvalidFeedback": "Description can not be empty!",
+  "priorityInvalidFeedback": "Priority must be a number between 1 and 10"
 }

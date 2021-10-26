@@ -66,5 +66,7 @@
   "allowedFacts": "Facts permitidos:",
   "ruleEdit": "Modificación de Regla",
   "remove": "Borrar",
-  "invalidUrl": "Ingrese una dirección válida"
+  "invalidUrl": "Ingrese una dirección válida",
+  "descriptionInvalidFeedback": "La descripción debe ser mas extensa",
+  "priorityInvalidFeedback": "La prioridad debe ser un numero entre 1 y 10"
 }

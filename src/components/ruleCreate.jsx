@@ -16,9 +16,10 @@ class RuleCreate extends React.Component {
       name: "",
       description: "",
       priority: 1,
+      errors:[],
     };
 
-      this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleChangePriority = this.handleChangePriority.bind(this);
@@ -65,8 +66,7 @@ class RuleCreate extends React.Component {
 
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  submit = () => {
     postRuleCreate(this.props.match.params.id,
         {
           name: this.state.name,
@@ -126,7 +126,43 @@ class RuleCreate extends React.Component {
     this.setState({when:[...this.state.when,'']});
   }
 
-  render() {
+    handleSubmit = (event) => {
+        event.preventDefault();
+        var errors = [];
+
+        // Check name of Rule
+        if (this.state.name === "") {
+            errors.push("name");
+        }
+
+        // Check description of Rule
+        if (this.state.description.length<=3) {
+            errors.push("description");
+        }
+
+        const expression =/^[0-9\b]+$/;
+        var validExpression = expression.test(String(this.state.priority).toLowerCase());
+        if (!validExpression) {
+            errors.push("priority");
+        }
+
+        this.setState({
+            errors: errors,
+        });
+
+        if (errors.length > 0) {
+            return false;
+        } else {
+            this.submit();
+        }
+    };
+
+
+    hasError(key) {
+        return this.state.errors.indexOf(key) !== -1;
+    }
+
+    render() {
     const { t } = this.props;
 
     return (
@@ -143,19 +179,65 @@ class RuleCreate extends React.Component {
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="nameValue">
                     <Form.Label>{t("name")}</Form.Label>
-                    <Form.Control  onChange={this.handleChangeName} value={this.state.name}/>
+                    <Form.Control  onChange={this.handleChangeName} value={this.state.name}
+                                   className={
+                                       this.hasError("name")
+                                           ? "form-control is-invalid"
+                                           : "form-control"
+                                   }/>
+
+                      <div
+                          className={
+                              this.hasError("name")
+                                  ? "invalid-feedback"
+                                  : "visually-hidden"
+                          }
+                      >
+                          {t("userInvalidFeedback")}
+                      </div>
+
                   </Form.Group>
                 </Row>
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="descriptionValue">
                     <Form.Label>{t("description")}</Form.Label>
-                    <Form.Control  onChange={this.handleChangeDescription} value={this.state.description}/>
+                    <Form.Control  onChange={this.handleChangeDescription} value={this.state.description}
+                                   className={
+                                       this.hasError("description")
+                                           ? "form-control is-invalid"
+                                           : "form-control"
+                                   }/>
+                      <div
+                          className={
+                              this.hasError("description")
+                                  ? "invalid-feedback"
+                                  : "visually-hidden"
+                          }
+                      >
+                          {t("descriptionInvalidFeedback")}
+                      </div>
+
                   </Form.Group>
                 </Row>
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="priorityValue">
                     <Form.Label>{t("priority")}</Form.Label>
-                    <Form.Control  onChange={this.handleChangePriority} value={this.state.priority}/>
+                    <Form.Control  onChange={this.handleChangePriority} value={this.state.priority}
+                                   className={
+                                       this.hasError("priority")
+                                           ? "form-control is-invalid"
+                                           : "form-control"
+                                   }/>
+                      <div
+                          className={
+                              this.hasError("priority")
+                                  ? "invalid-feedback"
+                                  : "visually-hidden"
+                          }
+                      >
+                          {t("priorityInvalidFeedback")}
+                      </div>
+
                   </Form.Group>
                 </Row>
                   <Row className="mb-3">
@@ -169,6 +251,7 @@ class RuleCreate extends React.Component {
                   <Form.Group className="mb-3" controlId="thenValue">
                     <Form.Label>{t("then")}</Form.Label>
                     <Form.Control  onChange={this.handleChangeThen} value={this.state.then}/>
+
                   </Form.Group>
                 </Row>
 
