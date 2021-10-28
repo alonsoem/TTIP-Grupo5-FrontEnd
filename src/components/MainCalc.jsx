@@ -70,9 +70,7 @@ class MainCalc extends Component {
       taxId: this.props.match.params.id,
     })
       .then((response) => {
-        const taxNames = response.detail
-          .filter((detail) => detail.amount > 0)
-          .map((detail) => detail.taxDescription);
+        const taxNames = response.detail.filter((detail) => detail.amount > 0);
         this.setState({
           result: response.totalAmount,
           taxlist: taxNames,
@@ -189,8 +187,19 @@ class MainCalc extends Component {
                   <MDBCardBody className="card-body">
                     <MDBListGroup>
                       {this.state.taxlist.map((listitem) => (
-                        <MDBListGroupItem className="card-text" key={listitem}>
-                          <b>{listitem}</b>
+                        <MDBListGroupItem
+                          className="card-text"
+                          key={listitem.taxId}
+                        >
+                          <a
+                            href={listitem.taxUrl}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                          >
+                            <b>{listitem.taxDescription}</b>
+                          </a>
+                          <br />
+                          {t("amount")}: {listitem.amount}
                         </MDBListGroupItem>
                       ))}
                     </MDBListGroup>
