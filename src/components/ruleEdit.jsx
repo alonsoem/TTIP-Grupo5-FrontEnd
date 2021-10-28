@@ -208,7 +208,7 @@ class RuleEdit extends React.Component {
                  }
             }
             )
-        
+
 
         if (!this.validateExpression(this.state.then)){
             errors.push("then");

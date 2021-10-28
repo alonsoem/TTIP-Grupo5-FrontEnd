@@ -4,6 +4,7 @@ import { withTranslation } from "react-i18next";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import FactList from "./factList";
+const math = require('mathjs');
 
 
 class RuleCreate extends React.Component {
@@ -28,6 +29,22 @@ class RuleCreate extends React.Component {
 
 
   }
+
+    validateExpression(expression) {
+        console.log(expression);
+        const scope={amount:10,iva:21,pais30:30,pais8:8,apartado:20,apartadoClass:10};
+        try {
+            math.evaluate(expression,scope);
+            console.log("TRUE");
+            return true;
+
+        }catch (e){
+            console.log("FALSE");
+            console.log(e);
+            return false;
+
+        }
+    }
 
   componentDidMount() {
     if (!localStorage.getItem("token")) {
@@ -89,7 +106,21 @@ class RuleCreate extends React.Component {
               <Form.Label>{t("whenCondition")} #{i}</Form.Label>
               <Row class={"align-middle"}>
                 <Col>
-                  <Form.Control  value={condition} onChange={e => this.handleInputChange(e, i)}/>
+                  <Form.Control  value={condition} onChange={e => this.handleInputChange(e, i)}
+                                 className={
+                                     this.hasError("when" +i)
+                                         ? "form-control is-invalid"
+                                         : "form-control"
+                                 }/>
+                    <div
+                        className={
+                            this.hasError("when" + i)
+                                ? "invalid-feedback"
+                                : "visually-hidden"
+                        }
+                    >
+                        {t("whenInvalidFeedback")}
+                    </div>
                 </Col>
                 <Col>
                   <div className={"btn-box"}>
@@ -144,6 +175,18 @@ class RuleCreate extends React.Component {
         var validExpression = expression.test(String(this.state.priority).toLowerCase());
         if (!validExpression) {
             errors.push("priority");
+        }
+        this.state.when.forEach((t,index)=>
+            {
+                if (!this.validateExpression(t)) {
+                    errors.push("when" +index);
+                }
+            }
+        )
+
+
+        if (!this.validateExpression(this.state.then)){
+            errors.push("then");
         }
 
         this.setState({
@@ -250,7 +293,21 @@ class RuleCreate extends React.Component {
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="thenValue">
                     <Form.Label>{t("then")}</Form.Label>
-                    <Form.Control  onChange={this.handleChangeThen} value={this.state.then}/>
+                    <Form.Control  onChange={this.handleChangeThen} value={this.state.then}
+                                   className={
+                                       this.hasError("then")
+                                           ? "form-control is-invalid"
+                                           : "form-control"
+                                   }/>
+                      <div
+                          className={
+                              this.hasError("then")
+                                  ? "invalid-feedback"
+                                  : "visually-hidden"
+                          }
+                      >
+                          {t("thenInvalidFeedback")}
+                      </div>
 
                   </Form.Group>
                 </Row>
