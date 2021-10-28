@@ -12,6 +12,8 @@
     "bootstrap": "^5.1.3",
     "i18next": "^20.2.2",
     "i18next-browser-languagedetector": "^6.1.1",
+    "math-expression-evaluator": "^1.3.8",
+    "mathjs": "^9.5.1",
     "md5": "^2.3.0",
     "mdbreact": "^5.0.2",
     "react": "^17.0.2",
@@ -37,13 +39,9 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-
-  "rules": {
-
-    "react/no-direct-mutation-state": "off"
-
-  },
-
+    "rules": {
+      "react/no-direct-mutation-state": "off"
+    },
     "extends": [
       "react-app",
       "react-app/jest"

@@ -4,6 +4,7 @@ import FactList from "./factList";
 import { withTranslation } from "react-i18next";
 import {getRule, putRuleEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
+const math = require('mathjs');
 
 
 
@@ -17,7 +18,7 @@ class RuleEdit extends React.Component {
       when:[],
       then:[],
       priority:0,
-        errors:[],
+      errors:[],
     };
 
 
@@ -27,6 +28,25 @@ class RuleEdit extends React.Component {
     this.handleChangePriority = this.handleChangePriority.bind(this);
     this.handleChangeThen = this.handleChangeThen.bind(this);
 
+  }
+
+  validateExpression(expression) {
+      console.log(expression);
+      const scope={amount:10,iva:21,pais30:30,pais8:8,apartado:20,apartadoClass:10};
+      try {
+          math.evaluate(expression,scope);
+          console.log("TRUE");
+          return true;
+
+      }catch (e){
+          console.log("FALSE");
+          console.log(e);
+          return false;
+
+      }
+  }
+  allowedOperations (){
+      return ["+","*","-","/","%"];
   }
 
   cancelAction=(event)=>{
@@ -44,7 +64,6 @@ class RuleEdit extends React.Component {
           this.setState({name: rule.name,description:rule.description,priority:rule.priority,
               when:[...rule.when],
               then:this.handleLoadArray(rule.then)});
-          console.log(rule);
         })
         .catch(() => this.setState({ error: this.props.t("genericError") }));
 
@@ -68,20 +87,9 @@ class RuleEdit extends React.Component {
         this.setState({ priority: event.target.value });
     };
     handleChangeThen = (event) => {
-        this.validateFacts(event.target);
         this.setState({ then:  event.target.value });
 
     };
-
-    validateFacts(input){
-        const regex = new RegExp('/^[a-zA-Z0-9]*$/;');
-        if (regex.test(input.value)) {
-            console.log("OK");
-        }else{
-            console.log("ERROR");
-
-        }
-    }
 
 
     handleAPIError(responseError) {
@@ -115,7 +123,22 @@ class RuleEdit extends React.Component {
                 <Col>
                     <Form.Group className="mb-3" controlId={"whenValue"+i}>
                         <Form.Label>{t("whenCondition")} #{i}</Form.Label>
-                        <Form.Control  value={condition} onChange={e => this.handleInputChange(e, i)}/>
+                        <Form.Control  value={condition} onChange={e => this.handleInputChange(e, i)}
+
+                                       className={
+                                           this.hasError("when" +i)
+                                               ? "form-control is-invalid"
+                                               : "form-control"
+                                       }/>
+                        <div
+                            className={
+                                this.hasError("when" + i)
+                                    ? "invalid-feedback"
+                                    : "visually-hidden"
+                            }
+                        >
+                            {t("whenInvalidFeedback")}
+                        </div>
                     </Form.Group>
                 </Col>
                 <Col>
@@ -129,6 +152,7 @@ class RuleEdit extends React.Component {
                             <i className="fas fa-plus fa-2x"></i></button>
                         }
                     </div>
+
                 </Col>
 
             </Row>
@@ -160,6 +184,7 @@ class RuleEdit extends React.Component {
         event.preventDefault();
         var errors = [];
 
+
         // Check name of Rule
         if (this.state.name === "") {
             errors.push("name");
@@ -174,6 +199,19 @@ class RuleEdit extends React.Component {
         var validExpression = expression.test(String(this.state.priority).toLowerCase());
         if (!validExpression) {
             errors.push("priority");
+        }
+
+        this.state.when.forEach((t,index)=>
+            {
+                if (!this.validateExpression(t)) {
+                    errors.push("when" +index);
+                 }
+            }
+            )
+        
+
+        if (!this.validateExpression(this.state.then)){
+            errors.push("then");
         }
 
         this.setState({
@@ -271,16 +309,30 @@ class RuleEdit extends React.Component {
                               </Form.Group>
                           </Row>
                           <Row className="mb-3">
-                              <div className="form-group">
-                                  <label>{t("when")}</label><br/>
+                              <Form.Group className="mb-3" controlId="whenValue">
+                                  <Form.Label>{t("when")}</Form.Label>
                                   {this.getWhenList(t)}
-                              </div>
 
+                              </Form.Group>
                           </Row>
                           <Row className="mb-3">
                               <Form.Group className="mb-3" controlId="thenValue">
                                   <Form.Label>{t("then")}</Form.Label>
-                                  <Form.Control  onChange={this.handleChangeThen} value={this.state.then}/>
+                                  <Form.Control onChange={this.handleChangeThen} value={this.state.then}
+                                                 className={
+                                                     this.hasError("then")
+                                                         ? "form-control is-invalid"
+                                                         : "form-control"
+                                                 }/>
+                                  <div
+                                      className={
+                                          this.hasError("then")
+                                              ? "invalid-feedback"
+                                              : "visually-hidden"
+                                      }
+                                  >
+                                      {t("thenInvalidFeedback")}
+                                  </div>
                               </Form.Group>
 
 
@@ -326,7 +378,6 @@ class RuleEdit extends React.Component {
       </div>
     );
   }
-
 
 
 

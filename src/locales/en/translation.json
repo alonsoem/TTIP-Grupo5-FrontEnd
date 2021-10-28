@@ -68,5 +68,7 @@
   "remove": "Delete",
   "invalidUrl": "Url is not valid!",
   "descriptionInvalidFeedback": "Description can not be empty!",
-  "priorityInvalidFeedback": "Priority must be a number between 1 and 10"
+  "priorityInvalidFeedback": "Priority must be a number between 1 and 10",
+  "whenInvalidFeedback": "When Expression is invalid.",
+  "thenInvalidFeedback": "Then Expression is invalid."
 }
