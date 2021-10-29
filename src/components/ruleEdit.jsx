@@ -74,7 +74,7 @@ class RuleEdit extends React.Component {
   }
 
   handleChangeName = (event) => {
-    this.setState({ taxName: event.target.value });
+    this.setState({ name: event.target.value });
   };
   handleChangeUrl = (event) => {
     this.setState({ url: event.target.value });

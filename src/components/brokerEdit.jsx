@@ -2,8 +2,9 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import {deleteTax, getBroker, putBrokerEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
-import {Card, Row, Form, Button, Col} from "react-bootstrap";
+import {Card, Row, Form, Button, Col, FormGroup} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
+import {MDBInput} from "mdbreact";
 
 class BrokerEdit extends React.Component {
   constructor(props) {
@@ -134,23 +135,29 @@ class BrokerEdit extends React.Component {
                 <Col lg="7" xs="7" md="7">
                   <Row>
                     <Row className="mb-3">
-                      <Form.Group className="mb-3" controlId="idValue">
-                        <Form.Label>{t("id")}</Form.Label>
-                        <Form.Control value={id}/>
+                      <Form.Group controlId="idValue">
+                        <MDBInput
+                            type="text"
+                            label={t("id")}
+                            value={id}
+                            background
+                        />
                       </Form.Group>
                     </Row>
 
                       <Row className="mb-3">
                         <Form.Group className="mb-3" controlId="nameValue">
-                          <Form.Label>{t("name")}</Form.Label>
-                          <Form.Control
-                            onChange={this.handleChangeName}
-                            value={this.state.name}
-                            className={
-                              this.hasError("name")
-                                  ? "form-control is-invalid"
-                                  : "form-control"
-                            }
+                          <MDBInput
+                              type="text"
+                              label={t("name")}
+                              value={this.state.name}
+                              onChange={this.handleChangeName}
+                              className={
+                                this.hasError("name")
+                                    ? "form-control is-invalid"
+                                    : "form-control"
+                              }
+                              background
                           />
                           <div
                               className={
