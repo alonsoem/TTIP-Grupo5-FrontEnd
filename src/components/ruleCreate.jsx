@@ -4,7 +4,6 @@ import { withTranslation } from "react-i18next";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import FactList from "./factList";
-import TextField from "@material-ui/core/TextField";
 const math = require('mathjs');
 
 

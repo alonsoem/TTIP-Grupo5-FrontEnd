@@ -2,8 +2,9 @@ import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import {deleteBroker, getBrokers, postLogin} from "../api/api";
+import {deleteBroker, getBrokers} from "../api/api";
 import NavBarPage from "./NavBarPage";
+import {Button} from "react-bootstrap";
 
 class Brokers extends React.Component {
   constructor(props) {
@@ -38,15 +39,30 @@ class Brokers extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
+  editBroker=(event)=>{
+    this.props.history.push("/broker/edit/" + event.target.id);
+  }
+
+  useBroker=(event)=>{
+    this.props.history.push("/maincalc/" + event.target.id);
+  }
+
   render() {
     const { t } = this.props;
     const dataSet = this.state.rows.map((item) => {
       return {
         id: item.id,
         name: item.name,
-        url: <a href={"/broker/edit/" + item.id}>{t("edit")}</a>,
-        del: <a href={"#"} onClick={this.handleSubmit} id={item.id}>{t("remove")}</a>,
-        calc: <a href={"/maincalc/" + item.id}>{t("calculate")}</a>,
+        url: <Button variant="secondary" onClick={this.editBroker} id={item.id}>
+                <i className="fa fa-edit"></i>
+             </Button>,
+          del: <Button variant="secondary" onClick={this.handleSubmit} id={item.id}>
+                  <i className="fa fa-minus"></i>
+               </Button>,
+          calc: <Button variant="secondary" onClick={this.useBroker} id={item.id}>
+            <i className="fa fa-calculator"></i>
+          </Button>,
+
       };
     });
     const columns = [
@@ -87,7 +103,7 @@ class Brokers extends React.Component {
           <div className="form-content" align="center">
             <div className="row">
               <div id={"contenedor"}>
-                <MDBTable className="table-secondary table-hover" responsive>
+                <MDBTable className="table-hover table table-success table-striped" responsive>
                   <MDBTableHead columns={columns} />
                   <MDBTableBody rows={dataSet} />
                 </MDBTable>

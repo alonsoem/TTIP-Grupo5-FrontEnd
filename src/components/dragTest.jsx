@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {arrayMove ,SortableContainer, SortableElement} from 'react-sortable-hoc';
 import {withTranslation} from "react-i18next";
-import ListGroup from "react-bootstrap/ListGroup";
 import {deleteRule} from "../api/api";
-import {Row} from "react-bootstrap";
+
 
 
 class DragTest extends Component {

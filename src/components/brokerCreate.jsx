@@ -1,9 +1,9 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import {postBrokerCreate, postRegister} from "../api/api";
+import {postBrokerCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
-import {Card, Row, Form, Button, Alert, Col} from "react-bootstrap";
-import * as md5 from "md5";
+import {Card, Row, Form, Button, Col} from "react-bootstrap";
+
 
 class BrokerCreate extends React.Component {
   constructor(props) {

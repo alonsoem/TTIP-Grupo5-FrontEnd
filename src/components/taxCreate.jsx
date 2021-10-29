@@ -3,7 +3,6 @@ import { withTranslation } from "react-i18next";
 import {postTaxCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
-import * as md5 from "md5";
 
 class TaxCreate extends React.Component {
   constructor(props) {
