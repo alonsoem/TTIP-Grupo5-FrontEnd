@@ -1,6 +1,6 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import {deleteTax, getBroker, putBrokerEdit} from "../api/api";
+import {deleteBroker, deleteTax, getBroker, putBrokerEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col, FormGroup} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
@@ -24,10 +24,19 @@ class BrokerEdit extends React.Component {
   }
   cancelAction=(event)=>{
     this.props.history.push("/broker");
+  }
+
+  deleteAction=(event)=>{
+      event.preventDefault();
+      deleteBroker(event.target.id)
+          .then((response) => {
+              this.props.history.push("/broker");
+          })
+          .catch((responseError) => this.handleAPIError(responseError));
 
   }
 
-  componentDidMount() {
+    componentDidMount() {
     if (!localStorage.getItem("token")) {
       this.props.history.push("/login");
     }
@@ -123,14 +132,14 @@ class BrokerEdit extends React.Component {
 
       <div>
         <NavBarPage />
-        <div className="container-fluid">
-
+        <div className="container">
+            <Form onSubmit={this.handleSubmit}>
           <Card>
             <Card.Header as="h5">{t("brokerEdit")}</Card.Header>
             <Card.Body>
 
 
-              <Form onSubmit={this.handleSubmit}>
+
                 <Row>
                 <Col lg="7" xs="7" md="7">
                   <Row>
@@ -197,25 +206,41 @@ class BrokerEdit extends React.Component {
                   </Col>
                 </Row>
 
-                <Row class={"justify-content-start"}>
-                  <Col className="justify-content-start text-left">
-                  <Button variant="primary" type="submit">
-                    {t("update")}
-                  </Button>
 
-                  <Button
-                    variant="outline-primary"
-                    type="cancel"
-                    onClick={this.cancelAction}
-                  >
-                    {t("back")}
-                  </Button>
-                  </Col>
-                </Row>
 
-              </Form>
+
             </Card.Body>
+              <Card.Footer>
+                  <Row class={"justify-content-start"}>
+                      <Col className="justify-content-start text-left col-sm-10">
+                          <Button variant="primary" type="submit">
+                              {t("update")}
+                          </Button>
+
+                          <Button
+                              variant="outline-primary"
+                              type="cancel"
+                              onClick={this.cancelAction}
+                          >
+                              {t("back")}
+                          </Button>
+                      </Col>
+                      <Col className={"sm-1"}>
+                          <Button
+                              variant="outline-danger"
+                              onClick={this.deleteAction}
+                              id={this.state.id}
+                          >
+                              <i className="fa fa-trash"></i>&nbsp;
+                              {t("remove")}
+                          </Button>
+
+                      </Col>
+                  </Row>
+
+              </Card.Footer>
           </Card>
+            </Form>
 
         </div>
       </div>

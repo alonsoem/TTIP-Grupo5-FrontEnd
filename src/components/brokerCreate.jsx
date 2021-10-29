@@ -85,11 +85,11 @@ class BrokerCreate extends React.Component {
       <div>
         <NavBarPage />
         <div className="container-fluid">
-
+            <Form onSubmit={this.handleSubmit}>
           <Card>
             <Card.Header as="h5">{t("brokerNew")}</Card.Header>
             <Card.Body>
-              <Form onSubmit={this.handleSubmit}>
+
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="nameValue">
                     <Form.Label>{t("name")}</Form.Label>
@@ -115,22 +115,25 @@ class BrokerCreate extends React.Component {
 
 
 
-                <Row class={"justify-content-start"}>
-                  <Col className="justify-content-start text-left">
-                  <Button variant="primary" type="submit">
-                    {t("save")}
-                  </Button>
 
-                  <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
-                    {t("cancel")}
-                  </Button>
-                  </Col>
-                </Row>
 
-              </Form>
+
             </Card.Body>
-          </Card>
+              <Card.Footer>
+                  <Row class={"justify-content-start"}>
+                      <Col className="justify-content-start text-left">
+                          <Button variant="primary" type="submit">
+                              {t("save")}
+                          </Button>
 
+                          <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
+                              {t("cancel")}
+                          </Button>
+                      </Col>
+                  </Row>
+              </Card.Footer>
+          </Card>
+        </Form>
         </div>
       </div>
     );
