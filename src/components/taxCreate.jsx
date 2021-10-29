@@ -2,7 +2,7 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import {postTaxCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
-import {Card,Row,Form,Button} from "react-bootstrap";
+import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import * as md5 from "md5";
 
 class TaxCreate extends React.Component {
@@ -145,7 +145,8 @@ class TaxCreate extends React.Component {
                   </Form.Group>
                 </Row>
 
-
+                <Row class={"justify-content-start"}>
+                  <Col className="justify-content-start text-left">
                 <Button variant="primary" type="submit">
                   {t("save")}
                 </Button>
@@ -153,6 +154,8 @@ class TaxCreate extends React.Component {
                 <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
                   {t("cancel")}
                 </Button>
+                  </Col>
+                </Row>
               </Form>
             </Card.Body>
           </Card>

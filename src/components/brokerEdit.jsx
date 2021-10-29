@@ -170,16 +170,18 @@ class BrokerEdit extends React.Component {
                   <Col lg="4" xs="4" md="4">
                     <Card>
                       <Card.Header as="h5">
-                        {t("brokerAddTax")}
-                        <NavLink to={"/broker/edit/" + this.state.id + "/tax"}>
-                          <Button variant="primary"  class={"w-100"}>
-                            <i className="fa fa-plus"></i>
-                          </Button>
-                        </NavLink>
+                          <div className="row">
+                              <div className="col-sm-8">{t("brokerAddTax")}</div>
+                              <div className="col-sm-4">
+                                  <NavLink to={"/broker/edit/" + this.state.id + "/tax"}>
+                                      <Button variant="primary"  class={"w-100"}>
+                                          <i className="fa fa-plus"></i>
+                                      </Button>
+                                  </NavLink>
+                              </div>
+                          </div>
                         </Card.Header>
                       <Card.Body>
-
-
                         <ol className="list-group">
                           {this.generate()}
                         </ol>
@@ -189,7 +191,8 @@ class BrokerEdit extends React.Component {
                   </Col>
                 </Row>
 
-                <Row>
+                <Row class={"justify-content-start"}>
+                  <Col className="justify-content-start text-left">
                   <Button variant="primary" type="submit">
                     {t("update")}
                   </Button>
@@ -201,6 +204,7 @@ class BrokerEdit extends React.Component {
                   >
                     {t("back")}
                   </Button>
+                  </Col>
                 </Row>
 
               </Form>

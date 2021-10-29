@@ -1,6 +1,6 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import {getTax, postTaxCreate, putTaxEdit} from "../api/api";
+import {getTax, putTaxEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
@@ -16,7 +16,7 @@ class Taxes extends React.Component {
       name: "",
       url:"",
       rules:[],
-        errors:[],
+      errors:[],
     };
 
 
@@ -196,22 +196,30 @@ class Taxes extends React.Component {
                 <Col lg="4" xs="4" md="4">
                     <Card>
                         <Card.Header as="h5">
-                            {t("taxAddRule")}
-                            <NavLink to={"/rule/"+this.state.id}>
-                                <Button variant="primary"  class={"w-100"}>
-                                    <i className="fa fa-plus"></i>
-                                </Button>
-                            </NavLink>
+                            <div className="row">
+                                <div className="col-sm-8">{t("taxAddRule")}</div>
+                                <div className="col-sm-4">
+                                    <NavLink to={"/rule/"+this.state.id}>
+                                        <Button  class={"btn-sm"}>
+                                            <i className="fa fa-plus"></i>
+                                        </Button>
+                                    </NavLink>
+                                </div>
+                            </div>
+
+
                         </Card.Header>
                         <Card.Body>
                             <ListGroup defaultActiveKey="#link1"> {this.getAllRules()}</ListGroup>
                         </Card.Body>
                     </Card>
-                    
+
                 </Col>
                 </Row>
 
-                <Row>
+                  <Row class={"justify-content-start"}>
+                      <Col className="justify-content-start text-left">
+
                   <Button variant="primary" type="submit">
                     {t("update")}
                   </Button>
@@ -219,6 +227,7 @@ class Taxes extends React.Component {
                   <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
                     {t("back")}
                   </Button>
+                      </Col>
                 </Row>
 
               </Form>

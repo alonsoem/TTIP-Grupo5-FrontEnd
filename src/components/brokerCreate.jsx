@@ -2,7 +2,7 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import {postBrokerCreate, postRegister} from "../api/api";
 import NavBarPage from "./NavBarPage";
-import {Card, Row, Form, Button, Alert} from "react-bootstrap";
+import {Card, Row, Form, Button, Alert, Col} from "react-bootstrap";
 import * as md5 from "md5";
 
 class BrokerCreate extends React.Component {
@@ -115,7 +115,8 @@ class BrokerCreate extends React.Component {
 
 
 
-                <Row>
+                <Row class={"justify-content-start"}>
+                  <Col className="justify-content-start text-left">
                   <Button variant="primary" type="submit">
                     {t("save")}
                   </Button>
@@ -123,6 +124,7 @@ class BrokerCreate extends React.Component {
                   <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
                     {t("cancel")}
                   </Button>
+                  </Col>
                 </Row>
 
               </Form>

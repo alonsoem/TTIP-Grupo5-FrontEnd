@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import App18 from "../App18.jsx";
 import aleclogo from "../static/aleclogo.png";
-import "./NavBar.css";
+
 
 class NavBarPage extends Component {
   render() {

@@ -337,7 +337,8 @@ class RuleCreate extends React.Component {
                 </Col>
                 </Row>
 
-                <Row>
+                  <Row class={"justify-content-start"}>
+                      <Col className="justify-content-start text-left">
                   <Button variant="primary" type="submit">
                     {t("save")}
                   </Button>
@@ -345,6 +346,7 @@ class RuleCreate extends React.Component {
                   <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
                     {t("cancel")}
                   </Button>
+                      </Col>
                 </Row>
               </Form>
             </Card.Body>

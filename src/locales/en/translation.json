@@ -63,7 +63,7 @@
   "whenCondition": "Condition",
   "back": "Back",
   "update": "Update",
-  "allowedFacts": "Facts allowed:",
+  "allowedFacts": "Allowed Facts",
   "ruleEdit": "Edit a Rule",
   "remove": "Delete",
   "invalidUrl": "Url is not valid!",
