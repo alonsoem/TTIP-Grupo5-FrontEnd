@@ -167,27 +167,40 @@ class RuleCreate extends React.Component {
         }
 
         // Check description of Rule
-        if (this.state.description.length<=3) {
+        if (this.state.description.length <= 3) {
             errors.push("description");
         }
 
-        const expression =/^[0-9\b]+$/;
+        const expression = /^-{0}?\b([1-9]|10)\b/;
         var validExpression = expression.test(String(this.state.priority).toLowerCase());
         if (!validExpression) {
             errors.push("priority");
         }
-        this.state.when.forEach((t,index)=>
-            {
-                if (!this.validateExpression(t)) {
-                    errors.push("when" +index);
+
+        if (this.state.when.length > 0){
+
+            this.state.when.forEach((anExpression, index) => {
+                    if (anExpression==""){
+                        errors.push("when"+ index)
+                    }
+                    if (!this.validateExpression(anExpression)) {
+                        errors.push("when" + index);
+                    }
                 }
-            }
-        )
-
-
-        if (!this.validateExpression(this.state.then)){
-            errors.push("then");
+            )
+        }else {
+            errors.push("when"+0);
         }
+
+
+        if (this.state.then.length > 0) {
+            if (!this.validateExpression(this.state.then)) {
+                errors.push("then");
+            }
+        }else{
+            errors.push("then")
+        }
+
 
         this.setState({
             errors: errors,
