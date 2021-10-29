@@ -168,19 +168,24 @@ class BrokerEdit extends React.Component {
                   </Col>
 
                   <Col lg="4" xs="4" md="4">
-                    <Row>
-                      <NavLink to={"/broker/edit/" + this.state.id + "/tax"}>
-                        <Button variant="primary"  class={"w-100"}>
-                          <i className="fa fa-plus">{t("brokerAddTax")}</i>
-                        </Button>
-                      </NavLink>
-                    </Row>
-                    <Row>
+                    <Card>
+                      <Card.Header as="h5">
+                        {t("brokerAddTax")}
+                        <NavLink to={"/broker/edit/" + this.state.id + "/tax"}>
+                          <Button variant="primary"  class={"w-100"}>
+                            <i className="fa fa-plus"></i>
+                          </Button>
+                        </NavLink>
+                        </Card.Header>
+                      <Card.Body>
+
+
                         <ol className="list-group">
                           {this.generate()}
                         </ol>
+                      </Card.Body>
+                    </Card>
 
-                    </Row>
                   </Col>
                 </Row>
 

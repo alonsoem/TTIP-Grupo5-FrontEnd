@@ -194,19 +194,20 @@ class Taxes extends React.Component {
                 </Col>
 
                 <Col lg="4" xs="4" md="4">
-                  <Row>
-                    <NavLink to={"/rule/"+this.state.id}>
-                      <Button variant="primary"  class={"w-100"}>
-                        <i className="fa fa-plus">{t("taxAddRule")}</i>
-                      </Button>
-                    </NavLink>
-                  </Row>
-                  <Row>
-
-                    <ListGroup defaultActiveKey="#link1"> {this.getAllRules()}</ListGroup>
-
-
-                  </Row>
+                    <Card>
+                        <Card.Header as="h5">
+                            {t("taxAddRule")}
+                            <NavLink to={"/rule/"+this.state.id}>
+                                <Button variant="primary"  class={"w-100"}>
+                                    <i className="fa fa-plus"></i>
+                                </Button>
+                            </NavLink>
+                        </Card.Header>
+                        <Card.Body>
+                            <ListGroup defaultActiveKey="#link1"> {this.getAllRules()}</ListGroup>
+                        </Card.Body>
+                    </Card>
+                    
                 </Col>
                 </Row>
 

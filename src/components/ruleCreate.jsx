@@ -4,6 +4,7 @@ import { withTranslation } from "react-i18next";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import FactList from "./factList";
+import TextField from "@material-ui/core/TextField";
 const math = require('mathjs');
 
 
@@ -265,7 +266,8 @@ class RuleCreate extends React.Component {
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="priorityValue">
                     <Form.Label>{t("priority")}</Form.Label>
-                    <Form.Control  onChange={this.handleChangePriority} value={this.state.priority}
+
+                    <Form.Control  onChange={this.handleChangePriority} value={this.state.priority} variant="outlined"
                                    className={
                                        this.hasError("priority")
                                            ? "form-control is-invalid"
