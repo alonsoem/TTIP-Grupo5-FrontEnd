@@ -157,7 +157,7 @@ class RuleCreate extends React.Component {
     this.setState({when:[...this.state.when,'']});
   }
 
-    handleSubmit = (event) => {
+  handleSubmit = (event) => {
         event.preventDefault();
         var errors = [];
 
