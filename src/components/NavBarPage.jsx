@@ -18,12 +18,7 @@ class NavBarPage extends Component {
           className="navbar-light heavy-rain-gradient darken-3 mb-4"
         >
           <Navbar.Brand href="/taxes">
-            <img
-              className="img-thumbnail"
-              src={aleclogo}
-              alt="Logo"
-              id="logo"
-            />
+            <img src={aleclogo} alt="Logo" id="logo" key={Date.now()} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
