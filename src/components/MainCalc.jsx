@@ -9,7 +9,7 @@ import {
 import React, { Component } from "react";
 import { Alert, Button, Col, Form, FormGroup, Row } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
-import {getBroker, postCalc} from "../api/api";
+import { getBroker, postCalc } from "../api/api";
 import "./maincalc.css";
 import NavBarPage from "./NavBarPage";
 
@@ -17,12 +17,12 @@ class MainCalc extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amount: "$",
+      amount: "",
       purchaseType: "NOAPARTADO",
       error: "",
       errorVisible: false,
       result: undefined,
-      brokerName:"",
+      brokerName: "",
       taxlist: [],
     };
 
@@ -34,11 +34,11 @@ class MainCalc extends Component {
   handleChangeAmount = (event) => {
     event.preventDefault();
     let newAmount = "";
-    const newChars = event.target.value.replace("$", "");
+    const newChars = event.target.value;
     if (!isNaN(newChars)) {
       newAmount = newChars;
     }
-    this.setState({ amount: "$" + newAmount });
+    this.setState({ amount: newAmount });
   };
 
   handleChangePurchaseType = (event) => {
@@ -49,13 +49,12 @@ class MainCalc extends Component {
     if (!localStorage.getItem("token")) {
       this.props.history.push("/login");
     }
-    this.state.id= this.props.match.params.id;
+    this.state.id = this.props.match.params.id;
     getBroker(this.state.id)
-        .then(aBroker => {
-            this.setState({brokerName: aBroker.name});
-        })
-        .catch(() => this.setState({ error: this.props.t("genericError") }));
-
+      .then((aBroker) => {
+        this.setState({ brokerName: aBroker.name });
+      })
+      .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
 
   showAlert() {
@@ -66,16 +65,14 @@ class MainCalc extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     postCalc({
-      amount: this.state.amount.substring(1),
+      amount: this.state.amount,
       apartado: this.state.purchaseType,
       taxId: this.props.match.params.id,
     })
       .then((response) => {
-        const taxNames = response.detail
-          .filter((detail) => detail.amount > 0)
-          .map((detail) => detail.taxDescription);
+        const taxNames = response.detail.filter((detail) => detail.amount > 0);
         this.setState({
-          result: "$" + response.totalAmount,
+          result: response.totalAmount,
           taxlist: taxNames,
         });
       })
@@ -122,6 +119,7 @@ class MainCalc extends Component {
                         <MDBInput
                           type="text"
                           label={t("amount")}
+                          icon="dollar-sign"
                           onChange={this.handleChangeAmount}
                           value={this.state.amount}
                         />
@@ -163,10 +161,11 @@ class MainCalc extends Component {
                       </Row>
                       <br />
                       <Row className="justify-content-left">
-                        <Col className="text-center">
+                        <Col>
                           <MDBInput
                             type="text"
                             label={t("result")}
+                            icon="dollar-sign"
                             readOnly
                             value={this.state.result}
                           />
@@ -188,8 +187,19 @@ class MainCalc extends Component {
                   <MDBCardBody className="card-body">
                     <MDBListGroup>
                       {this.state.taxlist.map((listitem) => (
-                        <MDBListGroupItem className="card-text" key={listitem}>
-                          <b>{listitem}</b>
+                        <MDBListGroupItem
+                          className="card-text"
+                          key={listitem.taxId}
+                        >
+                          <a
+                            href={listitem.taxUrl}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                          >
+                            <b>{listitem.taxDescription}</b>
+                          </a>
+                          <br />
+                          {t("amount")}: {listitem.amount}
                         </MDBListGroupItem>
                       ))}
                     </MDBListGroup>

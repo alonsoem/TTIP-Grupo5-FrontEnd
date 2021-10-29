@@ -56,16 +56,14 @@ test("No input throws error", async () => {
 test("Amount input should have a $ in front of the input", () => {
   const { container } = setup();
 
-  const input = container.querySelector('[value="$"]');
-
-  expect(input.value).toBe("$");
+  expect(container.getElementsByClassName("fa-dollar-sign").length).toBe(2);
 });
 
 test("Amount input should not allow letters", () => {
   const { container } = setup();
-  const input = container.querySelector('[value="$"]');
+  const input = container.querySelector('[type="text"]');
 
   fireEvent.change(input, { target: { value: "Good Day" } });
 
-  expect(input.value).toBe("$");
+  expect(input.value).toBe("");
 });
