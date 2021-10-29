@@ -1,5 +1,5 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
+import {UseTranslationResponse as t, withTranslation} from "react-i18next";
 import {deleteBroker, deleteTax, getBroker, putBrokerEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col, FormGroup} from "react-bootstrap";
@@ -95,16 +95,22 @@ class BrokerEdit extends React.Component {
 
 
   generate() {
-    return this.state.taxes.map((each) =>
+      console.log(this.state.taxes.length);
+      if (this.state.taxes.length==0){
+          return <div align="center">{this.props.t("noTaxes")}</div>
+      }else{
+          return this.state.taxes.map((each) =>
 
-          <li className="list-group-item d-flex justify-content-between align-items-start">
-            <div className="ms-2 me-auto"  id={each.id}>
-              <a href={"/tax/edit/"+each.id}>{each.name}</a>
-            </div>
-            <i className="fas fa-trash-alt " id={each.id} onClick={this.removeTax}></i>
-          </li>
+              <li className="list-group-item d-flex justify-content-between align-items-start">
+                  <div className="ms-2 me-auto"  id={each.id}>
+                      <a href={"/tax/edit/"+each.id}>{each.name}</a>
+                  </div>
+                  <i className="fas fa-trash-alt " id={each.id} onClick={this.removeTax}></i>
+              </li>
 
-    );
+          );
+      }
+
   }
 
   removeTax=(event) =>{

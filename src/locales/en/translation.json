@@ -70,5 +70,6 @@
   "descriptionInvalidFeedback": "Description can not be empty!",
   "priorityInvalidFeedback": "Priority must be a number between 1 and 10",
   "whenInvalidFeedback": "When Expression is invalid.",
-  "thenInvalidFeedback": "Then Expression is invalid."
+  "thenInvalidFeedback": "Then Expression is invalid.",
+  "noTaxes": "Ups.. There is no Taxes here! <br/> Please try creating a new one"
 }
