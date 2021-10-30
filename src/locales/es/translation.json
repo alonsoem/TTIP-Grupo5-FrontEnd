@@ -45,7 +45,7 @@
   "brokers": "Brokers",
   "brokerNew": "Alta de Broker",
   "brokerEdit": "Modificación de Broker",
-  "brokerAddTax": "Agrega una Tax",
+  "brokerAddTax": "Agrega un nuevo Impuesto",
   "save": "Guardar",
   "cancel": "Cancelar",
   "taxCreate": "Alta de Tax",
