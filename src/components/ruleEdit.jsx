@@ -359,10 +359,7 @@ class RuleEdit extends React.Component {
                                   </Card.Header>
                                   <Card.Body>
 
-                                      <ol className="breadcrumb">
                                           <FactList/>
-                                      </ol>
-
 
                                   </Card.Body>
                               </Card>

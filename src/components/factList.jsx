@@ -10,16 +10,44 @@ class FactList extends React.Component {
     }
 
     factListItems () {
-        console.log(this.state.factList);
         return this.state.factList.map((fact) =>
-            <li className="breadcrumb-item">
-                <span className={"badge bg-"+this.classForType(fact.type)}
-                      data-toggle="tooltip"
-                      data-placement="top"
-                      title={fact.description}>
-                {fact.name} </span>
-            </li>
+
+
+                <div className="accordion-item">
+                    <h2 className="accordion-header" id="flush-headingOne">
+                        <button className="accordion-button open" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                            {fact.name}
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" className="accordion-collapse open"
+                         aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div className="accordion-body">
+                            <div>{fact.description}</div>
+                            <div>{this.subFacts(fact.facts)}</div>
+                        </div>
+                    </div>
+                </div>
+
         );
+    }
+
+    subFacts(facts){
+        return  facts.map((each)=>
+                <div>
+                    <span className={"badge bg-" + this.classForType(each.type)}
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title={each.description}>
+                            {each.name}
+                    </span>
+                    <br/>
+                </div>
+
+
+        )
+
     }
     classForType(type){
 
@@ -39,14 +67,18 @@ class FactList extends React.Component {
     componentDidMount() {
         getFacts()
             .then((facts) => {
-                this.setState({factList:facts.map((each) => ({name: each.name, description: each.description,type:each.type}))});
+                this.setState({factList:facts.map((each) => ({name: each.name, description: each.description,facts:each.facts}))});
 
             })
             .catch(() => this.setState({ error: this.props.t("genericError") }));
     }
 
     render() {
-        return this.factListItems();
+        return (
+                <div className="accordion accordion-flush" id="accordionFlushExample">
+                     {this.factListItems()}
+                </div>
+        )
     }
 
 
