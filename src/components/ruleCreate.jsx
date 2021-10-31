@@ -140,7 +140,6 @@ class RuleCreate extends React.Component {
 
 
   handleInputChange = (e, index) => {
-
     const {value } = e.target;
     const list = [...this.state.when];
     list[index] = value;
@@ -180,7 +179,7 @@ class RuleCreate extends React.Component {
         if (this.state.when.length > 0){
 
             this.state.when.forEach((anExpression, index) => {
-                    if (anExpression==""){
+                    if (anExpression===""){
                         errors.push("when"+ index)
                     }
                     if (!this.validateExpression(anExpression)) {

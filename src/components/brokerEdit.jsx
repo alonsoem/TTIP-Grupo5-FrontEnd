@@ -91,7 +91,7 @@ class BrokerEdit extends React.Component {
 
   generate() {
     console.log(this.state.taxes.length);
-    if (this.state.taxes.length == 0) {
+    if (this.state.taxes.length === 0) {
       return <div align="center">{this.props.t("noTaxes")}</div>;
     } else {
       return this.state.taxes.map((each) => (

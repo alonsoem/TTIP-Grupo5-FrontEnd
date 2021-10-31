@@ -204,7 +204,7 @@ class RuleEdit extends React.Component {
         if (this.state.when.length > 0){
 
             this.state.when.forEach((anExpression, index) => {
-                    if (anExpression==""){
+                    if (anExpression===""){
                         errors.push("when"+ index)
                     }
                     if (!this.validateExpression(anExpression)) {

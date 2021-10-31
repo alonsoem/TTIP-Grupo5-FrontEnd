@@ -6,9 +6,7 @@ import {deleteRule} from "../api/api";
 
 
 class DragTest extends Component {
-    constructor(props){
-        super(props);
-    }
+
 
     onSortEnd = ({oldIndex, newIndex}) => {
         this.setState(({items}) => ({
