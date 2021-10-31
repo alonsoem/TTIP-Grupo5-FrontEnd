@@ -200,10 +200,16 @@ class Taxes extends React.Component {
                         </div>
                       </Card.Header>
                       <Card.Body>
+                        <h5>{t("rules")}</h5>
+                        <br />
                         <ListGroup defaultActiveKey="#link1">
                           {" "}
                           {this.getAllRules()}
                         </ListGroup>
+                        <br />
+                        <p>
+                          <b>{t("ruleApplication")}</b>
+                        </p>
                       </Card.Body>
                     </Card>
                   </Col>

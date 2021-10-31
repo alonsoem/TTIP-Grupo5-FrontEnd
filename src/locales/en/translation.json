@@ -71,5 +71,7 @@
   "priorityInvalidFeedback": "Priority must be a number between 1 and 10",
   "whenInvalidFeedback": "When Expression is invalid.",
   "thenInvalidFeedback": "Then Expression is invalid.",
-  "noTaxes": "Ups.. There is no Taxes here! <br/> Please try creating a new one"
+  "noTaxes": "Ups.. There is no Taxes here! <br/> Please try creating a new one",
+  "rules": "Rules",
+  "ruleApplication": "All the rules in the list will be considered when calculating the tax."
 }
