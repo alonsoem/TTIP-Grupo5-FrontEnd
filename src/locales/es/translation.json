@@ -45,15 +45,15 @@
   "brokers": "Brokers",
   "brokerNew": "Alta de Broker",
   "brokerEdit": "Modificación de Broker",
-  "brokerAddTax": "Agrega una Tax",
+  "brokerAddTax": "Agrega un nuevo Impuesto",
   "save": "Guardar",
   "cancel": "Cancelar",
-  "taxCreate": "Alta de Tax",
+  "taxCreate": "Alta de Impuesto",
   "url": "Dirección URL",
   "actionCol": "Acción",
   "edit": "Modificar",
   "calculate": "Calcular!",
-  "taxEdit": "Modificación de Tax",
+  "taxEdit": "Modificación de Impuesto",
   "taxAddRule": "Agrega una nueva Regla",
   "ruleCreate": "Alta de Regla",
   "description": "Descripción",
@@ -71,5 +71,7 @@
   "priorityInvalidFeedback": "La prioridad debe ser un numero entre 1 y 10",
   "whenInvalidFeedback": "La expresión de condición no es válida.",
   "thenInvalidFeedback": "La expresión de acciones no es válida.",
-  "noTaxes": "Uy... Aun no hay nada aqui. <br/> Prueba creando una nueva Tax"
+  "noTaxes": "Uy... Aun no hay nada aqui. <br/> Prueba creando un nuevo Impuesto",
+  "rules": "Reglas",
+  "ruleApplication": "Todas las reglas de la lista se considerarán al calcular el impuesto."
 }
