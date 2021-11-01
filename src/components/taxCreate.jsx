@@ -3,6 +3,8 @@ import { withTranslation } from "react-i18next";
 import {postTaxCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
+import HeaderWithSteps from "./HeaderWithSteps";
+
 
 class TaxCreate extends React.Component {
   constructor(props) {
@@ -100,17 +102,7 @@ class TaxCreate extends React.Component {
         <div className="container-fluid">
 
           <Card>
-            <Card.Header>
-              <h5>{t("brokerEdit")}</h5>
-              <div className="row">
-                <p className="fs-6">
-                  <ul className="breadcrumb">
-                    <li className="completed" title={t("backToStep")}><a href="javascript:void(0);">1. {t("calculator")}</a></li>
-                    <li className="active" title={t("youAreHere")}><a href="javascript:void(0);"><b>2. {t("taxCreate")}</b></a></li>
-                  </ul>
-                </p>
-              </div>
-            </Card.Header>
+            <HeaderWithSteps title={t("brokerEdit")} steps={[t("calculator"),t("taxCreate")]} hereText={t("youAreHere")} backText={t("backToStep")} />
             <Card.Body>
               <Form onSubmit={this.handleSubmit}>
                 <Row className="mb-3">

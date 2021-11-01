@@ -5,6 +5,7 @@ import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { deleteBroker, deleteTax, getBroker, putBrokerEdit } from "../api/api";
 import NavBarPage from "./NavBarPage";
+import HeaderWithSteps from "./HeaderWithSteps";
 
 class BrokerEdit extends React.Component {
   constructor(props) {
@@ -136,16 +137,7 @@ class BrokerEdit extends React.Component {
         <div className="container">
           <Form onSubmit={this.handleSubmit}>
             <Card>
-              <Card.Header >
-                <h5>{t("brokerEdit")}</h5>
-                <div className="row">
-                  <p className="fs-6">
-                    <ul className="breadcrumb">
-                        <li className="active" title={t("youAreHere")}><a href="javascript:void(0);"><b>1. {t("calculator")}</b></a></li>
-                    </ul>
-                  </p>
-                </div>
-                </Card.Header>
+              <HeaderWithSteps title={t("brokerNew")} steps={[t("calculator")]} hereText={t("youAreHere")} backText={t("backToStep")} />
               <Card.Body>
                 <Row>
                   <Col lg="7" xs="7" md="7">

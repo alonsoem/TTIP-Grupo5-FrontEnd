@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { getTax, putTaxEdit } from "../api/api";
 import DragTest from "./dragTest";
 import NavBarPage from "./NavBarPage";
+import HeaderWithSteps from "./HeaderWithSteps";
 
 class Taxes extends React.Component {
   constructor(props) {
@@ -124,17 +125,7 @@ class Taxes extends React.Component {
         <NavBarPage />
         <div className="container-fluid">
           <Card>
-            <Card.Header as="h5">
-              <h5>{t("brokerEdit")}</h5>
-              <div className="row">
-                <p className="fs-6">
-                  <ul className="breadcrumb">
-                    <li className="completed" title={t("backToStep")}><a href="javascript:void(0);">1. {t("calculator")}</a></li>
-                    <li className="active" title={t("youAreHere")}><a href="javascript:void(0);"><b>2. {t("taxEdit")}</b></a></li>
-                  </ul>
-                </p>
-              </div>
-            </Card.Header>
+            <HeaderWithSteps title={t("brokerEdit")} steps={[t("calculator"),t("taxEdit")]} hereText={t("youAreHere")} backText={t("backToStep")} />
             <Card.Body>
               <Form onSubmit={this.handleSubmit}>
                 <Row>

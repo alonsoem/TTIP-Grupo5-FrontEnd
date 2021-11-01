@@ -4,6 +4,7 @@ import FactList from "./factList";
 import { withTranslation } from "react-i18next";
 import {getRule, putRuleEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
+import HeaderWithSteps from "./HeaderWithSteps";
 const math = require('mathjs');
 
 
@@ -248,18 +249,7 @@ class RuleEdit extends React.Component {
         <div className="container-fluid">
 
           <Card>
-            <Card.Header >
-                <h5>{t("brokerEdit")}</h5>
-                <div className="row">
-                    <p class="fs-6">
-                    <ul className="breadcrumb">
-                        <li className="completed" title={t("backToStep")}><a href="javascript:void(0);">1. {t("calculator")}</a></li>
-                        <li className="completed" title={t("backToStep")}><a href="javascript:void(0);">2. {t("tax")}</a></li>
-                        <li className={"active"} title={t("youAreHere")}><a href="javascript:void(0);"><b>3. {t("ruleEdit")}</b></a></li>
-                    </ul>
-                    </p>
-                </div>
-                </Card.Header>
+            <HeaderWithSteps title={t("brokerEdit")} steps={[t("calculator"),t("tax"),t("ruleEdit")]} hereText={t("youAreHere")} backText={t("backToStep")} />
             <Card.Body>
 
 
