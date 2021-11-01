@@ -103,9 +103,7 @@ class MainCalc extends Component {
                   <MDBCardBody>
                     <Form onSubmit={this.handleSubmit}>
                       <div className="card-header">
-                        <h4 className="text-center text-monospace text-black">
-                          {this.state.brokerName}
-                        </h4>
+                        <h4 className="text-center">{this.state.brokerName}</h4>
                       </div>
                       <br />
                       <Alert
