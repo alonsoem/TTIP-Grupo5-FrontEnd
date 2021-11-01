@@ -75,5 +75,7 @@
   "rules": "Reglas",
   "ruleApplication": "Todas las reglas de la lista se considerarán al calcular el impuesto.",
   "youAreHere": "Estas aquí",
-  "backToStep": "Volver a este paso"
+  "backToStep": "Volver a este paso",
+  "calculator": "Calculadora",
+  "tax": "Impuesto"
 }

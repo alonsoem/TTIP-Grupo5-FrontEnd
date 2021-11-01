@@ -105,7 +105,7 @@ class TaxCreate extends React.Component {
               <div className="row">
                 <p className="fs-6">
                   <ul className="breadcrumb">
-                    <li className="completed" title={t("backToStep")}><a href="javascript:void(0);">1. Calculator</a></li>
+                    <li className="completed" title={t("backToStep")}><a href="javascript:void(0);">1. {t("calculator")}</a></li>
                     <li className="active" title={t("youAreHere")}><a href="javascript:void(0);"><b>2. {t("taxCreate")}</b></a></li>
                   </ul>
                 </p>

@@ -75,5 +75,7 @@
   "rules": "Rules",
   "ruleApplication": "All the rules in the list will be considered when calculating the tax.",
   "youAreHere": "You are here",
-  "backToStep": "Back to this step"
+  "backToStep": "Back to this step",
+  "calculator": "Calculator",
+  "tax": "Tax"
 }
