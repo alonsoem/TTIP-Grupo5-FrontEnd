@@ -8,6 +8,7 @@ const math = require('mathjs');
 
 
 
+
 class RuleEdit extends React.Component {
   constructor(props) {
     super(props);
@@ -45,10 +46,6 @@ class RuleEdit extends React.Component {
 
       }
   }
-  allowedOperations (){
-      return ["+","*","-","/","%"];
-  }
-
   cancelAction=(event)=>{
       event.preventDefault();
       this.props.history.goBack();
@@ -251,8 +248,20 @@ class RuleEdit extends React.Component {
         <div className="container-fluid">
 
           <Card>
-            <Card.Header as="h5">{t("ruleEdit")}</Card.Header>
+            <Card.Header >
+                <h5>{t("brokerEdit")}</h5>
+                <div className="row">
+                    <p class="fs-6">
+                    <ul className="breadcrumb">
+                        <li className="completed" title={t("backToStep")}><a href="javascript:void(0);">1. Calculator</a></li>
+                        <li className="completed" title={t("backToStep")}><a href="javascript:void(0);">2. Tax</a></li>
+                        <li className={"active"} title={t("youAreHere")}><a href="javascript:void(0);"><b>3. {t("ruleEdit")}</b></a></li>
+                    </ul>
+                    </p>
+                </div>
+                </Card.Header>
             <Card.Body>
+
 
 
               <Form onSubmit={this.handleSubmit}>

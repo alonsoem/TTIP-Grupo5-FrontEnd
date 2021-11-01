@@ -73,5 +73,7 @@
   "thenInvalidFeedback": "La expresión de acciones no es válida.",
   "noTaxes": "Uy... Aun no hay nada aqui. <br/> Prueba creando un nuevo Impuesto",
   "rules": "Reglas",
-  "ruleApplication": "Todas las reglas de la lista se considerarán al calcular el impuesto."
+  "ruleApplication": "Todas las reglas de la lista se considerarán al calcular el impuesto.",
+  "youAreHere": "Estas aquí",
+  "backToStep": "Volver a este paso"
 }

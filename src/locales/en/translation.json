@@ -73,5 +73,7 @@
   "thenInvalidFeedback": "Then Expression is invalid.",
   "noTaxes": "Ups.. There is no Taxes here! <br/> Please try creating a new one",
   "rules": "Rules",
-  "ruleApplication": "All the rules in the list will be considered when calculating the tax."
+  "ruleApplication": "All the rules in the list will be considered when calculating the tax.",
+  "youAreHere": "You are here",
+  "backToStep": "Back to this step"
 }
