@@ -67,8 +67,10 @@ class FactList extends React.Component {
     componentDidMount() {
         getFacts()
             .then((facts) => {
-                this.setState({factList:facts.map((each) => ({name: each.name, description: each.description,facts:each.facts}))});
-
+                this.setState({factList:facts.map((each) => (
+                    {   name: each.name,
+                        description: each.description,
+                        facts:each.facts}))});
             })
             .catch(() => this.setState({ error: this.props.t("genericError") }));
     }

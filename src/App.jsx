@@ -23,7 +23,6 @@ export default class App extends React.Component {
           <Route exact path='/rule/edit/:id' component={RuleEdit} />
           <Route exact path='/broker/edit/:id/tax' component={TaxCreate} />
           <Route exact path="/tax/edit/:id" component={TaxEdit} />
-
           <Route path={"/broker/edit/:id"}  component={BrokerEdit}></Route>
           <Route exact path="/broker/edit" component={BrokerCreate} />
           <Route exact path="/broker" component={Brokers} />

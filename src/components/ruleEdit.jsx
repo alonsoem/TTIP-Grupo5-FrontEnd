@@ -2,7 +2,7 @@ import React from "react";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import FactList from "./factList";
 import { withTranslation } from "react-i18next";
-import {deleteRule, getRule, putRuleEdit} from "../api/api";
+import {deleteRule, getFacts, getRule, putRuleEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import HeaderWithSteps from "./HeaderWithSteps";
 const math = require('mathjs');
@@ -21,6 +21,7 @@ class RuleEdit extends React.Component {
       then:[],
       priority:0,
       errors:[],
+      realFacts:[],
     };
 
 
@@ -33,15 +34,16 @@ class RuleEdit extends React.Component {
   }
 
   validateExpression(expression) {
-      console.log(expression);
-      const scope={amount:10,iva:21,pais30:30,pais8:8,apartado:20,apartadoClass:10};
+      const objects = this.state.realFacts.map((item) => (
+            [item,1]
+          )
+      );
+      const scope= Object.fromEntries(objects);
       try {
           math.evaluate(expression,scope);
-          console.log("TRUE");
           return true;
 
       }catch (e){
-          console.log("FALSE");
           console.log(e);
           return false;
 
@@ -65,6 +67,13 @@ class RuleEdit extends React.Component {
         })
         .catch(() => this.setState({ error: this.props.t("genericError") }));
 
+      getFacts()
+          .then((facts) => {
+              this.setState({realFacts:facts.flatMap(each => (
+                      each.facts.map(each=>each.name)
+                      ))});
+          })
+          .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
 
   handleLoadArray(array){
