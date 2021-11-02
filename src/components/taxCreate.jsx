@@ -99,12 +99,12 @@ class TaxCreate extends React.Component {
     return (
       <div>
         <NavBarPage />
-        <div className="container-fluid">
-
+        <div className="container">
+          <Form onSubmit={this.handleSubmit}>
           <Card>
             <HeaderWithSteps title={t("brokerEdit")} steps={[t("calculator"),t("taxCreate")]} hereText={t("youAreHere")} backText={t("backToStep")} />
             <Card.Body>
-              <Form onSubmit={this.handleSubmit}>
+
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="nameValue">
                     <Form.Label>{t("name")}</Form.Label>
@@ -146,21 +146,39 @@ class TaxCreate extends React.Component {
                   </Form.Group>
                 </Row>
 
-                <Row class={"justify-content-start"}>
-                  <Col className="justify-content-start text-left">
-                <Button variant="primary" type="submit">
-                  {t("save")}
-                </Button>
 
-                <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
-                  {t("cancel")}
-                </Button>
-                  </Col>
-                </Row>
-              </Form>
+
             </Card.Body>
-          </Card>
 
+            <Card.Footer>
+              <Row class={"justify-content-start"}>
+                <Col className="justify-content-start text-left col-sm-10">
+                  <Button variant="primary" type="submit">
+                    {t("save")}
+                  </Button>
+
+                  <Button
+                      variant="outline-primary"
+                      type="cancel"
+                      onClick={this.cancelAction}
+                  >
+                    {t("cancel")}
+                  </Button>
+                </Col>
+                <Col className={"sm-1"}>
+                  <Button
+                      variant="outline-danger"
+                      onClick={this.deleteAction}
+                      id={this.state.id}
+                  >
+                    <i className="fa fa-trash"></i>&nbsp;
+                    {t("remove")}
+                  </Button>
+                </Col>
+              </Row>
+            </Card.Footer>
+          </Card>
+        </Form>
         </div>
       </div>
     );

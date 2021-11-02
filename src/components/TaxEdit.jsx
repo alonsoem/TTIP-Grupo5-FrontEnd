@@ -3,7 +3,7 @@ import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { getTax, putTaxEdit } from "../api/api";
+import {deleteBroker, deleteTax, getTax, putTaxEdit} from "../api/api";
 import DragTest from "./dragTest";
 import NavBarPage from "./NavBarPage";
 import HeaderWithSteps from "./HeaderWithSteps";
@@ -116,6 +116,15 @@ class Taxes extends React.Component {
       .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
 
+  deleteAction = (event) => {
+    event.preventDefault();
+    deleteTax(event.target.id)
+        .then((response) => {
+          this.props.history.push("/broker");
+        })
+        .catch((responseError) => this.handleAPIError(responseError));
+  };
+
   render() {
     const { t } = this.props;
     const idTax = this.props.match.params.id;
@@ -123,11 +132,12 @@ class Taxes extends React.Component {
     return (
       <div>
         <NavBarPage />
-        <div className="container-fluid">
+        <div className="container">
+          <Form onSubmit={this.handleSubmit}>
           <Card>
             <HeaderWithSteps title={t("brokerEdit")} steps={[t("calculator"),t("taxEdit")]} hereText={t("youAreHere")} backText={t("backToStep")} />
             <Card.Body>
-              <Form onSubmit={this.handleSubmit}>
+
                 <Row>
                   <Col lg="7" xs="7" md="7">
                     <Row>
@@ -216,24 +226,38 @@ class Taxes extends React.Component {
                   </Col>
                 </Row>
 
-                <Row class={"justify-content-start"}>
-                  <Col className="justify-content-start text-left">
-                    <Button variant="primary" type="submit">
-                      {t("update")}
-                    </Button>
+            </Card.Body>
+            <Card.Footer>
+              <Row class={"justify-content-start"}>
+                <Col className="justify-content-start text-left col-sm-10">
+                  <Button variant="primary" type="submit">
+                    {t("update")}
+                  </Button>
 
-                    <Button
+                  <Button
                       variant="outline-primary"
                       type="cancel"
                       onClick={this.cancelAction}
-                    >
-                      {t("back")}
-                    </Button>
-                  </Col>
-                </Row>
-              </Form>
-            </Card.Body>
+                  >
+                    {t("back")}
+                  </Button>
+                </Col>
+                <Col className={"sm-1"}>
+                  <Button
+                      variant="outline-danger"
+                      onClick={this.deleteAction}
+                      id={this.state.id}
+                  >
+                    <i className="fa fa-trash"></i>&nbsp;
+                    {t("remove")}
+                  </Button>
+                </Col>
+              </Row>
+            </Card.Footer>
+
           </Card>
+
+        </Form>
         </div>
       </div>
     );

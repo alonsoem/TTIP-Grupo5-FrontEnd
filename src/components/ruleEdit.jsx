@@ -2,7 +2,7 @@ import React from "react";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import FactList from "./factList";
 import { withTranslation } from "react-i18next";
-import {getRule, putRuleEdit} from "../api/api";
+import {deleteBroker, deleteRule, getRule, putRuleEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import HeaderWithSteps from "./HeaderWithSteps";
 const math = require('mathjs');
@@ -237,6 +237,15 @@ class RuleEdit extends React.Component {
     hasError(key) {
         return this.state.errors.indexOf(key) !== -1;
     }
+
+    deleteAction = (event) => {
+        event.preventDefault();
+        deleteRule(event.target.id)
+            .then((response) => {
+                this.props.history.push("/broker");
+            })
+            .catch((responseError) => this.handleAPIError(responseError));
+    };
   render() {
     const { t } = this.props;
 
@@ -246,15 +255,15 @@ class RuleEdit extends React.Component {
 
       <div>
         <NavBarPage />
-        <div className="container-fluid">
-
+          <div className="container">
+            <Form onSubmit={this.handleSubmit}>
           <Card>
             <HeaderWithSteps title={t("brokerEdit")} steps={[t("calculator"),t("tax"),t("ruleEdit")]} hereText={t("youAreHere")} backText={t("backToStep")} />
             <Card.Body>
 
 
 
-              <Form onSubmit={this.handleSubmit}>
+
                   <Row>
                       <Col>
                           <Row className="mb-3">
@@ -367,21 +376,36 @@ class RuleEdit extends React.Component {
                       </Col>
                   </Row>
 
+            </Card.Body>
+              <Card.Footer>
                   <Row class={"justify-content-start"}>
-                      <Col className="justify-content-start text-left">
-                      <Button variant="primary" type="submit">
-                          {t("save")}
-                      </Button>
+                      <Col className="justify-content-start text-left col-sm-10">
+                          <Button variant="primary" type="submit">
+                              {t("save")}
+                          </Button>
 
-                      <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
-                          {t("back")}
-                      </Button>
+                          <Button
+                              variant="outline-primary"
+                              type="cancel"
+                              onClick={this.cancelAction}
+                          >
+                              {t("back")}
+                          </Button>
+                      </Col>
+                      <Col className={"sm-1"}>
+                          <Button
+                              variant="outline-danger"
+                              onClick={this.deleteAction}
+                              id={this.state.id}
+                          >
+                              <i className="fa fa-trash"></i>&nbsp;
+                              {t("remove")}
+                          </Button>
                       </Col>
                   </Row>
-              </Form>
-            </Card.Body>
+              </Card.Footer>
           </Card>
-
+        </Form>
         </div>
       </div>
     );

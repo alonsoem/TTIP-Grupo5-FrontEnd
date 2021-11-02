@@ -26,14 +26,13 @@ class HeaderWithSteps extends React.Component {
         return (
             <Card.Header >
                 <h5>{title}</h5>
-                <div className="row">
-                    <p className="fs-6">
-                        <ul className="breadcrumb">
+
+                                            <ul className="breadcrumb">
                             {loadItems()}
 
                         </ul>
-                    </p>
-                </div>
+
+
             </Card.Header>
         )
     }

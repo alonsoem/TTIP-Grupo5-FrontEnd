@@ -1,10 +1,14 @@
+ul.breadcrumb {
+
+    margin:0.5em 0 0.5em 0 !important;
+
+}
 .breadcrumb {
     padding: 0px;
-    /*background: #D4D4D4;*/
     background-color:transparent;
     list-style: none;
     overflow: hidden;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .breadcrumb>li+li:before {
     padding: 0;
@@ -30,7 +34,7 @@
 .breadcrumb li a {
     color: white;
     text-decoration: none;
-    padding: 10px 0 10px 45px;
+    padding: 5px 0 5px 45px;
     position: relative;
     display: block;
     float: left;

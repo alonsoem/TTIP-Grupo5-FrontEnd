@@ -85,7 +85,7 @@ class BrokerCreate extends React.Component {
     return (
       <div>
         <NavBarPage />
-        <div className="container-fluid">
+          <div className="container">
             <Form onSubmit={this.handleSubmit}>
           <Card>
 

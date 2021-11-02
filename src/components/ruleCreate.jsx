@@ -224,12 +224,12 @@ class RuleCreate extends React.Component {
     return (
       <div>
         <NavBarPage />
-        <div className="container-fluid">
-
+        <div className="container">
+            <Form onSubmit={this.handleSubmit}>
           <Card>
               <HeaderWithSteps title={t("brokerEdit")} steps={[t("calculator"),t("tax"),t("ruleCreate")]} hereText={t("youAreHere")} backText={t("backToStep")} />
             <Card.Body>
-              <Form onSubmit={this.handleSubmit}>
+
                 <Row>
                 <Col>
                 <Row className="mb-3">
@@ -349,21 +349,28 @@ class RuleCreate extends React.Component {
                 </Col>
                 </Row>
 
-                  <Row class={"justify-content-start"}>
-                      <Col className="justify-content-start text-left">
-                  <Button variant="primary" type="submit">
-                    {t("save")}
-                  </Button>
 
-                  <Button variant="outline-primary" type="cancel" onClick={this.cancelAction}>
-                    {t("cancel")}
-                  </Button>
-                      </Col>
-                </Row>
-              </Form>
+
             </Card.Body>
-          </Card>
+              <Card.Footer>
+                  <Row class={"justify-content-start"}>
+                      <Col className="justify-content-start text-left col-sm-10">
+                          <Button variant="primary" type="submit">
+                              {t("save")}
+                          </Button>
 
+                          <Button
+                              variant="outline-primary"
+                              type="cancel"
+                              onClick={this.cancelAction}
+                          >
+                              {t("cancel")}
+                          </Button>
+                      </Col>
+                   </Row>
+              </Card.Footer>
+          </Card>
+        </Form>
         </div>
       </div>
     );
