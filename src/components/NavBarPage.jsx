@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./NavBar.css";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
@@ -19,37 +20,42 @@ class NavBarPage extends Component {
         >
           <Navbar.Brand href="/taxes">
             <img
-              className="img-thumbnail"
-              src={aleclogo}
-              alt="Logo"
-              id="logo"
+                className="img-fluid"
+                src={aleclogo}
+                alt="Logo"
+                id="logo"
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto justify-content-center ">
-              <NavItem>
+
+            <ul className="navbar-nav me-auto">
+              <li className="nav-item ">
                 <NavLink className="btn btn-primary" to="/taxes">
-                  <b>{t("home")}</b>
+                  {t("home")}
                 </NavLink>
-              </NavItem>
+              </li>
 
-              <NavItem>
+              <li className="nav-item ">
                 <NavLink className="btn btn-primary" to="/broker">
-                  <b>{t("brokers")}</b>
+                  {t("brokers")}
                 </NavLink>
-              </NavItem>
+              </li>
+            </ul>
 
-              <NavItem>
+
+
+            <ul className="navbar-nav me-0">
+              <li className="nav-item dropdown">
+                <App18 />
+              </li>
+              <li>
                 <NavLink className="btn btn-danger" to="/login">
                   <b>{t("logout")}</b>
                 </NavLink>
-              </NavItem>
-              <NavItem>
-                <App18 />
-              </NavItem>
-            </Nav>
+              </li>
+            </ul>
           </Navbar.Collapse>
         </Navbar>
       </div>

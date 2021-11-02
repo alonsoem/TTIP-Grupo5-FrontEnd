@@ -1,12 +1,7 @@
-.mr-auto .nav-item {
-  margin-right: 20px;
+
+.navbar .navbar-brand > img {
+  max-height: 80px;
+  max-width:250px;
+
 }
 
-#logo {
-  height: 109px;
-  width: 390px;
-}
-
-.btn {
-  width: 145px;
-}
