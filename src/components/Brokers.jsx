@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { deleteBroker, getBrokers } from "../api/api";
 import NavBarPage from "./NavBarPage";
-import { Button, Col, Row } from "react-bootstrap";
+import {Button, Card, Col, Row} from "react-bootstrap";
 
 class Brokers extends React.Component {
   constructor(props) {
@@ -96,33 +96,39 @@ class Brokers extends React.Component {
     return (
       <div>
         <NavBarPage />
-        <div className="container-fluid">
-          <h1 className="card-header">{t("brokers")}</h1>
-          <br />
-          <div className="form-content" align="center">
-            <div className="row">
-              <div id={"contenedor"}>
-                <Row className="row">
-                  <Col className="col-12 col-sm-4 col-lg-6 col-xl-6 pb-4">
-                    <MDBTable
-                      className="table-hover table table-success table-striped"
-                      responsive
-                    >
-                      <MDBTableHead columns={columns} />
-                      <MDBTableBody rows={dataSet} />
-                    </MDBTable>
-                  </Col>
-                  <Col className="col-1 col-sm-1 col-lg-1 col-xl-1 pb-4">
-                    <NavLink to="/broker/edit">
-                      <Button title={t("brokerNew")} class={"btn-sm"}>
-                        <i className="fa fa-plus"></i>
-                      </Button>
-                    </NavLink>
-                  </Col>
-                </Row>
+        <div className="container">
+          <Card>
+            <Card.Header>
+              <h5>{t("brokers")}</h5>
+            </Card.Header>
+            <Card.Body>
+                <div className="row">
+                  <div id={"contenedor"}>
+                    <Row className="row">
+                      <Col className="col-11 col-sm-10 col-lg-10 col-xl-10 pb-10">
+                        <MDBTable
+                            className="table-hover table table-success table-striped"
+                            responsive
+                        >
+                          <MDBTableHead columns={columns} />
+                          <MDBTableBody rows={dataSet} />
+                        </MDBTable>
+                      </Col>
+                      <Col className="col-1 col-sm-2 col-lg-2 col-xl-2 pb-2">
+                        <NavLink to="/broker/edit">
+                          <Button title={t("brokerNew")} class={"btn-sm"}>
+                            <i className="fa fa-plus"></i>
+                          </Button>
+                        </NavLink>
+                      </Col>
+                    </Row>
+                  </div>
               </div>
-            </div>
-          </div>
+            </Card.Body>
+          </Card>
+
+
+
         </div>
       </div>
     );
