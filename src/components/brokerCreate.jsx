@@ -6,7 +6,7 @@ import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import HeaderWithSteps from "./HeaderWithSteps";
 
 
-class BrokerCreate extends React.Component {
+class BrokerCreate extends React.Component {F
   constructor(props) {
     super(props);
     this.state = {

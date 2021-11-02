@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./NavBar.css";
-import { Nav, Navbar, NavItem } from "react-bootstrap";
+import {Navbar} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import App18 from "../App18.jsx";

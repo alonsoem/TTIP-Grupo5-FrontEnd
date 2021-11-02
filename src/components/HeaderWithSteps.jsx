@@ -2,12 +2,6 @@ import React from "react";
 import {Card} from "react-bootstrap";
 
 class HeaderWithSteps extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-
-
 
     render() {
         const {title,steps,backText,hereText}=this.props;

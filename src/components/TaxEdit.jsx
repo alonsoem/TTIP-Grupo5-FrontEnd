@@ -3,7 +3,7 @@ import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import {deleteBroker, deleteTax, getTax, putTaxEdit} from "../api/api";
+import { deleteTax, getTax, putTaxEdit} from "../api/api";
 import DragTest from "./dragTest";
 import NavBarPage from "./NavBarPage";
 import HeaderWithSteps from "./HeaderWithSteps";

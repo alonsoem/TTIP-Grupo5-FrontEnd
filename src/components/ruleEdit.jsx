@@ -2,7 +2,7 @@ import React from "react";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
 import FactList from "./factList";
 import { withTranslation } from "react-i18next";
-import {deleteBroker, deleteRule, getRule, putRuleEdit} from "../api/api";
+import {deleteRule, getRule, putRuleEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import HeaderWithSteps from "./HeaderWithSteps";
 const math = require('mathjs');

@@ -1,9 +1,6 @@
 import React from 'react';
 import i18n from './i18n';
 import { withTranslation } from 'react-i18next';
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import NativeSelect from "@material-ui/core/NativeSelect";
 
 
 function App18 ({ t }) {
@@ -19,24 +16,15 @@ function App18 ({ t }) {
     };
 
     return (
-
-            <FormControl >
-                <InputLabel htmlFor="language_selector">{t("lang")}</InputLabel>
-                <NativeSelect
-                    defaultValue={localStorage.getItem("language")}
-                    inputProps={{
-                        name: 'language',
-                        id: 'language_selector',
-                    }}
-                    onChange={handleChange}
-
+                <select class="btn btn-outline-info form-select ms-0"
+                        onChange={handleChange}
+                        defaultValue={localStorage.getItem("language")}
+                        name="language"
+                        id={"language_selector"}
                 >
                     <option value={'es'}>Español</option>
                     <option value={'en'}>English</option>
-
-                </NativeSelect>
-
-            </FormControl>
+                </select>
     )
 }
 
