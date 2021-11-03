@@ -63,7 +63,7 @@
   "whenCondition": "Condition",
   "back": "Back",
   "update": "Update",
-  "allowedFacts": "Allowed Facts",
+  "allowedFacts": "Allowed Variables",
   "ruleEdit": "Edit a Rule",
   "remove": "Delete",
   "invalidUrl": "Url is not valid!",
@@ -81,5 +81,5 @@
   "taxes": "Taxes",
   "whenInfo": "You can use boolean expressions that represents true or false. <br/> For example: 1==1",
   "priorityInfo": "Its a number that indicates the execution order of the rule.",
-  "thenInfo": "Then Actions must be denote a number. You can use math operators like *, /, +, -,  and/or numbers or facts."
+  "thenInfo": "Then Actions must be denote a number. You can use math operators like *, /, +, -,  and/or numbers or variables."
 }

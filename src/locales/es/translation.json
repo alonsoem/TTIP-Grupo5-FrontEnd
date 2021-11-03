@@ -63,7 +63,7 @@
   "whenCondition": "Condición",
   "back": "Volver",
   "update": "Actualizar",
-  "allowedFacts": "Facts permitidos",
+  "allowedFacts": "Variables permitidas",
   "ruleEdit": "Modificación de Regla",
   "remove": "Borrar",
   "invalidUrl": "Ingrese una dirección válida",
