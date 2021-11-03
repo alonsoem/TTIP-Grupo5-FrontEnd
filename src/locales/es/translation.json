@@ -77,5 +77,9 @@
   "youAreHere": "Estas aquí",
   "backToStep": "Volver a este paso",
   "calculator": "Calculadora",
-  "tax": "Impuesto"
+  "tax": "Impuesto",
+  "taxes": "Impuestos",
+  "whenInfo": "Puedes usar expresiones que representen un valor verdadero o falso<br/> Por ejemplo: 1==1",
+  "priorityInfo": "Es un numero que define en que orden se verificara la regla respecto a otras reglas.",
+  "thenInfo": "Las acciones deben representar un numero. Puedes utilizar operadores matematicos como *, /, +, -, tambien numeros o alguna de las variables disponibles."
 }

@@ -1,10 +1,11 @@
 import React from "react";
-import {Card, Row, Form, Button, Col} from "react-bootstrap";
+import {Card, Row, Form, Button, Col, OverlayTrigger} from "react-bootstrap";
 import FactList from "./factList";
 import { withTranslation } from "react-i18next";
 import {deleteRule, getFacts, getRule, putRuleEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import HeaderWithSteps from "./HeaderWithSteps";
+import {Popover} from "react-bootstrap";
 const math = require('mathjs');
 
 
@@ -258,6 +259,20 @@ class RuleEdit extends React.Component {
   render() {
     const { t } = this.props;
 
+      const popover = (title,body)=>(
+
+          <Popover id="popover-basic">
+
+              <Popover.Title as="h3">{title}</Popover.Title>
+
+              <Popover.Content>
+                  {body}
+              </Popover.Content>
+
+          </Popover>
+
+      );
+
 
 
       return (
@@ -318,6 +333,10 @@ class RuleEdit extends React.Component {
                           <Row className="mb-3">
                               <Form.Group className="mb-3" controlId="priorityValue">
                                   <Form.Label>{t("priority")}</Form.Label>
+                                  &nbsp;
+                                  <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("priority"),t("priorityInfo"))}>
+                                      <i className="fa fa-info-circle blue-text"></i>
+                                  </OverlayTrigger>
                                   <Form.Control  onChange={this.handleChangePriority} value={this.state.priority}
                                                  className={
                                                      this.hasError("priority")
@@ -337,14 +356,20 @@ class RuleEdit extends React.Component {
                           </Row>
                           <Row className="mb-3">
                               <Form.Group className="mb-3" controlId="whenValue">
-                                  <Form.Label>{t("when")}</Form.Label>
+                                  <Form.Label>{t("when")}</Form.Label>&nbsp;
+                                  <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("whenCondition"),t("whenInfo"))}>
+                                      <i className="fa fa-info-circle blue-text"></i>
+                                  </OverlayTrigger>
                                   {this.getWhenList(t)}
 
                               </Form.Group>
                           </Row>
                           <Row className="mb-3">
                               <Form.Group className="mb-3" controlId="thenValue">
-                                  <Form.Label>{t("then")}</Form.Label>
+                                  <Form.Label>{t("then")}</Form.Label>&nbsp;
+                                  <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("then"),t("thenInfo"))}>
+                                      <i className="fa fa-info-circle blue-text"></i>
+                                  </OverlayTrigger>
                                   <Form.Control onChange={this.handleChangeThen} value={this.state.then}
                                                  className={
                                                      this.hasError("then")

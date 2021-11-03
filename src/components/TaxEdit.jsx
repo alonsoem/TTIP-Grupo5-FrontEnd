@@ -201,6 +201,9 @@ class Taxes extends React.Component {
                     <Card>
                       <Card.Header as="h5">
                         <div className="row">
+                          <div className="col-sm-8">
+                          <h5>{t("rules")}</h5>
+                          </div>
                           <div className="col-sm-4">
                             <NavLink to={"/rule/" + this.state.id}>
                               <Button title={t("taxAddRule")} class={"btn-sm"}>
@@ -211,8 +214,6 @@ class Taxes extends React.Component {
                         </div>
                       </Card.Header>
                       <Card.Body>
-                        <h5>{t("rules")}</h5>
-                        <br />
                         <ListGroup defaultActiveKey="#link1">
                           {" "}
                           {this.getAllRules()}

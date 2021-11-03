@@ -185,6 +185,9 @@ class BrokerEdit extends React.Component {
                     <Card>
                       <Card.Header as="h5">
                         <div className="row">
+                          <div className="col-sm-8">
+                            <h5>{t("taxes")}</h5>
+                          </div>
                           <div className="col-sm-4">
                             <NavLink
                               to={"/broker/edit/" + this.state.id + "/tax"}

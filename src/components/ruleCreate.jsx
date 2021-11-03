@@ -2,7 +2,7 @@ import React from "react";
 import {getFacts, postRuleCreate} from "../api/api";
 import { withTranslation } from "react-i18next";
 import NavBarPage from "./NavBarPage";
-import {Card, Row, Form, Button, Col} from "react-bootstrap";
+import {Card, Row, Form, Button, Col, Popover, OverlayTrigger} from "react-bootstrap";
 import FactList from "./factList";
 import HeaderWithSteps from "./HeaderWithSteps";
 const math = require('mathjs');
@@ -28,9 +28,18 @@ class RuleCreate extends React.Component {
     this.handleChangePriority = this.handleChangePriority.bind(this);
     this.handleChangeWhen = this.handleChangeWhen.bind(this);
     this.handleChangeThen = this.handleChangeThen.bind(this);
+        this.togglePopover = this.togglePopover.bind(this);
 
 
-  }
+    }
+
+
+
+    togglePopover() {
+
+        this.setState({ popoverOpen: !this.state.popoverOpen })
+
+    }
 
 
     validateExpression(expression) {
@@ -227,8 +236,23 @@ class RuleCreate extends React.Component {
         return this.state.errors.indexOf(key) !== -1;
     }
 
+
     render() {
     const { t } = this.props;
+
+        const popover = (title,body)=>(
+
+            <Popover id="popover-basic">
+
+                <Popover.Title as="h3">{title}</Popover.Title>
+
+                <Popover.Content>
+                    {body}
+                </Popover.Content>
+
+            </Popover>
+
+        );
 
     return (
       <div>
@@ -236,10 +260,11 @@ class RuleCreate extends React.Component {
         <div className="container">
             <Form onSubmit={this.handleSubmit}>
           <Card>
+
               <HeaderWithSteps title={t("brokerEdit")} steps={[t("calculator"),t("tax"),t("ruleCreate")]} hereText={t("youAreHere")} backText={t("backToStep")} />
             <Card.Body>
+                 <Row>
 
-                <Row>
                 <Col>
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="nameValue">
@@ -286,7 +311,10 @@ class RuleCreate extends React.Component {
                 </Row>
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="priorityValue">
-                    <Form.Label>{t("priority")}</Form.Label>
+                    <Form.Label>{t("priority")}</Form.Label>&nbsp;
+                      <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("priority"),t("priorityInfo"))}>
+                          <i className="fa fa-info-circle blue-text"></i>
+                      </OverlayTrigger>
 
                     <Form.Control  onChange={this.handleChangePriority} value={this.state.priority} variant="outlined"
                                    className={
@@ -307,15 +335,23 @@ class RuleCreate extends React.Component {
                   </Form.Group>
                 </Row>
                   <Row className="mb-3">
+
                     <div className="form-group">
-                      <label>{t("when")}</label><br/>
+
+                      <label>{t("when")}</label>&nbsp;
+                        <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("whenCondition"),t("whenInfo"))}>
+                            <i className="fa fa-info-circle blue-text"></i>
+                        </OverlayTrigger>
                       {this.getWhenList(t)}
                     </div>
 
                   </Row>
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="thenValue">
-                    <Form.Label>{t("then")}</Form.Label>
+                    <Form.Label>{t("then")}</Form.Label>&nbsp;
+                      <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("then"),t("thenInfo"))}>
+                          <i className="fa fa-info-circle blue-text"></i>
+                      </OverlayTrigger>
                     <Form.Control  onChange={this.handleChangeThen} value={this.state.then}
                                    className={
                                        this.hasError("then")

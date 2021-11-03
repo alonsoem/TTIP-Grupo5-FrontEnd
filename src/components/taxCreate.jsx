@@ -165,16 +165,7 @@ class TaxCreate extends React.Component {
                     {t("cancel")}
                   </Button>
                 </Col>
-                <Col className={"sm-1"}>
-                  <Button
-                      variant="outline-danger"
-                      onClick={this.deleteAction}
-                      id={this.state.id}
-                  >
-                    <i className="fa fa-trash"></i>&nbsp;
-                    {t("remove")}
-                  </Button>
-                </Col>
+
               </Row>
             </Card.Footer>
           </Card>
