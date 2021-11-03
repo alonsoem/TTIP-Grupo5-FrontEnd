@@ -1,5 +1,6 @@
 import React from "react";
 import {getFacts} from "../api/api";
+import Accordion from "bootstrap";
 
 class FactList extends React.Component {
     constructor(props) {
@@ -10,20 +11,23 @@ class FactList extends React.Component {
     }
 
     factListItems () {
-        return this.state.factList.map((fact) =>
+        return this.state.factList.map((fact,index) =>
 
-
-                <div className="accordion-item">
-                    <h2 className="accordion-header" id="flush-headingOne">
-                        <button className="accordion-button open" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                aria-controls="flush-collapseOne">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id={fact.name+"header"}>
+                        <button class="accordion-button" type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target={"#" + fact.name}
+                                aria-expanded={index==0}
+                                aria-controls={fact.name}>
                             {fact.name}
                         </button>
                     </h2>
-                    <div id="flush-collapseOne" className="accordion-collapse open"
-                         aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                        <div className="accordion-body">
+                    <div id={fact.name}
+                         class={"accordion-collapse collapse " +(index==0 && "show")}
+                         aria-labelledby={fact.name+"header"}
+                         >
+                        <div class="accordion-body">
                             <div>{fact.description}</div>
                             <div>{this.subFacts(fact.facts)}</div>
                         </div>
@@ -77,7 +81,7 @@ class FactList extends React.Component {
 
     render() {
         return (
-                <div className="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion accordion-flush" id="accordionContainer">
                      {this.factListItems()}
                 </div>
         )

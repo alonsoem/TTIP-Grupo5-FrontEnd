@@ -11,6 +11,7 @@ const math = require('mathjs');
 
 
 
+
 class RuleEdit extends React.Component {
   constructor(props) {
     super(props);
@@ -399,9 +400,10 @@ class RuleEdit extends React.Component {
                                   <Card.Header>
                                       {t("allowedFacts")}
                                   </Card.Header>
-                                  <Card.Body>
+                                  <Card.Body >
 
                                           <FactList/>
+
 
                                   </Card.Body>
                               </Card>
