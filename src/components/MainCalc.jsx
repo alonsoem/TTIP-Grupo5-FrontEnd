@@ -200,31 +200,24 @@ class MainCalc extends Component {
                   <MDBCardBody className="card-body">
                     <MDBListGroup>
                       {this.state.taxlist.map((listitem) => (
-                        <MDBListGroupItem
-                          className="card-text"
-                          key={listitem.taxId}
-                        >
-                          <a
-                            href={listitem.taxUrl}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                          >
-                            <b>{listitem.taxDescription}</b>
-                          </a>
-                          <br />
-                          {t("amount")}:
-                          <IntlProvider locale={language} formats={formats} >
-                            <FormattedNumber value={listitem.amount}
-                                             style="currency"
-                                             currency="ARS"
-                                             minimumFractionDigits="2"
-                                             maximumFractionDigits="2"
-                                            format="ARS" />
-                          </IntlProvider>
-                        </MDBListGroupItem>
-                      ))}
-                    </MDBListGroup>
-                  </MDBCardBody>
+
+                            <MDBListGroupItem
+                                className="card-text"
+                                key={listitem.taxId}
+                            >
+                              <a
+                                  href={listitem.taxUrl}
+                                  target="_blank"
+                                  rel="noreferrer noopener"
+                              >
+                                <b>{listitem.taxDescription}</b>
+                              </a>
+                              <br />
+                              {t("amount")}: {listitem.amount}
+                            </MDBListGroupItem>
+                            ))}
+                          </MDBListGroup>
+                          </MDBCardBody>
                 </MDBCard>
               </Col>
             </Row>
