@@ -18,7 +18,13 @@ class NavBarPage extends Component {
           className="navbar-light heavy-rain-gradient darken-3 mb-4"
         >
           <Navbar.Brand href="/taxes">
-            <img src={aleclogo} alt="Logo" id="logo" key={Date.now()} />
+            <img
+              src={aleclogo}
+              alt="Logo"
+              id="logo"
+              key={Date.now()}
+              title="Accounting Light Extensible Calculator"
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
