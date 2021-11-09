@@ -12,7 +12,6 @@ import { withTranslation } from "react-i18next";
 import { getBroker, postCalc } from "../api/api";
 import "./maincalc.css";
 import NavBarPage from "./NavBarPage";
-import {FormattedNumber,IntlProvider} from 'react-intl';
 import i18next from "i18next";
 
 class MainCalc extends Component {

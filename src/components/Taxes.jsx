@@ -49,14 +49,51 @@ class Taxes extends React.Component {
     return (
       <div className={"bg"}>
         <NavBarPage />
-        <div className="container-fluid">
+        <div className="container">
           <h1 className="card-header">{t("calcs")}</h1>
-          <br />
-          <NavLink to="/maincalc/1">
-            <Image title={t("mainCalc")} src={maincalcicon} />
-          </NavLink>
-          <br />
-          <br />
+
+
+          <div className="row">
+            <div className="col-sm-4">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">{t("mainCalc")}</h5>
+
+                    <NavLink to="/maincalc/1">
+                      <Image title={t("mainCalc")} src={maincalcicon} />
+                    </NavLink>
+                  <p className="card-text">Un detalle para la calculadora.Dejo el icono original</p>
+                  <a href="/maincalc/1" className="btn btn-primary">Utilizar!</a>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-4">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">{t("mainCalc")}</h5>
+
+                  <NavLink to="/maincalc/1">
+                    <Image title={t("mainCalc")} src={maincalcicon} />
+                  </NavLink>
+                  <p className="card-text">Un detalle para la calculadora.Dejo el icono original</p>
+                  <a href="/maincalc/1" className="btn btn-primary">Utilizar!</a>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-4">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">{t("mainCalc")}</h5>
+
+                  <NavLink to="/maincalc/1">
+                    <Image title={t("mainCalc")} src={maincalcicon} />
+                  </NavLink>
+                  <p className="card-text">Un detalle para la calculadora.Dejo el icono original</p>
+                  <a href="/maincalc/1" className="btn btn-primary">Utilizar!</a>
+                </div>
+              </div>
+            </div>
+          </div>
           <h2 className="card-header">{t("quickRef")}</h2>
           <br />
           <div className="form-content" align="center">
