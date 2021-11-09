@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col, Popover, OverlayTrigger} from "react-bootstrap";
 import FactList from "./factList";
-import HeaderWithSteps from "./HeaderWithSteps";
+import HeaderWithStepsFull from "./HeaderWithStepsFull";
 const math = require('mathjs');
 
 
@@ -255,13 +255,13 @@ class RuleCreate extends React.Component {
         );
 
     return (
-      <div>
+      <div className={"bg"}>
         <NavBarPage />
         <div className="container">
             <Form onSubmit={this.handleSubmit}>
           <Card>
 
-              <HeaderWithSteps title={t("brokerEdit")} steps={[t("calculator"),t("tax"),t("ruleCreate")]} hereText={t("youAreHere")} backText={t("backToStep")} />
+              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={2} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
             <Card.Body>
                  <Row>
 
@@ -382,9 +382,9 @@ class RuleCreate extends React.Component {
                         </Card.Header>
                         <Card.Body>
 
-                          <ol className="breadcrumb">
+
                               <FactList/>
-                          </ol>
+
 
 
                         </Card.Body>

@@ -24,11 +24,19 @@ ul.breadcrumb {
     background: brown;                   /* fallback color */
     background: #178E5C;
 }
+.breadcrumb li.incompleted a {
+    background: gray;                   /* fallback color */
+    background: #c0c0c0;
+}
 .breadcrumb li.active a:after {
     border-left: 30px solid #49C144 ;
 }
 .breadcrumb li.completed a:after {
-    border-left: 30px solid #178E5C;;
+    border-left: 30px solid #178E5C;
+}
+
+.breadcrumb li.incompleted a:after {
+    border-left: 30px solid #c0c0c0;
 }
 
 .breadcrumb li a {

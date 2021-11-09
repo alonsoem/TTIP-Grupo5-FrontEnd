@@ -4,7 +4,7 @@ import FactList from "./factList";
 import { withTranslation } from "react-i18next";
 import {deleteRule, getFacts, getRule, putRuleEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
-import HeaderWithSteps from "./HeaderWithSteps";
+import HeaderWithStepsFull from "./HeaderWithStepsFull";
 import {Popover} from "react-bootstrap";
 const math = require('mathjs');
 
@@ -277,13 +277,12 @@ class RuleEdit extends React.Component {
 
 
       return (
-
-      <div>
+        <div className={"bg"}>
         <NavBarPage />
           <div className="container">
             <Form onSubmit={this.handleSubmit}>
           <Card>
-            <HeaderWithSteps title={t("brokerEdit")} steps={[t("calculator"),t("tax"),t("ruleEdit")]} hereText={t("youAreHere")} backText={t("backToStep")} />
+              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={2} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
             <Card.Body>
 
 

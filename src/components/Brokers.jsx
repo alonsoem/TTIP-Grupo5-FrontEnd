@@ -94,7 +94,7 @@ class Brokers extends React.Component {
     ];
 
     return (
-      <div>
+      <div className={"bg"}>
         <NavBarPage />
         <div className="container">
           <Card>

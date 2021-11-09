@@ -47,7 +47,7 @@ class Taxes extends React.Component {
     ];
 
     return (
-      <div>
+      <div className={"bg"}>
         <NavBarPage />
         <div className="container-fluid">
           <h1 className="card-header">{t("calcs")}</h1>

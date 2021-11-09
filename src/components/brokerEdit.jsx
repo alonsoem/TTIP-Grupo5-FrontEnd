@@ -5,7 +5,7 @@ import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { deleteBroker, deleteTax, getBroker, putBrokerEdit } from "../api/api";
 import NavBarPage from "./NavBarPage";
-import HeaderWithSteps from "./HeaderWithSteps";
+import HeaderWithStepsFull from "./HeaderWithStepsFull";
 
 class BrokerEdit extends React.Component {
   constructor(props) {
@@ -132,12 +132,12 @@ class BrokerEdit extends React.Component {
     const { id } = this.props.match.params;
 
     return (
-      <div>
+      <div className={"bg"}>
         <NavBarPage />
         <div className="container">
           <Form onSubmit={this.handleSubmit}>
             <Card>
-              <HeaderWithSteps title={t("brokerNew")} steps={[t("calculator")]} hereText={t("youAreHere")} backText={t("backToStep")} />
+              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={0} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
               <Card.Body>
                 <Row>
                   <Col lg="7" xs="7" md="7">

@@ -3,7 +3,7 @@ import { withTranslation } from "react-i18next";
 import {postTaxCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
-import HeaderWithSteps from "./HeaderWithSteps";
+import HeaderWithStepsFull from "./HeaderWithStepsFull";
 
 
 class TaxCreate extends React.Component {
@@ -97,12 +97,12 @@ class TaxCreate extends React.Component {
 
 
     return (
-      <div>
+      <div className={"bg"}>
         <NavBarPage />
         <div className="container">
           <Form onSubmit={this.handleSubmit}>
           <Card>
-            <HeaderWithSteps title={t("brokerEdit")} steps={[t("calculator"),t("taxCreate")]} hereText={t("youAreHere")} backText={t("backToStep")} />
+            <HeaderWithStepsFull title={t("taxCreate")} stepIndex={1} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
             <Card.Body>
 
                 <Row className="mb-3">
