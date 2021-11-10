@@ -5,13 +5,19 @@ import { NavLink } from "react-router-dom";
 import { deleteBroker, getBrokers } from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Button, Card, Col, Row} from "react-bootstrap";
+import Dialog from 'react-bootstrap-dialog';
+
+
 
 class Brokers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       rows: [],
+
     };
+
+    this.confirmTest = this.confirmTest.bind(this)
   }
 
   componentDidMount() {
@@ -30,9 +36,9 @@ class Brokers extends React.Component {
       .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    deleteBroker(event.target.id)
+  deleteBroker = (id) => {
+
+    deleteBroker(id)
       .then((response) => {
         this.updateBrokers();
       })
@@ -47,6 +53,30 @@ class Brokers extends React.Component {
     this.props.history.push("/maincalc/" + event.target.id);
   };
 
+  confirmTest =(event) => {
+    event.preventDefault();
+    Dialog.setOptions({
+      defaultOkLabel: this.props.t("modalOkButton"),
+      defaultCancelLabel: this.props.t("modalCancelButton"),
+      primaryClassName: 'btn-success',
+      defaultButtonClassName: 'btn-link'
+    })
+
+    this.dialog.show({
+      title: this.props.t("modalTitleConfirm"),
+      body: this.props.t("modelBodyMessage"),
+      actions: [
+        Dialog.OKAction(() => this.deleteBroker(event.target.id)),
+        Dialog.CancelAction(() => console.log('Hello!'))
+      ],
+      bsSize: 'small',
+      onHide: (dialog) => {
+        dialog.hide()
+      }
+    })
+
+  }
+
   render() {
     const { t } = this.props;
     const dataSet = this.state.rows.map((item) => {
@@ -59,7 +89,7 @@ class Brokers extends React.Component {
           </Button>
         ),
         del: (
-          <Button variant="secondary" onClick={this.handleSubmit} id={item.id}>
+          <Button variant="secondary" onClick={this.confirmTest} id={item.id}>
             <i className="fa fa-minus"></i>
           </Button>
         ),
@@ -93,10 +123,18 @@ class Brokers extends React.Component {
       },
     ];
 
+
+
+
     return (
       <div className={"bg"}>
+
         <NavBarPage />
         <div className="container">
+
+
+          <Dialog ref={(component) => { this.dialog = component }} />
+
           <Card>
             <Card.Header>
               <h5>{t("brokers")}</h5>
@@ -120,6 +158,8 @@ class Brokers extends React.Component {
                             <i className="fa fa-plus"></i>
                           </Button>
                         </NavLink>
+
+
                       </Col>
                     </Row>
                   </div>

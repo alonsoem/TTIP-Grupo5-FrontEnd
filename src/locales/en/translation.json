@@ -82,5 +82,9 @@
   "whenInfo": "You can use boolean expressions that represents true or false. <br/> For example: 1==1",
   "priorityInfo": "Its a number that indicates the execution order of the rule.",
   "thenInfo": "Then Actions must be denote a number. You can use math operators like *, /, +, -,  and/or numbers or variables.",
-  "leftSteps": "Next step"
+  "leftSteps": "Next step",
+  "modalOkButton": "OK",
+  "modalCancelButton": "Cancel",
+  "modalTitleConfirm": "Confirmation",
+  "modelBodyMessage": "Do you want to confirm deletion?"
 }

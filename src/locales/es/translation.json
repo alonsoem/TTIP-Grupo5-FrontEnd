@@ -82,5 +82,9 @@
   "whenInfo": "Puedes usar expresiones que representen un valor verdadero o falso<br/> Por ejemplo: 1==1",
   "priorityInfo": "Es un numero que define en que orden se verificara la regla respecto a otras reglas.",
   "thenInfo": "Las acciones deben representar un numero. Puedes utilizar operadores matematicos como *, /, +, -, tambien numeros o alguna de las variables disponibles.",
-  "leftSteps": "Próximo paso"
+  "leftSteps": "Próximo paso",
+  "modalOkButton": "Aceptar",
+  "modalCancelButton": "Cancelar",
+  "modalTitleConfirm": "Confirmación",
+  "modelBodyMessage": "¿Seguro desea confirmar la eliminación de este item?"
 }
