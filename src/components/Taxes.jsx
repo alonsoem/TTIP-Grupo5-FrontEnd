@@ -1,6 +1,6 @@
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import React from "react";
-import {Col, Image} from "react-bootstrap";
+import {Image} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { getTaxes } from "../api/api";

@@ -1,9 +1,8 @@
 import { MDBCard, MDBCardBody } from "mdbreact";
 import React, { Component } from "react";
-import { Alert, Button, Col, Form, FormGroup, Row } from "react-bootstrap";
+import {Alert, Button, Card, Col, Form, FormGroup, Row} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { getProfile, postProfile } from "../api/api";
-import App18 from "../App18";
 import "./loginform.css";
 import NavBarPage from "./NavBarPage";
 
@@ -90,20 +89,25 @@ class UserProfile extends Component {
     const { t } = this.props;
 
     return (
-      <div className="container-fluid bg">
-        <NavBarPage />
-        <div className="container">
+        <div className={"bg"}>
+
+          <NavBarPage />
+          <div className="container">
+
           <Row className="padding-5 justify-content-center">
             <Col className="col-12 col-sm-4 col-lg-6 col-xl-6">
-              <MDBCard>
-                <MDBCardBody>
-                  <Form onSubmit={this.handleSubmit}>
-                    <div className="card-header">
-                      <h3 className="text-center text-monospace text-black">
-                        {t("profileFormTitle")}
-                      </h3>
-                    </div>
-                    <br />
+              <Form onSubmit={this.handleSubmit}>
+              <Card>
+                <Card.Header>
+
+                  <h3 className="text-center text-black">
+                    {t("profileFormTitle")}
+                  </h3>
+
+
+                </Card.Header>
+                <Card.Body>
+
 
                     <Alert
                       className="alert alert-dismissible"
@@ -184,28 +188,27 @@ class UserProfile extends Component {
                       </select>
                     </FormGroup>
 
-                    <Row className="justify-content-center">
-                      <Col className="justify-content-middle text-center">
-                        <Button
-                          variant="primary"
-                          type="submit"
-                          className="align-content-center"
-                        >
-                          {t("send")}
-                        </Button>
-                      </Col>
-                    </Row>
 
-                    <Row>&nbsp;</Row>
+                </Card.Body>
 
-                    <Row className="justify-content-center">
-                      <Col className="col-sm-5">
-                        <App18 />
-                      </Col>
-                    </Row>
-                  </Form>
-                </MDBCardBody>
-              </MDBCard>
+                    <Card.Footer>
+                      <Row class={"justify-content-start"}>
+                        <Col className="justify-content-start text-left col-sm-10">
+                          <Button
+                              variant="primary"
+                              type="submit"
+                              className="align-content-center"
+                          >
+                            {t("send")}
+                          </Button>
+                        </Col>
+
+                      </Row>
+                    </Card.Footer>
+
+
+              </Card>
+            </Form>
             </Col>
           </Row>
         </div>

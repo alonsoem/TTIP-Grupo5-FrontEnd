@@ -84,7 +84,7 @@ class LoginForm extends Component {
                 <MDBCardBody>
                   <Form onSubmit={this.handleSubmit}>
                     <div className="card-header">
-                      <h3 className="text-center text-monospace text-black">
+                      <h3 className="text-center text-black">
                         {t("loginTitle")}
                       </h3>
                     </div>
