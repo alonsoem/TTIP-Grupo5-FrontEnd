@@ -84,5 +84,9 @@
   "thenInfo": "Las acciones deben representar un numero. Puedes utilizar operadores matematicos como *, /, +, -, tambien numeros o alguna de las variables disponibles.",
   "leftSteps": "Próximo paso",
   "profile": "Perfil",
-  "profileFormTitle": "Actualizar perfil"
+  "profileFormTitle": "Actualizar perfil",
+  "modalOkButton": "Aceptar",
+  "modalCancelButton": "Cancelar",
+  "modalTitleConfirm": "Confirmación",
+  "modelBodyMessage": "¿Seguro desea confirmar la eliminación de este item?"
 }
