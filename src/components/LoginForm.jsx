@@ -46,7 +46,6 @@ class LoginForm extends Component {
   }
   componentDidMount() {
     localStorage.removeItem("token");
-
   }
 
   handleSubmit = (event) => {
@@ -54,6 +53,7 @@ class LoginForm extends Component {
     postLogin({ username: this.state.email, password: this.state.password })
       .then((response) => {
         localStorage.setItem("token", response.jwt);
+        localStorage.setItem("username", this.state.email);
         this.props.history.push("/");
       })
       .catch((responseError) => this.handleAPIError(responseError));
@@ -73,7 +73,6 @@ class LoginForm extends Component {
   }
 
   render() {
-
     const { t } = this.props;
 
     return (
