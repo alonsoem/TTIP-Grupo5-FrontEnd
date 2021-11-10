@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { deleteBroker, getBrokers } from "../api/api";
 import NavBarPage from "./NavBarPage";
-import {Button, Card, Col, Row} from "react-bootstrap";
+import {Button, Card, Col, Row, Table} from "react-bootstrap";
 import Dialog from 'react-bootstrap-dialog';
 
 
@@ -17,7 +17,7 @@ class Brokers extends React.Component {
 
     };
 
-    this.confirmTest = this.confirmTest.bind(this)
+    this.confirmDelete = this.confirmDelete.bind(this)
   }
 
   componentDidMount() {
@@ -53,7 +53,7 @@ class Brokers extends React.Component {
     this.props.history.push("/maincalc/" + event.target.id);
   };
 
-  confirmTest =(event) => {
+  confirmDelete =(event) => {
     event.preventDefault();
     Dialog.setOptions({
       defaultOkLabel: this.props.t("modalOkButton"),
@@ -77,6 +77,7 @@ class Brokers extends React.Component {
 
   }
 
+
   render() {
     const { t } = this.props;
     const dataSet = this.state.rows.map((item) => {
@@ -89,7 +90,7 @@ class Brokers extends React.Component {
           </Button>
         ),
         del: (
-          <Button variant="secondary" onClick={this.confirmTest} id={item.id}>
+          <Button variant="secondary" onClick={this.confirmDelete} id={item.id}>
             <i className="fa fa-minus"></i>
           </Button>
         ),
@@ -144,11 +145,10 @@ class Brokers extends React.Component {
                   <div id={"contenedor"}>
                     <Row className="row">
                       <Col className="col-11 col-sm-10 col-lg-10 col-xl-10 pb-10">
-                        <MDBTable
-                            className="table-hover table table-success table-striped"
+                       <MDBTable className="table table-striped table-hover"
                             responsive
                         >
-                          <MDBTableHead columns={columns} />
+                          <MDBTableHead columns={columns} color="secondary-color"/>
                           <MDBTableBody rows={dataSet} />
                         </MDBTable>
                       </Col>

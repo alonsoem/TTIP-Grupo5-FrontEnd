@@ -1,6 +1,6 @@
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import React from "react";
-import { Image } from "react-bootstrap";
+import {Col, Image} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { getTaxes } from "../api/api";
@@ -99,8 +99,8 @@ class Taxes extends React.Component {
           <div className="form-content" align="center">
             <div className="row">
               <div id={"contenedor"}>
-                <MDBTable className="table-secondary table-hover" responsive>
-                  <MDBTableHead columns={columns} />
+                <MDBTable className="table table-striped table-hover" responsive>
+                  <MDBTableHead columns={columns} color="secondary-color"/>
                   <MDBTableBody rows={dataSet} />
                 </MDBTable>
               </div>
@@ -110,7 +110,7 @@ class Taxes extends React.Component {
           <br />
           <iframe
             className="mr-3"
-            width="560"
+            width="500"
             height="315"
             src="https://www.youtube.com/embed/y2ODLQj3D4Q"
             title="YouTube video player"
@@ -120,7 +120,7 @@ class Taxes extends React.Component {
           ></iframe>
           <iframe
             className="mr-3"
-            width="560"
+            width="500"
             height="315"
             src="https://www.youtube.com/embed/rRccV7J3cTI"
             title="YouTube video player"

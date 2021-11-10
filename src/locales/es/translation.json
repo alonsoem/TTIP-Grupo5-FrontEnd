@@ -86,5 +86,5 @@
   "modalOkButton": "Aceptar",
   "modalCancelButton": "Cancelar",
   "modalTitleConfirm": "Confirmación",
-  "modelBodyMessage": "¿Seguro desea confirmar la eliminación de este item?"
+  "modelBodyMessage": "¿Seguro desea eliminar este item?"
 }
