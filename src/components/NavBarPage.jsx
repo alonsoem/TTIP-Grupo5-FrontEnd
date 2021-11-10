@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import "./NavBar.css";
-import {Navbar} from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import App18 from "../App18.jsx";
 import aleclogo from "../static/alecLogoTrans.png";
-
 
 class NavBarPage extends Component {
   render() {
@@ -20,16 +19,16 @@ class NavBarPage extends Component {
         >
           <Navbar.Brand href="/taxes">
             <img
-                className="img-fluid"
-                src={aleclogo}
-                alt="Logo"
-                id="logo"
+              className="img-fluid"
+              src={aleclogo}
+              alt="Logo"
+              id="logo"
+              title="Accounting Light Extensible Calculator"
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
           <Navbar.Collapse id="responsive-navbar-nav">
-
             <ul className="navbar-nav me-auto">
               <li className="nav-item ">
                 <NavLink className="btn btn-primary" to="/taxes">
@@ -42,9 +41,13 @@ class NavBarPage extends Component {
                   {t("brokers")}
                 </NavLink>
               </li>
+
+              <li className="nav-item ">
+                <NavLink className="btn btn-primary" to="/profile">
+                  {t("profile")}
+                </NavLink>
+              </li>
             </ul>
-
-
 
             <ul className="navbar-nav me-0">
               <li className="nav-item dropdown">

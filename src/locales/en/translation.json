@@ -83,6 +83,8 @@
   "priorityInfo": "Its a number that indicates the execution order of the rule.",
   "thenInfo": "Then Actions must be denote a number. You can use math operators like *, /, +, -,  and/or numbers or variables.",
   "leftSteps": "Next step",
+  "profile": "Profile",
+  "profileFormTitle": "Update user profile",
   "modalOkButton": "OK",
   "modalCancelButton": "Cancel",
   "modalTitleConfirm": "Confirmation",

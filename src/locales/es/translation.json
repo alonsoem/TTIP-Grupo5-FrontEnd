@@ -83,6 +83,8 @@
   "priorityInfo": "Es un numero que define en que orden se verificara la regla respecto a otras reglas.",
   "thenInfo": "Las acciones deben representar un numero. Puedes utilizar operadores matematicos como *, /, +, -, tambien numeros o alguna de las variables disponibles.",
   "leftSteps": "Próximo paso",
+  "profile": "Perfil",
+  "profileFormTitle": "Actualizar perfil",
   "modalOkButton": "Aceptar",
   "modalCancelButton": "Cancelar",
   "modalTitleConfirm": "Confirmación",
