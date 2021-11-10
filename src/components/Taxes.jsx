@@ -1,6 +1,6 @@
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import React from "react";
-import {Image} from "react-bootstrap";
+import {Card, Image} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { getTaxes } from "../api/api";
@@ -50,18 +50,15 @@ class Taxes extends React.Component {
       <div className={"bg"}>
         <NavBarPage />
         <div className="container">
-          <h1 className="card-header">{t("calcs")}</h1>
-
-
+          
           <div className="row">
             <div className="col-sm-4">
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">{t("mainCalc")}</h5>
-
-                    <NavLink to="/maincalc/1">
-                      <Image title={t("mainCalc")} src={maincalcicon} />
-                    </NavLink>
+                  <NavLink to="/maincalc/1">
+                     <Image title={t("mainCalc")} src={maincalcicon} />
+                  </NavLink>
                   <p className="card-text">Un detalle para la calculadora.Dejo el icono original</p>
                   <a href="/maincalc/1" className="btn btn-primary">Utilizar!</a>
                 </div>
@@ -71,7 +68,6 @@ class Taxes extends React.Component {
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">{t("mainCalc")}</h5>
-
                   <NavLink to="/maincalc/1">
                     <Image title={t("mainCalc")} src={maincalcicon} />
                   </NavLink>
@@ -84,7 +80,6 @@ class Taxes extends React.Component {
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">{t("mainCalc")}</h5>
-
                   <NavLink to="/maincalc/1">
                     <Image title={t("mainCalc")} src={maincalcicon} />
                   </NavLink>
@@ -94,9 +89,15 @@ class Taxes extends React.Component {
               </div>
             </div>
           </div>
-          <h2 className="card-header">{t("quickRef")}</h2>
-          <br />
-          <div className="form-content" align="center">
+
+          <br/>
+          <Card>
+            <Card.Header>
+              {t("quickRef")}
+            </Card.Header>
+            <Card.Body>
+
+              <div className="form-content" align="center">
             <div className="row">
               <div id={"contenedor"}>
                 <MDBTable className="table table-striped table-hover" responsive>
@@ -106,8 +107,15 @@ class Taxes extends React.Component {
               </div>
             </div>
           </div>
-          <h2 className="card-header">{t("news")}</h2>
-          <br />
+            </Card.Body>
+
+          </Card>
+          <br/>
+          <Card>
+            <Card.Header>
+                {t("news")}
+            </Card.Header>
+          <Card.Body>
           <iframe
             className="mr-3"
             width="500"
@@ -128,6 +136,8 @@ class Taxes extends React.Component {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
+          </Card.Body>
+          </Card>
         </div>
       </div>
     );
