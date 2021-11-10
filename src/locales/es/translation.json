@@ -88,5 +88,6 @@
   "modalOkButton": "Aceptar",
   "modalCancelButton": "Cancelar",
   "modalTitleConfirm": "Confirmación",
-  "modelBodyMessage": "¿Seguro desea eliminar este item?"
+  "modelBodyMessage": "¿Seguro desea eliminar este item?",
+  "backToLogin": "Volver al ingreso"
 }

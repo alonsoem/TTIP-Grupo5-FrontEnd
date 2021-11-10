@@ -10,6 +10,7 @@ import {
   Image,
   Row,
 } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 import { postRegister } from "../api/api";
 import App18 from "../App18";
@@ -50,6 +51,16 @@ class RegisterForm extends Component {
     obj[key] = value;
     this.setState(obj);
   };
+
+  toggleOtherTaxes = (event)=>{
+    console.log(event.target);
+    this.setState({"otherTaxes": event.target.checked});
+  }
+
+  toggleTaxPayerType = (event)=>{
+    console.log(event.target);
+    this.setState({"taxpayerType": event.target.checked});
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -122,7 +133,6 @@ class RegisterForm extends Component {
     return (
       <div className="container-fluid bg">
         <br />
-        <br />
         <MDBContainer>
           <Row className="row">
             <Col className="col-12 col-sm-4 col-lg-6 col-xl-6 pb-4">
@@ -133,9 +143,14 @@ class RegisterForm extends Component {
                   alt="Sign Up image"
                 />
                 <MDBCardBody>
+                  <div>
                   <p className="list-group-item list-group-item-action list-group-item-primary text-dark">
                     <b>{t("priceLegend")}</b>
                   </p>
+                    <row>
+                      <NavLink to="/login" className={"btn btn-outline-link"} >{t("backToLogin")}</NavLink>
+                    </row>
+                  </div>
                 </MDBCardBody>
               </MDBCard>
             </Col>
@@ -148,7 +163,7 @@ class RegisterForm extends Component {
                         <p className="h5 text-center mb-4 card-header">
                           {t("registerTitle")}
                         </p>
-                        <br />
+
                         <Alert
                           className="alert alert-dismissible"
                           variant="danger"
@@ -284,34 +299,38 @@ class RegisterForm extends Component {
                         </FormGroup>
 
                         <FormGroup controlId="formTaxpayer">
-                          <label htmlFor="taxpayerType" className="form-label">
-                            {t("taxpayerType")}
-                          </label>
-                          <select
-                            name="taxpayerType"
-                            className="form-control"
-                            id="taxpayerType"
-                            onChange={this.handleInputChange}
-                          >
-                            <option value="false">No</option>
-                            <option value="true">{t("yes")}</option>
-                          </select>
+
+                          <div className="form-check">
+                            <input name="taxpayerType"
+                                   id="taxpayerType"
+                                   className="form-check-input" type="checkbox"
+
+                                   value={this.state.taxpayerType}
+                                   onChange={this.toggleTaxPayerType}
+                            />
+                            <label className="form-check-label" htmlFor="taxpayerType">
+                              {t("taxpayerType")}
+                            </label>
+                          </div>
                         </FormGroup>
 
                         <FormGroup controlId="formOtherTaxes">
-                          <label htmlFor="otherTaxes" className="form-label">
-                            {t("otherTaxes")}
-                          </label>
-                          <select
-                            name="otherTaxes"
-                            className="form-control"
-                            id="otherTaxes"
-                            onChange={this.handleInputChange}
-                          >
-                            <option value="false">No</option>
-                            <option value="true">{t("yes")}</option>
-                          </select>
+
+                          <div className="form-check">
+                            <input name="otherTaxes"
+                                   id="otherTaxes"
+                                   className="form-check-input" type="checkbox"
+
+                                   value={this.state.otherTaxes}
+                                   onChange={this.toggleOtherTaxes}
+                            />
+                              <label className="form-check-label" htmlFor="otherTaxes">
+                                {t("otherTaxes")}
+                              </label>
+                          </div>
                         </FormGroup>
+
+
 
                         <Row>&nbsp;</Row>
                         <MDBRow>
@@ -335,6 +354,8 @@ class RegisterForm extends Component {
       </div>
     );
   }
+
+
 }
 
 export default withTranslation()(RegisterForm);

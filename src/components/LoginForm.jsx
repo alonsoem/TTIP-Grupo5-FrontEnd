@@ -15,6 +15,7 @@ import { postLogin } from "../api/api";
 import App18 from "../App18";
 import alecicon from "../static/alecicon.png";
 import "./loginform.css";
+import {NavLink} from "react-router-dom";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -142,13 +143,12 @@ class LoginForm extends Component {
                     <Row>&nbsp;</Row>
 
                     <Row className="justify-content-center">
-                      <Col className="col-sm-5 align-content-md-center card-header text-center">
-                        <a href="register" className="text-dark">
+                      <Col className="col-sm-5 align-content-md-center text-center">
+                        <NavLink className="btn btn-outline-link" to="/register">
                           {t("register")}
-                        </a>
+                        </NavLink>
                       </Col>
-
-                      <Col className="col-sm-5 text-right">
+                      <Col className="col-sm-5 align-content-md-center text-center">
                         <App18 />
                       </Col>
                     </Row>
