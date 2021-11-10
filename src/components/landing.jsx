@@ -7,7 +7,7 @@ import { getTaxes } from "../api/api";
 import maincalcicon from "../static/maincalcicon.png";
 import NavBarPage from "./NavBarPage";
 
-class Taxes extends React.Component {
+class Landing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,7 +50,7 @@ class Taxes extends React.Component {
       <div className={"bg"}>
         <NavBarPage />
         <div className="container">
-          
+
           <div className="row">
             <div className="col-sm-4">
               <div className="card">
@@ -144,4 +144,4 @@ class Taxes extends React.Component {
   }
 }
 
-export default withTranslation()(Taxes);
+export default withTranslation()(Landing);

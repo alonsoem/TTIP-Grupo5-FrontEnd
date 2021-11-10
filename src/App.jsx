@@ -12,7 +12,7 @@ import RuleCreate from "./components/ruleCreate";
 import RuleEdit from "./components/ruleEdit";
 import TaxCreate from "./components/taxCreate";
 import TaxEdit from "./components/TaxEdit";
-import Taxes from "./components/Taxes";
+import Landing from "./components/landing";
 import UserProfile from "./components/UserProfile";
 
 export default class App extends React.Component {
@@ -27,12 +27,12 @@ export default class App extends React.Component {
           <Route path={"/broker/edit/:id"} component={BrokerEdit}></Route>
           <Route exact path="/broker/edit" component={BrokerCreate} />
           <Route exact path="/broker" component={Brokers} />
-          <Route path="/taxes" component={Taxes} />
+
           <Route path="/maincalc/:id" component={MainCalc} />
           <Route path="/register" component={RegisterForm} />
           <Route path="/login" component={LoginForm} />
           <Route path="/profile" component={UserProfile} />
-          <Route path="/" component={Taxes} />
+          <Route path="/" component={Landing} />
         </Switch>
       </BrowserRouter>
     );

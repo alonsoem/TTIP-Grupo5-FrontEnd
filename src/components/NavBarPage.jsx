@@ -31,7 +31,7 @@ class NavBarPage extends Component {
           <Navbar.Collapse id="responsive-navbar-nav">
             <ul className="navbar-nav me-auto">
               <li className="nav-item ">
-                <NavLink className="btn btn-primary" to="/taxes">
+                <NavLink className="btn btn-primary" to="/">
                   {t("home")}
                 </NavLink>
               </li>
