@@ -53,7 +53,8 @@ class LoginForm extends Component {
     event.preventDefault();
     postLogin({ username: this.state.email, password: this.state.password })
       .then((response) => {
-        localStorage.setItem("token", response.jwt);
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("userId", response.id);
         localStorage.setItem("username", this.state.email);
         this.props.history.push("/");
       })

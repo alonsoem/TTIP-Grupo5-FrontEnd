@@ -13,6 +13,7 @@ class Brokers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userId:localStorage.getItem("userId"),
       rows: [],
 
     };
@@ -81,18 +82,24 @@ class Brokers extends React.Component {
   render() {
     const { t } = this.props;
     const dataSet = this.state.rows.map((item) => {
+      console.log(item);
       return {
         id: item.id,
         name: item.name,
         url: (
-          <Button variant="secondary" onClick={this.editBroker} id={item.id}>
-            <i className="fa fa-edit"></i>
-          </Button>
+              item.userId==this.state.userId ?
+                    <Button variant="secondary" onClick={this.editBroker} id={item.id} >
+                      <i className="fa fa-edit"></i>
+                    </Button>
+                    : null
+
         ),
         del: (
-          <Button variant="secondary" onClick={this.confirmDelete} id={item.id}>
-            <i className="fa fa-minus"></i>
-          </Button>
+            item.userId==this.state.userId ?
+                    <Button variant="secondary" onClick={this.confirmDelete} id={item.id}>
+                      <i className="fa fa-minus"></i>
+                    </Button>
+                : null
         ),
         calc: (
           <Button variant="secondary" onClick={this.useBroker} id={item.id}>
