@@ -89,5 +89,6 @@
   "modalCancelButton": "Cancel",
   "modalTitleConfirm": "Confirmation",
   "modelBodyMessage": "Do you want to confirm deletion?",
-  "backToLogin": "Back to login"
+  "backToLogin": "Back to login",
+  "isPublic": "Make it public"
 }

@@ -3,7 +3,6 @@ import { withTranslation } from "react-i18next";
 import {postBrokerCreate} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import {Card, Row, Form, Button, Col} from "react-bootstrap";
-import HeaderWithSteps from "./HeaderWithSteps";
 import HeaderWithStepsFull from "./HeaderWithStepsFull";
 
 
@@ -13,6 +12,7 @@ class BrokerCreate extends React.Component {
     this.state = {
       errors: [],
       errorVisible: false,
+      isPublic:false,
       taxName: "",
 
     };
@@ -34,6 +34,7 @@ class BrokerCreate extends React.Component {
   submit = () =>{
     postBrokerCreate({
       name: this.state.taxName,
+      isPublic:this.state.isPublic
     })
         .then((response) => {
           this.props.history.push("/broker/edit/"+response.id);
@@ -79,6 +80,9 @@ class BrokerCreate extends React.Component {
     this.setState({ error: errorToDisplay });
   }
 
+    toggleIsPublic = (event)=>{
+        this.setState({"isPublic": event.target.checked});
+    }
   render() {
     const { t } = this.props;
 
@@ -114,6 +118,23 @@ class BrokerCreate extends React.Component {
                       {t("userInvalidFeedback")}
                     </div>
                   </Form.Group>
+
+                </Row>
+                <Row className="mb-3">
+                    <Form.Group className="mb-3" controlId="publicValue">
+                        <div className="form-check">
+                            <input name="isPublic"
+                                   id="isPublic"
+                                   className="form-check-input" type="checkbox"
+
+                                   value={this.state.isPublic}
+                                   onChange={this.toggleIsPublic}
+                            />
+                            <label className="form-check-label" htmlFor="isPublic">
+                                {t("isPublic")}
+                            </label>
+                        </div>
+                    </Form.Group>
 
                 </Row>
 

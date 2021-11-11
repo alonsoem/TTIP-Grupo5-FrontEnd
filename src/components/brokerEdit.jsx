@@ -15,6 +15,7 @@ class BrokerEdit extends React.Component {
       name: "",
       taxes: [],
       broker: null,
+      isPublic:false,
       errors: [],
     };
 
@@ -59,6 +60,7 @@ class BrokerEdit extends React.Component {
   submit = () => {
     putBrokerEdit(this.state.id, {
       name: this.state.name,
+      isPublic:this.state.isPublic
     })
       .then((response) => {
         this.props.history.push("/broker");
@@ -91,7 +93,6 @@ class BrokerEdit extends React.Component {
   }
 
   generate() {
-    console.log(this.state.taxes.length);
     if (this.state.taxes.length === 0) {
       return <div align="center">{this.props.t("noTaxes")}</div>;
     } else {
@@ -122,11 +123,17 @@ class BrokerEdit extends React.Component {
   updateBroker = () => {
     getBroker(this.state.id)
       .then((aBroker) => {
-        this.setState({ name: aBroker.name, taxes: aBroker.taxes });
+        console.log(aBroker.isPublic);
+        this.setState({ name: aBroker.name, taxes: aBroker.taxes, isPublic:aBroker.isPublic });
+        console.log(this.state.isPublic);
       })
       .catch(() => this.setState({ error: this.props.t("genericError") }));
   };
 
+  toggleIsPublic = (event)=>{
+    this.setState({"isPublic": event.target.checked});
+    console.log(event.target);
+  }
   render() {
     const { t } = this.props;
     const { id } = this.props.match.params;
@@ -177,6 +184,24 @@ class BrokerEdit extends React.Component {
                             {t("userInvalidFeedback")}
                           </div>
                         </Form.Group>
+                      </Row>
+
+                      <Row className="mb-3">
+                        <Form.Group className="mb-3" controlId="publicValue">
+                          <div className="form-check">
+                            <input name="isPublic"
+                                   id="isPublic"
+                                   className="form-check-input" type="checkbox"
+                                   checked={this.state.isPublic ? "checked":null}
+                                   value={this.state.isPublic}
+                                   onChange={this.toggleIsPublic}
+                            />
+                            <label className="form-check-label" htmlFor="isPublic">
+                              {t("isPublic")}
+                            </label>
+                          </div>
+                        </Form.Group>
+
                       </Row>
                     </Row>
                   </Col>

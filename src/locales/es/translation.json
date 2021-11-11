@@ -89,5 +89,6 @@
   "modalCancelButton": "Cancelar",
   "modalTitleConfirm": "Confirmación",
   "modelBodyMessage": "¿Seguro desea eliminar este item?",
-  "backToLogin": "Volver al ingreso"
+  "backToLogin": "Volver al ingreso",
+  "isPublic": "Es visible públicamente"
 }
