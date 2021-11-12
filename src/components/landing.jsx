@@ -1,6 +1,6 @@
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import React from "react";
-import {Card, Image} from "react-bootstrap";
+import { Card, Image } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { getTaxes } from "../api/api";
@@ -50,17 +50,20 @@ class Landing extends React.Component {
       <div className={"bg"}>
         <NavBarPage />
         <div className="container">
-
           <div className="row">
             <div className="col-sm-4">
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">{t("mainCalc")}</h5>
                   <NavLink to="/maincalc/1">
-                     <Image title={t("mainCalc")} src={maincalcicon} />
+                    <Image title={t("mainCalc")} src={maincalcicon} />
                   </NavLink>
-                  <p className="card-text">Un detalle para la calculadora.Dejo el icono original</p>
-                  <a href="/maincalc/1" className="btn btn-primary">Utilizar!</a>
+                  <p className="card-text">
+                    Un detalle para la calculadora.Dejo el icono original
+                  </p>
+                  <a href="/maincalc/1" className="btn btn-primary">
+                    Utilizar!
+                  </a>
                 </div>
               </div>
             </div>
@@ -71,8 +74,12 @@ class Landing extends React.Component {
                   <NavLink to="/maincalc/1">
                     <Image title={t("mainCalc")} src={maincalcicon} />
                   </NavLink>
-                  <p className="card-text">Un detalle para la calculadora.Dejo el icono original</p>
-                  <a href="/maincalc/1" className="btn btn-primary">Utilizar!</a>
+                  <p className="card-text">
+                    Un detalle para la calculadora.Dejo el icono original
+                  </p>
+                  <a href="/maincalc/1" className="btn btn-primary">
+                    Utilizar!
+                  </a>
                 </div>
               </div>
             </div>
@@ -83,60 +90,61 @@ class Landing extends React.Component {
                   <NavLink to="/maincalc/1">
                     <Image title={t("mainCalc")} src={maincalcicon} />
                   </NavLink>
-                  <p className="card-text">Un detalle para la calculadora.Dejo el icono original</p>
-                  <a href="/maincalc/1" className="btn btn-primary">Utilizar!</a>
+                  <p className="card-text">
+                    Un detalle para la calculadora.Dejo el icono original
+                  </p>
+                  <a href="/maincalc/1" className="btn btn-primary">
+                    Utilizar!
+                  </a>
                 </div>
               </div>
             </div>
           </div>
 
-          <br/>
+          <br />
           <Card>
-            <Card.Header>
-              {t("quickRef")}
-            </Card.Header>
+            <Card.Header>{t("quickRef")}</Card.Header>
             <Card.Body>
-
               <div className="form-content" align="center">
-            <div className="row">
-              <div id={"contenedor"}>
-                <MDBTable className="table table-striped table-hover" responsive>
-                  <MDBTableHead columns={columns} color="secondary-color"/>
-                  <MDBTableBody rows={dataSet} />
-                </MDBTable>
+                <div className="row">
+                  <div id={"contenedor"}>
+                    <MDBTable
+                      className="table table-striped table-hover"
+                      responsive
+                    >
+                      <MDBTableHead columns={columns} color="info-color" />
+                      <MDBTableBody rows={dataSet} />
+                    </MDBTable>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
             </Card.Body>
-
           </Card>
-          <br/>
+          <br />
           <Card>
-            <Card.Header>
-                {t("news")}
-            </Card.Header>
-          <Card.Body>
-          <iframe
-            className="mr-3"
-            width="500"
-            height="315"
-            src="https://www.youtube.com/embed/y2ODLQj3D4Q"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-          <iframe
-            className="mr-3"
-            width="500"
-            height="315"
-            src="https://www.youtube.com/embed/rRccV7J3cTI"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-          </Card.Body>
+            <Card.Header>{t("news")}</Card.Header>
+            <Card.Body>
+              <iframe
+                className="mr-3"
+                width="500"
+                height="315"
+                src="https://www.youtube.com/embed/y2ODLQj3D4Q"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+              <iframe
+                className="mr-3"
+                width="500"
+                height="315"
+                src="https://www.youtube.com/embed/rRccV7J3cTI"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </Card.Body>
           </Card>
         </div>
       </div>
