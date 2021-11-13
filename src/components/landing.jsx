@@ -1,6 +1,6 @@
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import React from "react";
-import { Card, Image } from "react-bootstrap";
+import { Card, Popover, OverlayTrigger } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { getTaxes } from "../api/api";
 import NavBarPage from "./NavBarPage";
@@ -44,34 +44,18 @@ class Landing extends React.Component {
         field: "rate",
       },
     ];
+    const popover = (body) => (
+      <Popover id="popover-basic">
+        <Popover.Content>{body}</Popover.Content>
+      </Popover>
+    );
 
     return (
-      <div >
+      <div>
         <NavBarPage />
         <div className="container">
+          <BrokerCardList />
 
-              <BrokerCardList />
-
-
-          <br />
-          <Card>
-            <Card.Header>{t("quickRef")}</Card.Header>
-            <Card.Body>
-              <div className="form-content" align="center">
-                <div className="row">
-                  <div id={"contenedor"}>
-                    <MDBTable
-                      className="table table-striped table-hover"
-                      responsive
-                    >
-                      <MDBTableHead columns={columns} color="info-color" />
-                      <MDBTableBody rows={dataSet} />
-                    </MDBTable>
-                  </div>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
           <br />
           <Card>
             <Card.Header>{t("news")}</Card.Header>
@@ -96,6 +80,34 @@ class Landing extends React.Component {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
+            </Card.Body>
+          </Card>
+          <br />
+          <Card>
+            <Card.Header>
+              {t("quickRef")}
+              <OverlayTrigger
+                trigger="hover"
+                placement="right"
+                overlay={popover(t("quickRefDesc"))}
+              >
+                <i className="fa fa-info-circle blue-text"></i>
+              </OverlayTrigger>
+            </Card.Header>
+            <Card.Body>
+              <div className="form-content" align="center">
+                <div className="row">
+                  <div id={"contenedor"}>
+                    <MDBTable
+                      className="table table-striped table-hover"
+                      responsive
+                    >
+                      <MDBTableHead columns={columns} color="info-color" />
+                      <MDBTableBody rows={dataSet} />
+                    </MDBTable>
+                  </div>
+                </div>
+              </div>
             </Card.Body>
           </Card>
         </div>

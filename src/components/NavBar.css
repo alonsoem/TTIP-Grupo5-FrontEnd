@@ -1,7 +1,9 @@
-
 .navbar .navbar-brand > img {
   max-height: 80px;
-  max-width:250px;
-
+  max-width: 250px;
 }
 
+#language_selector {
+  width: 135px;
+  text-align: left !important;
+}
