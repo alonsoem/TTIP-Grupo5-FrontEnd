@@ -8,7 +8,7 @@ import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
 
-global.localStorage = {
+global.sessionStorage = {
   getItem: () => undefined,
 };
 

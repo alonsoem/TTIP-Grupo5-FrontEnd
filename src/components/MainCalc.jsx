@@ -47,7 +47,7 @@ class MainCalc extends Component {
   };
 
   componentDidMount() {
-    if (!localStorage.getItem("token")) {
+    if (!sessionStorage.getItem("token")) {
       this.props.history.push("/login");
     }
     this.state.id = this.props.match.params.id;

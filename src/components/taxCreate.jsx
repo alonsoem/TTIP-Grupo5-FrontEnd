@@ -23,7 +23,7 @@ class TaxCreate extends React.Component {
   }
 
   componentDidMount() {
-    if (!localStorage.getItem("token")) {
+    if (!sessionStorage.getItem("token")) {
       this.props.history.push("/login");
     }
   }

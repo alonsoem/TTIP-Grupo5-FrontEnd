@@ -16,7 +16,7 @@ class Landing extends React.Component {
   }
 
   componentDidMount() {
-    if (!localStorage.getItem("token")) {
+    if (!sessionStorage.getItem("token")) {
       this.props.history.push("/login");
     }
     getTaxes()
@@ -47,7 +47,7 @@ class Landing extends React.Component {
     ];
 
     return (
-      <div className={"bg"}>
+      <div className={"bg"} >
         <NavBarPage />
         <div className="container">
           <div className="row">

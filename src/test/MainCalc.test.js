@@ -10,7 +10,7 @@ import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import MainCalc from "../components/MainCalc";
 
-global.localStorage = {
+global.sessionStorage = {
   getItem: () => undefined,
 };
 

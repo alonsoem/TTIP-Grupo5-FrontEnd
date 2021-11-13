@@ -18,6 +18,7 @@ import UserProfile from "./components/UserProfile";
 export default class App extends React.Component {
   render() {
     return (
+        <div   >
       <BrowserRouter>
         <Switch>
           <Route exact path="/rule/:id" component={RuleCreate} />
@@ -35,6 +36,7 @@ export default class App extends React.Component {
           <Route path="/" component={Landing} />
         </Switch>
       </BrowserRouter>
+        </div>
     );
   }
 }

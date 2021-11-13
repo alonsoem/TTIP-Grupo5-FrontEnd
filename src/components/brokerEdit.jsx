@@ -36,7 +36,7 @@ class BrokerEdit extends React.Component {
   };
 
   componentDidMount() {
-    if (!localStorage.getItem("token")) {
+    if (!sessionStorage.getItem("token")) {
       this.props.history.push("/login");
     }
 
@@ -139,7 +139,7 @@ class BrokerEdit extends React.Component {
     const { id } = this.props.match.params;
 
     return (
-      <div className={"bg"}>
+      <div >
         <NavBarPage />
         <div className="container">
           <Form onSubmit={this.handleSubmit}>

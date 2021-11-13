@@ -12,7 +12,7 @@ class Brokers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: localStorage.getItem("userId"),
+      userId: sessionStorage.getItem("userId"),
       rows: [],
     };
 
@@ -20,7 +20,7 @@ class Brokers extends React.Component {
   }
 
   componentDidMount() {
-    if (!localStorage.getItem("token")) {
+    if (!sessionStorage.getItem("token")) {
       this.props.history.push("/login");
     }
     this.updateBrokers();
@@ -124,7 +124,7 @@ class Brokers extends React.Component {
     ];
 
     return (
-      <div className={"bg"}>
+      <div >
         <NavBarPage />
         <div className="container">
           <Dialog

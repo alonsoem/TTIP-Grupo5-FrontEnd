@@ -10,7 +10,7 @@ import { setupServer } from "msw/node";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
-global.localStorage = {
+global.sessionStorage = {
   getItem: () => undefined,
 };
 

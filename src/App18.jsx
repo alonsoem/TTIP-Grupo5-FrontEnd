@@ -6,7 +6,7 @@ import { withTranslation } from 'react-i18next';
 function App18 ({ t }) {
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
-        localStorage.setItem("language",lng);
+        sessionStorage.setItem("language",lng);
 
     }
 
@@ -17,7 +17,7 @@ function App18 ({ t }) {
     return (
                 <select className="btn btn-outline-info form-select ms-0"
                         onChange={handleChange}
-                        defaultValue={localStorage.getItem("language")}
+                        defaultValue={sessionStorage.getItem("language")}
                         name="language"
                         id={"language_selector"}
                 >

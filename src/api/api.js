@@ -10,7 +10,7 @@ if (environment === "production") {
 }
 
 const authConfig = () => {
-  return { Authorization: "Bearer " + localStorage.getItem("token") };
+  return { Authorization: "Bearer " + sessionStorage.getItem("token") };
 };
 
 const request = (type, path, body, config) =>

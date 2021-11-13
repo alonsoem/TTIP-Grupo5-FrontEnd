@@ -45,17 +45,20 @@ class LoginForm extends Component {
     this.setState({ errorVisible: true });
     setTimeout(() => this.setState({ errorVisible: false }), 3000);
   }
+
   componentDidMount() {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("userId");
+    sessionStorage.removeItem("username");
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     postLogin({ username: this.state.email, password: this.state.password })
       .then((response) => {
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("userId", response.id);
-        localStorage.setItem("username", this.state.email);
+        sessionStorage.setItem("token", response.token);
+        sessionStorage.setItem("userId", response.id);
+        sessionStorage.setItem("username", this.state.email);
         this.props.history.push("/");
       })
       .catch((responseError) => this.handleAPIError(responseError));

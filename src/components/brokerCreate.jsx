@@ -22,7 +22,7 @@ class BrokerCreate extends React.Component {
   }
 
   componentDidMount() {
-    if (!localStorage.getItem("token")) {
+    if (!sessionStorage.getItem("token")) {
       this.props.history.push("/login");
     }
   }
@@ -88,7 +88,7 @@ class BrokerCreate extends React.Component {
 
 
     return (
-      <div className={"bg"}>
+      <div >
         <NavBarPage />
           <div className="container">
             <Form onSubmit={this.handleSubmit}>

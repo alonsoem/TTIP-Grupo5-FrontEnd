@@ -18,7 +18,7 @@ class UserProfile extends Component {
       username: "",
     };
 
-    this.username = localStorage.getItem("username");
+    this.username = sessionStorage.getItem("username");
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -89,7 +89,7 @@ class UserProfile extends Component {
     const { t } = this.props;
 
     return (
-        <div className={"bg"}>
+        <div >
 
           <NavBarPage />
           <div className="container">

@@ -1,7 +1,14 @@
-.bg {
-  background-image: url("/src/static/wallpaper.jpg");
-  height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+body {
+  
+  background-repeat: repeat-y;
+  background-size: initial;
+  background-position: left;
+  background-color: #263252;
+  min-height: 100%;
+  height:100%;
+  width:100%;
+  margin:0;
+
+
+
 }
