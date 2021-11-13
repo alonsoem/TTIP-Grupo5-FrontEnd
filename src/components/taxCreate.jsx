@@ -97,7 +97,7 @@ class TaxCreate extends React.Component {
 
 
     return (
-      <div className={"bg"}>
+      <div >
         <NavBarPage />
         <div className="container">
           <Form onSubmit={this.handleSubmit}>

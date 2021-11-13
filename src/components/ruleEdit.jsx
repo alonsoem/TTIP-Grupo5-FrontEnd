@@ -277,7 +277,7 @@ class RuleEdit extends React.Component {
 
 
       return (
-        <div className={"bg"}>
+        <div >
         <NavBarPage />
           <div className="container">
             <Form onSubmit={this.handleSubmit}>
@@ -400,10 +400,7 @@ class RuleEdit extends React.Component {
                                       {t("allowedFacts")}
                                   </Card.Header>
                                   <Card.Body >
-
                                           <FactList/>
-
-
                                   </Card.Body>
                               </Card>
                               </div>

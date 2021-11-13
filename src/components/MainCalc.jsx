@@ -107,7 +107,7 @@ class MainCalc extends Component {
     };
 
     return (
-      <div className={"bg"}>
+      <div >
         <NavBarPage />
         <div className="container-fluid">
           <div className="container">

@@ -131,7 +131,7 @@ class Taxes extends React.Component {
     const idTax = this.props.match.params.id;
 
     return (
-      <div className={"bg"}>
+      <div >
         <NavBarPage />
         <div className="container">
           <Form onSubmit={this.handleSubmit}>
@@ -198,16 +198,16 @@ class Taxes extends React.Component {
                     </Row>
                   </Col>
 
-                  <Col lg="4" xs="4" md="4">
+                  <Col lg="5" xs="5" md="5">
                     <Card>
                       <Card.Header as="h5">
                         <div className="row">
                           <div className="col-sm-8">
-                          <h5>{t("rules")}</h5>
+                            <h5>{t("rules")}</h5>
                           </div>
                           <div className="col-sm-4">
                             <NavLink to={"/rule/" + this.state.id}>
-                              <Button title={t("taxAddRule")} class={"btn-sm"}>
+                              <Button title={t("taxAddRule")} className={"btn-sm"}>
                                 <i className="fa fa-plus"></i>
                               </Button>
                             </NavLink>
@@ -216,13 +216,13 @@ class Taxes extends React.Component {
                       </Card.Header>
                       <Card.Body>
                         <ListGroup defaultActiveKey="#link1">
-                          {" "}
+                          <p>
+                            <b>{t("ruleApplication")}</b>
+                          </p>
+
                           {this.getAllRules()}
                         </ListGroup>
-                        <br />
-                        <p>
-                          <b>{t("ruleApplication")}</b>
-                        </p>
+
                       </Card.Body>
                     </Card>
                   </Col>

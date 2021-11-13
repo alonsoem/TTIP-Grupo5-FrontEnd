@@ -47,7 +47,7 @@ class Landing extends React.Component {
     ];
 
     return (
-      <div className={"bg"} >
+      <div >
         <NavBarPage />
         <div className="container">
           <div className="row">

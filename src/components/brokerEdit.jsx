@@ -206,7 +206,7 @@ class BrokerEdit extends React.Component {
                     </Row>
                   </Col>
 
-                  <Col lg="4" xs="4" md="4">
+                  <Col lg="5" xs="5" md="5">
                     <Card>
                       <Card.Header as="h5">
                         <div className="row">
@@ -214,14 +214,8 @@ class BrokerEdit extends React.Component {
                             <h5>{t("taxes")}</h5>
                           </div>
                           <div className="col-sm-4">
-                            <NavLink
-                              to={"/broker/edit/" + this.state.id + "/tax"}
-                            >
-                              <Button
-                                title={t("brokerAddTax")}
-                                variant="primary"
-                                class={"w-100"}
-                              >
+                            <NavLink to={"/broker/edit" + this.state.id + "/tax"}>
+                              <Button title={t("brokerAddTax")} className={"btn-sm"}>
                                 <i className="fa fa-plus"></i>
                               </Button>
                             </NavLink>
