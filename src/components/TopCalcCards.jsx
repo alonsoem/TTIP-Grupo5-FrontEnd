@@ -18,8 +18,6 @@ class BrokerCardList extends React.Component {
                     <div className="card-body calcCard" >
 
                         <h5 className="card-title">{calculator.name}</h5>
-
-
                         <p className="card-text">
                             {calculator.name}
                         </p>
