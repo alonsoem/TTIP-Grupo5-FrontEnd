@@ -2,10 +2,9 @@ import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import React from "react";
 import { Card, Image } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
 import { getTaxes } from "../api/api";
-import maincalcicon from "../static/maincalcicon.png";
 import NavBarPage from "./NavBarPage";
+import BrokerCardList from "./TopCalcCards";
 
 class Landing extends React.Component {
   constructor(props) {
@@ -50,56 +49,9 @@ class Landing extends React.Component {
       <div >
         <NavBarPage />
         <div className="container">
-          <div className="row">
-            <div className="col-sm-4">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{t("mainCalc")}</h5>
-                  <NavLink to="/maincalc/1">
-                    <Image title={t("mainCalc")} src={maincalcicon} />
-                  </NavLink>
-                  <p className="card-text">
-                    Un detalle para la calculadora.Dejo el icono original
-                  </p>
-                  <a href="/maincalc/1" className="btn btn-primary">
-                    Utilizar!
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-4">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{t("mainCalc")}</h5>
-                  <NavLink to="/maincalc/1">
-                    <Image title={t("mainCalc")} src={maincalcicon} />
-                  </NavLink>
-                  <p className="card-text">
-                    Un detalle para la calculadora.Dejo el icono original
-                  </p>
-                  <a href="/maincalc/1" className="btn btn-primary">
-                    Utilizar!
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-4">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{t("mainCalc")}</h5>
-                  <NavLink to="/maincalc/1">
-                    <Image title={t("mainCalc")} src={maincalcicon} />
-                  </NavLink>
-                  <p className="card-text">
-                    Un detalle para la calculadora.Dejo el icono original
-                  </p>
-                  <a href="/maincalc/1" className="btn btn-primary">
-                    Utilizar!
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+
+              <BrokerCardList />
+
 
           <br />
           <Card>
