@@ -1,9 +1,5 @@
 import React from "react";
-import {getBrokers, getFacts} from "../api/api";
-import Accordion from "bootstrap";
-import {NavLink} from "react-router-dom";
-import {Image} from "react-bootstrap";
-import maincalcicon from "../static/maincalcicon.png";
+import {getBrokers} from "../api/api";
 
 class BrokerCardList extends React.Component {
     constructor(props) {
@@ -19,7 +15,8 @@ class BrokerCardList extends React.Component {
 
             <div className="col-sm-4">
                 <div className="card"  style={{minHeight:"220px"}}>
-                    <div className="card-body">
+                    <div className="card-body calcCard" >
+
                         <h5 className="card-title">{calculator.name}</h5>
 
 

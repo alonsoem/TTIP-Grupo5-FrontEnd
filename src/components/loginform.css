@@ -19,3 +19,10 @@ body {
 
 
 }
+
+.calcCard{
+  background-image: url("/src/static/calculatorLogo2.jpg");
+  background-repeat: no-repeat;
+  background-position: center right;
+
+}
