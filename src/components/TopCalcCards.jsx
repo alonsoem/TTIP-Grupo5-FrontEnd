@@ -6,6 +6,7 @@ class BrokerCardList extends React.Component {
         super(props);
         this.state = {
             list: [],
+            traslateObj: props.translateObj,
         };
     }
 
@@ -39,7 +40,10 @@ class BrokerCardList extends React.Component {
                     {   name: each.name,
                         id:each.id}))});
             })
-            .catch(() => this.setState({ error: this.props.t("genericError") }));
+            .catch(() => {
+                    this.setState({error: this.props.t("genericError")});
+                }
+            );
     }
 
     render() {

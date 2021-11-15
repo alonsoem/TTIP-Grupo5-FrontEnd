@@ -5,6 +5,7 @@ import { withTranslation } from "react-i18next";
 import { getTaxes } from "../api/api";
 import NavBarPage from "./NavBarPage";
 import BrokerCardList from "./TopCalcCards";
+import jwt_decode from 'jwt-decode';
 
 class Landing extends React.Component {
   constructor(props) {
@@ -17,7 +18,17 @@ class Landing extends React.Component {
   componentDidMount() {
     if (!sessionStorage.getItem("token")) {
       this.props.history.push("/login");
+    }else{
+      const jwt_Token_decoded = jwt_decode(sessionStorage.getItem("token"));
+      console.log(jwt_Token_decoded.exp * 1000);
+      console.log(Date.now());
+      if (jwt_Token_decoded.exp*1000<Date.now()){
+        this.props.history.push("/login");
+
+      }
     }
+
+
     getTaxes()
       .then((taxes) => {
         this.setState({ rows: taxes });
@@ -50,7 +61,7 @@ class Landing extends React.Component {
         <NavBarPage />
         <div className="container">
 
-              <BrokerCardList />
+              <BrokerCardList t={t}/>
 
 
           <br />
