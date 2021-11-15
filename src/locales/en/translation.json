@@ -22,7 +22,7 @@
   "genericError": "We are sorry, an error occurred",
   "userCreationOk": "User created successfully",
   "invalidCredentials": "Invalid username or password",
-  "quickRef": "Quick reference",
+  "quickRef": "Quick reference of available rates ",
   "calcs": "Calculators",
   "lawNum": "Law number",
   "taxName": "Tax name",
@@ -71,7 +71,7 @@
   "priorityInvalidFeedback": "Priority must be a number between 1 and 10",
   "whenInvalidFeedback": "When Expression is invalid.",
   "thenInvalidFeedback": "Then Expression is invalid.",
-  "noTaxes": "Ups.. There is no Taxes here! Please try creating a new one",
+  "noTaxes": "Ups.. There are no Taxes here! Please try creating a new one",
   "rules": "Rules",
   "ruleApplication": "All the rules in the list will be considered when calculating the tax.",
   "youAreHere": "You are here",
@@ -90,5 +90,6 @@
   "modalTitleConfirm": "Confirmation",
   "modelBodyMessage": "Do you want to confirm deletion?",
   "backToLogin": "Back to login",
-  "isPublic": "Make it public"
+  "isPublic": "Make it public",
+  "quickRefDesc": "The table contains additional information about the rates that can be used in the calculators by default"
 }

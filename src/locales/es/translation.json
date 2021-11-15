@@ -22,7 +22,7 @@
   "genericError": "Lo sentimos, se produjo un error",
   "userCreationOk": "Usuario creado exitosamente",
   "invalidCredentials": "Usuario o contraseña no válidos",
-  "quickRef": "Referencia rápida",
+  "quickRef": "Referencia rápida de tasas disponibles ",
   "calcs": "Calculadoras",
   "lawNum": "Número ley",
   "taxName": "Nombre impuesto",
@@ -90,5 +90,6 @@
   "modalTitleConfirm": "Confirmación",
   "modelBodyMessage": "¿Seguro desea eliminar este item?",
   "backToLogin": "Volver al ingreso",
-  "isPublic": "Es visible públicamente"
+  "isPublic": "Es visible públicamente",
+  "quickRefDesc": "La tabla contiene información adicional acerca de las tasas predefinidas que pueden usarse en las calculadoras"
 }
