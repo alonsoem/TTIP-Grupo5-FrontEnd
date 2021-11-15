@@ -1,6 +1,5 @@
 import React from "react";
 import {getFacts} from "../api/api";
-import Accordion from "bootstrap";
 
 class FactList extends React.Component {
     constructor(props) {
@@ -18,13 +17,13 @@ class FactList extends React.Component {
                         <button class="accordion-button" type="button"
                                 data-bs-toggle="collapse"
                                 data-bs-target={"#" + fact.name}
-                                aria-expanded={index==0}
+                                aria-expanded={index===0}
                                 aria-controls={fact.name}>
                             {fact.name}
                         </button>
                     </h2>
                     <div id={fact.name}
-                         class={"accordion-collapse collapse " +(index==0 && "show")}
+                         class={"accordion-collapse collapse " +(index===0 && "show")}
                          aria-labelledby={fact.name+"header"}
                          >
                         <div class="accordion-body">

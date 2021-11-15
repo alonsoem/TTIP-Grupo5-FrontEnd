@@ -21,12 +21,6 @@ class BrokerCreate extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    if (!sessionStorage.getItem("token")) {
-      this.props.history.push("/login");
-    }
-  }
-
   cancelAction=(event)=>{
     this.props.history.push("/broker");
   }

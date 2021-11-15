@@ -22,11 +22,6 @@ class TaxCreate extends React.Component {
 
   }
 
-  componentDidMount() {
-    if (!sessionStorage.getItem("token")) {
-      this.props.history.push("/login");
-    }
-  }
 
   handleChangeName = (event) => {
     this.setState({ name: event.target.value });

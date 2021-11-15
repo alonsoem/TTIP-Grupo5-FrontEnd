@@ -59,9 +59,6 @@ class RuleCreate extends React.Component {
         }
     }
   componentDidMount() {
-    if (!sessionStorage.getItem("token")) {
-      this.props.history.push("/login");
-    }
       getFacts()
           .then((facts) => {
               this.setState({realFacts:facts.flatMap(each => (

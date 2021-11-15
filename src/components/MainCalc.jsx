@@ -47,9 +47,6 @@ class MainCalc extends Component {
   };
 
   componentDidMount() {
-    if (!sessionStorage.getItem("token")) {
-      this.props.history.push("/login");
-    }
     this.state.id = this.props.match.params.id;
     getBroker(this.state.id)
       .then((aBroker) => {

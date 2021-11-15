@@ -20,9 +20,6 @@ class Brokers extends React.Component {
   }
 
   componentDidMount() {
-    if (!sessionStorage.getItem("token")) {
-      this.props.history.push("/login");
-    }
     this.updateBrokers();
   }
 
@@ -82,13 +79,13 @@ class Brokers extends React.Component {
         id: item.id,
         name: item.name,
         url:
-          item.userId == this.state.userId ? (
+          item.userId === this.state.userId ? (
             <Button variant="info" onClick={this.editBroker} id={item.id}>
               <i className="fa fa-edit"></i>
             </Button>
           ) : null,
         del:
-          item.userId == this.state.userId ? (
+          item.userId === this.state.userId ? (
             <Button variant="info" onClick={this.confirmDelete} id={item.id}>
               <i className="fa fa-minus"></i>
             </Button>

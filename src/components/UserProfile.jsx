@@ -1,10 +1,10 @@
-import { MDBCard, MDBCardBody } from "mdbreact";
 import React, { Component } from "react";
 import {Alert, Button, Card, Col, Form, FormGroup, Row} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { getProfile, postProfile } from "../api/api";
 import "./loginform.css";
 import NavBarPage from "./NavBarPage";
+
 
 class UserProfile extends Component {
   constructor(props) {

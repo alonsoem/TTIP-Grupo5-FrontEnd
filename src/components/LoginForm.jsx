@@ -47,7 +47,8 @@ class LoginForm extends Component {
   }
 
   componentDidMount() {
-    sessionStorage.removeItem("token");
+    console.log("MONT");
+      sessionStorage.removeItem("token");
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("username");
   }

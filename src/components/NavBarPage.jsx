@@ -1,17 +1,56 @@
 import React, { Component } from "react";
+
 import "./NavBar.css";
 import { Navbar } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import App18 from "../App18.jsx";
 import aleclogo from "../static/alecLogoTrans2.png";
+import {withRouter} from "react-router";
+import jwt_decode from "jwt-decode";
+
+
 
 class NavBarPage extends Component {
+
+  componentDidMount(){
+  //if (!validateSession(this.state)) {
+  // this.props.history.push("/login");
+  // }
+
+  console.log("SESSION CHECKs: ");
+
+  let session = sessionStorage.getItem("token");
+  console.log(session);
+
+  if (!session) {
+    console.log("NO SESSION");
+    this.props.history.push("/login");
+  } else {
+    console.log("WITH SESSION");
+    const jwt_Token_decoded = jwt_decode(session);
+
+    //const d = new Date(0);
+    //d.setUTCSeconds(jwt_Token_decoded.exp);
+    //console.log(d);
+
+    if (jwt_Token_decoded.exp * 1000 < Date.now()) {
+      return this.props.history.push("/login");
+
+    }
+
+  }
+}
+
+
+
   render() {
     const { t } = this.props;
 
     return (
-      <div>
+
+        <div>
+
         <Navbar
           collapseOnSelect
           expand="md"
@@ -66,4 +105,4 @@ class NavBarPage extends Component {
   }
 }
 
-export default withTranslation()(NavBarPage);
+export default withTranslation()(withRouter(NavBarPage));
