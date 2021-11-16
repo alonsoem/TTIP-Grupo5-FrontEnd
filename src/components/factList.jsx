@@ -1,5 +1,6 @@
 import React from "react";
 import {getFacts} from "../api/api";
+import Accordion from "bootstrap";
 
 class FactList extends React.Component {
     constructor(props) {
