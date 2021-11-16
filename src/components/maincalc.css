@@ -1,7 +1,17 @@
+.calculatorCard{
+  background-image: url("/src/static/calculadora-rosa.png");
+  background-position: top right;
+  background-size: auto;
+  background-repeat: no-repeat;
+  height: 4.0em;
+  background-color: #ff9a78;
+}
+
 #maincalcdiv {
   background-image: url("/src/static/maincalc-wallpaper.png");
   background-position: center;
   background-size: cover;
+
 }
 
 @media (max-width: 992px) {
@@ -9,3 +19,4 @@
     margin-top: 20px;
   }
 }
+
