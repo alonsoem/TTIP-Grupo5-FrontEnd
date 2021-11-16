@@ -1,12 +1,13 @@
-import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
+import {MDBInput, MDBTable, MDBTableBody, MDBTableHead} from "mdbreact";
 import React from "react";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row, Form } from "react-bootstrap";
 import Dialog from "react-bootstrap-dialog";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { deleteBroker, getBrokers } from "../api/api";
+import {deleteBroker, getBrokers, postBrokersWithFilter} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import "./table.css";
+
 
 class Brokers extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class Brokers extends React.Component {
     this.state = {
       userId: sessionStorage.getItem("userId"),
       rows: [],
+      search:"",
     };
 
     this.confirmDelete = this.confirmDelete.bind(this);
@@ -21,6 +23,16 @@ class Brokers extends React.Component {
 
   componentDidMount() {
     this.updateBrokers();
+  }
+
+  handleSearch = (event)=> {
+    this.setState({search:event.target.value});
+    postBrokersWithFilter({words:event.target.value.split(" ")})
+        .then((response) => {
+          this.setState({ rows: response });
+        })
+        .catch(() => this.setState({ error: this.props.t("genericError") }));
+
   }
 
   updateBrokers() {
@@ -137,8 +149,21 @@ class Brokers extends React.Component {
             <Card.Body>
               <div className="row">
                 <div id={"contenedor"}>
+
                   <Row className="row">
                     <Col className="col-11 col-sm-10 col-lg-10 col-xl-10 pb-10">
+                      <Row>
+                        <Form.Group className="mb-3" controlId="searchValue">
+                          <MDBInput
+                              type="text"
+                              label={t("search")}
+                              value={this.state.search}
+                              icon="search"
+                              onChange={this.handleSearch}
+                              className={"form-control"} />
+
+                        </Form.Group>
+                      </Row>
                       <MDBTable
                         className="table table-striped table-hover"
                         responsive
@@ -163,6 +188,8 @@ class Brokers extends React.Component {
       </div>
     );
   }
+
+
 }
 
 export default withTranslation()(Brokers);

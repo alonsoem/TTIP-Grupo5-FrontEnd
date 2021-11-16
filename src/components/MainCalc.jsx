@@ -110,6 +110,7 @@ class MainCalc extends Component {
         <NavBarPage />
         <div className="container-fluid">
           <div className="container">
+
             <Row className="padding-5 justify-content-center">
               <Col className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
                 <MDBCard>

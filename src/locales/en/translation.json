@@ -91,5 +91,6 @@
   "modelBodyMessage": "Do you want to confirm deletion?",
   "backToLogin": "Back to login",
   "isPublic": "Make it public",
-  "quickRefDesc": "The table contains additional information about the rates that can be used in the calculators by default"
+  "quickRefDesc": "The table contains additional information about the rates that can be used in the calculators by default",
+  "search": "Search"
 }
