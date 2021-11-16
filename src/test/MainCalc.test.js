@@ -35,7 +35,7 @@ test("Layout works", () => {
   const { container } = setup();
 
   expect(container.querySelector('[type="submit"]')).toHaveTextContent(
-    "Submit"
+    "Calculate"
   );
 });
 
@@ -56,7 +56,7 @@ test("No input throws error", async () => {
 test("Amount input should have a $ in front of the input", () => {
   const { container } = setup();
 
-  expect(container.getElementsByClassName("fa-dollar-sign").length).toBe(2);
+  expect(container.getElementsByClassName("fa-dollar-sign").length).toBe(1);
 });
 
 test("Amount input should not allow letters", () => {
