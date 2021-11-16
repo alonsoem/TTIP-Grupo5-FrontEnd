@@ -13,6 +13,8 @@ import { getBroker, postCalc } from "../api/api";
 import "./maincalc.css";
 import NavBarPage from "./NavBarPage";
 import i18next from "i18next";
+import NumberFormat from 'react-number-format';
+import {FormattedNumber,IntlProvider} from 'react-intl';
 
 class MainCalc extends Component {
   constructor(props) {
@@ -90,6 +92,7 @@ class MainCalc extends Component {
   render() {
     const { t } = this.props;
     const {language} = i18next;
+
     const formats = {
       number: {
         ARS: {
@@ -98,7 +101,7 @@ class MainCalc extends Component {
         },
         USD: {
           style: 'currency',
-          currency: 'USD'
+          currency: 'USDQQ'
         }
       }
     };
@@ -209,7 +212,18 @@ class MainCalc extends Component {
                                 <b>{listitem.taxDescription}</b>
                               </a>
                               <br />
-                              {t("amount")}: {listitem.amount}
+                              {t("amount")}:
+
+                              <IntlProvider locale={language}>
+                              <FormattedNumber
+                                  value={listitem.amount}
+                                  style="currency"
+                                  currency={"USD"}
+                                  minimumFractionDigits={"2"}
+                                  maximumFractionDigits={"2"}
+                              />
+                              </IntlProvider>
+
                             </MDBListGroupItem>
                             ))}
                           </MDBListGroup>
