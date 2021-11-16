@@ -4,7 +4,7 @@ import { Button, Card, Col, Row } from "react-bootstrap";
 import Dialog from "react-bootstrap-dialog";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { deleteBroker, getBrokers } from "../api/api";
+import {deleteBroker, getBrokers, postBrokerCopy} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import "./table.css";
 
@@ -38,6 +38,14 @@ class Brokers extends React.Component {
         this.updateBrokers();
       })
       .catch((responseError) => this.handleAPIError(responseError));
+  };
+
+  copyBroker = (event) => {
+    postBrokerCopy(event.target.id)
+        .then((response) => {
+          this.updateBrokers();
+        })
+        .catch((responseError) => this.handleAPIError(responseError));
   };
 
   editBroker = (event) => {
@@ -78,14 +86,19 @@ class Brokers extends React.Component {
       return {
         id: item.id,
         name: item.name,
+        copy:(
+           <Button variant="info" onClick={this.copyBroker} id={item.id}>
+              <i className="fa fa-copy"></i>
+           </Button>
+            ),
         url:
-          item.userId === this.state.userId ? (
+          item.userId == this.state.userId ? (
             <Button variant="info" onClick={this.editBroker} id={item.id}>
               <i className="fa fa-edit"></i>
             </Button>
           ) : null,
         del:
-          item.userId === this.state.userId ? (
+          item.userId == this.state.userId ? (
             <Button variant="info" onClick={this.confirmDelete} id={item.id}>
               <i className="fa fa-minus"></i>
             </Button>
@@ -106,8 +119,13 @@ class Brokers extends React.Component {
         label: t("brokerName"),
         field: "name",
       },
+
       {
         label: t("actionCol"),
+        field: "copy",
+      },
+      {
+        label: "",
         field: "url",
       },
       {
