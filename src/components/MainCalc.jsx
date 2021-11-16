@@ -13,7 +13,6 @@ import { getBroker, postCalc } from "../api/api";
 import "./maincalc.css";
 import NavBarPage from "./NavBarPage";
 import i18next from "i18next";
-import NumberFormat from 'react-number-format';
 import {FormattedNumber,IntlProvider} from 'react-intl';
 
 class MainCalc extends Component {

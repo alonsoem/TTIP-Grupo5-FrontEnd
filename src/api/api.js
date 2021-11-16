@@ -6,7 +6,7 @@ let server = "";
 if (environment === "production") {
   server = "http://TTIP-Grupo5-FrontEnd.herokuapp.com";
 } else {
-  server = "http://localhost:8080";
+  server = "http://192.168.0.137:8080";
 }
 
 const authConfig = () => {
