@@ -1,13 +1,10 @@
 import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardHeader,
   MDBInput,
   MDBListGroup,
   MDBListGroupItem,
 } from "mdbreact";
 import React, { Component } from "react";
-import { Alert, Button, Col, Form, FormGroup, Row } from "react-bootstrap";
+import { Alert, Button, Col, Form, FormGroup, Row ,Card} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { getBroker, postCalc } from "../api/api";
 import "./maincalc.css";
@@ -23,7 +20,7 @@ class MainCalc extends Component {
       purchaseType: "NOAPARTADO",
       error: "",
       errorVisible: false,
-      result: undefined,
+      result: 0,
       brokerName: "",
       taxlist: [],
     };
@@ -106,132 +103,143 @@ class MainCalc extends Component {
     };
 
     return (
-      <div >
+      <div>
         <NavBarPage />
-        <div className="container-fluid">
-          <div className="container">
-
-            <Row className="padding-5 justify-content-center">
-              <Col className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
-                <MDBCard>
-                  <MDBCardBody>
-                    <Form onSubmit={this.handleSubmit}>
-                      <div className="card-header">
-                        <h4 className="text-center">{this.state.brokerName}</h4>
-                      </div>
-                      <br />
-                      <Alert
+        <div className="container">
+          <Card >
+            <Card.Header className={"calculatorCard"}>
+                  <h3 className="text-left"><b>{this.state.brokerName}</b></h3>
+            </Card.Header>
+            <Card.Body>
+              <Row className="padding-5 justify-content-center">
+                <Col className="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                  <Form onSubmit={this.handleSubmit}>
+                    <Alert
                         className="alert alert-dismissible"
                         variant="danger"
                         show={this.state.errorVisible}
-                      >
-                        {this.state.error}
-                      </Alert>
-                      <FormGroup controlId="formBasicAmount">
-                        <MDBInput
+                    >
+                      {this.state.error}
+                    </Alert>
+                    <FormGroup controlId="formBasicAmount">
+                      <MDBInput
                           type="text"
                           label={t("amount")}
                           icon="dollar-sign"
                           onChange={this.handleChangeAmount}
                           value={this.state.amount}
-                        />
-                      </FormGroup>
+                      />
+                    </FormGroup>
 
-                      <FormGroup controlId="formBasicPurchaseType">
-                        <label htmlFor="purchaseType" className="form-label">
-                          {t("purchaseType")}
-                          <a
+                    <FormGroup controlId="formBasicPurchaseType">
+                      <label htmlFor="purchaseType" className="form-label">
+                        {t("purchaseType")}
+                        <a
                             target="_blank"
                             rel="noopener noreferrer"
                             href="http://biblioteca.afip.gob.ar/pdfp/RG_4240_AFIP_A2.pdf"
-                          >
-                            {t("typeReference")}
-                          </a>
-                        </label>
-                        <select
+                        >
+                          {t("typeReference")}
+                        </a>
+                      </label>
+                      <select
                           name="purchaseType"
                           className="form-control"
                           id="purchaseType"
                           onChange={this.handleChangePurchaseType}
-                        >
-                          <option value="NOAPARTADO">{t("none")}</option>
-                          <option value="APARTADOA">A</option>
-                          <option value="APARTADOB">B</option>
-                        </select>
-                      </FormGroup>
+                      >
+                        <option value="NOAPARTADO">{t("none")}</option>
+                        <option value="APARTADOA">A</option>
+                        <option value="APARTADOB">B</option>
+                      </select>
+                    </FormGroup>
 
-                      <Row className="justify-content-center">
-                        <Col className="justify-content-middle text-center">
-                          <Button
+                    <Row className="justify-content-center">
+                      <Col className="justify-content-middle text-center">
+                        <Button
                             variant="primary"
                             type="submit"
                             className="align-content-center"
-                          >
-                            {t("send")}
-                          </Button>
-                        </Col>
-                      </Row>
-                      <br />
-                      <Row className="justify-content-left">
-                        <Col>
-                          <MDBInput
-                            type="text"
-                            label={t("result")}
-                            icon="dollar-sign"
-                            readOnly
-                            value={this.state.result}
-                          />
-                        </Col>
-                      </Row>
-                      <br />
-                    </Form>
-                  </MDBCardBody>
-                </MDBCard>
-              </Col>
-              <Col
-                id="appliedTaxesDiv"
-                className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4"
-              >
-                <MDBCard className="card text-white bg-info">
-                  <MDBCardHeader className="card-header">
-                    <h4>{t("appliedTaxes")}</h4>
-                  </MDBCardHeader>
-                  <MDBCardBody className="card-body">
-                    <MDBListGroup>
-                      {this.state.taxlist.map((listitem) => (
+                        >
+                          {t("calculate")}
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Form>
+                </Col>
+                <Col id="appliedTaxesDiv"
+                     className="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                  <Card className="card text-white bg-info">
+                    <Card.Header>
+                      {t("appliedTaxes")}
+                    </Card.Header>
+                    <Card.Body>
+                      <MDBListGroup>
+                        {this.state.taxlist.map((listitem) => (
 
                             <MDBListGroupItem
                                 className="card-text"
                                 key={listitem.taxId}
                             >
-                              <a
-                                  href={listitem.taxUrl}
-                                  target="_blank"
-                                  rel="noreferrer noopener"
-                              >
-                                <b>{listitem.taxDescription}</b>
-                              </a>
-                              <br />
-                              {t("amount")}:
+                              <Row>
 
-                              <IntlProvider locale={language}>
-                              <FormattedNumber
-                                  value={listitem.amount}
-                                  style="currency"
-                                  currency={"USD"}
-                                  minimumFractionDigits={"2"}
-                                  maximumFractionDigits={"2"}
-                              />
-                              </IntlProvider>
+                                <a
+                                    href={listitem.taxUrl}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                >
+                                  <b>{listitem.taxDescription}</b>
+                                </a>
+
+                              </Row>
+                              <Row >
+                                <div className={"text-right"}>
+
+                                <IntlProvider locale={language}>
+                                  <FormattedNumber
+                                      value={listitem.amount}
+                                      style="currency"
+                                      currency={"USD"}
+                                      minimumFractionDigits={"2"}
+                                      maximumFractionDigits={"2"}
+                                  />
+                                </IntlProvider>
+                                </div>
+
+                              </Row>
+
 
                             </MDBListGroupItem>
-                            ))}
-                          </MDBListGroup>
-                          </MDBCardBody>
-                </MDBCard>
-              </Col>
-            </Row>
-          </div>
+                        ))}
+                        <MDBListGroupItem>
+                        <Row>
+                          <Col className={"col-2"}>
+                            &nbsp;
+                          </Col>
+
+                          <Col className={"col-10 text-right"}>
+                            <b>
+                              <IntlProvider locale={language}>
+                                <FormattedNumber
+                                    value={this.state.result}
+                                    style="currency"
+                                    currency={"USD"}
+                                    minimumFractionDigits={"2"}
+                                    maximumFractionDigits={"2"}
+                                />
+                              </IntlProvider>
+                            </b>
+                          </Col>
+                        </Row>
+                        </MDBListGroupItem>
+
+                      </MDBListGroup>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+            </Card.Body>
+          </Card>
         </div>
       </div>
     );

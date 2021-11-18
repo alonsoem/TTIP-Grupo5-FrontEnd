@@ -45,6 +45,8 @@ export const postLogin = (body) =>
   });
 export const postBrokerCreate = (body) =>
   request("post", "/broker/create", body, authConfig());
+export const postBrokerCopy = (brokerId) =>
+    request("post", "/broker/copy/"+brokerId, {}, authConfig());
 export const postTaxCreate = (brokerId, body) =>
   request("post", "/broker/" + brokerId + "/tax", body, authConfig());
 export const postRuleCreate = (taxId, body) =>
