@@ -80,7 +80,7 @@
   "tax": "Tax",
   "taxes": "Taxes",
   "whenInfo": "You can use boolean expressions that represents true or false. For example: 1==1",
-  "priorityInfo": "Its a number that indicates the execution order of the rule.",
+  "priorityInfo": "It's a number between 1 and 10 that indicates the execution order of the rule.",
   "thenInfo": "Then Actions must be denote a number. You can use math operators like *, /, +, -,  and/or numbers or variables.",
   "leftSteps": "Next step",
   "profile": "Profile",
@@ -91,5 +91,6 @@
   "modelBodyMessage": "Do you want to confirm deletion?",
   "backToLogin": "Back to login",
   "isPublic": "Make it public",
-  "quickRefDesc": "The table contains additional information about the rates that can be used in the calculators by default"
+  "quickRefDesc": "The table contains additional information about the rates that can be used in the calculators by default",
+  "search": "Search"
 }

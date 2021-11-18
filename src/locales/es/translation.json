@@ -80,7 +80,7 @@
   "tax": "Impuesto",
   "taxes": "Impuestos",
   "whenInfo": "Puedes usar expresiones que representen un valor verdadero o falso. Por ejemplo: 1==1",
-  "priorityInfo": "Es un numero que define en que orden se verificara la regla respecto a otras reglas.",
+  "priorityInfo": "Es un numero entre 1 y 10 que define en que orden se verificara la regla respecto a otras reglas.",
   "thenInfo": "Las acciones deben representar un numero. Puedes utilizar operadores matematicos como *, /, +, -, tambien numeros o alguna de las variables disponibles.",
   "leftSteps": "Próximo paso",
   "profile": "Perfil",
@@ -91,5 +91,6 @@
   "modelBodyMessage": "¿Seguro desea eliminar este item?",
   "backToLogin": "Volver al ingreso",
   "isPublic": "Es visible públicamente",
-  "quickRefDesc": "La tabla contiene información adicional acerca de las tasas predefinidas que pueden usarse en las calculadoras"
+  "quickRefDesc": "La tabla contiene información adicional acerca de las tasas predefinidas que pueden usarse en las calculadoras",
+  "search": "Búsqueda"
 }
