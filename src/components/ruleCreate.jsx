@@ -19,6 +19,7 @@ class RuleCreate extends React.Component {
       description: "",
       errors:[],
       realFacts:[],
+      useCondition:null,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +27,7 @@ class RuleCreate extends React.Component {
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleChangeWhen = this.handleChangeWhen.bind(this);
     this.handleChangeThen = this.handleChangeThen.bind(this);
-        this.togglePopover = this.togglePopover.bind(this);
+    this.togglePopover = this.togglePopover.bind(this);
 
 
     }
@@ -34,9 +35,7 @@ class RuleCreate extends React.Component {
 
 
     togglePopover() {
-
         this.setState({ popoverOpen: !this.state.popoverOpen })
-
     }
 
 
@@ -70,8 +69,12 @@ class RuleCreate extends React.Component {
     this.props.history.push("/tax/edit/"+this.props.match.params.id);
 
   }
+    toggleConditionOnOff = (event)=>{
+        this.setState({"useCondition": event.target.checked});
+    }
 
-  handleChangeName = (event) => {
+
+    handleChangeName = (event) => {
     this.setState({ name: event.target.value });
   };
   handleChangeDescription = (event) => {
@@ -99,8 +102,9 @@ class RuleCreate extends React.Component {
         {
           name: this.state.name,
           description: this.state.description,
-          when: this.state.when,
+          when: (this.state.useCondition ? this.state.when:["always"]),
           then: [this.state.then],
+          useWhen:this.state.useCondition
     })
         .then((response) => {
           this.props.history.push("/tax/edit/"+this.props.match.params.id);
@@ -108,45 +112,55 @@ class RuleCreate extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
-  getWhenList(t) {
-    return this.state.when.map((condition,i) =>
-        <Row>
-          <Col>
-            <Form.Group className="mb-3" controlId={"whenValue"+i}>
-              <Form.Label>{t("whenCondition")} #{i}</Form.Label>
-              <Row class={"align-middle"}>
-                <Col>
-                  <Form.Control  value={condition} onChange={e => this.handleInputChange(e, i)}
-                                 className={
-                                     this.hasError("when" +i)
-                                         ? "form-control is-invalid"
-                                         : "form-control"
-                                 }/>
-                    <div
-                        className={
-                            this.hasError("when" + i)
-                                ? "invalid-feedback"
-                                : "visually-hidden"
-                        }
-                    >
-                        {t("whenInvalidFeedback")}
-                    </div>
-                </Col>
-                <Col>
-                  <div className={"btn-box"}>
-                    {this.state.when.length !== 1 &&
-                    <Button variant="secondary" onClick={() => this.handleRemoveClick(i)} type="button">-</Button>}
-                    {this.state.when.length - 1 === i &&
-                    <Button variant="secondary" onClick={()=>this.handleAddClick()} type="button">+</Button>}
-                  </div>
-                </Col>
-              </Row>
-            </Form.Group>
-          </Col>
+    getWhenList(t) {
+        return this.state.when.map((condition,i) =>
+            <Row className="padding-5">
+                <Col className={"sm-10 col-9"}>
+                    <Form.Group className="sm-2" controlId={"whenValue"+i} as={"Row"}>
+                        <Row>
+                            <Col className={"col-4"}>
+                                <Form.Label>{t("whenCondition")} # {i}</Form.Label>
+                            </Col>
+                            <Col className={"col-8"}>
+                                <Form.Control value={condition} onChange={e => this.handleInputChange(e, i)}
 
-        </Row>
-    );
-  }
+                                              className={
+                                                  this.hasError("when" +i)
+                                                      ? "form-control is-invalid"
+                                                      : "form-control"
+                                              }/>
+                                <div
+                                    className={
+                                        this.hasError("when" + i)
+                                            ? "invalid-feedback"
+                                            : "visually-hidden"
+                                    }
+                                >
+                                    {t("whenInvalidFeedback")}
+                                </div>
+                            </Col>
+                        </Row>
+                    </Form.Group>
+                </Col>
+                <Col className={"sm-2 col-3"}>
+                    <div className={"btn-box"}>
+                        {this.state.when.length !== 1 &&
+                        <button type="button" class="btn-sm btn-secondary" onClick={() => this.handleRemoveClick(i)}>
+                            <i className="fas fa-minus "></i></button>
+                        }
+                        &nbsp;
+                        {this.state.when.length - 1 === i &&
+                        <button type="button" className="btn-sm btn-secondary" onClick={() => this.handleAddClick(i)}>
+                            <i className="fas fa-plus"></i></button>
+                        }
+                    </div>
+
+                </Col>
+
+            </Row>
+
+        );
+    }
 
 
   handleInputChange = (e, index) => {
@@ -180,21 +194,21 @@ class RuleCreate extends React.Component {
             errors.push("description");
         }
 
-        if (this.state.when.length > 0){
-
-            this.state.when.forEach((anExpression, index) => {
-                    if (anExpression===""){
-                        errors.push("when"+ index)
-                    }
-                    if (!this.validateExpression(anExpression)) {
-                        errors.push("when" + index);
-                    }
-                }
-            )
-        }else {
-            errors.push("when"+0);
-        }
-
+      if (this.state.useCondition) {
+          if (this.state.when.length > 0) {
+              this.state.when.forEach((anExpression, index) => {
+                      if (anExpression === "") {
+                          errors.push("when" + index)
+                      }
+                      if (!this.validateExpression(anExpression)) {
+                          errors.push("when" + index);
+                      }
+                  }
+              )
+          } else {
+              errors.push("when" + 0);
+          }
+      }
 
         if (this.state.then.length > 0) {
             if (!this.validateExpression(this.state.then)) {
@@ -294,18 +308,43 @@ class RuleCreate extends React.Component {
 
                   </Form.Group>
                 </Row>
-                <Row className="mb-3">
+                    <Row className="mb-3">
+                        <Form.Group className="mb-3" controlId="whenValue" >
+                            <div className="card shadow-none border-light" >
+                                <Card.Header>
+                                    <Row>
+                                        <div className={"col-11"} >
+                                            <div className='custom-control custom-switch'>
+                                                <input
+                                                    type='checkbox'
+                                                    className='custom-control-input'
+                                                    id='customSwitchesChecked'
+                                                    checked={this.state.useCondition ? "checked":null}
+                                                    value={this.state.useCondition}
+                                                    onChange={this.toggleConditionOnOff}
 
-                    <div className="form-group">
 
-                      <label>{t("when")}</label>&nbsp;
-                        <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("whenCondition"),t("whenInfo"))}>
-                            <i className="fa fa-info-circle blue-text"></i>
-                        </OverlayTrigger>
-                      {this.getWhenList(t)}
-                    </div>
+                                                />
+                                                <label className='custom-control-label' htmlFor='customSwitchesChecked'>
+                                                    {t("when")}
 
-                  </Row>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div className={"col-1"}>
+                                            <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("whenCondition"),t("whenInfo"))}>
+                                                <i className="fa fa-info-circle blue-text"></i>
+                                            </OverlayTrigger>
+                                        </div>
+                                    </Row>
+
+                                </Card.Header>
+                                <Card.Body className={this.state.useCondition ? "show":"collapse"}>
+                                    {this.getWhenList(t)}
+                                </Card.Body>
+                            </div>
+                        </Form.Group>
+                    </Row>
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="thenValue">
                     <Form.Label>{t("then")}</Form.Label>&nbsp;

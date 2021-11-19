@@ -23,6 +23,7 @@ class RuleEdit extends React.Component {
       then:[],
       errors:[],
       realFacts:[],
+      useCondition:null
     };
 
 
@@ -32,6 +33,10 @@ class RuleEdit extends React.Component {
     this.handleChangeThen = this.handleChangeThen.bind(this);
 
   }
+
+    toggleConditionOnOff = (event)=>{
+        this.setState({"useCondition": event.target.checked});
+    }
 
   validateExpression(expression) {
       const objects = this.state.realFacts.map((item) => (
@@ -58,9 +63,11 @@ class RuleEdit extends React.Component {
     this.state.id=this.props.match.params.id;
     getRule(this.state.id)
         .then(rule => {
-          this.setState({name: rule.name,description:rule.description,
-              when:[...rule.when],
-              then:this.handleLoadArray(rule.then)});
+            this.setState({name: rule.name,description:rule.description,
+                when:(rule.when[0]=="always"? [""]:[...rule.when]),
+                then:this.handleLoadArray(rule.then),
+                useCondition: (rule.when[0]=="always"? false:true)
+            });
         })
         .catch(() => this.setState({ error: this.props.t("genericError") }));
 
@@ -107,8 +114,9 @@ class RuleEdit extends React.Component {
          {
                 name: this.state.name,
                 description: this.state.description,
-                when: this.state.when,
+                when: (this.state.useCondition ? this.state.when:["always"]),
                 then: [this.state.then],
+                useWhen:this.state.useCondition,
         })
         .then((response) => {
           this.props.history.push("/broker");
@@ -118,11 +126,15 @@ class RuleEdit extends React.Component {
 
     getWhenList(t) {
         return this.state.when.map((condition,i) =>
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3" controlId={"whenValue"+i}>
-                        <Form.Label>{t("whenCondition")} #{i}</Form.Label>
-                        <Form.Control  value={condition} onChange={e => this.handleInputChange(e, i)}
+            <Row className="padding-5">
+                <Col className={"sm-10 col-9"}>
+                    <Form.Group className="sm-2" controlId={"whenValue"+i} as={"Row"}>
+                        <Row>
+                        <Col className={"col-4"}>
+                            <Form.Label>{t("whenCondition")} # {i}</Form.Label>
+                        </Col>
+                        <Col className={"col-8"}>
+                        <Form.Control value={condition} onChange={e => this.handleInputChange(e, i)}
 
                                        className={
                                            this.hasError("when" +i)
@@ -138,17 +150,20 @@ class RuleEdit extends React.Component {
                         >
                             {t("whenInvalidFeedback")}
                         </div>
+                        </Col>
+                        </Row>
                     </Form.Group>
                 </Col>
-                <Col>
+                <Col className={"sm-2 col-3"}>
                     <div className={"btn-box"}>
                         {this.state.when.length !== 1 &&
-                        <button type="button" className="btn btn-secondary btn-sm" onClick={() => this.handleRemoveClick(i)}>
-                            <i className="fas fa-minus fa-2x"></i></button>
+                        <button type="button" class="btn-sm btn-secondary" onClick={() => this.handleRemoveClick(i)}>
+                            <i className="fas fa-minus "></i></button>
                         }
+                        &nbsp;
                         {this.state.when.length - 1 === i &&
-                        <button type="button" className="btn btn-secondary btn-sm" onClick={() => this.handleAddClick(i)}>
-                            <i className="fas fa-plus fa-2x"></i></button>
+                        <button type="button" className="btn-sm btn-secondary" onClick={() => this.handleAddClick(i)}>
+                            <i className="fas fa-plus"></i></button>
                         }
                     </div>
 
@@ -194,19 +209,20 @@ class RuleEdit extends React.Component {
             errors.push("description");
         }
 
-        if (this.state.when.length > 0){
-
-            this.state.when.forEach((anExpression, index) => {
-                    if (anExpression===""){
-                        errors.push("when"+ index)
+        if (this.state.useCondition) {
+            if (this.state.when.length > 0) {
+                this.state.when.forEach((anExpression, index) => {
+                        if (anExpression === "") {
+                            errors.push("when" + index)
+                        }
+                        if (!this.validateExpression(anExpression)) {
+                            errors.push("when" + index);
+                        }
                     }
-                    if (!this.validateExpression(anExpression)) {
-                        errors.push("when" + index);
-                    }
-                }
-            )
-        }else {
-            errors.push("when"+0);
+                )
+            } else {
+                errors.push("when" + 0);
+            }
         }
 
         if (this.state.then.length > 0) {
@@ -315,14 +331,44 @@ class RuleEdit extends React.Component {
                               </Form.Group>
                           </Row>
                           <Row className="mb-3">
-                              <Form.Group className="mb-3" controlId="whenValue">
-                                  <Form.Label>{t("when")}</Form.Label>&nbsp;
-                                  <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("whenCondition"),t("whenInfo"))}>
-                                      <i className="fa fa-info-circle blue-text"></i>
-                                  </OverlayTrigger>
-                                  {this.getWhenList(t)}
+                              <Form.Group className="mb-3" controlId="whenValue" >
+                              <div className="card shadow-none border-light" >
+                                  <Card.Header>
+                                    <Row>
+                                        <div className={"col-11"} >
+                                          <div className='custom-control custom-switch'>
+                                              <input
+                                                  type='checkbox'
+                                                  className='custom-control-input'
+                                                  id='customSwitchesChecked'
+                                                  checked={this.state.useCondition ? "checked":null}
+                                                  value={this.state.useCondition}
+                                                  onChange={this.toggleConditionOnOff}
 
-                              </Form.Group>
+
+                                              />
+                                              <label className='custom-control-label' htmlFor='customSwitchesChecked'>
+                                                  {t("when")}
+
+                                              </label>
+                                          </div>
+                                        </div>
+                                        <div className={"col-1"}>
+                                            <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("whenCondition"),t("whenInfo"))}>
+                                                <i className="fa fa-info-circle blue-text"></i>
+                                            </OverlayTrigger>
+                                        </div>
+                                    </Row>
+
+                                  </Card.Header>
+                                  <Card.Body className={this.state.useCondition ? "show":"collapse"}>
+                                          {this.getWhenList(t)}
+                                  </Card.Body>
+
+
+
+                              </div>
+                          </Form.Group>
                           </Row>
                           <Row className="mb-3">
                               <Form.Group className="mb-3" controlId="thenValue">
