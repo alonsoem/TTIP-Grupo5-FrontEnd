@@ -18,6 +18,7 @@ class Taxes extends React.Component {
       url: "",
       rules: [],
       errors: [],
+      items:[],
     };
 
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -28,21 +29,27 @@ class Taxes extends React.Component {
   getAllRules() {
     return (
       <DragTest
-        taxRules={this.state.rules.map((e) => ({ id: e.id, name: e.name }))}
+        taxId={this.state.id}
+        taxRules={this.state.rules.map((e) => ({ id: e.id, name: e.name, priority: e.priority }))}
         context={this}
+        onUpdate={this.handleUpdateDragList}
       />
     );
+  }
+
+  handleUpdateDragList = (event) =>{
+
   }
 
   cancelAction = (event) => {
     event.preventDefault();
     this.props.history.goBack();
-    //this.props.history.push("/broker");
   };
 
   componentDidMount() {
     this.state.id = this.props.match.params.id;
     this.update();
+
   }
 
   handleChangeName = (event) => {

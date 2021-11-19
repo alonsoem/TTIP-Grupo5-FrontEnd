@@ -63,7 +63,7 @@ export const deleteTax = (id) =>
   request("delete", "/broker/1/tax/" + id, {}, authConfig());
 export const deleteRule = (id) =>
   request("delete", "/tax/1/rule/" + id, {}, authConfig());
-
 export const postBrokersWithFilter = (body) =>
     request("post", "/broker/search/", body, authConfig());
-
+export const putRuleOrderChange = (taxId,body)=>
+    request("put","/tax/" + taxId + "/rule/orderChange",body,authConfig());

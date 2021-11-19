@@ -17,7 +17,6 @@ class RuleCreate extends React.Component {
       then: [],
       name: "",
       description: "",
-      priority: 1,
       errors:[],
       realFacts:[],
     };
@@ -25,7 +24,6 @@ class RuleCreate extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
-    this.handleChangePriority = this.handleChangePriority.bind(this);
     this.handleChangeWhen = this.handleChangeWhen.bind(this);
     this.handleChangeThen = this.handleChangeThen.bind(this);
         this.togglePopover = this.togglePopover.bind(this);
@@ -79,9 +77,6 @@ class RuleCreate extends React.Component {
   handleChangeDescription = (event) => {
     this.setState({ description: event.target.value });
   };
-  handleChangePriority = (event) => {
-    this.setState({ priority: event.target.value });
-  };
   handleChangeWhen = (event) => {
     this.setState({ when: event.target.value });
   };
@@ -104,7 +99,6 @@ class RuleCreate extends React.Component {
         {
           name: this.state.name,
           description: this.state.description,
-          priority: this.state.priority.valueOf(),
           when: this.state.when,
           then: [this.state.then],
     })
@@ -184,12 +178,6 @@ class RuleCreate extends React.Component {
         // Check description of Rule
         if (this.state.description.length <= 3) {
             errors.push("description");
-        }
-
-        const expression = /^-{0}?\b([1-9]|10)\b/;
-        var validExpression = expression.test(String(this.state.priority).toLowerCase());
-        if (!validExpression) {
-            errors.push("priority");
         }
 
         if (this.state.when.length > 0){
@@ -307,31 +295,6 @@ class RuleCreate extends React.Component {
                   </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                  <Form.Group className="mb-3" controlId="priorityValue">
-                    <Form.Label>{t("priority")}</Form.Label>&nbsp;
-                      <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("priority"),t("priorityInfo"))}>
-                          <i className="fa fa-info-circle blue-text"></i>
-                      </OverlayTrigger>
-
-                    <Form.Control  onChange={this.handleChangePriority} value={this.state.priority} variant="outlined"
-                                   className={
-                                       this.hasError("priority")
-                                           ? "form-control is-invalid"
-                                           : "form-control"
-                                   }/>
-                      <div
-                          className={
-                              this.hasError("priority")
-                                  ? "invalid-feedback"
-                                  : "visually-hidden"
-                          }
-                      >
-                          {t("priorityInvalidFeedback")}
-                      </div>
-
-                  </Form.Group>
-                </Row>
-                  <Row className="mb-3">
 
                     <div className="form-group">
 

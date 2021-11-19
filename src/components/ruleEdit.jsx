@@ -21,7 +21,6 @@ class RuleEdit extends React.Component {
       description:"",
       when:[],
       then:[],
-      priority:0,
       errors:[],
       realFacts:[],
     };
@@ -30,7 +29,6 @@ class RuleEdit extends React.Component {
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
-    this.handleChangePriority = this.handleChangePriority.bind(this);
     this.handleChangeThen = this.handleChangeThen.bind(this);
 
   }
@@ -57,10 +55,10 @@ class RuleEdit extends React.Component {
   }
 
   componentDidMount() {
-    this.state.id=this.props.match.params.id
+    this.state.id=this.props.match.params.id;
     getRule(this.state.id)
         .then(rule => {
-          this.setState({name: rule.name,description:rule.description,priority:rule.priority,
+          this.setState({name: rule.name,description:rule.description,
               when:[...rule.when],
               then:this.handleLoadArray(rule.then)});
         })
@@ -89,14 +87,10 @@ class RuleEdit extends React.Component {
     handleChangeDescription = (event) => {
         this.setState({ description: event.target.value });
     };
-    handleChangePriority = (event) => {
-        this.setState({ priority: event.target.value });
-    };
     handleChangeThen = (event) => {
         this.setState({ then:  event.target.value });
 
     };
-
 
     handleAPIError(responseError) {
     let errorToDisplay = this.props.t("genericError");
@@ -113,7 +107,6 @@ class RuleEdit extends React.Component {
          {
                 name: this.state.name,
                 description: this.state.description,
-                priority: this.state.priority.valueOf(),
                 when: this.state.when,
                 then: [this.state.then],
         })
@@ -199,12 +192,6 @@ class RuleEdit extends React.Component {
         // Check description of Rule
         if (this.state.description.length<=3) {
             errors.push("description");
-        }
-
-        const expression = /^-{0}?\b([1-9]|10)\b/;
-        var validExpression = expression.test(String(this.state.priority).toLowerCase());
-        if (!validExpression) {
-            errors.push("priority");
         }
 
         if (this.state.when.length > 0){
@@ -324,30 +311,6 @@ class RuleEdit extends React.Component {
                                       }
                                   >
                                       {t("descriptionInvalidFeedback")}
-                                  </div>
-                              </Form.Group>
-                          </Row>
-                          <Row className="mb-3">
-                              <Form.Group className="mb-3" controlId="priorityValue">
-                                  <Form.Label>{t("priority")}</Form.Label>
-                                  &nbsp;
-                                  <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("priority"),t("priorityInfo"))}>
-                                      <i className="fa fa-info-circle blue-text"></i>
-                                  </OverlayTrigger>
-                                  <Form.Control  onChange={this.handleChangePriority} value={this.state.priority}
-                                                 className={
-                                                     this.hasError("priority")
-                                                         ? "form-control is-invalid"
-                                                         : "form-control"
-                                                 }/>
-                                  <div
-                                      className={
-                                          this.hasError("priority")
-                                              ? "invalid-feedback"
-                                              : "visually-hidden"
-                                      }
-                                  >
-                                      {t("priorityInvalidFeedback")}
                                   </div>
                               </Form.Group>
                           </Row>
