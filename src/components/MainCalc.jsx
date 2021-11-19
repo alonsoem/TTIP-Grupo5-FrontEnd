@@ -23,6 +23,7 @@ class MainCalc extends Component {
       result: 0,
       brokerName: "",
       taxlist: [],
+      needApartado:false,
     };
 
     this.handleChangeAmount = this.handleChangeAmount.bind(this);
@@ -48,8 +49,14 @@ class MainCalc extends Component {
     this.state.id = this.props.match.params.id;
     getBroker(this.state.id)
       .then((aBroker) => {
-        this.setState({ brokerName: aBroker.name });
-      })
+        this.setState({ brokerName: aBroker.name,
+                              needApartado: aBroker.taxes.flatMap(c=>c.rules).flatMap(d=>d.when).some((e)=>
+                              {
+                                const regExp = /\bapartado\b/g;
+                                return regExp.test(e);
+                              })
+                            });
+        })
       .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
 
@@ -83,6 +90,36 @@ class MainCalc extends Component {
     }
     this.setState({ error: errorToDisplay });
     this.showAlert();
+  }
+
+  showApartadoField = (t)=>{
+    if (this.state.needApartado){
+      return(
+
+      <FormGroup controlId="formBasicPurchaseType">
+        <label htmlFor="purchaseType" className="form-label">
+          {t("purchaseType")}
+          <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="http://biblioteca.afip.gob.ar/pdfp/RG_4240_AFIP_A2.pdf"
+          >
+            {t("typeReference")}
+          </a>
+        </label>
+        <select
+            name="purchaseType"
+            className="form-control"
+            id="purchaseType"
+            onChange={this.handleChangePurchaseType}
+        >
+          <option value="NOAPARTADO">{t("none")}</option>
+          <option value="APARTADOA">A</option>
+          <option value="APARTADOB">B</option>
+        </select>
+      </FormGroup>
+      )
+    }
   }
 
   render() {
@@ -131,28 +168,8 @@ class MainCalc extends Component {
                       />
                     </FormGroup>
 
-                    <FormGroup controlId="formBasicPurchaseType">
-                      <label htmlFor="purchaseType" className="form-label">
-                        {t("purchaseType")}
-                        <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href="http://biblioteca.afip.gob.ar/pdfp/RG_4240_AFIP_A2.pdf"
-                        >
-                          {t("typeReference")}
-                        </a>
-                      </label>
-                      <select
-                          name="purchaseType"
-                          className="form-control"
-                          id="purchaseType"
-                          onChange={this.handleChangePurchaseType}
-                      >
-                        <option value="NOAPARTADO">{t("none")}</option>
-                        <option value="APARTADOA">A</option>
-                        <option value="APARTADOB">B</option>
-                      </select>
-                    </FormGroup>
+                    {this.showApartadoField(t)}
+
 
                     <Row className="justify-content-center">
                       <Col className="justify-content-middle text-center">
