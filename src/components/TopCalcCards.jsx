@@ -20,7 +20,7 @@ class BrokerCardList extends React.Component {
 
                         <h5 className="card-title">{calculator.name}</h5>
                         <p className="card-text">
-                            {calculator.name}
+                            {calculator.description}
                         </p>
                         <a href={"/maincalc/" + calculator.id} className="btn btn-primary">
                             Utilizar!
@@ -38,6 +38,7 @@ class BrokerCardList extends React.Component {
             .then((response) => {
                 this.setState({list:response.map((each) => (
                     {   name: each.name,
+                        description:each.description,
                         id:each.id}))});
             })
             .catch(() => {
