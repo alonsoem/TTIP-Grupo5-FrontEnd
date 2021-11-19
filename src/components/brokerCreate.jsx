@@ -14,6 +14,7 @@ class BrokerCreate extends React.Component {
       errorVisible: false,
       isPublic:false,
       taxName: "",
+      description:"",
 
     };
 
@@ -28,6 +29,7 @@ class BrokerCreate extends React.Component {
   submit = () =>{
     postBrokerCreate({
       name: this.state.taxName,
+      description:this.state.description,
       isPublic:this.state.isPublic
     })
         .then((response) => {
@@ -45,6 +47,11 @@ class BrokerCreate extends React.Component {
     if (this.state.taxName === "") {
       errors.push("name");
     }
+
+      // Check if description have more than 5 chars
+      if (this.state.description.length<5) {
+          errors.push("description");
+      }
 
     this.setState({
       errors: errors,
@@ -65,6 +72,10 @@ class BrokerCreate extends React.Component {
     this.setState({ taxName: event.target.value });
   };
 
+    handleChangeDescription= (event) => {
+        this.setState({ description: event.target.value });
+    };
+
   handleAPIError(responseError) {
     let errorToDisplay = this.props.t("genericError");
 
@@ -77,6 +88,7 @@ class BrokerCreate extends React.Component {
     toggleIsPublic = (event)=>{
         this.setState({"isPublic": event.target.checked});
     }
+
   render() {
     const { t } = this.props;
 
@@ -114,6 +126,31 @@ class BrokerCreate extends React.Component {
                   </Form.Group>
 
                 </Row>
+
+                <Row className="mb-3">
+                    <Form.Group className="mb-3" controlId="descriptionValue">
+                        <Form.Label>{t("description")}</Form.Label>
+                        <Form.Control  onChange={this.handleChangeDescription} value={this.state.taxName}
+                                       className={
+                                           this.hasError("description")
+                                               ? "form-control is-invalid"
+                                               : "form-control"
+                                       }
+                        />
+                        <div
+                            className={
+                                this.hasError("description")
+                                    ? "invalid-feedback"
+                                    : "visually-hidden"
+                            }
+                        >
+                            {t("descriptionInvalidFeedback")}
+                        </div>
+                    </Form.Group>
+
+                </Row>
+
+
                 <Row className="mb-3">
                     <Form.Group className="mb-3" controlId="publicValue">
                         <div className="form-check">

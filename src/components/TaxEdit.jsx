@@ -247,15 +247,15 @@ class Taxes extends React.Component {
                     {t("back")}
                   </Button>
                 </Col>
-                <Col className={"sm-1"}>
-                  <Button
-                      variant="outline-danger"
-                      onClick={this.deleteAction}
-                      id={this.state.id}
+                <Col >
+                  <button className="btn btn-outline-danger"
+
+                          onClick={this.deleteAction}
+                          id={this.state.id}
                   >
-                    <i className="fa fa-trash"></i>&nbsp;
-                    {t("remove")}
-                  </Button>
+                    <i className="fa fa-trash"></i><span>{t("remove")}</span>
+                  </button>
+
                 </Col>
               </Row>
             </Card.Footer>

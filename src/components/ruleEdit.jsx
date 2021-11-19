@@ -335,7 +335,8 @@ class RuleEdit extends React.Component {
                                                      this.hasError("then")
                                                          ? "form-control is-invalid"
                                                          : "form-control"
-                                                 }/>
+                                                 }
+                                  />
                                   <div
                                       className={
                                           this.hasError("then")
@@ -384,15 +385,15 @@ class RuleEdit extends React.Component {
                               {t("back")}
                           </Button>
                       </Col>
-                      <Col className={"sm-1"}>
-                          <Button
-                              variant="outline-danger"
+                      <Col>
+                          <button class="btn btn-outline-danger"
+
                               onClick={this.deleteAction}
                               id={this.state.id}
                           >
-                              <i className="fa fa-trash"></i>&nbsp;
-                              {t("remove")}
-                          </Button>
+                              <i class="fa fa-trash"></i><span>{t("remove")}</span>
+                          </button>
+
                       </Col>
                   </Row>
               </Card.Footer>

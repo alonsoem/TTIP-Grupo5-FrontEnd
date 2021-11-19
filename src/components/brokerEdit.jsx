@@ -16,10 +16,12 @@ class BrokerEdit extends React.Component {
       taxes: [],
       broker: null,
       isPublic:false,
+      description:"",
       errors: [],
     };
 
     this.handleChangeName = this.handleChangeName.bind(this);
+    this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   cancelAction = (event) => {
@@ -44,6 +46,10 @@ class BrokerEdit extends React.Component {
     this.setState({ name: event.target.value });
   };
 
+  handleChangeDescription = (event) => {
+    this.setState({ description: event.target.value });
+  };
+
   handleAPIError(responseError) {
     let errorToDisplay = this.props.t("genericError");
 
@@ -56,6 +62,7 @@ class BrokerEdit extends React.Component {
   submit = () => {
     putBrokerEdit(this.state.id, {
       name: this.state.name,
+      description:this.state.description,
       isPublic:this.state.isPublic
     })
       .then((response) => {
@@ -71,6 +78,11 @@ class BrokerEdit extends React.Component {
     // Check name of broker
     if (this.state.name === "") {
       errors.push("name");
+    }
+
+    // Check if description have more than 5 chars
+    if (this.state.description.length<5) {
+      errors.push("description");
     }
 
     this.setState({
@@ -146,42 +158,61 @@ class BrokerEdit extends React.Component {
                   <Col lg="7" xs="7" md="7">
                     <Row>
                       <Row className="mb-3">
-                        <Form.Group controlId="idValue">
-                          <MDBInput
-                            type="text"
-                            label={t("id")}
-                            value={id}
-                            background
-                          />
+                        <Form.Group className="mb-3" controlId="idValue">
+                          <Form.Label>{t("id")}</Form.Label>
+                          <Form.Control value={id} />
                         </Form.Group>
                       </Row>
 
+
                       <Row className="mb-3">
                         <Form.Group className="mb-3" controlId="nameValue">
-                          <MDBInput
-                            type="text"
-                            label={t("name")}
-                            value={this.state.name}
-                            onChange={this.handleChangeName}
-                            className={
-                              this.hasError("name")
-                                ? "form-control is-invalid"
-                                : "form-control"
-                            }
-                            background
+                          <Form.Label>{t("name")}</Form.Label>
+                          <Form.Control
+                              onChange={this.handleChangeName}
+                              value={this.state.name}
+                              className={
+                                this.hasError("name")
+                                    ? "form-control is-invalid"
+                                    : "form-control"
+                              }
                           />
                           <div
-                            className={
-                              this.hasError("name")
-                                ? "invalid-feedback"
-                                : "visually-hidden"
-                            }
+                              className={
+                                this.hasError("name")
+                                    ? "invalid-feedback"
+                                    : "visually-hidden"
+                              }
                           >
                             {t("userInvalidFeedback")}
                           </div>
                         </Form.Group>
                       </Row>
 
+                      <Row className="mb-3">
+                        <Form.Group className="mb-3" controlId="descriptionValue">
+                          <Form.Label>{t("description")}</Form.Label>
+                          <Form.Control  onChange={this.handleChangeDescription} value={this.state.taxName}
+                                         className={
+                                           this.hasError("description")
+                                               ? "form-control is-invalid"
+                                               : "form-control"
+                                         }
+                          />
+                          <div
+                              className={
+                                this.hasError("description")
+                                    ? "invalid-feedback"
+                                    : "visually-hidden"
+                              }
+                          >
+                            {t("descriptionInvalidFeedback")}
+                          </div>
+                        </Form.Group>
+
+                      </Row>
+
+                      
                       <Row className="mb-3">
                         <Form.Group className="mb-3" controlId="publicValue">
                           <div className="form-check">
@@ -240,15 +271,14 @@ class BrokerEdit extends React.Component {
                       {t("back")}
                     </Button>
                   </Col>
-                  <Col className={"sm-1"}>
-                    <Button
-                      variant="outline-danger"
-                      onClick={this.deleteAction}
-                      id={this.state.id}
+                  <Col>
+                    <button className="btn btn-outline-danger"
+
+                            onClick={this.deleteAction}
+                            id={this.state.id}
                     >
-                      <i className="fa fa-trash"></i>&nbsp;
-                      {t("remove")}
-                    </Button>
+                      <i className="fa fa-trash"></i><span>{t("remove")}</span>
+                    </button>
                   </Col>
                 </Row>
               </Card.Footer>
