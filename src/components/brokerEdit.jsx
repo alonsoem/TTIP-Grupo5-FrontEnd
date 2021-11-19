@@ -131,9 +131,11 @@ class BrokerEdit extends React.Component {
   updateBroker = () => {
     getBroker(this.state.id)
       .then((aBroker) => {
-        console.log(aBroker.isPublic);
-        this.setState({ name: aBroker.name, taxes: aBroker.taxes, isPublic:aBroker.isPublic });
-        console.log(this.state.isPublic);
+        console.log(aBroker);
+        this.setState({ name: aBroker.name,
+                              description: aBroker.description,
+                              taxes: aBroker.taxes,
+                              isPublic:aBroker.isPublic });
       })
       .catch(() => this.setState({ error: this.props.t("genericError") }));
   };
@@ -192,7 +194,7 @@ class BrokerEdit extends React.Component {
                       <Row className="mb-3">
                         <Form.Group className="mb-3" controlId="descriptionValue">
                           <Form.Label>{t("description")}</Form.Label>
-                          <Form.Control  onChange={this.handleChangeDescription} value={this.state.taxName}
+                          <Form.Control  onChange={this.handleChangeDescription} value={this.state.description}
                                          className={
                                            this.hasError("description")
                                                ? "form-control is-invalid"
@@ -212,7 +214,7 @@ class BrokerEdit extends React.Component {
 
                       </Row>
 
-                      
+
                       <Row className="mb-3">
                         <Form.Group className="mb-3" controlId="publicValue">
                           <div className="form-check">

@@ -19,6 +19,7 @@ class BrokerCreate extends React.Component {
     };
 
     this.handleChangeName = this.handleChangeName.bind(this);
+    this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -130,7 +131,7 @@ class BrokerCreate extends React.Component {
                 <Row className="mb-3">
                     <Form.Group className="mb-3" controlId="descriptionValue">
                         <Form.Label>{t("description")}</Form.Label>
-                        <Form.Control  onChange={this.handleChangeDescription} value={this.state.taxName}
+                        <Form.Control  onChange={this.handleChangeDescription} value={this.state.description}
                                        className={
                                            this.hasError("description")
                                                ? "form-control is-invalid"
