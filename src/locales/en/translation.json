@@ -92,5 +92,6 @@
   "backToLogin": "Back to login",
   "isPublic": "Make it public",
   "quickRefDesc": "The table contains additional information about the rates that can be used in the calculators by default",
-  "search": "Search"
+  "search": "Search",
+  "brokersFrom": "Calculators by User Id "
 }
