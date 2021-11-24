@@ -211,9 +211,17 @@ class RuleEdit extends React.Component {
 
         if (this.state.useCondition) {
             if (this.state.when.length > 0) {
+
+                const regExp = /\b=\b|^=\b|\b=$/;
+
+
                 this.state.when.forEach((anExpression, index) => {
+
+                        if (regExp.test(anExpression)){
+                            errors.push("when" + index);
+                        }
                         if (anExpression === "") {
-                            errors.push("when" + index)
+                            errors.push("when" + index);
                         }
                         if (!this.validateExpression(anExpression)) {
                             errors.push("when" + index);
@@ -222,6 +230,7 @@ class RuleEdit extends React.Component {
                 )
             } else {
                 errors.push("when" + 0);
+
             }
         }
 
@@ -414,6 +423,8 @@ class RuleEdit extends React.Component {
                           </Row>
                       </Col>
                   </Row>
+
+
 
             </Card.Body>
               <Card.Footer>
