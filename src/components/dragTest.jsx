@@ -53,12 +53,12 @@ class DragTest extends Component {
 
     render() {
 
-        const SortableItem = SortableElement(({id,value}) => {
+        const SortableItem = SortableElement(({id,value,order}) => {
             return (
 
                 <li className="list-group-item d-flex justify-content-between align-items-start">
                     <div className="ms-2 me-auto" id={id}>
-                        <a href={"/rule/edit/"+id}>{value}</a>
+                        <a href={"/rule/edit/"+id}><span>{order+1}. </span>{value}</a>
                     </div>
                     <i className="fas fa-trash-alt " id={id} onClick={this.handleDelete}></i>
 
@@ -70,7 +70,7 @@ class DragTest extends Component {
             return (
                 <ol className="list-group">
                     {items.map(({id,name},idx) => (
-                        <SortableItem key={`item-${id}`} index={idx} id={id} value={name}/>
+                        <SortableItem key={`item-${id}`} index={idx}  order={idx} id={id} value={name}/>
                     ))}
                 </ol>
             );

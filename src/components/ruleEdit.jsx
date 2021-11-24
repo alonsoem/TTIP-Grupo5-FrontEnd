@@ -262,7 +262,7 @@ class RuleEdit extends React.Component {
 
       const popover = (title,body)=>(
 
-          <Popover id="popover-basic">
+          <Popover id="popover-basic" >
 
               <Popover.Title as="h3">{title}</Popover.Title>
 
@@ -354,7 +354,7 @@ class RuleEdit extends React.Component {
                                           </div>
                                         </div>
                                         <div className={"col-1"}>
-                                            <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("whenCondition"),t("whenInfo"))}>
+                                            <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("whenCondition"),t("whenInfo"))} >
                                                 <i className="fa fa-info-circle blue-text"></i>
                                             </OverlayTrigger>
                                         </div>
@@ -373,7 +373,7 @@ class RuleEdit extends React.Component {
                           <Row className="mb-3">
                               <Form.Group className="mb-3" controlId="thenValue">
                                   <Form.Label>{t("then")}</Form.Label>&nbsp;
-                                  <OverlayTrigger trigger="hover" placement="right" overlay={popover(t("then"),t("thenInfo"))}>
+                                  <OverlayTrigger trigger="hover" overlay={popover(t("then"),t("thenInfo"))}>
                                       <i className="fa fa-info-circle blue-text"></i>
                                   </OverlayTrigger>
                                   <Form.Control onChange={this.handleChangeThen} value={this.state.then}

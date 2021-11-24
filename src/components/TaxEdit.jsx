@@ -220,7 +220,7 @@ class Taxes extends React.Component {
                       <Card.Body>
                         <ListGroup defaultActiveKey="#link1">
                           <p>
-                            <b>{t("ruleApplication")}</b>
+                            {t("ruleApplication")}
                           </p>
 
                           {this.getAllRules()}
