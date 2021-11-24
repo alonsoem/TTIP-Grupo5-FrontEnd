@@ -4,7 +4,7 @@ import { Button, Card, Col, Row, Form } from "react-bootstrap";
 import Dialog from "react-bootstrap-dialog";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import {deleteBroker, getBrokers, getUserBrokers, postBrokerCopy, postBrokersWithFilter} from "../api/api";
+import {deleteBroker, getBrokers, getUser, getUserBrokers, postBrokerCopy, postBrokersWithFilter} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import "./table.css";
 
@@ -17,6 +17,7 @@ class BrokersByUser extends React.Component {
       rows: [],
       search:"",
       showUIDBrokers:props.match.params.userId,
+      user:"",
     };
 
     this.confirmDelete = this.confirmDelete.bind(this);
@@ -24,6 +25,7 @@ class BrokersByUser extends React.Component {
 
   componentDidMount() {
     this.updateBrokers(this.state.showUIDBrokers);
+    this.getUserData(this.state.showUIDBrokers);
   }
 
   handleSearch = (event)=> {
@@ -36,21 +38,22 @@ class BrokersByUser extends React.Component {
 
   }
 
+    getUserData(uid) {
+        getUser(uid)
+            .then((response) => {
+                console.log(response);
+                this.setState({ user: response});
+            })
+            .catch(() => this.setState({ error: this.props.t("genericError") }));
+    }
   updateBrokers(uid) {
     getUserBrokers(uid)
-      .then((taxes) => {
-        this.setState({ rows: taxes });
+      .then((response) => {
+        this.setState({ rows: response });
       })
       .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
 
-  deleteBroker = (id) => {
-    deleteBroker(id)
-      .then((response) => {
-        this.updateBrokers();
-      })
-      .catch((responseError) => this.handleAPIError(responseError));
-  };
 
   copyBroker = (event) => {
     postBrokerCopy(event.target.id)
@@ -58,10 +61,6 @@ class BrokersByUser extends React.Component {
           this.updateBrokers();
         })
         .catch((responseError) => this.handleAPIError(responseError));
-  };
-
-  editBroker = (event) => {
-    this.props.history.push("/broker/edit/" + event.target.id);
   };
 
   useBroker = (event) => {
@@ -103,18 +102,8 @@ class BrokersByUser extends React.Component {
               <i className="fa fa-copy"></i>
            </Button>
             ),
-        url:
-          item.userId == this.state.userId ? (
-            <Button variant="info" onClick={this.editBroker} id={item.id}>
-              <i className="fa fa-edit"></i>
-            </Button>
-          ) : null,
-        del:
-          item.userId == this.state.userId ? (
-            <Button variant="info" onClick={this.confirmDelete} id={item.id}>
-              <i className="fa fa-minus"></i>
-            </Button>
-          ) : null,
+        url:null,
+        del: null,
         calc: (
           <Button variant="info" onClick={this.useBroker} id={item.id}>
             <i className="fa fa-calculator"></i>
@@ -149,6 +138,15 @@ class BrokersByUser extends React.Component {
         field: "calc",
       },
     ];
+      const initials = (fullName) => {
+          if (fullName==undefined){ return ""};
+          let names = fullName.split(" ");
+          if (names.length>3){
+              return names[0][0].toUpperCase()+" "+names[1][0].toUpperCase();
+          }
+          return names.map((n)=>n[0].toUpperCase()).join(" ");
+
+      }
 
     return (
       <div >
@@ -162,14 +160,37 @@ class BrokersByUser extends React.Component {
 
           <Card>
             <Card.Header>
-              <h5>{t("brokersFrom") + this.state.showUIDBrokers} </h5>
+              <h5>{t("brokersFrom") } </h5>
             </Card.Header>
             <Card.Body>
+                <div className={"row justify-content-md-center"}>
+                    <div className="col-8 col-sm-8 col-lg-8 col-xl-8 pb-8 ">
+                        <Card className={"bg-light-grey"}>
+                            <Card.Body>
+                                <div className={"container"}>
+
+                                <div className={"row justify-content-md-center"}>
+                                    <div className={"col col-2 text-center"}>
+                                        <div className={"user-initials rounded-circle"} >
+                                              <a href={"/broker/"+ this.state.showUIDBrokers}>{initials(this.state.user.name)}</a>
+                                        </div>
+                                    </div>
+                                    <div className={"col col-6 text-center"}>
+                                        <h3>{this.state.user.name}</h3>
+                                    </div>
+                                </div>
+
+                                </div>
+
+                            </Card.Body>
+                        </Card>
+                    </div>
+                </div>
               <div className="row">
                 <div id={"contenedor"}>
 
                   <Row className="row">
-                    <Col className="col-11 col-sm-10 col-lg-10 col-xl-10 pb-10">
+                    <Col className="col-12 col-sm-12 col-lg-12 col-xl-12 pb-12">
                       <Row>
                         <Form.Group className="mb-3" controlId="searchValue">
                           <MDBInput
@@ -190,13 +211,7 @@ class BrokersByUser extends React.Component {
                         <MDBTableBody rows={dataSet} />
                       </MDBTable>
                     </Col>
-                    <Col className="col-1 col-sm-2 col-lg-2 col-xl-2 pb-2">
-                      <NavLink to="/broker/edit">
-                        <Button title={t("brokerNew")} class={"btn-sm"}>
-                          <i className="fa fa-plus"></i>
-                        </Button>
-                      </NavLink>
-                    </Col>
+
                   </Row>
                 </div>
               </div>

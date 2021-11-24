@@ -25,6 +25,9 @@ const request = (type, path, body, config) =>
 
 export const getProfile = (username) =>
   request("get", "/frontuser?username=" + username, {}, authConfig());
+
+export const getUser = (userId) =>
+    request("get", "/frontuser/" + userId, {}, authConfig());
 export const getRule = (id) => request("get", "/rule/" + id, {}, authConfig());
 export const getTax = (id) =>
   request("get", "/broker/1/tax/" + id, {}, authConfig());
