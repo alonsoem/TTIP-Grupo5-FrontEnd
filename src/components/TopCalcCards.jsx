@@ -26,14 +26,15 @@ class BrokerCardList extends React.Component {
         return slicedArray.map((calculator) =>
 
             <div className="col-sm-4">
-                <div className="card"  style={{minHeight:"220px"}}>
-                    <div className="card-body calcCard" >
-
-                        <h5 className="card-title">{calculator.name}</h5>
-                        <p className="card-text">
-                            {calculator.description}
-                        </p>
-                        <Row>
+                <div className="card h-100"  style={{minHeight:"220px"}}>
+                    <div className="card-body calcCard h-100" >
+                        <div class="row h-75 ">
+                            <h5 className="card-title">{calculator.name}</h5>
+                            <p className="card-text">
+                                {calculator.description}
+                            </p>
+                        </div>
+                        <div class="row h-25">
                             <Col className={"col-9"}>
                                 <a href={"/maincalc/" + calculator.id} className="btn btn-primary">
                                     Utilizar!
@@ -44,7 +45,7 @@ class BrokerCardList extends React.Component {
                                     <a href={"/broker/"+ calculator.userId}>{initials(calculator.userFullName)}</a>
                                 </div>
                             </Col>
-                        </Row>
+                        </div>
                     </div>
                 </div>
             </div>
