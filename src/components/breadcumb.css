@@ -79,5 +79,5 @@ ul.breadcrumb {
 .breadcrumb li:first-child a {
     padding-left: 15px;
 }
-.breadcrumb li a:hover { background: #49C144  ; }
-.breadcrumb li a:hover:after { border-left-color: #49C144   !important; }
+.breadcrumb li a:hover { background: #178E5C  ; }
+.breadcrumb li a:hover:after { border-left-color: #178E5C   !important; }

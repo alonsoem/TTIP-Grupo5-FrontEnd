@@ -38,26 +38,21 @@ class FactList extends React.Component {
     }
 
     subFacts(facts){
-
         return  (
                 <div>
                     {facts.map((each)=>
-
-                    <span className={"badge fact bg-" + this.classForType(each.type)}
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title={each.description}>
-                            {each.name}
-                    </span>
-
-
-
-
-        )}
+                        <span className={"badge fact bg-" + this.classForType(each.type)}
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title={each.description}
+                        >
+                              {each.name}
+                        </span>
+                    )}
                 </div>
-    )
-
+        )
     }
+
     classForType(type){
 
         switch (type) {

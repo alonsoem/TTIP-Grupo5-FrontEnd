@@ -205,7 +205,8 @@ class Taxes extends React.Component {
                                    steps={[t("calculator"),t("taxEdit"),t("ruleCreate")]}
                                    hereText={t("youAreHere")}
                                    leftSteps={t("leftSteps")}
-                                   stepRefs={["/broker/" + this.props.match.params.brokerId,"/","/"]}
+                                   pastText={t("pastSteps")}
+                                   stepRefs={["/broker/" + this.props.match.params.brokerId,"#","#"]}
               />
             <Card.Body>
 

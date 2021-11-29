@@ -206,10 +206,11 @@ class BrokerEdit extends React.Component {
 
           <Form onSubmit={this.handleSubmit}>
             <Card>
-              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={0}
-                                   steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]}
-                                   stepRefs={[null, null, null]}
+              <HeaderWithStepsFull title={t("brokerEdit")} stepIndex={0}
+                                   steps={[t("calculator"),t("taxes"),t("rules")]}
+                                   stepRefs={["#", "#", "#"]}
                                    hereText={t("youAreHere")}
+                                   pastText={t("pastSteps")}
                                    leftSteps={t("leftSteps")} />
               <Card.Body>
                 <Row>

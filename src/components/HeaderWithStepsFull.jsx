@@ -4,15 +4,23 @@ import {Card} from "react-bootstrap";
 class HeaderWithSteps extends React.Component {
 
     render() {
-        const {title,steps,stepRefs,leftSteps,hereText,stepIndex}=this.props;
-        {console.log(stepRefs);}
+        const {title,steps,stepRefs,leftSteps,hereText,stepIndex,pastText}=this.props;
 
         function loadItems(){
             return steps.map((item,index) =>{
-                    if (index<=stepIndex){
-                        return <li className="active" title={hereText}><a href={stepRefs[index]}><b>{index+1}. {item}</b></a></li>
+                    if (index<stepIndex){
+                        return (<li className="completed" title={pastText}>
+                                    <a href={stepRefs[index]}><b>{index+1}. {item}</b></a>
+                                </li>
+                                )
+                    }else if (index==stepIndex){
+                        return (<li className="active" title={hereText}>
+                            <a href={stepRefs[index]}><b>{index+1}. {item}</b></a>
+                        </li>)
                     }else{
-                        return <li className="incompleted" title={leftSteps}><a href={stepRefs[index]}><b>{index+1}. {item}</b></a></li>
+                        return (<li className="incompleted" title={leftSteps}>
+                                    <a href={stepRefs[index]}><b>{index+1}. {item}</b></a>
+                                </li>)
                     }
                 }
             )

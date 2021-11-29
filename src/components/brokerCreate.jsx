@@ -102,7 +102,8 @@ class BrokerCreate extends React.Component {
           <Card>
 
               <HeaderWithStepsFull title={t("brokerNew")} stepIndex={0} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]}
-                                   stepRefs={[null, null, null]}
+                                   stepRefs={["#", "#", "#"]}
+                                   pastText={t("pastSteps")}
                                    hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
 
             <Card.Body>

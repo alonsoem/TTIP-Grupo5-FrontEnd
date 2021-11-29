@@ -3,15 +3,11 @@ import React from "react";
 import { Button, Card, Col, Row, Form } from "react-bootstrap";
 import Dialog from "react-bootstrap-dialog";
 import { withTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
 import {
-    deleteBroker,
     filteredBrokers,
-    getBrokers,
     getUser,
     getUserBrokers,
     postBrokerCopy,
-    postBrokersWithFilter
 } from "../api/api";
 import NavBarPage from "./NavBarPage";
 import "./table.css";

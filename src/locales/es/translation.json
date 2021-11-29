@@ -93,5 +93,6 @@
   "isPublic": "Es visible públicamente",
   "quickRefDesc": "La tabla contiene información adicional acerca de las tasas predefinidas que pueden usarse en las calculadoras",
   "search": "Búsqueda",
-  "brokersFrom": "Calculadoras por usuario"
+  "brokersFrom": "Calculadoras por usuario",
+  "pastSteps": "Paso realizado. Haga click para volver a él"
 }

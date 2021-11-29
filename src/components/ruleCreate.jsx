@@ -270,7 +270,8 @@ class RuleCreate extends React.Component {
 
               <HeaderWithStepsFull title={t("brokerNew")} stepIndex={2} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]}
                                    stepRefs={["/broker/" + this.props.match.params.brokerId,
-                                                "/broker/" + this.props.match.params.brokerId + "/tax/"+ this.props.match.params.taxId,""]}
+                                                "/broker/" + this.props.match.params.brokerId + "/tax/"+ this.props.match.params.taxId,"#"]}
+                                   pastText={t("pastSteps")}
                                    hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
             <Card.Body>
                  <Row>

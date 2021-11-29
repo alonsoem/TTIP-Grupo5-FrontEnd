@@ -126,18 +126,7 @@ class MainCalc extends Component {
     const { t } = this.props;
     const {language} = i18next;
 
-    const formats = {
-      number: {
-        ARS: {
-          style: 'currency',
-          currency: '$'
-        },
-        USD: {
-          style: 'currency',
-          currency: 'USDQQ'
-        }
-      }
-    };
+
 
     return (
       <div>
@@ -215,7 +204,7 @@ class MainCalc extends Component {
                                 <IntlProvider locale={language}>
                                   <FormattedNumber
                                       value={listitem.amount}
-                                      style="currency"
+                                      style={"currency"}
                                       currency={"USD"}
                                       minimumFractionDigits={"2"}
                                       maximumFractionDigits={"2"}
@@ -239,7 +228,7 @@ class MainCalc extends Component {
                               <IntlProvider locale={language}>
                                 <FormattedNumber
                                     value={this.state.result}
-                                    style="currency"
+                                    style={"currency"}
                                     currency={"USD"}
                                     minimumFractionDigits={"2"}
                                     maximumFractionDigits={"2"}
