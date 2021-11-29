@@ -94,5 +94,7 @@
   "quickRefDesc": "La tabla contiene información adicional acerca de las tasas predefinidas que pueden usarse en las calculadoras",
   "search": "Búsqueda",
   "brokersFrom": "Calculadoras por usuario",
-  "pastSteps": "Paso realizado. Haga click para volver a él"
+  "pastSteps": "Paso realizado. Haga click para volver a él",
+  "myBrokers": "Mis Calculadoras",
+  "publicBrokers" : "Calculatoras Públicas"
 }

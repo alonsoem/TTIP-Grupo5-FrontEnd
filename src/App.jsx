@@ -15,6 +15,7 @@ import TaxEdit from "./components/TaxEdit";
 import Landing from "./components/landing";
 import UserProfile from "./components/UserProfile";
 import BrokersByUser from "./components/BrokersByUser";
+import AllBrokers from "./components/AllBrokers";
 
 export default class App extends React.Component {
   render() {
@@ -29,7 +30,9 @@ export default class App extends React.Component {
           <Route exact path="/broker/:brokerId" component={BrokerEdit}></Route>
           <Route exact path="/broker" component={BrokerCreate} />
           <Route exact path="/brokers/:userId" component={BrokersByUser} />
-          <Route exact path="/brokers" component={Brokers} />
+          <Route exact path="/brokers" component={AllBrokers} />
+
+          <Route exact path="/myBrokers" component={Brokers} />
 
 
           <Route path="/maincalc/:id" component={MainCalc} />

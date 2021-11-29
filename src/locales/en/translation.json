@@ -94,5 +94,7 @@
   "quickRefDesc": "The table contains additional information about the rates that can be used in the calculators by default",
   "search": "Search",
   "brokersFrom": "Calculators by User",
-  "pastSteps": "Fullfilled Step. Click to go back!"
+  "pastSteps": "Fullfilled Step. Click to go back!",
+  "myBrokers": "My Calculators",
+  "publicBrokers" : "Public Calculators"
 }
