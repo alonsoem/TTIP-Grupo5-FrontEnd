@@ -34,7 +34,7 @@ class BrokerCreate extends React.Component {
       isPublic:this.state.isPublic
     })
         .then((response) => {
-          this.props.history.push("/broker/edit/"+response.id);
+          this.props.history.push("/broker/"+response.id);
         })
         .catch((responseError) => this.handleAPIError(responseError));
 
@@ -101,7 +101,9 @@ class BrokerCreate extends React.Component {
             <Form onSubmit={this.handleSubmit}>
           <Card>
 
-              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={0} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
+              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={0} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]}
+                                   stepRefs={[null, null, null]}
+                                   hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
 
             <Card.Body>
 

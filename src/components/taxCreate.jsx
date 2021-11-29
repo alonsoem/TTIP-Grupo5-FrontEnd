@@ -39,18 +39,18 @@ class TaxCreate extends React.Component {
 
   }
   cancelAction=(event)=>{
-    this.props.history.push("/broker/edit/"+this.props.match.params.id);
+    this.props.history.push("/broker/"+this.props.match.params.brokerId);
 
   }
 
   submit = () => {
-    postTaxCreate(this.props.match.params.id,
+    postTaxCreate(this.props.match.params.brokerId,
                 {
                       name: this.state.name,
                       url: this.state.url
                 })
-        .then((response) => {
-          this.props.history.push("/broker/edit/"+ this.props.match.params.id);
+        .then(() => {
+          this.props.history.push("/broker/"+ this.props.match.params.brokerId);
         })
         .catch((responseError) => this.handleAPIError(responseError));
   };
@@ -97,7 +97,10 @@ class TaxCreate extends React.Component {
         <div className="container">
           <Form onSubmit={this.handleSubmit}>
           <Card>
-            <HeaderWithStepsFull title={t("taxCreate")} stepIndex={1} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
+            <HeaderWithStepsFull title={t("taxCreate")} stepIndex={1}
+                                 steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")}
+                                 stepRefs={["/broker/" + this.props.match.params.brokerId,"",""]}
+                                 leftSteps={t("leftSteps")} />
             <Card.Body>
 
                 <Row className="mb-3">

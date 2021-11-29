@@ -22,15 +22,14 @@ export default class App extends React.Component {
         <div   >
       <BrowserRouter>
         <Switch>
-          <Route exact path="/rule/:id" component={RuleCreate} />
-          <Route exact path="/rule/edit/:id" component={RuleEdit} />
-          <Route exact path="/broker/edit/:id/tax" component={TaxCreate} />
-          <Route exact path="/tax/edit/:id" component={TaxEdit} />
-          <Route path={"/broker/edit/:id"} component={BrokerEdit}></Route>
-            <Route exact path="/broker/edit" component={BrokerCreate} />
-            <Route exact path="/broker/:userId" component={BrokersByUser} />
-
-          <Route exact path="/broker" component={Brokers} />
+          <Route exact path="/broker/:brokerId/tax/:taxId/rule" component={RuleCreate} />
+          <Route exact path="/broker/:brokerId/tax/:taxId/rule/:ruleId" component={RuleEdit} />
+          <Route exact path="/broker/:brokerId/tax" component={TaxCreate} />
+          <Route exact path="/broker/:brokerId/tax/:taxId" component={TaxEdit} />
+          <Route exact path="/broker/:brokerId" component={BrokerEdit}></Route>
+          <Route exact path="/broker" component={BrokerCreate} />
+          <Route exact path="/brokers/:userId" component={BrokersByUser} />
+          <Route exact path="/brokers" component={Brokers} />
 
 
           <Route path="/maincalc/:id" component={MainCalc} />

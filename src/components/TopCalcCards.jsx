@@ -1,6 +1,6 @@
 import React from "react";
 import {getBrokers} from "../api/api";
-import {Col, Row} from "react-bootstrap";
+import {Col} from "react-bootstrap";
 
 class BrokerCardList extends React.Component {
     constructor(props) {
@@ -42,7 +42,7 @@ class BrokerCardList extends React.Component {
                             </Col>
                             <Col className={"col-3 text-center"}>
                                 <div className={"user-initials rounded-circle"} title={calculator.userFullName}>
-                                    <a href={"/broker/"+ calculator.userId}>{initials(calculator.userFullName)}</a>
+                                    <a href={"/brokers/"+ calculator.userId}>{initials(calculator.userFullName)}</a>
                                 </div>
                             </Col>
                         </div>

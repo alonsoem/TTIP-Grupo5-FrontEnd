@@ -88,7 +88,7 @@ class RuleEdit extends React.Component {
   }
 
   componentDidMount() {
-    this.state.id=this.props.match.params.id;
+    this.state.id=this.props.match.params.ruleId;
     getRule(this.state.id)
         .then(rule => {
             this.setState({name: rule.name,description:rule.description,
@@ -146,8 +146,8 @@ class RuleEdit extends React.Component {
                 then: [this.state.then],
                 useWhen:this.state.useCondition,
         })
-        .then((response) => {
-          this.props.history.push("/broker");
+        .then(() => {
+          this.props.history.push("/broker/"+ this.props.match.params.brokerId + "/tax/" + this.props.match.params.taxId);
         })
         .catch((responseError) => this.handleAPIError(responseError));
   };
@@ -299,7 +299,7 @@ class RuleEdit extends React.Component {
     removeRule(id) {
         deleteRule(id)
             .then(() => {
-                this.props.history.push("/broker");
+                this.props.history.push("/broker/" + this.props.match.params.brokerId + "/tax/" + this.props.match.params.taxId);
             })
             .catch((responseError) => this.handleAPIError(responseError));
     }
@@ -336,7 +336,10 @@ class RuleEdit extends React.Component {
 
             <Form onSubmit={this.handleSubmit}>
           <Card>
-              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={2} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
+              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={2} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]}
+                                   stepRefs={["/broker/" + this.props.match.params.brokerId,
+                                       "/broker/" + this.props.match.params.brokerId + "/tax/"+ this.props.match.params.taxId,""]}
+                                   hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
             <Card.Body>
 
 

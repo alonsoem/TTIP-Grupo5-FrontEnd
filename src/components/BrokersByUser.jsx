@@ -181,7 +181,7 @@ class BrokersByUser extends React.Component {
                                 <div className={"row justify-content-md-center"}>
                                     <div className={"col col-2 text-center"}>
                                         <div className={"user-initials rounded-circle"} >
-                                              <a href={"/broker/"+ this.state.showUIDBrokers}>{initials(this.state.user.name)}</a>
+                                              <a href={"/brokers/"+ this.state.showUIDBrokers}>{initials(this.state.user.name)}</a>
                                         </div>
                                     </div>
                                     <div className={"col col-6 text-center"}>

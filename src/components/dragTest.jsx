@@ -42,12 +42,14 @@ class DragTest extends Component {
 
     render() {
 
+        const {basePath} = this.props;
+
         const SortableItem = SortableElement(({id,value,order}) => {
             return (
 
                 <li className="list-group-item d-flex justify-content-between align-items-start">
                     <div className="ms-2 me-auto" id={id}>
-                        <a href={"/rule/edit/"+id}><span>{order+1}. </span>{value}</a>
+                        <a href={basePath+id}><span>{order+1}. </span>{value}</a>
                     </div>
                     <i className="fas fa-trash-alt " id={id} onClick={this.props.onDelete}></i>
 

@@ -66,7 +66,7 @@ class RuleCreate extends React.Component {
   }
 
   cancelAction=(event)=>{
-    this.props.history.push("/tax/edit/"+this.props.match.params.id);
+    this.props.history.push("/broker/" + this.props.match.params.brokerId + "/tax/"+this.props.match.params.taxId);
 
   }
     toggleConditionOnOff = (event)=>{
@@ -98,7 +98,7 @@ class RuleCreate extends React.Component {
   }
 
   submit = () => {
-    postRuleCreate(this.props.match.params.id,
+    postRuleCreate(this.props.match.params.taxId,
         {
           name: this.state.name,
           description: this.state.description,
@@ -107,7 +107,7 @@ class RuleCreate extends React.Component {
           useWhen:this.state.useCondition
     })
         .then((response) => {
-          this.props.history.push("/tax/edit/"+this.props.match.params.id);
+          this.props.history.push("/broker/" + this.props.match.params.brokerId + "/tax/"+this.props.match.params.taxId);
         })
         .catch((responseError) => this.handleAPIError(responseError));
   };
@@ -268,7 +268,10 @@ class RuleCreate extends React.Component {
             <Form onSubmit={this.handleSubmit}>
           <Card>
 
-              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={2} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
+              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={2} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]}
+                                   stepRefs={["/broker/" + this.props.match.params.brokerId,
+                                                "/broker/" + this.props.match.params.brokerId + "/tax/"+ this.props.match.params.taxId,""]}
+                                   hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
             <Card.Body>
                  <Row>
 

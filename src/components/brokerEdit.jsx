@@ -26,7 +26,7 @@ class BrokerEdit extends React.Component {
 
   }
   cancelAction = (event) => {
-    this.props.history.push("/broker");
+    this.props.history.push("/brokers");
   };
 
   setDialogDefaults(){
@@ -84,13 +84,13 @@ class BrokerEdit extends React.Component {
     removeBroker = (id)  =>{
         deleteBroker(id)
             .then(() => {
-                this.props.history.push("/broker");
+                this.props.history.push("/brokers");
             })
             .catch((responseError) => this.handleAPIError(responseError));
     }
 
   componentDidMount() {
-    this.state.id = this.props.match.params.id;
+    this.state.id = this.props.match.params.brokerId;
     this.updateBroker();
   }
 
@@ -117,8 +117,8 @@ class BrokerEdit extends React.Component {
       description:this.state.description,
       isPublic:this.state.isPublic
     })
-      .then((response) => {
-        this.props.history.push("/broker");
+      .then(() => {
+        this.props.history.push("/brokers");
       })
       .catch((responseError) => this.handleAPIError(responseError));
   };
@@ -159,7 +159,7 @@ class BrokerEdit extends React.Component {
       return this.state.taxes.map((each) => (
         <li className="list-group-item d-flex justify-content-between align-items-start">
           <div className="ms-2 me-auto" id={each.id}>
-            <a href={"/tax/edit/" + each.id}>{each.name}</a>
+            <a href={"/broker/"+ this.state.id + "/tax/" + each.id}>{each.name}</a>
           </div>
           <i
             className="fas fa-trash-alt "
@@ -191,7 +191,7 @@ class BrokerEdit extends React.Component {
   }
   render() {
     const { t } = this.props;
-    const { id } = this.props.match.params;
+    const { brokerId } = this.props.match.params;
 
     return (
       <div >
@@ -206,7 +206,11 @@ class BrokerEdit extends React.Component {
 
           <Form onSubmit={this.handleSubmit}>
             <Card>
-              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={0} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
+              <HeaderWithStepsFull title={t("brokerNew")} stepIndex={0}
+                                   steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]}
+                                   stepRefs={[null, null, null]}
+                                   hereText={t("youAreHere")}
+                                   leftSteps={t("leftSteps")} />
               <Card.Body>
                 <Row>
                   <Col lg="7" xs="7" md="7">
@@ -214,7 +218,7 @@ class BrokerEdit extends React.Component {
                       <Row className="mb-3">
                         <Form.Group className="mb-3" controlId="idValue">
                           <Form.Label>{t("id")}</Form.Label>
-                          <Form.Control value={id} />
+                          <Form.Control value={brokerId} />
                         </Form.Group>
                       </Row>
 
@@ -295,7 +299,7 @@ class BrokerEdit extends React.Component {
                             <h5>{t("taxes")}</h5>
                           </div>
                           <div className="col-sm-4">
-                            <NavLink to={"/broker/edit/" + this.state.id + "/tax"}>
+                            <NavLink to={"/broker/" + this.state.id + "/tax"}>
                               <Button title={t("brokerAddTax")} className={"btn-sm"}>
                                 <i className="fa fa-plus"></i>
                               </Button>

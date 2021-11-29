@@ -66,7 +66,7 @@ class Brokers extends React.Component {
   };
 
   editBroker = (event) => {
-    this.props.history.push("/broker/edit/" + event.target.id);
+    this.props.history.push("/broker/" + event.target.id);
   };
 
   useBroker = (event) => {
@@ -196,7 +196,7 @@ class Brokers extends React.Component {
                       </MDBTable>
                     </Col>
                     <Col className="col-1 col-sm-2 col-lg-2 col-xl-2 pb-2">
-                      <NavLink to="/broker/edit">
+                      <NavLink to="/broker">
                         <Button title={t("brokerNew")} class={"btn-sm"}>
                           <i className="fa fa-plus"></i>
                         </Button>

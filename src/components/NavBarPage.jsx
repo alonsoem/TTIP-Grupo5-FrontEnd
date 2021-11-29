@@ -76,7 +76,7 @@ class NavBarPage extends Component {
               </li>
 
               <li className="nav-item ">
-                <NavLink className="btn btn-primary" to="/broker">
+                <NavLink className="btn btn-primary" to="/brokers">
                   {t("brokers")}
                 </NavLink>
               </li>

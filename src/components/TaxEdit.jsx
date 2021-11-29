@@ -85,7 +85,7 @@ class Taxes extends React.Component {
   removeTax = (id) => {
     deleteTax(id)
         .then(() => {
-          this.props.history.push("/broker");
+          this.props.history.push("/broker/" + this.props.match.params.brokerId);
         })
         .catch((responseError) => this.handleAPIError(responseError));
   }
@@ -94,6 +94,7 @@ class Taxes extends React.Component {
     return (
       <DragTest
         taxId={this.state.id}
+        basePath={"/broker/" + this.props.match.params.brokerId + "/tax/" + this.props.match.params.taxId + "/rule/"}
         taxRules={this.state.rules.map((e) => ({ id: e.id, name: e.name, priority: e.priority }))}
         context={this}
         onDelete={this.handleDeleteRule}
@@ -104,11 +105,11 @@ class Taxes extends React.Component {
 
   cancelAction = (event) => {
     event.preventDefault();
-    this.props.history.goBack();
+    this.props.history.push("/broker/" + this.props.match.params.brokerId);
   };
 
   componentDidMount() {
-    this.state.id = this.props.match.params.id;
+    this.state.id = this.props.match.params.taxId;
     this.update();
 
   }
@@ -134,8 +135,8 @@ class Taxes extends React.Component {
       name: this.state.name,
       url: this.state.url,
     })
-      .then((response) => {
-        this.props.history.push("/broker");
+      .then(() => {
+        this.props.history.push("/broker/" + this.props.match.params.brokerId);
       })
       .catch((responseError) => this.handleAPIError(responseError));
   };
@@ -185,7 +186,7 @@ class Taxes extends React.Component {
 
   render() {
     const { t } = this.props;
-    const idTax = this.props.match.params.id;
+    const idTax = this.props.match.params.taxId;
 
     return (
       <div >
@@ -199,7 +200,13 @@ class Taxes extends React.Component {
           />
           <Form onSubmit={this.handleSubmit}>
           <Card>
-              <HeaderWithStepsFull title={t("taxEdit")} stepIndex={1} steps={[t("calculator"),t("taxEdit"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
+              <HeaderWithStepsFull title={t("taxEdit")}
+                                   stepIndex={1}
+                                   steps={[t("calculator"),t("taxEdit"),t("ruleCreate")]}
+                                   hereText={t("youAreHere")}
+                                   leftSteps={t("leftSteps")}
+                                   stepRefs={["/broker/" + this.props.match.params.brokerId,"/","/"]}
+              />
             <Card.Body>
 
                 <Row>
@@ -269,7 +276,7 @@ class Taxes extends React.Component {
                             <h5>{t("rules")}</h5>
                           </div>
                           <div className="col-sm-4">
-                            <NavLink to={"/rule/" + this.state.id}>
+                            <NavLink to={"/broker/"+ this.props.match.params.brokerId + "/tax/" + this.state.id + "/rule"}>
                               <Button title={t("taxAddRule")} className={"btn-sm"}>
                                 <i className="fa fa-plus"></i>
                               </Button>
