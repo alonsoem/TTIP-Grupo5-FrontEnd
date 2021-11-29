@@ -1,9 +1,7 @@
-import React, {Component, useEffect} from 'react';
+import {React,Component} from 'react';
 import {arrayMove ,SortableContainer, SortableElement} from 'react-sortable-hoc';
 import {withTranslation} from "react-i18next";
-import {deleteRule, postRuleOrderChange, putRuleOrderChange} from "../api/api";
-
-
+import {putRuleOrderChange} from "../api/api";
 
 class DragTest extends Component {
     constructor(props) {
@@ -30,10 +28,9 @@ class DragTest extends Component {
     }
 
     onSortEnd = ({oldIndex, newIndex}) => {
-        //console.log(oldIndex + " -> " + newIndex);
-        //console.log("ID "+ this.state.taxRules[oldIndex].id + " -> " + this.state.taxRules[newIndex].id);
-
-        putRuleOrderChange(this.state.taxId, {ruleIdFrom: this.state.taxRules[oldIndex].id, ruleIdTo:this.state.taxRules[newIndex].id})
+        putRuleOrderChange(this.state.taxId,
+                            {ruleIdFrom: this.state.taxRules[oldIndex].id,
+                                   ruleIdTo:this.state.taxRules[newIndex].id})
             .then(result=>{
                 console.log(result);
                 this.setState(
@@ -42,14 +39,6 @@ class DragTest extends Component {
             })
             .catch(() => this.setState({ error: this.props.t("genericError") }));
     };
-
-    handleDelete=(event)=>{
-        deleteRule(event.target.id)
-            .then(() =>{
-                this.props.context.update();
-            })
-            .catch(() => this.setState({ error: this.props.t("genericError") }));
-    }
 
     render() {
 
@@ -60,7 +49,7 @@ class DragTest extends Component {
                     <div className="ms-2 me-auto" id={id}>
                         <a href={"/rule/edit/"+id}><span>{order+1}. </span>{value}</a>
                     </div>
-                    <i className="fas fa-trash-alt " id={id} onClick={this.handleDelete}></i>
+                    <i className="fas fa-trash-alt " id={id} onClick={this.props.onDelete}></i>
 
                 </li>
 

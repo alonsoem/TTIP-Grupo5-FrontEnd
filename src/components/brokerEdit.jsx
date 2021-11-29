@@ -1,4 +1,3 @@
-import { MDBInput } from "mdbreact";
 import React from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
@@ -6,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { deleteBroker, deleteTax, getBroker, putBrokerEdit } from "../api/api";
 import NavBarPage from "./NavBarPage";
 import HeaderWithStepsFull from "./HeaderWithStepsFull";
+import Dialog from "react-bootstrap-dialog";
 
 class BrokerEdit extends React.Component {
   constructor(props) {
@@ -23,19 +23,71 @@ class BrokerEdit extends React.Component {
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
   cancelAction = (event) => {
     this.props.history.push("/broker");
   };
 
-  deleteAction = (event) => {
-    event.preventDefault();
-    deleteBroker(event.target.id)
-      .then((response) => {
-        this.props.history.push("/broker");
-      })
-      .catch((responseError) => this.handleAPIError(responseError));
-  };
+  setDialogDefaults(){
+        Dialog.setOptions({
+            defaultOkLabel: this.props.t("modalOkButton"),
+            defaultCancelLabel: this.props.t("modalCancelButton"),
+            primaryClassName: "btn-success",
+            defaultButtonClassName: "btn-link",
+        });
+    }
+
+    showDialog(title,body,func){
+        this.dialog.show({
+            title,
+            body,
+            actions: [
+                Dialog.OKAction(() => func()),
+                Dialog.CancelAction(() => console.log("Canceled!")),
+            ],
+            bsSize: "small",
+            onHide: (dialog) => {
+                dialog.hide();
+            },
+        });
+    }
+
+    confirmDelete = (event) => {
+        event.preventDefault();
+        this.setDialogDefaults();
+        let id = event.target.id;
+        this.showDialog(this.props.t("modalTitleConfirm"),
+                        this.props.t("modelBodyMessage"),
+                        () => this.removeBroker(id)
+                        );
+    }
+
+    handleRemoveTax = (event) => {
+        event.preventDefault();
+        this.setDialogDefaults();
+        let id = event.target.id;
+        this.showDialog(this.props.t("modalTitleConfirm"),
+                        this.props.t("modelBodyMessage"),
+                        () => this.removeTax(id)
+                        );
+    }
+
+    removeTax = (id) => {
+        deleteTax(id)
+            .then(() => {
+                this.updateBroker();
+            })
+            .catch((responseError) => this.handleAPIError(responseError));
+    }
+
+    removeBroker = (id)  =>{
+        deleteBroker(id)
+            .then(() => {
+                this.props.history.push("/broker");
+            })
+            .catch((responseError) => this.handleAPIError(responseError));
+    }
 
   componentDidMount() {
     this.state.id = this.props.match.params.id;
@@ -100,7 +152,7 @@ class BrokerEdit extends React.Component {
     return this.state.errors.indexOf(key) !== -1;
   }
 
-  generate() {
+  generate (){
     if (this.state.taxes.length === 0) {
       return <div align="center">{this.props.t("noTaxes")}</div>;
     } else {
@@ -112,21 +164,14 @@ class BrokerEdit extends React.Component {
           <i
             className="fas fa-trash-alt "
             id={each.id}
-            onClick={this.removeTax}
+            onClick={this.handleRemoveTax}
           ></i>
         </li>
       ));
     }
   }
 
-  removeTax = (event) => {
-    event.preventDefault();
-    deleteTax(event.target.id)
-      .then(() => {
-        this.updateBroker();
-      })
-      .catch((responseError) => this.handleAPIError(responseError));
-  };
+
 
   updateBroker = () => {
     getBroker(this.state.id)
@@ -152,6 +197,13 @@ class BrokerEdit extends React.Component {
       <div >
         <NavBarPage />
         <div className="container">
+
+            <Dialog
+                ref={(component) => {
+                    this.dialog = component;
+                }}
+            />
+
           <Form onSubmit={this.handleSubmit}>
             <Card>
               <HeaderWithStepsFull title={t("brokerNew")} stepIndex={0} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
@@ -275,8 +327,7 @@ class BrokerEdit extends React.Component {
                   </Col>
                   <Col>
                     <button className="btn btn-outline-danger"
-
-                            onClick={this.deleteAction}
+                            onClick={this.confirmDelete}
                             id={this.state.id}
                     >
                       <i className="fa fa-trash"></i><span>{t("remove")}</span>

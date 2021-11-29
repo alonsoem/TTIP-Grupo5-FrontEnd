@@ -6,11 +6,9 @@ import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import {
   deleteBroker,
-  filteredBrokers, filterMyBrokers,
-  getBrokers,
+  filterMyBrokers,
   getMyBrokers,
   postBrokerCopy,
-  postBrokersWithFilter
 } from "../api/api";
 import NavBarPage from "./NavBarPage";
 import "./table.css";

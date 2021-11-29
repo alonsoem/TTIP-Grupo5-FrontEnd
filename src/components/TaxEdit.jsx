@@ -3,10 +3,11 @@ import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { deleteTax, getTax, putTaxEdit} from "../api/api";
+import {deleteRule, deleteTax, getTax, putTaxEdit} from "../api/api";
 import DragTest from "./dragTest";
 import NavBarPage from "./NavBarPage";
 import HeaderWithStepsFull from "./HeaderWithStepsFull";
+import Dialog from "react-bootstrap-dialog";
 
 
 class Taxes extends React.Component {
@@ -24,6 +25,69 @@ class Taxes extends React.Component {
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeUrl = this.handleChangeUrl.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDeleteTax = this.handleDeleteTax.bind(this);
+    this.handleDeleteRule = this.handleDeleteRule.bind(this);
+  }
+
+
+  setDialogDefaults(){
+    Dialog.setOptions({
+      defaultOkLabel: this.props.t("modalOkButton"),
+      defaultCancelLabel: this.props.t("modalCancelButton"),
+      primaryClassName: "btn-success",
+      defaultButtonClassName: "btn-link",
+    });
+  }
+
+  showDialog(title,body,func){
+    this.dialog.show({
+      title,
+      body,
+      actions: [
+        Dialog.OKAction(() => func()),
+        Dialog.CancelAction(() => console.log("Canceled!")),
+      ],
+      bsSize: "small",
+      onHide: (dialog) => {
+        dialog.hide();
+      },
+    });
+  }
+
+  handleDeleteTax = (event) => {
+    event.preventDefault();
+    this.setDialogDefaults();
+    let id = event.target.id;
+    this.showDialog(this.props.t("modalTitleConfirm"),
+                    this.props.t("modelBodyMessage"),
+                    () => this.removeTax(id)
+    );
+  };
+
+  handleDeleteRule = (event) => {
+    event.preventDefault();
+    this.setDialogDefaults();
+    this.showDialog(this.props.t("modalTitleConfirm"),
+                    this.props.t("modelBodyMessage"),
+                    () => this.removeRule(event.target.id)
+    );
+  };
+
+
+  removeRule=(id)=>{
+    deleteRule(id)
+        .then(() =>{
+          this.update();
+        })
+        .catch(() => this.setState({ error: this.props.t("genericError") }));
+  }
+
+  removeTax = (id) => {
+    deleteTax(id)
+        .then(() => {
+          this.props.history.push("/broker");
+        })
+        .catch((responseError) => this.handleAPIError(responseError));
   }
 
   getAllRules() {
@@ -32,14 +96,11 @@ class Taxes extends React.Component {
         taxId={this.state.id}
         taxRules={this.state.rules.map((e) => ({ id: e.id, name: e.name, priority: e.priority }))}
         context={this}
-        onUpdate={this.handleUpdateDragList}
+        onDelete={this.handleDeleteRule}
       />
     );
   }
 
-  handleUpdateDragList = (event) =>{
-
-  }
 
   cancelAction = (event) => {
     event.preventDefault();
@@ -120,14 +181,7 @@ class Taxes extends React.Component {
       .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
 
-  deleteAction = (event) => {
-    event.preventDefault();
-    deleteTax(event.target.id)
-        .then((response) => {
-          this.props.history.push("/broker");
-        })
-        .catch((responseError) => this.handleAPIError(responseError));
-  };
+
 
   render() {
     const { t } = this.props;
@@ -137,6 +191,12 @@ class Taxes extends React.Component {
       <div >
         <NavBarPage />
         <div className="container">
+
+          <Dialog
+              ref={(component) => {
+                this.dialog = component;
+              }}
+          />
           <Form onSubmit={this.handleSubmit}>
           <Card>
               <HeaderWithStepsFull title={t("taxEdit")} stepIndex={1} steps={[t("calculator"),t("taxEdit"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
@@ -250,7 +310,7 @@ class Taxes extends React.Component {
                 <Col >
                   <button className="btn btn-outline-danger"
 
-                          onClick={this.deleteAction}
+                          onClick={this.handleDeleteTax}
                           id={this.state.id}
                   >
                     <i className="fa fa-trash"></i><span>{t("remove")}</span>

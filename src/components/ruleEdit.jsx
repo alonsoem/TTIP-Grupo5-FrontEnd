@@ -6,6 +6,7 @@ import {deleteRule, getFacts, getRule, putRuleEdit} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import HeaderWithStepsFull from "./HeaderWithStepsFull";
 import {Popover} from "react-bootstrap";
+import Dialog from "react-bootstrap-dialog";
 const math = require('mathjs');
 
 
@@ -33,6 +34,33 @@ class RuleEdit extends React.Component {
     this.handleChangeThen = this.handleChangeThen.bind(this);
 
   }
+
+    setDialogDefaults(){
+        Dialog.setOptions({
+            defaultOkLabel: this.props.t("modalOkButton"),
+            defaultCancelLabel: this.props.t("modalCancelButton"),
+            primaryClassName: "btn-success",
+            defaultButtonClassName: "btn-link",
+        });
+    }
+
+    showDialog(title,body,func){
+        this.dialog.show({
+            title,
+            body,
+            actions: [
+                Dialog.OKAction(() => func()),
+                Dialog.CancelAction(() => console.log("Canceled!")),
+            ],
+            bsSize: "small",
+            onHide: (dialog) => {
+                dialog.hide();
+            },
+        });
+    }
+
+
+
 
     toggleConditionOnOff = (event)=>{
         this.setState({"useCondition": event.target.checked});
@@ -258,15 +286,25 @@ class RuleEdit extends React.Component {
         return this.state.errors.indexOf(key) !== -1;
     }
 
-    deleteAction = (event) => {
+    handleDelete = (event) => {
         event.preventDefault();
-        deleteRule(event.target.id)
-            .then((response) => {
+        this.setDialogDefaults();
+        this.showDialog(this.props.t("modalTitleConfirm"),
+                        this.props.t("modelBodyMessage"),
+                    () => this.removeRule(event.target.id)
+        );
+
+    };
+
+    removeRule(id) {
+        deleteRule(id)
+            .then(() => {
                 this.props.history.push("/broker");
             })
             .catch((responseError) => this.handleAPIError(responseError));
-    };
-  render() {
+    }
+
+    render() {
     const { t } = this.props;
 
       const popover = (title,body)=>(
@@ -289,6 +327,13 @@ class RuleEdit extends React.Component {
         <div >
         <NavBarPage />
           <div className="container">
+
+              <Dialog
+                  ref={(component) => {
+                      this.dialog = component;
+                  }}
+              />
+
             <Form onSubmit={this.handleSubmit}>
           <Card>
               <HeaderWithStepsFull title={t("brokerNew")} stepIndex={2} steps={[t("calculator"),t("taxCreate"),t("ruleCreate")]} hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
@@ -444,8 +489,7 @@ class RuleEdit extends React.Component {
                       </Col>
                       <Col>
                           <button class="btn btn-outline-danger"
-
-                              onClick={this.deleteAction}
+                              onClick={this.handleDelete}
                               id={this.state.id}
                           >
                               <i class="fa fa-trash"></i><span>{t("remove")}</span>
