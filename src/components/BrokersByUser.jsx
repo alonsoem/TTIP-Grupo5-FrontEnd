@@ -4,7 +4,15 @@ import { Button, Card, Col, Row, Form } from "react-bootstrap";
 import Dialog from "react-bootstrap-dialog";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import {deleteBroker, getBrokers, getUser, getUserBrokers, postBrokerCopy, postBrokersWithFilter} from "../api/api";
+import {
+    deleteBroker,
+    filteredBrokers,
+    getBrokers,
+    getUser,
+    getUserBrokers,
+    postBrokerCopy,
+    postBrokersWithFilter
+} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import "./table.css";
 
@@ -30,7 +38,8 @@ class BrokersByUser extends React.Component {
 
   handleSearch = (event)=> {
     this.setState({search:event.target.value});
-    postBrokersWithFilter({words:event.target.value.split(" ")})
+    filteredBrokers(this.state.showUIDBrokers,
+                    {words:event.target.value.split(" ")})
         .then((response) => {
           this.setState({ rows: response });
         })
