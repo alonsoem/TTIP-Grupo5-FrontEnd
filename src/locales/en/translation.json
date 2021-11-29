@@ -96,5 +96,6 @@
   "brokersFrom": "Calculators by User",
   "pastSteps": "Fullfilled Step. Click to go back!",
   "myBrokers": "My Calculators",
-  "publicBrokers" : "Public Calculators"
+  "publicBrokers" : "Public Calculators",
+  "my": "My Stuff"
 }

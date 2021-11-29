@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import "./NavBar.css";
-import { Navbar } from "react-bootstrap";
+import {Dropdown, Navbar} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink} from "react-router-dom";
 import App18 from "../App18.jsx";
@@ -81,17 +81,19 @@ class NavBarPage extends Component {
                 </NavLink>
               </li>
 
-              <li className="nav-item ">
-                <NavLink className="btn btn-primary" to="/myBrokers">
-                  {t("myBrokers")}
-                </NavLink>
-              </li>
 
-              <li className="nav-item ">
-                <NavLink className="btn btn-primary" to="/profile">
-                  {t("profile")}
-                </NavLink>
-              </li>
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  {t("my")}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="/profile">{t("profile")}</Dropdown.Item>
+                  <Dropdown.Item href="/myBrokers">{t("myBrokers")}</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+
+
             </ul>
 
             <ul className="navbar-nav me-0">
