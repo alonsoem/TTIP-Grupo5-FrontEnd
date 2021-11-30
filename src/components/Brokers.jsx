@@ -66,15 +66,7 @@ class Brokers extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
-  handleAPIError(responseError) {
-    let errorToDisplay = this.props.t("genericError");
 
-    if (responseError.request && responseError.request.status === 0) {
-      errorToDisplay = this.props.t("comError");
-    }
-    this.setState({ error: errorToDisplay });
-    this.notifyError(errorToDisplay);
-  }
   editBroker = (event) => {
     this.props.history.push("/broker/" + event.target.id);
   };

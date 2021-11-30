@@ -8,31 +8,19 @@ import App18 from "../App18.jsx";
 import aleclogo from "../static/alecLogoTrans2.png";
 import {withRouter} from "react-router";
 import jwt_decode from "jwt-decode";
-
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class NavBarPage extends Component {
 
   componentDidMount(){
-  //if (!validateSession(this.state)) {
-  // this.props.history.push("/login");
-  // }
-
-  console.log("SESSION CHECKs: ");
 
   let session = sessionStorage.getItem("token");
-  console.log(session);
 
   if (!session) {
-    console.log("NO SESSION");
     this.props.history.push("/login");
   } else {
-    console.log("WITH SESSION");
     const jwt_Token_decoded = jwt_decode(session);
-
-    //const d = new Date(0);
-    //d.setUTCSeconds(jwt_Token_decoded.exp);
-    //console.log(d);
 
     if (jwt_Token_decoded.exp * 1000 < Date.now()) {
       return this.props.history.push("/login");
@@ -40,7 +28,8 @@ class NavBarPage extends Component {
     }
 
   }
-}
+  }
+
 
 
 
@@ -50,7 +39,7 @@ class NavBarPage extends Component {
     return (
 
         <div>
-
+          <ToastContainer />
         <Navbar
           collapseOnSelect
           expand="md"

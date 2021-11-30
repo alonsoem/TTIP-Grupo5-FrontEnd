@@ -11,6 +11,7 @@ import "./maincalc.css";
 import NavBarPage from "./NavBarPage";
 import i18next from "i18next";
 import {FormattedNumber,IntlProvider} from 'react-intl';
+import {toast} from "react-toastify";
 
 class MainCalc extends Component {
   constructor(props) {
@@ -61,8 +62,34 @@ class MainCalc extends Component {
   }
 
   showAlert() {
-    this.setState({ errorVisible: true });
-    setTimeout(() => this.setState({ errorVisible: false }), 3000);
+     //this.setState({ errorVisible: true });
+    //setTimeout(() => this.setState({ errorVisible: false }), 3000);
+  }
+
+  notify = (message) => {
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: 'colored',
+    });
+  }
+
+  notifyError = (message) => {
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: 'colored',
+    });
   }
 
   handleSubmit = (event) => {
@@ -89,7 +116,7 @@ class MainCalc extends Component {
       errorToDisplay = this.props.t("comError");
     }
     this.setState({ error: errorToDisplay });
-    this.showAlert();
+    this.notifyError(errorToDisplay);
   }
 
   showApartadoField = (t)=>{

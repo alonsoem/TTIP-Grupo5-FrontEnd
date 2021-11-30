@@ -6,10 +6,7 @@ import { NavLink } from "react-router-dom";
 import {getPublicBrokers, postBrokerCopy} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import "./table.css";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
+import {toast} from "react-toastify";
 
 class AllBrokers extends React.Component {
   constructor(props) {
@@ -50,7 +47,17 @@ class AllBrokers extends React.Component {
     this.props.history.push("/maincalc/" + event.target.id);
   };
 
-   notify = (message) => {
+  handleAPIError(responseError) {
+    let errorToDisplay = this.props.t("genericError");
+
+    if (responseError.request && responseError.request.status === 0) {
+      errorToDisplay = this.props.t("comError");
+    }
+    this.setState({ error: errorToDisplay });
+    this.notifyError(errorToDisplay);
+  }
+
+  notify = (message) => {
     toast.success(message, {
       position: "top-center",
       autoClose: 3000,
@@ -63,6 +70,18 @@ class AllBrokers extends React.Component {
     });
   }
 
+  notifyError = (message) => {
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: 'colored',
+    });
+  }
 
 
   render() {
@@ -93,7 +112,7 @@ class AllBrokers extends React.Component {
       <div >
         <NavBarPage />
         <div className="container">
-          <ToastContainer />
+
           <Card>
             <Card.Header>
               <h5>{t("publicBrokers")}</h5>
