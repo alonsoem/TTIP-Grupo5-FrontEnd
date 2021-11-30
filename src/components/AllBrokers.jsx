@@ -1,13 +1,9 @@
 import {MDBInput, MDBTable, MDBTableBody, MDBTableHead} from "mdbreact";
 import React from "react";
 import {Button, Card, Col, Row, Form} from "react-bootstrap";
-import Dialog from "react-bootstrap-dialog";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import {
-  getPublicBrokers,
-  postBrokerCopy,
-} from "../api/api";
+import {getPublicBrokers, postBrokerCopy} from "../api/api";
 import NavBarPage from "./NavBarPage";
 import "./table.css";
 import { ToastContainer, toast } from 'react-toastify';
@@ -23,10 +19,7 @@ class AllBrokers extends React.Component {
       rows: [],
       search:"",
     };
-
-    this.confirmDelete = this.confirmDelete.bind(this);
   }
-
 
   componentDidMount() {
     this.updateBrokers();
@@ -34,12 +27,7 @@ class AllBrokers extends React.Component {
 
   handleSearch = (event)=> {
     this.setState({search:event.target.value});
-    getPublicBrokers({words:event.target.value.split(" ")})
-        .then((response) => {
-          this.setState({ rows: response });
-        })
-        .catch(() => this.setState({ error: this.props.t("genericError") }));
-
+    this.updateBrokers();
   }
 
   updateBrokers() {
@@ -47,7 +35,7 @@ class AllBrokers extends React.Component {
       .then((response) => {
         this.setState({ rows: response});
       })
-      .catch(() => this.setState({ error: this.props.t("genericError") }));
+      .catch((responseError) => this.handleAPIError(responseError));
   }
 
   copyBroker = (event) => {
@@ -59,31 +47,7 @@ class AllBrokers extends React.Component {
   };
 
   useBroker = (event) => {
-
     this.props.history.push("/maincalc/" + event.target.id);
-  };
-
-  confirmDelete = (event) => {
-    event.preventDefault();
-    Dialog.setOptions({
-      defaultOkLabel: this.props.t("modalOkButton"),
-      defaultCancelLabel: this.props.t("modalCancelButton"),
-      primaryClassName: "btn-success",
-      defaultButtonClassName: "btn-link",
-    });
-
-    this.dialog.show({
-      title: this.props.t("modalTitleConfirm"),
-      body: this.props.t("modelBodyMessage"),
-      actions: [
-        Dialog.OKAction(() => this.deleteBroker(event.target.id)),
-        Dialog.CancelAction(() => console.log("Hello!")),
-      ],
-      bsSize: "small",
-      onHide: (dialog) => {
-        dialog.hide();
-      },
-    });
   };
 
    notify = (message) => {
@@ -125,20 +89,11 @@ class AllBrokers extends React.Component {
       }
     ];
 
-
-
-
     return (
       <div >
         <NavBarPage />
         <div className="container">
           <ToastContainer />
-          <Dialog
-            ref={(component) => {
-              this.dialog = component;
-            }}
-          />
-
           <Card>
             <Card.Header>
               <h5>{t("publicBrokers")}</h5>
@@ -181,15 +136,10 @@ class AllBrokers extends React.Component {
               </div>
             </Card.Body>
           </Card>
-
-
-
         </div>
       </div>
     );
   }
-
-
 }
 
 export default withTranslation()(AllBrokers);

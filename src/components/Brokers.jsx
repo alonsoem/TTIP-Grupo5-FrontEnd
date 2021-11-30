@@ -37,7 +37,7 @@ class Brokers extends React.Component {
         .then((response) => {
           this.setState({ rows: response });
         })
-        .catch(() => this.setState({ error: this.props.t("genericError") }));
+        .catch((responseError) => this.handleAPIError(responseError));
 
   }
 
@@ -46,7 +46,7 @@ class Brokers extends React.Component {
       .then((response) => {
         this.setState({ rows: response });
       })
-      .catch(() => this.setState({ error: this.props.t("genericError") }));
+      .catch((responseError) => this.handleAPIError(responseError));
   }
 
   deleteBroker = (id) => {
@@ -66,6 +66,15 @@ class Brokers extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
+  handleAPIError(responseError) {
+    let errorToDisplay = this.props.t("genericError");
+
+    if (responseError.request && responseError.request.status === 0) {
+      errorToDisplay = this.props.t("comError");
+    }
+    this.setState({ error: errorToDisplay });
+    this.notifyError(errorToDisplay);
+  }
   editBroker = (event) => {
     this.props.history.push("/broker/" + event.target.id);
   };
@@ -99,6 +108,19 @@ class Brokers extends React.Component {
 
   notify = (message) => {
     toast.success(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: 'colored',
+    });
+  }
+
+  notifyError = (message) => {
+    toast.danger(message, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
