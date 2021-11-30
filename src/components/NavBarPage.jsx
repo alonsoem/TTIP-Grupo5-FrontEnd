@@ -14,30 +14,23 @@ import 'react-toastify/dist/ReactToastify.css';
 class NavBarPage extends Component {
 
   componentDidMount(){
+    let session = sessionStorage.getItem("token");
 
-  let session = sessionStorage.getItem("token");
+    if (!session) {
+      this.props.history.push("/login");
+    } else {
+      const jwt_Token_decoded = jwt_decode(session);
 
-  if (!session) {
-    this.props.history.push("/login");
-  } else {
-    const jwt_Token_decoded = jwt_decode(session);
-
-    if (jwt_Token_decoded.exp * 1000 < Date.now()) {
-      return this.props.history.push("/login");
-
+      if (jwt_Token_decoded.exp * 1000 < Date.now()) {
+        return this.props.history.push("/login");
+      }
     }
-
   }
-  }
-
-
-
 
   render() {
     const { t } = this.props;
 
     return (
-
         <div>
           <ToastContainer />
         <Navbar
@@ -65,14 +58,14 @@ class NavBarPage extends Component {
               </li>
 
               <li className="nav-item ">
-                <NavLink className="btn btn-primary" to="/brokers">
+                <NavLink className="btn btn-success" to="/brokers">
                   {t("brokers")}
                 </NavLink>
               </li>
 
 
               <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle variant="primary" id="dropdown-basic">
                   {t("my")}
                 </Dropdown.Toggle>
 

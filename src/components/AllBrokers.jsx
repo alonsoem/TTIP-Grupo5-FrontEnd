@@ -121,9 +121,9 @@ class AllBrokers extends React.Component {
               <div className="row">
                 <div id={"contenedor"}>
 
-                  <Row className="row">
-                    <Col className="col-11 col-sm-10 col-lg-10 col-xl-10 pb-10">
+                    <Col className="col-12">
                       <Row>
+                        <Col className="col-8 col-md-9 col-sm-9 col-lg-10 col-xl-10 pb-10">
                         <Form.Group className="mb-3" controlId="searchValue">
                           <MDBInput
                               type="text"
@@ -134,23 +134,29 @@ class AllBrokers extends React.Component {
                               className={"form-control"} />
 
                         </Form.Group>
+                        </Col>
+                        <Col className="col-2 col-md-2 col-sm-2 col-lg-2 col-xl-2 pb-2">
+                          <NavLink to="/broker">
+                            <Button title={t("brokerNew")} class={"btn-sm"}>
+                              <i className="fa fa-plus"></i>
+                            </Button>
+                          </NavLink>
+                        </Col>
+
                       </Row>
+                      <Row>
+                        <Col className={"col-12 col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10"}>
                       <MDBTable
                         className="table table-striped table-hover"
                         responsive
                       >
                         <MDBTableHead columns={columns} color="info-color" />
                         <MDBTableBody rows={dataSet} />
+
                       </MDBTable>
+                        </Col>
+                      </Row>
                     </Col>
-                    <Col className="col-1 col-sm-2 col-lg-2 col-xl-2 pb-2">
-                      <NavLink to="/broker">
-                        <Button title={t("brokerNew")} class={"btn-sm"}>
-                          <i className="fa fa-plus"></i>
-                        </Button>
-                      </NavLink>
-                    </Col>
-                  </Row>
                 </div>
               </div>
             </Card.Body>
