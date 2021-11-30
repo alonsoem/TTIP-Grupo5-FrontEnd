@@ -1,6 +1,6 @@
 import {MDBInput, MDBTable, MDBTableBody, MDBTableHead} from "mdbreact";
 import React from "react";
-import { Button, Card, Col, Row, Form } from "react-bootstrap";
+import {Button, Card, Col, Row, Form} from "react-bootstrap";
 import Dialog from "react-bootstrap-dialog";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
@@ -10,6 +10,9 @@ import {
 } from "../api/api";
 import NavBarPage from "./NavBarPage";
 import "./table.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 class AllBrokers extends React.Component {
@@ -23,6 +26,7 @@ class AllBrokers extends React.Component {
 
     this.confirmDelete = this.confirmDelete.bind(this);
   }
+
 
   componentDidMount() {
     this.updateBrokers();
@@ -39,7 +43,7 @@ class AllBrokers extends React.Component {
   }
 
   updateBrokers() {
-    getPublicBrokers({words:[]})
+    getPublicBrokers({words:this.state.search.split(" ")})
       .then((response) => {
         this.setState({ rows: response});
       })
@@ -48,13 +52,14 @@ class AllBrokers extends React.Component {
 
   copyBroker = (event) => {
     postBrokerCopy(event.target.id)
-        .then((response) => {
-          this.updateBrokers();
+        .then(() => {
+          this.notify(this.props.t("brokerCopyOK"));
         })
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
   useBroker = (event) => {
+
     this.props.history.push("/maincalc/" + event.target.id);
   };
 
@@ -81,30 +86,34 @@ class AllBrokers extends React.Component {
     });
   };
 
+   notify = (message) => {
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: 'colored',
+    });
+  }
+
+
+
   render() {
     const { t } = this.props;
     const dataSet = this.state.rows.map((item) => {
-      console.log(item);
       return {
-        id: item.id,
-        name: item.name,
+        name: (<a href={"#"} onClick={this.useBroker} id={item.id} className={"nav-link"}>{item.name}</a>),
         copy:(
            <Button variant="info" onClick={this.copyBroker} id={item.id}>
               <i className="fa fa-copy"></i>
            </Button>
             ),
-        calc: (
-          <Button variant="info" onClick={this.useBroker} id={item.id}>
-            <i className="fa fa-calculator"></i>
-          </Button>
-        ),
       };
     });
     const columns = [
-      {
-        label: t("brokerId"),
-        field: "id",
-      },
       {
         label: t("brokerName"),
         field: "name",
@@ -113,17 +122,17 @@ class AllBrokers extends React.Component {
       {
         label: t("actionCol"),
         field: "copy",
-      },
-      {
-        label: "",
-        field: "calc",
-      },
+      }
     ];
+
+
+
 
     return (
       <div >
         <NavBarPage />
         <div className="container">
+          <ToastContainer />
           <Dialog
             ref={(component) => {
               this.dialog = component;
@@ -172,6 +181,9 @@ class AllBrokers extends React.Component {
               </div>
             </Card.Body>
           </Card>
+
+
+
         </div>
       </div>
     );

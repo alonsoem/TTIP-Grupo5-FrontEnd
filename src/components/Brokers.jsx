@@ -12,6 +12,7 @@ import {
 } from "../api/api";
 import NavBarPage from "./NavBarPage";
 import "./table.css";
+import {toast, ToastContainer} from "react-toastify";
 
 
 class Brokers extends React.Component {
@@ -42,16 +43,15 @@ class Brokers extends React.Component {
 
   updateBrokers() {
     getMyBrokers()
-      .then((taxes) => {
-        console.log(taxes);
-        this.setState({ rows: taxes });
+      .then((response) => {
+        this.setState({ rows: response });
       })
       .catch(() => this.setState({ error: this.props.t("genericError") }));
   }
 
   deleteBroker = (id) => {
     deleteBroker(id)
-      .then((response) => {
+      .then(() => {
         this.updateBrokers();
       })
       .catch((responseError) => this.handleAPIError(responseError));
@@ -59,7 +59,8 @@ class Brokers extends React.Component {
 
   copyBroker = (event) => {
     postBrokerCopy(event.target.id)
-        .then((response) => {
+        .then(() => {
+          this.notify(this.props.t("brokerCopyOK"));
           this.updateBrokers();
         })
         .catch((responseError) => this.handleAPIError(responseError));
@@ -96,13 +97,24 @@ class Brokers extends React.Component {
     });
   };
 
+  notify = (message) => {
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: 'colored',
+    });
+  }
+
   render() {
     const { t } = this.props;
     const dataSet = this.state.rows.map((item) => {
-      console.log(item);
       return {
-        id: item.id,
-        name: item.name,
+        name: (<a href={"#"} onClick={this.useBroker} id={item.id} className={"nav-link"}>{item.name}</a>),
         copy:(
            <Button variant="info" onClick={this.copyBroker} id={item.id}>
               <i className="fa fa-copy"></i>
@@ -120,18 +132,9 @@ class Brokers extends React.Component {
               <i className="fa fa-minus"></i>
             </Button>
           ) : null,
-        calc: (
-          <Button variant="info" onClick={this.useBroker} id={item.id}>
-            <i className="fa fa-calculator"></i>
-          </Button>
-        ),
       };
     });
     const columns = [
-      {
-        label: t("brokerId"),
-        field: "id",
-      },
       {
         label: t("brokerName"),
         field: "name",
@@ -148,17 +151,15 @@ class Brokers extends React.Component {
       {
         label: "",
         field: "del",
-      },
-      {
-        label: "",
-        field: "calc",
-      },
+      }
     ];
 
     return (
       <div >
         <NavBarPage />
         <div className="container">
+
+          <ToastContainer />
           <Dialog
             ref={(component) => {
               this.dialog = component;
@@ -167,7 +168,7 @@ class Brokers extends React.Component {
 
           <Card>
             <Card.Header>
-              <h5>{t("brokers")}</h5>
+              <h5>{t("myBrokers")}</h5>
             </Card.Header>
             <Card.Body>
               <div className="row">

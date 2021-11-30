@@ -97,5 +97,6 @@
   "pastSteps": "Fullfilled Step. Click to go back!",
   "myBrokers": "My Calculators",
   "publicBrokers" : "Public Calculators",
-  "my": "My Stuff"
+  "my": "My Stuff",
+  "brokerCopyOK": "Calculator copied correctly!"
 }
