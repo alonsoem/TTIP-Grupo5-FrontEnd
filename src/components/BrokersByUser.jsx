@@ -11,6 +11,7 @@ import {
 } from "../api/api";
 import NavBarPage from "./NavBarPage";
 import "./table.css";
+import {toast} from "react-toastify";
 
 
 class BrokersByUser extends React.Component {
@@ -28,9 +29,19 @@ class BrokersByUser extends React.Component {
   }
 
   componentDidMount() {
-    this.updateBrokers(this.state.showUIDBrokers);
-    this.getUserData(this.state.showUIDBrokers);
+    this.updateBrokers();
+    this.getUserData();
   }
+
+    handleAPIError(responseError) {
+        let errorToDisplay = this.props.t("genericError");
+
+        if (responseError.request && responseError.request.status === 0) {
+            errorToDisplay = this.props.t("comError");
+        }
+        this.setState({ error: errorToDisplay });
+        this.notifyError(errorToDisplay);
+    }
 
   handleSearch = (event)=> {
     this.setState({search:event.target.value});
@@ -39,30 +50,31 @@ class BrokersByUser extends React.Component {
         .then((response) => {
           this.setState({ rows: response });
         })
-        .catch(() => this.setState({ error: this.props.t("genericError") }));
+        .catch((responseError) => this.handleAPIError(responseError));
 
   }
 
-    getUserData(uid) {
-        getUser(uid)
+    getUserData() {
+        getUser(this.state.showUIDBrokers)
             .then((response) => {
-                console.log(response);
                 this.setState({ user: response});
             })
-            .catch(() => this.setState({ error: this.props.t("genericError") }));
+            .catch((responseError) => this.handleAPIError(responseError));
     }
-  updateBrokers(uid) {
-    getUserBrokers(uid)
+
+  updateBrokers() {
+    getUserBrokers(this.state.showUIDBrokers)
       .then((response) => {
         this.setState({ rows: response });
       })
-      .catch(() => this.setState({ error: this.props.t("genericError") }));
+      .catch((responseError) => this.handleAPIError(responseError));
   }
 
 
   copyBroker = (event) => {
     postBrokerCopy(event.target.id)
-        .then((response) => {
+        .then(() => {
+          this.notify(this.props.t("brokerCopyOK"));
           this.updateBrokers();
         })
         .catch((responseError) => this.handleAPIError(responseError));
@@ -94,6 +106,32 @@ class BrokersByUser extends React.Component {
       },
     });
   };
+
+    notify = (message) => {
+        toast.success(message, {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: 'colored',
+        });
+    }
+
+    notifyError = (message) => {
+        toast.error(message, {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: 'colored',
+        });
+    }
 
   render() {
     const { t } = this.props;

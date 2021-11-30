@@ -6,6 +6,7 @@ import { deleteBroker, deleteTax, getBroker, putBrokerEdit } from "../api/api";
 import NavBarPage from "./NavBarPage";
 import HeaderWithStepsFull from "./HeaderWithStepsFull";
 import Dialog from "react-bootstrap-dialog";
+import {toast} from "react-toastify";
 
 class BrokerEdit extends React.Component {
   constructor(props) {
@@ -109,18 +110,19 @@ class BrokerEdit extends React.Component {
       errorToDisplay = this.props.t("comError");
     }
     this.setState({ error: errorToDisplay });
+    this.notifyError(errorToDisplay);
   }
 
   submit = () => {
     putBrokerEdit(this.state.id, {
-      name: this.state.name,
-      description:this.state.description,
-      isPublic:this.state.isPublic
-    })
-      .then(() => {
-        this.props.history.push("/brokers");
-      })
-      .catch((responseError) => this.handleAPIError(responseError));
+                                        name: this.state.name,
+                                        description:this.state.description,
+                                        isPublic:this.state.isPublic
+                                })
+                .then(() => {
+                        this.props.history.push("/myBrokers");
+                })
+                .catch((responseError) => this.handleAPIError(responseError));
   };
 
   handleSubmit = (event) => {
@@ -173,22 +175,34 @@ class BrokerEdit extends React.Component {
 
 
 
+    notifyError = (message) => {
+        toast.error(message, {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: 'colored',
+        });
+    }
   updateBroker = () => {
     getBroker(this.state.id)
       .then((aBroker) => {
-        console.log(aBroker);
         this.setState({ name: aBroker.name,
                               description: aBroker.description,
                               taxes: aBroker.taxes,
                               isPublic:aBroker.isPublic });
+
       })
       .catch(() => this.setState({ error: this.props.t("genericError") }));
   };
 
   toggleIsPublic = (event)=>{
     this.setState({"isPublic": event.target.checked});
-    console.log(event.target);
   }
+
   render() {
     const { t } = this.props;
     const { brokerId } = this.props.match.params;

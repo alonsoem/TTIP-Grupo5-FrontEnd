@@ -66,7 +66,6 @@ class Brokers extends React.Component {
         .catch((responseError) => this.handleAPIError(responseError));
   };
 
-
   editBroker = (event) => {
     this.props.history.push("/broker/" + event.target.id);
   };
@@ -74,6 +73,16 @@ class Brokers extends React.Component {
   useBroker = (event) => {
     this.props.history.push("/maincalc/" + event.target.id);
   };
+
+  handleAPIError(responseError) {
+    let errorToDisplay = this.props.t("genericError");
+
+    if (responseError.request && responseError.request.status === 0) {
+      errorToDisplay = this.props.t("comError");
+    }
+    this.setState({ error: errorToDisplay });
+    this.notifyError(errorToDisplay);
+  }
 
   confirmDelete = (event) => {
     event.preventDefault();
@@ -112,7 +121,7 @@ class Brokers extends React.Component {
   }
 
   notifyError = (message) => {
-    toast.danger(message, {
+    toast.error(message, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
