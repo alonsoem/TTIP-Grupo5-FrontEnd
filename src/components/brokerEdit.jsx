@@ -227,6 +227,7 @@ class BrokerEdit extends React.Component {
                                    pastText={t("pastSteps")}
                                    leftSteps={t("leftSteps")} />
               <Card.Body>
+                  <div className={"container"}>
                 <Row>
                   <Col lg="7" xs="7" md="7">
                     <Row>
@@ -328,6 +329,7 @@ class BrokerEdit extends React.Component {
                     </Card>
                   </Col>
                 </Row>
+                  </div>
               </Card.Body>
               <Card.Footer>
                 <Row class={"justify-content-start"}>

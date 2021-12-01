@@ -107,6 +107,7 @@ class BrokerCreate extends React.Component {
                                    hereText={t("youAreHere")} leftSteps={t("leftSteps")} />
 
             <Card.Body>
+                <div className={"container"}>
 
                 <Row className="mb-3">
                   <Form.Group className="mb-3" controlId="nameValue">
@@ -172,7 +173,7 @@ class BrokerCreate extends React.Component {
                     </Form.Group>
 
                 </Row>
-
+            </div>
 
 
 

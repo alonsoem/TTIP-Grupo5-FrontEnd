@@ -1,6 +1,6 @@
 import {MDBInput, MDBTable, MDBTableBody, MDBTableHead} from "mdbreact";
 import React from "react";
-import {Button, Card, Col, Row, Form} from "react-bootstrap";
+import {Button, Card, Col, Row, Form, OverlayTrigger} from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import {getPublicBrokers, postBrokerCopy} from "../api/api";
@@ -83,30 +83,45 @@ class AllBrokers extends React.Component {
     });
   }
 
+  tooltip(){return (<div>HOLA</div>)}
+
+  getBrokerCards () {
+    return this.state.rows.map((item) =>
+
+
+        <div  className="col-sm-4" style={{ marginBottom: 30}}>
+
+          <div className="card h-100 " style={{minHeight: "220px"}}>
+
+            <div className="card-body calcCard h-100">
+              <div className="row">
+                <h5 className="card-title">{item.name}</h5>
+
+                <div className="card-text brokerCards h-100">
+                  <div className={"h-75"}>
+                    <a href={"/maincalc/" + item.id} class={"link-light"}><h5 >{item.name}</h5></a>
+                    <p>{item.description}</p>
+                  </div>
+                  <div className="row h-25  float-end">
+                      <i className="fa fa-copy" title={this.props.t("tipCopyBroker")} onClick={this.copyBroker} id={item.id}></i>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+          </div>
+
+    );
+  }
 
   render() {
-    const { t } = this.props;
-    const dataSet = this.state.rows.map((item) => {
-      return {
-        name: (<a href={"#"} onClick={this.useBroker} id={item.id} className={"nav-link"}>{item.name}</a>),
-        copy:(
-           <Button variant="info" onClick={this.copyBroker} id={item.id}>
-              <i className="fa fa-copy"></i>
-           </Button>
-            ),
-      };
-    });
-    const columns = [
-      {
-        label: t("brokerName"),
-        field: "name",
-      },
+    const {t} = this.props;
 
-      {
-        label: t("actionCol"),
-        field: "copy",
-      }
-    ];
+
+
+
 
     return (
       <div >
@@ -146,14 +161,11 @@ class AllBrokers extends React.Component {
                       </Row>
                       <Row>
                         <Col className={"col-12 col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10"}>
-                      <MDBTable
-                        className="table table-striped table-hover"
-                        responsive
-                      >
-                        <MDBTableHead columns={columns} color="info-color" />
-                        <MDBTableBody rows={dataSet} />
+                          <div className={"row "} id={"brokerCards"}>
+                          {this.getBrokerCards()}
+                          </div>
 
-                      </MDBTable>
+
                         </Col>
                       </Row>
                     </Col>

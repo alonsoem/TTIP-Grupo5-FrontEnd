@@ -7,3 +7,86 @@
   width: 135px;
   text-align: left !important;
 }
+
+
+#brokerCards .card {
+  position: relative;
+  overflow: hidden;
+
+}
+
+#brokerCards .card:before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 220%;
+  background:#3380AA;
+  top: 0%;
+  left: -100%;
+  z-index: 1;
+  transform-origin: center top 0;
+  transition: .5s;
+}
+
+#brokerCards .card:hover:before {
+  left: 0%;
+}
+
+#brokerCards .card .card-text {
+  width: 100%;
+  padding: 0 20px;
+  position: absolute;
+  top: -150%;
+  color: #fff;
+  left: 0;
+  z-index: 2;
+  transition: .5s;
+}
+
+#brokerCards .card:hover .card-text {
+  top: 10%;
+}
+
+
+@media (max-width: 992px) {
+  #brokerCards .card:hover .card-text {
+    top: 10%;
+  }
+
+  #brokerCards  .card-text a {
+    font-size: 11px;
+  }
+
+  #brokerCards .btn {
+    padding: 5px 15px;
+  }
+
+  #brokerCards  .card-text h3 {
+    font-size: 18px;
+  }
+
+  #brokerCards  .card-text h5 {
+    font-size: 18px;
+  }
+
+
+}
+
+@media (max-width: 575px) {
+
+
+  #brokerCards .btn {
+    padding: 5px 24px;
+    font-size: 1.1rem;
+  }
+
+  #brokerCards  .card-text h3 {
+    font-size: 1.5rem;
+  }
+
+  #brokerCards  .card-text h5 {
+    font-size: 1.5rem;
+  }
+
+
+}

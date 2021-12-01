@@ -98,5 +98,7 @@
   "myBrokers": "My Calculators",
   "publicBrokers" : "Public Calculators",
   "my": "My Stuff",
-  "brokerCopyOK": "Calculator copied correctly!"
+  "brokerCopyOK": "Calculator copied correctly!",
+  "tipCopyBroker": "Click to copy this calculator to your calculators!",
+  "useIt": "Use it!"
 }

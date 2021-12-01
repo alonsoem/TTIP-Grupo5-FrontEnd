@@ -25,30 +25,30 @@ class BrokerCardList extends React.Component {
 
         return slicedArray.map((calculator) =>
 
-            <div className="col-sm-4">
-                <div className="card h-100"  style={{minHeight:"220px"}}>
-                    <div className="card-body calcCard h-100" >
-                        <div class="row h-75 ">
-                            <h5 className="card-title">{calculator.name}</h5>
-                            <p className="card-text">
-                                {calculator.description}
-                            </p>
-                        </div>
-                        <div class="row h-25">
-                            <Col className={"col-9"}>
-                                <a href={"/maincalc/" + calculator.id} className="btn btn-primary">
-                                    Utilizar!
-                                </a>
-                            </Col>
-                            <Col className={"col-3 text-center"}>
-                                <div className={"user-initials rounded-circle"} title={calculator.userFullName}>
-                                    <a href={"/brokers/"+ calculator.userId}>{initials(calculator.userFullName)}</a>
-                                </div>
-                            </Col>
+                <div className="col-sm-4">
+                    <div className="card h-100"  style={{minHeight:"220px"}}>
+                        <div className="card-body calcCard h-100" >
+                            <div class="row h-75 ">
+                                <h5 className="card-title">{calculator.name}</h5>
+                                <p className="card-text">
+                                    {calculator.description}
+                                </p>
+                            </div>
+                            <div class="row h-25">
+                                <Col className={"col-9"}>
+                                    <a href={"/maincalc/" + calculator.id} className="btn btn-primary">
+                                        Utilizar!
+                                    </a>
+                                </Col>
+                                <Col className={"col-3 text-center"}>
+                                    <div className={"user-initials rounded-circle"} title={calculator.userFullName}>
+                                        <a href={"/brokers/"+ calculator.userId}>{initials(calculator.userFullName)}</a>
+                                    </div>
+                                </Col>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
         );
     }
