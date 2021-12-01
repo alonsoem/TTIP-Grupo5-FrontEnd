@@ -164,8 +164,6 @@ class AllBrokers extends React.Component {
                           <div className={"row "} id={"brokerCards"}>
                           {this.getBrokerCards()}
                           </div>
-
-
                         </Col>
                       </Row>
                     </Col>

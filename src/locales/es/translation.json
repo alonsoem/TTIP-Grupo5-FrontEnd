@@ -99,6 +99,8 @@
   "publicBrokers" : "Calculatoras Públicas",
   "my": "Mis cosas",
   "brokerCopyOK": "Calculadora copiada correctamente!",
-  "tipCopyBroker": "Click aquí para copiar esta calculadora a sus calculadoras personales!",
+  "tipCopyBroker": "Copiar en mis calculadoras personales!",
+  "tipDeleteBroker": "Borrar Calculadora",
+  "tipEditBroker": "Modificar Calculadora",
   "useIt": "Úsela"
 }

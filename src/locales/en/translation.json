@@ -99,6 +99,8 @@
   "publicBrokers" : "Public Calculators",
   "my": "My Stuff",
   "brokerCopyOK": "Calculator copied correctly!",
-  "tipCopyBroker": "Click to copy this calculator to your calculators!",
+  "tipCopyBroker": "Copy to your calculators!",
+  "tipDeleteBroker": "Delete it",
+  "tipEditBroker": "Edit this calculator",
   "useIt": "Use it!"
 }

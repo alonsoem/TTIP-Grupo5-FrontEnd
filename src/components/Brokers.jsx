@@ -133,6 +133,46 @@ class Brokers extends React.Component {
     });
   }
 
+  getBrokerCards () {
+    return this.state.rows.map((item) =>
+
+
+        <div  className="col-sm-4" style={{ marginBottom: 30}}>
+
+          <div className="card h-100 " style={{minHeight: "220px"}}>
+
+            <div className="card-body calcCard h-100">
+              <div className="row">
+                <h5 className="card-title">{item.name}</h5>
+
+                <div className="card-text brokerCards h-100">
+                  <div className={"h-75"}>
+                    <a href={"/maincalc/" + item.id} class={"link-light"}><h5 >{item.name}</h5></a>
+                    <p>{item.description}</p>
+                  </div>
+                  <div className="row h-25  justify-content-end">
+                    <div className={"col-auto"}>
+                    <i className="fa fa-copy" title={this.props.t("tipCopyBroker")} onClick={this.copyBroker} id={item.id}></i>
+                    </div>
+                    <div className={"col-auto"}>
+                      <i className="fa fa-edit" title={this.props.t("tipEditBroker")} onClick={this.editBroker} id={item.id}></i>
+                    </div>
+                    <div className={"col-auto"}>
+                      <i className="fa fa-trash" title={this.props.t("tipDeleteBroker")} onClick={this.confirmDelete} id={item.id}></i>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+    );
+  }
+
   render() {
     const { t } = this.props;
     const dataSet = this.state.rows.map((item) => {
@@ -211,13 +251,7 @@ class Brokers extends React.Component {
 
                         </Form.Group>
                       </Row>
-                      <MDBTable
-                        className="table table-striped table-hover"
-                        responsive
-                      >
-                        <MDBTableHead columns={columns} color="info-color" />
-                        <MDBTableBody rows={dataSet} />
-                      </MDBTable>
+
                     </Col>
                     <Col className="col-1 col-sm-2 col-lg-2 col-xl-2 pb-2">
                       <NavLink to="/broker">
@@ -225,6 +259,14 @@ class Brokers extends React.Component {
                           <i className="fa fa-plus"></i>
                         </Button>
                       </NavLink>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col className={"col-12 col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10"}>
+                      <div className={"row "} id={"brokerCards"}>
+                        {this.getBrokerCards()}
+                      </div>
                     </Col>
                   </Row>
                 </div>
