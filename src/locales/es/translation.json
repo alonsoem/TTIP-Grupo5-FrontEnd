@@ -96,11 +96,12 @@
   "brokersFrom": "Calculadoras por usuario",
   "pastSteps": "Paso realizado. Haga click para volver a él",
   "myBrokers": "Mis Calculadoras",
-  "publicBrokers" : "Calculatoras Públicas",
+  "publicBrokers": "Calculatoras Públicas",
   "my": "Mis cosas",
   "brokerCopyOK": "Calculadora copiada correctamente!",
   "tipCopyBroker": "Copiar en mis calculadoras personales!",
   "tipDeleteBroker": "Borrar Calculadora",
   "tipEditBroker": "Modificar Calculadora",
-  "useIt": "Úsela"
+  "useIt": "Úsela",
+  "changeEmailInfo": "Si cambias de email tendras que volver a iniciar sesión"
 }

@@ -27,7 +27,7 @@ export const getProfile = (username) =>
   request("get", "/frontuser?username=" + username, {}, authConfig());
 
 export const getUser = (userId) =>
-    request("get", "/frontuser/" + userId, {}, authConfig());
+  request("get", "/frontuser/" + userId, {}, authConfig());
 export const getRule = (id) => request("get", "/rule/" + id, {}, authConfig());
 export const getTax = (id) =>
   request("get", "/broker/1/tax/" + id, {}, authConfig());
@@ -36,19 +36,19 @@ export const getTaxes = (body) => request("get", "/rate", body, authConfig());
 export const getPublicBrokers = (body) =>
   request("post", "/broker", body, authConfig());
 export const getUserBrokers = (id) =>
-    request("get", "/broker/byUser/"+id, {}, authConfig());
+  request("get", "/broker/byUser/" + id, {}, authConfig());
 export const getBroker = (id) =>
-    request("get", "/broker/" + id, {}, authConfig());
+  request("get", "/broker/" + id, {}, authConfig());
 export const getMyBrokers = (body) =>
-    request("get", "/broker/myBrokers", body, authConfig());
+  request("get", "/broker/myBrokers", body, authConfig());
 export const filterMyBrokers = (body) =>
-    request("post", "/broker/search/", body, authConfig());
-export const filteredBrokers = (userId,body) =>
-    request("post", "/broker/search/"+ userId, body, authConfig());
+  request("post", "/broker/search/", body, authConfig());
+export const filteredBrokers = (userId, body) =>
+  request("post", "/broker/search/" + userId, body, authConfig());
 
 export const getFacts = () => request("get", "/facts", {}, authConfig());
-export const postProfile = (body) =>
-  request("post", "/frontuser", body, authConfig());
+export const postProfile = (email, body) =>
+  request("post", "/frontuser?email=" + email, body, authConfig());
 export const postCalc = (body) =>
   request("post", "/broker/calculate", body, authConfig());
 export const postRegister = (body) => request("post", "/register", body, {});
@@ -59,7 +59,7 @@ export const postLogin = (body) =>
 export const postBrokerCreate = (body) =>
   request("post", "/broker/create", body, authConfig());
 export const postBrokerCopy = (brokerId) =>
-    request("post", "/broker/copy/"+brokerId, {}, authConfig());
+  request("post", "/broker/copy/" + brokerId, {}, authConfig());
 export const postTaxCreate = (brokerId, body) =>
   request("post", "/broker/" + brokerId + "/tax", body, authConfig());
 export const postRuleCreate = (taxId, body) =>
@@ -78,5 +78,5 @@ export const deleteTax = (id) =>
   request("delete", "/broker/1/tax/" + id, {}, authConfig());
 export const deleteRule = (id) =>
   request("delete", "/tax/1/rule/" + id, {}, authConfig());
-export const putRuleOrderChange = (taxId,body)=>
-    request("put","/tax/" + taxId + "/rule/orderChange",body,authConfig());
+export const putRuleOrderChange = (taxId, body) =>
+  request("put", "/tax/" + taxId + "/rule/orderChange", body, authConfig());

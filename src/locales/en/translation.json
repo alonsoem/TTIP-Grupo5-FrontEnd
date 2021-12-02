@@ -96,11 +96,12 @@
   "brokersFrom": "Calculators by User",
   "pastSteps": "Fullfilled Step. Click to go back!",
   "myBrokers": "My Calculators",
-  "publicBrokers" : "Public Calculators",
+  "publicBrokers": "Public Calculators",
   "my": "My Stuff",
   "brokerCopyOK": "Calculator copied correctly!",
   "tipCopyBroker": "Copy to your calculators!",
   "tipDeleteBroker": "Delete it",
   "tipEditBroker": "Edit this calculator",
-  "useIt": "Use it!"
+  "useIt": "Use it!",
+  "changeEmailInfo": "If you change your email you will have to log in again"
 }
