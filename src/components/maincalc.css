@@ -7,12 +7,12 @@
   background-color: #ff9a78;
 }
 
-#maincalcdiv {
+/*#maincalcdiv {
   background-image: url("/src/static/maincalc-wallpaper.png");
   background-position: center;
   background-size: cover;
 
-}
+}*/
 
 @media (max-width: 992px) {
   #appliedTaxesDiv {
