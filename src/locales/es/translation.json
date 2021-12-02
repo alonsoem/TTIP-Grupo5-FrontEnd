@@ -102,5 +102,7 @@
   "tipCopyBroker": "Copiar en mis calculadoras personales!",
   "tipDeleteBroker": "Borrar Calculadora",
   "tipEditBroker": "Modificar Calculadora",
-  "useIt": "Úsela"
+  "useIt": "Úsela",
+  "tipIsVisible": "Es visible públicamente",
+  "tipIsNotVisible": "No es públicamente visible"
 }

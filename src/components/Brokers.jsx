@@ -134,6 +134,7 @@ class Brokers extends React.Component {
   }
 
   getBrokerCards () {
+    console.log(this.state.rows);
     return this.state.rows.map((item) =>
 
 
@@ -143,11 +144,20 @@ class Brokers extends React.Component {
 
             <div className="card-body calcCard h-100">
               <div className="row">
-                <h5 className="card-title">{item.name}</h5>
+                <h5 className="card-title">
+                  {item.name}
+                  &nbsp;<i className={item.isPublic?"fa fa-eye":"fa fa-eye-slash"} ></i>
+                </h5>
 
                 <div className="card-text brokerCards h-100">
                   <div className={"h-75"}>
-                    <a href={"/maincalc/" + item.id} class={"link-light"}><h5 >{item.name}</h5></a>
+                    <a href={"/maincalc/" + item.id} class={"link-light"}>
+                      <h5 >{item.name}
+                        &nbsp;<i className={item.isPublic?"fa fa-eye":"fa fa-eye-slash"}
+                                 title={this.props.t(item.isPublic?"tipIsVisible":"tipIsNotVisible")}></i>
+                      </h5>
+
+                    </a>
                     <p>{item.description}</p>
                   </div>
                   <div className="row h-25  justify-content-end">

@@ -102,5 +102,7 @@
   "tipCopyBroker": "Copy to your calculators!",
   "tipDeleteBroker": "Delete it",
   "tipEditBroker": "Edit this calculator",
-  "useIt": "Use it!"
+  "useIt": "Use it!",
+  "tipIsVisible": "Is public",
+  "tipIsNotVisible": "Is Private"
 }

@@ -186,7 +186,6 @@ class MainCalc extends Component {
 
                     {this.showApartadoField(t)}
 
-
                     <Row className="justify-content-center">
                       <Col className="justify-content-middle text-center">
                         <Button
