@@ -103,5 +103,7 @@
   "tipDeleteBroker": "Delete it",
   "tipEditBroker": "Edit this calculator",
   "useIt": "Use it!",
-  "changeEmailInfo": "If you change your email you will have to log in again"
+  "changeEmailInfo": "If you change your email you will have to log in again",
+  "tipIsVisible": "Is public",
+  "tipIsNotVisible": "Is Private"
 }

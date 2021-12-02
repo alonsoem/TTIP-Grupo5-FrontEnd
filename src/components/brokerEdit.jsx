@@ -27,7 +27,7 @@ class BrokerEdit extends React.Component {
 
   }
   cancelAction = (event) => {
-    this.props.history.push("/brokers");
+    this.props.history.push("/myBrokers");
   };
 
   setDialogDefaults(){
@@ -85,7 +85,7 @@ class BrokerEdit extends React.Component {
     removeBroker = (id)  =>{
         deleteBroker(id)
             .then(() => {
-                this.props.history.push("/brokers");
+                this.props.history.push("/myBrokers");
             })
             .catch((responseError) => this.handleAPIError(responseError));
     }
@@ -347,12 +347,12 @@ class BrokerEdit extends React.Component {
                     </Button>
                   </Col>
                   <Col>
-                    <button className="btn btn-outline-danger"
+                    <div className="btn btn-outline-danger"
                             onClick={this.confirmDelete}
                             id={this.state.id}
                     >
-                      <i className="fa fa-trash"></i><span>{t("remove")}</span>
-                    </button>
+                      <i className="fa fa-trash" onClick={this.confirmDelete} id={this.state.id}></i>&nbsp;{t("remove")}
+                    </div>
                   </Col>
                 </Row>
               </Card.Footer>

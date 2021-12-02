@@ -24,7 +24,7 @@ class BrokerCreate extends React.Component {
   }
 
   cancelAction=(event)=>{
-    this.props.history.push("/broker");
+    this.props.history.push("/myBrokers");
   }
 
   submit = () =>{

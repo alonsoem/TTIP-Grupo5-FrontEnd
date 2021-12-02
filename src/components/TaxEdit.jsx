@@ -321,7 +321,7 @@ class Taxes extends React.Component {
                           onClick={this.handleDeleteTax}
                           id={this.state.id}
                   >
-                    <i className="fa fa-trash"></i><span>{t("remove")}</span>
+                    <i className="fa fa-trash" onClick={this.handleDeleteTax} id={this.state.id}></i>&nbsp;{t("remove")}
                   </button>
 
                 </Col>
