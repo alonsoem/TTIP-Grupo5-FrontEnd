@@ -14,6 +14,7 @@ import { withTranslation } from "react-i18next";
 import { getProfile, postProfile } from "../api/api";
 import "./loginform.css";
 import NavBarPage from "./NavBarPage";
+import {toast, ToastContainer} from "react-toastify";
 
 class UserProfile extends Component {
   constructor(props) {
@@ -33,6 +34,32 @@ class UserProfile extends Component {
     this.username = sessionStorage.getItem("username");
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  notify = (message) => {
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: 'colored',
+    });
+  }
+
+  notifyError = (message) => {
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: 'colored',
+    });
   }
 
   handleInputChange = (event) => {
@@ -94,6 +121,7 @@ class UserProfile extends Component {
           this.props.history.push("/login");
         } else {
           this.updateStateAndSelects(response);
+          this.notify(this.props.t("userModifiedOK"));
         }
       })
       .catch((responseError) => this.handleAPIError(responseError));
@@ -107,7 +135,7 @@ class UserProfile extends Component {
     }
 
     this.setState({ error: errorToDisplay });
-    this.showAlert();
+    this.notifyError(errorToDisplay);
   }
 
   hasError(key) {
@@ -126,6 +154,7 @@ class UserProfile extends Component {
       <div>
         <NavBarPage />
         <div className="container">
+          <ToastContainer />
           <Row className="padding-5 justify-content-center">
             <Col className="col-12 col-sm-4 col-lg-6 col-xl-6">
               <Form onSubmit={this.handleSubmit}>
@@ -286,7 +315,7 @@ class UserProfile extends Component {
                           type="submit"
                           className="align-content-center"
                         >
-                          {t("send")}
+                          {t("update")}
                         </Button>
                       </Col>
                     </Row>

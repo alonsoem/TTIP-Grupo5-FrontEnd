@@ -160,15 +160,15 @@ class Brokers extends React.Component {
                     </a>
                     <p>{item.description}</p>
                   </div>
-                  <div className="row h-25  justify-content-end">
+                  <div className="row h-25  justify-content-end brokerAction">
                     <div className={"col-auto"}>
-                    <i className="fa fa-copy" title={this.props.t("tipCopyBroker")} onClick={this.copyBroker} id={item.id}></i>
+                    <i className="fa fa-copy brokerAction" title={this.props.t("tipCopyBroker")} onClick={this.copyBroker} id={item.id}></i>
                     </div>
-                    <div className={"col-auto"}>
-                      <i className="fa fa-edit" title={this.props.t("tipEditBroker")} onClick={this.editBroker} id={item.id}></i>
+                    <div className={"col-auto brokerAction"}>
+                      <i className="fa fa-edit " title={this.props.t("tipEditBroker")} onClick={this.editBroker} id={item.id}></i>
                     </div>
-                    <div className={"col-auto"}>
-                      <i className="fa fa-trash" title={this.props.t("tipDeleteBroker")} onClick={this.confirmDelete} id={item.id}></i>
+                    <div className={"col-auto brokerAction"}>
+                      <i className="fa fa-trash brokerAction" title={this.props.t("tipDeleteBroker")} onClick={this.confirmDelete} id={item.id}></i>
                     </div>
 
                   </div>

@@ -351,7 +351,7 @@ class BrokerEdit extends React.Component {
                             onClick={this.confirmDelete}
                             id={this.state.id}
                     >
-                      <i className="fa fa-trash" onClick={this.confirmDelete} id={this.state.id}></i>&nbsp;{t("remove")}
+                        <i className="fa fa-trash"  onClick={this.confirmDelete} id={this.state.id}></i>{t("remove")}
                     </div>
                   </Col>
                 </Row>

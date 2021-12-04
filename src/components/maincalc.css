@@ -37,3 +37,8 @@
 .fact{
   margin-right:5px;
 }
+
+.brokerAction i{
+  cursor:pointer;
+
+}

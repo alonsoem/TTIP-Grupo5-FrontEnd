@@ -496,7 +496,7 @@ class RuleEdit extends React.Component {
                               onClick={this.handleDelete}
                               id={this.state.id}
                           >
-                              <i className="fa fa-trash" onClick={this.handleDelete} id={this.state.id}></i>&nbsp;{t("remove")}
+                              <i className="fa fa-trash" onClick={this.handleDelete} id={this.state.id}></i>{t("remove")}
                           </button>
 
                       </Col>

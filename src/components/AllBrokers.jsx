@@ -102,7 +102,7 @@ class AllBrokers extends React.Component {
                     <a href={"/maincalc/" + item.id} class={"link-light"}><h5 >{item.name}</h5></a>
                     <p>{item.description}</p>
                   </div>
-                  <div className="row h-25  float-end">
+                  <div className="row h-25  float-end brokerAction">
                       <i className="fa fa-copy" title={this.props.t("tipCopyBroker")} onClick={this.copyBroker} id={item.id}></i>
                   </div>
                 </div>

@@ -105,5 +105,6 @@
   "useIt": "Úsela",
   "changeEmailInfo": "Si cambias de email tendras que volver a iniciar sesión",
   "tipIsVisible": "Es visible públicamente",
-  "tipIsNotVisible": "No es públicamente visible"
+  "tipIsNotVisible": "No es públicamente visible",
+  "userModifiedOK": "Perfil actualizado exitosamente!"
 }
