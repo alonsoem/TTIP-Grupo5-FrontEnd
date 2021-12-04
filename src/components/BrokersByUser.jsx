@@ -193,17 +193,17 @@ class BrokersByUser extends React.Component {
             <Card.Body>
                 <div className={"row justify-content-md-center"}>
                     <div className="col-8 col-sm-8 col-lg-8 col-xl-8 pb-8 ">
-                        <Card className={"bg-light-grey"}>
+                        <Card className={"bg-userCard"}>
                             <Card.Body>
                                 <div className={"container"}>
 
                                 <div className={"row justify-content-md-center"}>
-                                    <div className={"col col-2 text-center"}>
-                                        <div className={"user-initials rounded-circle"} >
+                                    <div className={"col col-2 text-right"}>
+                                        <div className={"user-initials rounded-circle text-center"} >
                                               <a href={"/brokers/"+ this.state.showUIDBrokers}>{initials(this.state.user.name)}</a>
                                         </div>
                                     </div>
-                                    <div className={"col col-6 text-center"}>
+                                    <div className={"col col-6 text-center contH3"}>
                                         <h3>{this.state.user.name}</h3>
                                     </div>
                                 </div>

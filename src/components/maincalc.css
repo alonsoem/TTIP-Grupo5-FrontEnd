@@ -22,13 +22,21 @@
 
 
 .user-initials{
-  background-color: darkblue;
+  background-color: #5f859e;
   height:60px;
   width:60px;
   color:white;
   line-height: 60px;
+  border: 2px solid black;
 
 }
+
+.user-initials a{
+  color: white!important;
+
+}
+
+
 
 .bg-light-grey{
   background-color:#acbf9d;
@@ -41,4 +49,15 @@
 .brokerAction i{
   cursor:pointer;
 
+}
+
+.bg-userCard{
+  border: 1px solid #4c6575;
+
+}
+
+.contH3 h3{
+  height:9vh;
+  line-height: 9vh;
+  text-align: left;
 }
