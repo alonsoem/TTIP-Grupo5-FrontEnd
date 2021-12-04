@@ -25,6 +25,10 @@ class MainCalc extends Component {
       brokerName: "",
       taxlist: [],
       needApartado:false,
+      userFullName:"",
+      userId:"",
+      focusCalc:true,
+      focusResult:false
     };
 
     this.handleChangeAmount = this.handleChangeAmount.bind(this);
@@ -50,7 +54,12 @@ class MainCalc extends Component {
     this.state.id = this.props.match.params.id;
     getBroker(this.state.id)
       .then((aBroker) => {
-        this.setState({ brokerName: aBroker.name,
+        console.log(aBroker);
+        this.setState({
+                            brokerName: aBroker.name,
+                            description: aBroker.description,
+                            userFullName: aBroker.userFullName,
+                            userId: aBroker.userId,
                               needApartado: aBroker.taxes.flatMap(c=>c.rules).flatMap(d=>d.when).some((e)=>
                               {
                                 const regExp = /\bapartado\b/g;
@@ -59,11 +68,6 @@ class MainCalc extends Component {
                             });
         })
       .catch(() => this.setState({ error: this.props.t("genericError") }));
-  }
-
-  showAlert() {
-     //this.setState({ errorVisible: true });
-    //setTimeout(() => this.setState({ errorVisible: false }), 3000);
   }
 
   notify = (message) => {
@@ -92,6 +96,14 @@ class MainCalc extends Component {
     });
   }
 
+  focusCalc= (event)=>{
+    this.setState({focusCalc:true,focusResult:false});
+  }
+
+  focusResult(){
+    this.setState({focusCalc:false,focusResult:true});
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     postCalc({
@@ -100,6 +112,7 @@ class MainCalc extends Component {
       taxId: this.props.match.params.id,
     })
       .then((response) => {
+        this.focusResult();
         const taxNames = response.detail.filter((detail) => detail.amount > 0);
         this.setState({
           result: response.totalAmount,
@@ -154,6 +167,15 @@ class MainCalc extends Component {
     const {language} = i18next;
 
 
+    const initials = (fullName) => {
+      if (fullName==""){ return "..."}
+
+      let names = fullName.split(" ");
+      if (names.length>3){
+        return names[0][0]+" "+names[1][0];
+      }
+      return names.map((n) => n[0].toUpperCase()).join(" ");
+    }
 
     return (
       <div>
@@ -164,8 +186,31 @@ class MainCalc extends Component {
                   <h3 className="text-left"><b>{this.state.brokerName}</b></h3>
             </Card.Header>
             <Card.Body>
+
+              <div className="card shadow-none border-light p-3" >
+                <Row>
+
+
+                   <Col className={"col-11  text-center"}>
+                     <h5>{this.state.description}</h5>
+                    </Col>
+                    <Col className={"col-1 text-center"}>
+                      <div className={"user-initials rounded-circle"} title={t("createdBy")+this.state.userFullName}>
+                            <a href={"/brokers/"+ this.state.userId}>{initials(this.state.userFullName)}</a>
+                      </div>
+                   </Col>
+
+
+                </Row>
+              </div>
+
+
+
+
               <Row className="padding-5 justify-content-center">
                 <Col className="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                  <Card className={"card "+(this.state.focusCalc?"bg-light":"")}>
+                    <Card.Body>
                   <Form onSubmit={this.handleSubmit}>
                     <Alert
                         className="alert alert-dismissible"
@@ -181,6 +226,9 @@ class MainCalc extends Component {
                           icon="dollar-sign"
                           onChange={this.handleChangeAmount}
                           value={this.state.amount}
+                          onFocus={this.focusCalc}
+
+
                       />
                     </FormGroup>
 
@@ -198,10 +246,12 @@ class MainCalc extends Component {
                       </Col>
                     </Row>
                   </Form>
+                    </Card.Body>
+                  </Card>
                 </Col>
                 <Col id="appliedTaxesDiv"
                      className="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
-                  <Card className="card text-white bg-info">
+                  <Card className={"card "+(this.state.focusResult?"bg-info text-white":"")}>
                     <Card.Header>
                       {t("appliedTaxes")}
                     </Card.Header>

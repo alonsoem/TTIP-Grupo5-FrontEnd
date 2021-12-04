@@ -106,5 +106,6 @@
   "changeEmailInfo": "If you change your email you will have to log in again",
   "tipIsVisible": "Is public",
   "tipIsNotVisible": "Is Private",
-  "userModifiedOK": "Your profile have been updated!"
+  "userModifiedOK": "Your profile have been updated!",
+  "createdBy": "Shared By "
 }

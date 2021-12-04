@@ -106,5 +106,6 @@
   "changeEmailInfo": "Si cambias de email tendras que volver a iniciar sesión",
   "tipIsVisible": "Es visible públicamente",
   "tipIsNotVisible": "No es públicamente visible",
-  "userModifiedOK": "Perfil actualizado exitosamente!"
+  "userModifiedOK": "Perfil actualizado exitosamente!",
+  "createdBy": "Compartida por "
 }
