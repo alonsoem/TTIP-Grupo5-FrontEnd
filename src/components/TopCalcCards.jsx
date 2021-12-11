@@ -1,5 +1,5 @@
 import React from "react";
-import {getPublicBrokers} from "../api/api";
+import {getPublicBrokers, getTopPublicBrokers} from "../api/api";
 import {Col} from "react-bootstrap";
 
 class BrokerCardList extends React.Component {
@@ -55,7 +55,7 @@ class BrokerCardList extends React.Component {
 
 
     componentDidMount() {
-        getPublicBrokers({words:[""]})
+        getTopPublicBrokers()
             .then((response) => {
                 console.log(response);
                 this.setState({list:response.map((each) => (

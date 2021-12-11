@@ -35,6 +35,8 @@ export const getTaxes = (body) => request("get", "/rate", body, authConfig());
 
 export const getPublicBrokers = (body) =>
   request("post", "/broker", body, authConfig());
+export const getTopPublicBrokers = (body) =>
+    request("get", "/broker/top", body, authConfig());
 export const getUserBrokers = (id) =>
   request("get", "/broker/byUser/" + id, {}, authConfig());
 export const getBroker = (id) =>
