@@ -232,7 +232,7 @@ class BrokersByUser extends React.Component {
                         </Form.Group>
                       </Row>
                         <Row>
-                            <Col className={"col-12 col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10"}>
+                            <Col className={"col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12col-xl-12"}>
                                 <div className={"row "} id={"brokerCards"}>
                                     {this.getBrokerCards()}
                                 </div>

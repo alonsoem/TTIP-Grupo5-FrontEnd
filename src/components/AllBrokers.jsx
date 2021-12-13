@@ -138,7 +138,7 @@ class AllBrokers extends React.Component {
 
                     <Col className="col-12">
                       <Row>
-                        <Col className="col-8 col-md-9 col-sm-9 col-lg-10 col-xl-10 pb-10">
+                        <Col className="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 pb-12">
                         <Form.Group className="mb-3" controlId="searchValue">
                           <MDBInput
                               type="text"
@@ -150,17 +150,9 @@ class AllBrokers extends React.Component {
 
                         </Form.Group>
                         </Col>
-                        <Col className="col-2 col-md-2 col-sm-2 col-lg-2 col-xl-2 pb-2">
-                          <NavLink to="/broker">
-                            <Button title={t("brokerNew")} class={"btn-sm"}>
-                              <i className="fa fa-plus"></i>
-                            </Button>
-                          </NavLink>
-                        </Col>
-
-                      </Row>
+                       </Row>
                       <Row>
-                        <Col className={"col-12 col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10"}>
+                        <Col className={"col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"}>
                           <div className={"row "} id={"brokerCards"}>
                           {this.getBrokerCards()}
                           </div>
