@@ -14,6 +14,14 @@
     height: 4.0em;
     background-color: #70b0d2;
 }
+.calculatorCardMis{
+    background-image: url("/src/static/calculadora-mis-top.png");
+    background-position: top right;
+    background-size: auto;
+    background-repeat: no-repeat;
+    height: 4.0em;
+    background-color: #cfccc9;
+}
 
 /*#maincalcdiv {
   background-image: url("/src/static/maincalc-wallpaper.png");
