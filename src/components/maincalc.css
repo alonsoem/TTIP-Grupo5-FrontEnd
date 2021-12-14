@@ -1,10 +1,18 @@
 .calculatorCard{
-  background-image: url("/src/static/calculadora-rosa.png");
+  background-image: url("/src/static/calculadora-top.png");
   background-position: top right;
   background-size: auto;
   background-repeat: no-repeat;
   height: 4.0em;
-  background-color: #ff9a78;
+  background-color: #30b552;
+}
+.calculatorCardPublic{
+    background-image: url("/src/static/calculadora-public-top.png");
+    background-position: top right;
+    background-size: auto;
+    background-repeat: no-repeat;
+    height: 4.0em;
+    background-color: #70b0d2;
 }
 
 /*#maincalcdiv {

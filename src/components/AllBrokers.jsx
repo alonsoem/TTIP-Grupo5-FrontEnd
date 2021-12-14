@@ -129,8 +129,8 @@ class AllBrokers extends React.Component {
         <div className="container">
 
           <Card>
-            <Card.Header>
-              <h5>{t("publicBrokers")}</h5>
+            <Card.Header className={"calculatorCardPublic"}>
+              <h3>{t("publicBrokers")}</h3>
             </Card.Header>
             <Card.Body>
               <div className="row">
