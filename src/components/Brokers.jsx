@@ -240,8 +240,8 @@ class Brokers extends React.Component {
           />
 
           <Card>
-            <Card.Header>
-              <h5>{t("myBrokers")}</h5>
+            <Card.Header className={"calculatorCardMis"}>
+              <h3>{t("myBrokers")}</h3>
             </Card.Header>
             <Card.Body>
               <div className="row">

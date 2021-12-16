@@ -296,7 +296,7 @@ class MainCalc extends Component {
                         <MDBListGroupItem>
                         <Row>
                           <Col className={"col-2"}>
-                            &nbsp;
+                            <b>TOTAL</b>
                           </Col>
 
                           <Col className={"col-10 text-right"}>
