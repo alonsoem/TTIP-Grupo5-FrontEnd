@@ -50,7 +50,8 @@
   },
   "eslintConfig": {
     "rules": {
-      "react/no-direct-mutation-state": "off"
+      "react/no-direct-mutation-state": "off",
+      "jsx-a11y/anchor-is-valid": "off",
     },
     "extends": [
       "react-app",
